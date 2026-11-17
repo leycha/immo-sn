@@ -1,1 +1,69 @@
 @import "tailwindcss";
+@import "./responsive.css";
+
+@source "../app/Views";
+@source "../public";
+
+@theme {
+  --color-primary-50: #eef8f4;
+  --color-primary-100: #d8eee7;
+  --color-primary-500: #087f68;
+  --color-primary-600: #066c59;
+  --color-primary-700: #055847;
+
+  --color-secondary-500: #dca94b;
+  --color-secondary-600: #c69232;
+
+  --color-dark: #242424;
+  --color-light: #ffffff;
+  --color-cream: #fff9eb;
+
+  --font-sans: Inter, system-ui, sans-serif;
+}
+
+@layer components {
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center
+      bg-primary-500 hover:bg-primary-600
+      text-white font-medium
+      px-5 py-2.5 rounded-lg
+      transition-colors;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center
+      bg-secondary-500 hover:bg-secondary-600
+      text-white font-medium
+      px-5 py-2.5 rounded-lg
+      transition-colors;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center
+      border border-gray-300
+      hover:border-primary-500
+      text-gray-700 hover:text-primary-500
+      font-medium px-5 py-2.5 rounded-lg
+      transition-colors;
+  }
+
+  .card {
+    @apply bg-white rounded-3xl overflow-hidden
+      shadow-sm hover:shadow-xl
+      transition-all duration-300;
+  }
+
+  .input-field {
+    @apply w-full border border-gray-200
+      rounded-lg px-4 py-2.5
+      focus:outline-none
+      focus:ring-2 focus:ring-primary-500
+      focus:border-transparent;
+  }
+
+  .nav-link {
+    @apply text-gray-800 hover:text-primary-500
+      font-medium transition-colors;
+  }
+}

@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rappel d'expiration - IMMO-SN</title>
+</head>
+<body style="margin:0;padding:24px;background:#faf7f2;font-family:Arial,sans-serif;color:#30221b;line-height:1.6">
+    <div style="max-width:620px;margin:20px auto;background:#ffffff;border:1px solid #eadfd5;border-radius:14px;overflow:hidden">
+        <div style="background:#30221b;padding:25px;text-align:center">
+            <h1 style="margin:0;color:#f7f5ef;font-size:26px">IMMO-SN</h1>
+            <p style="margin:6px 0 0;color:#d9b879">Votre plateforme immobilière</p>
+        </div>
+
+        <div style="padding:30px">
+            <h2 style="color:#5a402d">Bonjour {{nom}},</h2>
+
+            <p>Nous vous informons qu'une ou plusieurs de vos annonces arriveront à expiration dans les sept prochains jours.</p>
+
+            <p>Voici les annonces concernées :</p>
+
+            <ul style="padding-left:22px">
+                {{liste_biens}}
+            </ul>
+
+            <p>Pensez à consulter votre espace membre pour vérifier vos annonces et les renouveler si cette option est disponible.</p>
+
+            <div style="text-align:center;margin:30px 0">
+                <a href="{{lien_espace_membre}}" style="display:inline-block;background:#a98260;color:#ffffff;text-decoration:none;padding:14px 25px;border-radius:7px;font-weight:bold">
+                    Accéder à mon espace membre
+                </a>
+            </div>
+
+            <p>Merci de votre confiance.</p>
+            <p style="margin-bottom:0"><strong>L'équipe IMMO-SN</strong></p>
+        </div>
+
+        <div style="background:#f4eee7;padding:18px;text-align:center;font-size:12px;color:#76675c">
+            Vous recevez ce message parce que vous possédez une ou plusieurs annonces sur IMMO-SN.
+        </div>
+    </div>
+</body>
+</html>

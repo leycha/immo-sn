@@ -1,16 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-   <link rel="stylesheet" href="/immo-sn/public/css/app.css">
-</head>
-<body>
-   <div class="w-full text-center">
-    <h1 class="text-4xl font-bold text-green-900 mt-10">
-        IMMO GESTION
-    </h1>
-</div>
-</body>
-</html>
+
+<?php
+
+// Affichage des erreurs en environnement de développement.
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
+// Initialisation centrale de IMMO-SN.
+require_once dirname(__DIR__) . '/config/bootstrap.php';
+
+// Chargement des routes.
+require_once BASE_PATH . '/config/routes.php';
+
+use Core\Router;
+
+// Création du routeur.
+$router = new Router();
+
+// Enregistrement des routes.
+registerRoutes($router);
+
+// Exécution de la route demandée.
+$router->dispatch(
+    $_SERVER['REQUEST_URI'],
+    $_SERVER['REQUEST_METHOD']
+);

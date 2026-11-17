@@ -1,24 +1,20 @@
 
 <?php
 
-$host = "ep-old-rice-ax62ofvw-pooler.c-4.us-east-2.aws.neon.tech";
-$dbname = "gestion_immobiliere";
-$user = "neondb_owner";
-$password = "npg_yjBd6mXb0Mvh";
-$port = "5432";
+/**
+ * Configuration de la base de données IMMO-SN.
+ *
+ * Les identifiants restent dans le fichier .env.
+ */
 
-try {
+return [
+    'host' => (string) ($_ENV['DB_HOST'] ?? getenv('DB_HOST') ?: ''),
 
-    $pdo = new PDO(
-        "pgsql:host=$host;port=$port;dbname=$dbname;sslmode=require;options='endpoint=ep-old-rice-ax62ofvw'",
-        $user,
-        $password
-    );
+    'port' => (string) ($_ENV['DB_PORT'] ?? getenv('DB_PORT') ?: '5432'),
 
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    'database' => (string) ($_ENV['DB_NAME'] ?? getenv('DB_NAME') ?: ''),
 
-    echo "Connexion réussie";
+    'username' => (string) ($_ENV['DB_USER'] ?? getenv('DB_USER') ?: ''),
 
-} catch (PDOException $e) {
-    die("Erreur de connexion : " . $e->getMessage());
-}
+    'password' => (string) ($_ENV['DB_PASSWORD'] ?? getenv('DB_PASSWORD') ?: ''),
+];
