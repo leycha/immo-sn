@@ -113,11 +113,29 @@ public function authenticate(): void
             error_log('[LOGIN - LAST_LOGIN] ' . $e->getMessage());
         }
 
-        if (!session_regenerate_id(true)) {
-            throw new \RuntimeException(
-                'Impossible de régénérer la session.'
-            );
-        }
+       $headersFile = '';
+$headersLine = 0;
+
+$headersAlreadySent = headers_sent(
+    $headersFile,
+    $headersLine
+);
+
+error_log(
+    '[SESSION DIAGNOSTIC] '
+    . 'status=' . session_status()
+    . ' | active=' . (session_status() === PHP_SESSION_ACTIVE ? 'oui' : 'non')
+    . ' | headers_sent=' . ($headersAlreadySent ? 'oui' : 'non')
+    . ' | fichier=' . $headersFile
+    . ' | ligne=' . $headersLine
+    . ' | session_id=' . (session_id() !== '' ? 'présent' : 'absent')
+);
+
+if (!session_regenerate_id(true)) {
+    throw new \RuntimeException(
+        'Impossible de régénérer la session.'
+    );
+}
 
         Session::set('user_id', $user['id']);
 
