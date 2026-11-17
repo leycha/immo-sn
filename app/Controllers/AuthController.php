@@ -52,6 +52,9 @@ class AuthController
      */
     public function authenticate(): void
     {
+            http_response_code(200);
+    header('Content-Type: text/plain; charset=UTF-8');
+    exit('TEST OK : AUTHENTICATE EST BIEN EXECUTE');
         Session::start();
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
