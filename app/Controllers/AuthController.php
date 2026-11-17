@@ -53,49 +53,32 @@ class AuthController
 
 public function authenticate(): void
 {
-    header('Content-Type: text/plain; charset=UTF-8');
-
-    echo "ETAPE 1 : METHODE AUTHENTICATE ATTEINTE\n";
+    Session::start();
 
     try {
-        Session::start();
-        echo "ETAPE 2 : SESSION DEMARREE\n";
-
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            exit("ARRET : LA REQUETE N'EST PAS POST\n");
+            header('Location: /immo-sn/login');
+            exit;
         }
-
-        echo "ETAPE 3 : REQUETE POST CONFIRMEE\n";
 
         $email = trim($_POST['email'] ?? '');
         $password = $_POST['password'] ?? '';
 
         if (
             !Validator::required($email) ||
-            !Validator::required($password)
+            !Validator::required($password) ||
+            !Validator::email($email)
         ) {
-            exit("ARRET : EMAIL OU MOT DE PASSE VIDE\n");
+            header('Location: /immo-sn/login');
+            exit;
         }
 
-        if (!Validator::email($email)) {
-            exit("ARRET : FORMAT EMAIL INVALIDE\n");
-        }
-
-        echo "ETAPE 4 : VALIDATION DES CHAMPS OK\n";
-
-        try {
-            $user = User::findByEmail($email);
-            echo "ETAPE 5 : RECHERCHE POSTGRESQL OK\n";
-        } catch (\Throwable $e) {
-            error_log('[LOGIN DIAGNOSTIC - RECHERCHE] ' . $e->getMessage());
-            exit("ERREUR ETAPE 5 : RECHERCHE POSTGRESQL\n");
-        }
+        $user = User::findByEmail($email);
 
         if (!$user) {
-            exit("ARRET : AUCUN COMPTE TROUVE POUR CET EMAIL\n");
+            header('Location: /immo-sn/login');
+            exit;
         }
-
-        echo "ETAPE 6 : COMPTE UTILISATEUR TROUVE\n";
 
         if (
             isset($user['status']) &&
@@ -106,19 +89,14 @@ public function authenticate(): void
                 true
             )
         ) {
-            exit("ARRET : COMPTE NON ACTIF\n");
+            header('Location: /immo-sn/login');
+            exit;
         }
 
-        try {
-            if (!User::verifyPassword($password, $user['password'])) {
-                exit("ARRET : MOT DE PASSE INCORRECT\n");
-            }
-        } catch (\Throwable $e) {
-            error_log('[LOGIN DIAGNOSTIC - MOT DE PASSE] ' . $e->getMessage());
-            exit("ERREUR ETAPE 7 : VERIFICATION DU MOT DE PASSE\n");
+        if (!User::verifyPassword($password, $user['password'])) {
+            header('Location: /immo-sn/login');
+            exit;
         }
-
-        echo "ETAPE 7 : MOT DE PASSE CORRECT\n";
 
         try {
             $db = Database::getConnection();
@@ -131,14 +109,14 @@ public function authenticate(): void
 
             $stmt->execute(['id' => $user['id']]);
 
-            echo "ETAPE 8 : MISE A JOUR LAST_LOGIN OK\n";
         } catch (\Throwable $e) {
-            error_log('[LOGIN DIAGNOSTIC - LAST_LOGIN] ' . $e->getMessage());
-            echo "AVERTISSEMENT : MISE A JOUR LAST_LOGIN ECHOUEE\n";
+            error_log('[LOGIN - LAST_LOGIN] ' . $e->getMessage());
         }
 
         if (!session_regenerate_id(true)) {
-            exit("ERREUR : REGENERATION DE SESSION IMPOSSIBLE\n");
+            throw new \RuntimeException(
+                'Impossible de régénérer la session.'
+            );
         }
 
         Session::set('user_id', $user['id']);
@@ -153,13 +131,34 @@ public function authenticate(): void
             'statut' => $user['status'] ?? '',
         ]);
 
-        echo "ETAPE 9 : SESSION UTILISATEUR ENREGISTREE\n";
-        echo "ROLE : " . strtolower(trim((string) ($user['role'] ?? 'inconnu'))) . "\n";
-        echo "DIAGNOSTIC TERMINE\n";
+        $role = strtolower(trim((string) ($user['role'] ?? '')));
+
+        switch ($role) {
+            case 'admin':
+                $destination = '/immo-sn/admin';
+                break;
+
+            case 'moderateur':
+                $destination = '/immo-sn/moderateur';
+                break;
+
+            case 'agence':
+                $destination = '/immo-sn/agence/mon-agence';
+                break;
+
+            default:
+                $destination = '/immo-sn/member/dashboard';
+                break;
+        }
+
+        header('Location: ' . $destination);
+        exit;
 
     } catch (\Throwable $e) {
-        error_log('[LOGIN DIAGNOSTIC - ERREUR GENERALE] ' . $e->getMessage());
-        exit("ERREUR TECHNIQUE : CONSULTER LES LOGS RENDER\n");
+        error_log('[LOGIN - ERREUR] ' . $e->getMessage());
+
+        header('Location: /immo-sn/login');
+        exit;
     }
 }
 
