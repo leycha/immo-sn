@@ -50,65 +50,53 @@ class AuthController
     /**
      * Traite la connexion.
      */
-    public function authenticate(): void
-    {
-            http_response_code(200);
+
+public function authenticate(): void
+{
     header('Content-Type: text/plain; charset=UTF-8');
-    exit('TEST OK : AUTHENTICATE EST BIEN EXECUTE');
+
+    echo "ETAPE 1 : METHODE AUTHENTICATE ATTEINTE\n";
+
+    try {
         Session::start();
+        echo "ETAPE 2 : SESSION DEMARREE\n";
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            header('Location: /immo-sn/login');
-            exit;
+            exit("ARRET : LA REQUETE N'EST PAS POST\n");
         }
+
+        echo "ETAPE 3 : REQUETE POST CONFIRMEE\n";
 
         $email = trim($_POST['email'] ?? '');
         $password = $_POST['password'] ?? '';
 
-        /*
-         * Validation des champs.
-         */
         if (
-    !Validator::required($email) ||
-    !Validator::required($password)
-) {
-            Session::flash(
-                'error',
-                'Veuillez renseigner votre adresse email et votre mot de passe.'
-            );
-
-            header('Location: /immo-sn/login');
-            exit;
+            !Validator::required($email) ||
+            !Validator::required($password)
+        ) {
+            exit("ARRET : EMAIL OU MOT DE PASSE VIDE\n");
         }
 
         if (!Validator::email($email)) {
-            Session::flash(
-                'error',
-                'Veuillez saisir une adresse email valide.'
-            );
-
-            header('Location: /immo-sn/login');
-            exit;
+            exit("ARRET : FORMAT EMAIL INVALIDE\n");
         }
 
-        /*
-         * Recherche de l'utilisateur.
-         */
-        $user = User::findByEmail($email);
+        echo "ETAPE 4 : VALIDATION DES CHAMPS OK\n";
+
+        try {
+            $user = User::findByEmail($email);
+            echo "ETAPE 5 : RECHERCHE POSTGRESQL OK\n";
+        } catch (\Throwable $e) {
+            error_log('[LOGIN DIAGNOSTIC - RECHERCHE] ' . $e->getMessage());
+            exit("ERREUR ETAPE 5 : RECHERCHE POSTGRESQL\n");
+        }
 
         if (!$user) {
-            Session::flash(
-                'error',
-                'Adresse email ou mot de passe incorrect.'
-            );
-
-            header('Location: /immo-sn/login');
-            exit;
+            exit("ARRET : AUCUN COMPTE TROUVE POUR CET EMAIL\n");
         }
 
-        /*
-         * Vérification du statut du compte.
-         */
+        echo "ETAPE 6 : COMPTE UTILISATEUR TROUVE\n";
+
         if (
             isset($user['status']) &&
             !empty($user['status']) &&
@@ -118,34 +106,20 @@ class AuthController
                 true
             )
         ) {
-            Session::flash(
-                'error',
-                'Votre compte n’est pas encore actif.'
-            );
-
-            header('Location: /immo-sn/login');
-            exit;
+            exit("ARRET : COMPTE NON ACTIF\n");
         }
 
-        /*
-         * Vérification du mot de passe.
-         */
-        if (!User::verifyPassword(
-            $password,
-            $user['password']
-        )) {
-            Session::flash(
-                'error',
-                'Adresse email ou mot de passe incorrect.'
-            );
-
-            header('Location: /immo-sn/login');
-            exit;
+        try {
+            if (!User::verifyPassword($password, $user['password'])) {
+                exit("ARRET : MOT DE PASSE INCORRECT\n");
+            }
+        } catch (\Throwable $e) {
+            error_log('[LOGIN DIAGNOSTIC - MOT DE PASSE] ' . $e->getMessage());
+            exit("ERREUR ETAPE 7 : VERIFICATION DU MOT DE PASSE\n");
         }
 
-        /*
-         * Enregistrement de la dernière connexion réussie.
-         */
+        echo "ETAPE 7 : MOT DE PASSE CORRECT\n";
+
         try {
             $db = Database::getConnection();
 
@@ -155,26 +129,18 @@ class AuthController
                 WHERE id = :id
             ");
 
-            $stmt->execute([
-                'id' => $user['id']
-            ]);
+            $stmt->execute(['id' => $user['id']]);
 
-        } catch (\PDOException $e) {
-            error_log(
-                'Erreur lors de la mise à jour de last_login : '
-                . $e->getMessage()
-            );
+            echo "ETAPE 8 : MISE A JOUR LAST_LOGIN OK\n";
+        } catch (\Throwable $e) {
+            error_log('[LOGIN DIAGNOSTIC - LAST_LOGIN] ' . $e->getMessage());
+            echo "AVERTISSEMENT : MISE A JOUR LAST_LOGIN ECHOUEE\n";
         }
 
-        /*
-         * Sécurité :
-         * régénération de l'identifiant de session.
-         */
-        session_regenerate_id(true);
+        if (!session_regenerate_id(true)) {
+            exit("ERREUR : REGENERATION DE SESSION IMPOSSIBLE\n");
+        }
 
-        /*
-         * Enregistrement des informations dans la session.
-         */
         Session::set('user_id', $user['id']);
 
         Session::set('user', [
@@ -187,34 +153,16 @@ class AuthController
             'statut' => $user['status'] ?? '',
         ]);
 
-        /*
-         * Redirection selon le rôle.
-         */
-        $role = strtolower(
-            trim((string) ($user['role'] ?? ''))
-        );
+        echo "ETAPE 9 : SESSION UTILISATEUR ENREGISTREE\n";
+        echo "ROLE : " . strtolower(trim((string) ($user['role'] ?? 'inconnu'))) . "\n";
+        echo "DIAGNOSTIC TERMINE\n";
 
-        switch ($role) {
-            case 'admin':
-                header('Location: /immo-sn/admin');
-                break;
-
-            case 'moderateur':
-                header('Location: /immo-sn/moderateur');
-                break;
-
-            case 'agence':
-                header('Location: /immo-sn/agence/mon-agence');
-                break;
-
-            case 'particulier':
-            default:
-                header('Location: /immo-sn/member/dashboard');
-                break;
-        }
-
-        exit;
+    } catch (\Throwable $e) {
+        error_log('[LOGIN DIAGNOSTIC - ERREUR GENERALE] ' . $e->getMessage());
+        exit("ERREUR TECHNIQUE : CONSULTER LES LOGS RENDER\n");
     }
+}
+
 
     /**
      * Affiche le formulaire d'inscription.
