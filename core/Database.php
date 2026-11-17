@@ -1,4 +1,5 @@
 <?php
+
 namespace Core;
 
 use PDO;
@@ -12,23 +13,17 @@ class Database
     public static function getConnection(): PDO
     {
         if (self::$instance === null) {
-
             try {
-
-                // Initialisation centrale de IMMO-SN.
                 require_once dirname(__DIR__) . '/config/bootstrap.php';
 
-                // Chargement de la configuration PostgreSQL.
                 $config = require BASE_PATH . '/config/database.php';
 
-                // Récupération des paramètres.
-                $host = $config['host'];
-                $port = $config['port'];
-                $database = $config['database'];
-                $username = $config['username'];
-                $password = $config['password'];
+                $host = trim((string) ($config['host'] ?? ''));
+                $port = trim((string) ($config['port'] ?? '5432'));
+                $database = trim((string) ($config['database'] ?? ''));
+                $username = trim((string) ($config['username'] ?? ''));
+                $password = (string) ($config['password'] ?? '');
 
-                // Vérification des paramètres obligatoires.
                 $parametres = [
                     'DB_HOST' => $host,
                     'DB_NAME' => $database,
@@ -36,26 +31,43 @@ class Database
                     'DB_PASSWORD' => $password,
                 ];
 
-                $parametresManquants = [];
+                $manquants = [];
 
                 foreach ($parametres as $nom => $valeur) {
-                    if (trim((string) $valeur) === '') {
-                        $parametresManquants[] = $nom;
+                    if ($valeur === '') {
+                        $manquants[] = $nom;
                     }
                 }
 
-                if ($parametresManquants !== []) {
+                if ($manquants !== []) {
                     throw new PDOException(
-                        'Paramètres de connexion manquants : '
-                        . implode(', ', $parametresManquants)
+                        'Paramètres manquants : ' .
+                        implode(', ', $manquants)
                     );
                 }
 
-                // Connexion PostgreSQL / Neon avec SSL obligatoire.
+                // Récupérer automatiquement l'identifiant Neon.
+                $endpoint = null;
+
+                if (preg_match(
+                    '/^(ep-[^.]+?)(?:-pooler)?\./',
+                    $host,
+                    $matches
+                )) {
+                    $endpoint = $matches[1];
+                }
+
+                if ($endpoint === null) {
+                    throw new PDOException(
+                        'Impossible de récupérer l’identifiant endpoint Neon depuis DB_HOST.'
+                    );
+                }
+
+                // Transmettre l'endpoint à Neon via libpq.
                 $dsn = "pgsql:"
                     . "host={$host};"
                     . "port={$port};"
-                    . "dbname={$database};"
+                    . "dbname={$database} options=endpoint={$endpoint};"
                     . "sslmode=require";
 
                 self::$instance = new PDO(
@@ -70,10 +82,19 @@ class Database
                 );
 
             } catch (Throwable $e) {
+                error_log(
+                    'IMMO-SN Database error: ' . $e->getMessage()
+                );
 
-                die(
-                    "Erreur de connexion à la base de données : "
-                    . $e->getMessage()
+                http_response_code(500);
+
+                exit(
+                    'Erreur de connexion à la base de données : '
+                    . htmlspecialchars(
+                        $e->getMessage(),
+                        ENT_QUOTES,
+                        'UTF-8'
+                    )
                 );
             }
         }
