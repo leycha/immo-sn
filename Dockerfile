@@ -4,7 +4,7 @@ FROM php:8.2-apache
 # Extensions PHP nécessaires à IMMO-SN et Neon PostgreSQL
 RUN apt-get update && apt-get install -y \
     libpq-dev \
-        libonig-dev \
+    libonig-dev \
     libpng-dev \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
@@ -36,10 +36,9 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 # Apache utilise le dossier public
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
-RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
+RUN sed -ri 's!/var/www/html!/var/www/html/public!g' \
     /etc/apache2/sites-available/000-default.conf \
-    /etc/apache2/apache2.conf \
-    && sed -ri '/<Directory ${APACHE_DOCUMENT_ROOT}>/,/<\/Directory>/s/AllowOverride None/AllowOverride All/' \
+    && sed -ri '/<Directory \/var\/www\/>/,/<\/Directory>/s/AllowOverride None/AllowOverride All/' \
     /etc/apache2/apache2.conf
 
 # Permissions des dossiers de stockage
