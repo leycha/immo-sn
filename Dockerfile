@@ -1,13 +1,14 @@
 
 FROM php:8.2-apache
 
-# Extensions PHP nécessaires à IMMO-SN et Neon PostgreSQL
+# Extensions PHP nécessaires à IMMO-SN, Neon PostgreSQL et ZIP
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     libonig-dev \
     libpng-dev \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
+    libzip-dev \
     unzip \
     git \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -17,6 +18,7 @@ RUN apt-get update && apt-get install -y \
         gd \
         mbstring \
         opcache \
+        zip \
     && a2enmod rewrite alias \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
