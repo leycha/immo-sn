@@ -706,116 +706,43 @@ class AdminController extends Controller
     /**
      * Approuver un bien en attente.
      */
-    public function approuverBien(string $id): void
-    {
-        $this->verifierModerateurOuAdmin();
+   
+public function approuverBien(string $id): void
+{
+    $this->verifierModerateurOuAdmin();
 
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            header('Location: /immo-sn/admin/biens');
-            exit;
-        }
-
-        try {
-            $approuve = Bien::adminApprouver($id);
-
-            $message = $approuve
-                ? 'Bien approuvé avec succès.'
-                : 'Impossible d’approuver ce bien. Vérifiez son statut.';
-
-            $type = $approuve ? 'succes' : 'erreur';
-
-            if ($approuve) {
-                try {
-                    $bien = Bien::detail($id);
-
-                    if ($bien !== null) {
-                        $email = trim(
-                            (string) ($bien['proprio_email'] ?? '')
-                        );
-
-                        // Validation centralisée de l'adresse e-mail.
-                        if (Validator::email($email)) {
-                            $prenom = trim(
-                                (string) ($bien['proprio_prenom'] ?? '')
-                            );
-
-                            $titreBien = trim(
-                                (string) ($bien['titre'] ?? '')
-                            );
-
-                            if ($prenom === '') {
-                                $prenom = 'cher membre';
-                            }
-
-                            if ($titreBien === '') {
-                                $titreBien = 'Votre annonce';
-                            }
-
-                            // Récupération de l'URL depuis la configuration centrale.
-                            $appConfig = require BASE_PATH . '/config/app.php';
-                            $baseUrl = $appConfig['url'];
-
-                            $lienBien = $baseUrl
-                                . '/biens/'
-                                . rawurlencode($id);
-
-                            $userId = isset($bien['user_id'])
-                                ? (string) $bien['user_id']
-                                : null;
-
-                            $mailer = new Mailer();
-
-                            $mailer->sendTemplate(
-                                $email,
-                                'Votre annonce est validée - IMMO-SN',
-                                'bien-valide',
-                                [
-                                    'prenom' => $prenom,
-                                    'titre_bien' => $titreBien,
-                                    'lien_bien' => $lienBien,
-                                ],
-                                $userId,
-                                "Félicitations {$prenom} !\n\n"
-                                    . "Votre annonce « {$titreBien} » a été approuvée "
-                                    . "et peut désormais être consultée sur IMMO-SN.\n\n"
-                                    . "Voir votre annonce : {$lienBien}\n\n"
-                                    . "L'équipe IMMO-SN"
-                            );
-                        } else {
-                            error_log(
-                                '[IMMO-SN BIEN VALIDE] Adresse e-mail invalide pour le bien : '
-                                . $id
-                            );
-                        }
-                    } else {
-                        error_log(
-                            '[IMMO-SN BIEN VALIDE] Bien introuvable après approbation : '
-                            . $id
-                        );
-                    }
-                } catch (\Throwable $mailError) {
-                    error_log(
-                        '[IMMO-SN BIEN VALIDE] Échec de l’envoi : '
-                        . $mailError->getMessage()
-                    );
-                }
-            }
-        } catch (\Throwable $e) {
-            error_log(
-                'Erreur approbation bien IMMO-SN : ' . $e->getMessage()
-            );
-
-            $message = 'Une erreur est survenue lors de l’approbation.';
-            $type = 'erreur';
-        }
-
-        header(
-            'Location: /immo-sn/admin/biens?message='
-            . rawurlencode($message)
-            . '&type=' . $type
-        );
+    if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'POST') {
+        header('Location: /immo-sn/public/admin/biens');
         exit;
     }
+
+    try {
+        $approuve = Bien::adminApprouver($id);
+
+        $message = $approuve
+            ? 'Bien approuvé avec succès.'
+            : 'Impossible d’approuver ce bien. Vérifiez son statut.';
+
+        $type = $approuve ? 'succes' : 'erreur';
+
+    } catch (\Throwable $e) {
+        error_log(
+            'Erreur approbation bien IMMO-SN : ' . $e->getMessage()
+        );
+
+        $message = 'Une erreur est survenue lors de l’approbation.';
+        $type = 'erreur';
+    }
+
+    header(
+        'Location: /immo-sn/public/admin/biens?message='
+        . rawurlencode($message)
+        . '&type=' . $type,
+        true,
+        303
+    );
+    exit;
+}
 
     /**
      * Rejeter un bien avec un motif obligatoire.
