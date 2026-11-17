@@ -1,4 +1,3 @@
-
 <?php
 /**
  * IMMO-SN — Initialisation centrale de l'application.
