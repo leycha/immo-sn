@@ -33,10 +33,8 @@ class Router
         $method = strtoupper($method);
         $pattern = $this->normalizePath($pattern);
 
-        // Protéger les caractères spéciaux du chemin.
         $regex = preg_quote($pattern, '#');
 
-        // Transformer {id} en paramètre dynamique.
         $regex = preg_replace(
             '/\\\\\{([a-zA-Z_][a-zA-Z0-9_]*)\\\\\}/',
             '(?P<$1>[^/]+)',
@@ -61,9 +59,6 @@ class Router
 
     /**
      * Exécuter le middleware correspondant au chemin.
-     *
-     * Chaque espace privé possède son propre middleware.
-     * Les autres chemins restent publics.
      */
     private function executeMiddleware(string $uri): void
     {
@@ -102,6 +97,7 @@ class Router
     ): bool {
         [$controllerName, $action] = $controllerAction;
 
+        // Construction correcte du nom complet du contrôleur.
         $controllerClass = 'App\\Controllers\\' . $controllerName;
 
         if (!class_exists($controllerClass)) {
@@ -138,15 +134,7 @@ class Router
     ): void {
         $uri = parse_url($uri, PHP_URL_PATH) ?? '/';
 
-        /*
-         * Le projet peut être accessible avec :
-         * /immo-sn/member/profil
-         * ou
-         * /immo-sn/public/member/profil
-         *
-         * On retire le préfixe du projet avant
-         * de rechercher la route.
-         */
+        // Retirer le préfixe du projet.
         $uri = preg_replace(
             '#^/immo-sn(?:/public)?(?=/|$)#',
             '',
@@ -157,18 +145,14 @@ class Router
             $uri = '/';
         }
 
-        // Uniformiser les barres finales.
         if ($uri !== '/') {
             $uri = rtrim($uri, '/');
         }
 
         $method = strtoupper($method);
 
-        /*
-         * ROUTES STATIQUES
-         */
+        // ROUTES STATIQUES
         if (isset($this->routes[$method][$uri])) {
-            // Vérifier les droits avant d'exécuter le contrôleur.
             $this->executeMiddleware($uri);
 
             $executed = $this->executeAction(
@@ -184,9 +168,7 @@ class Router
             return;
         }
 
-        /*
-         * ROUTES DYNAMIQUES
-         */
+        // ROUTES DYNAMIQUES
         if (isset($this->dynamicRoutes[$method])) {
             foreach ($this->dynamicRoutes[$method] as $route) {
                 if (preg_match($route['regex'], $uri, $matches)) {
@@ -198,7 +180,6 @@ class Router
                         }
                     }
 
-                    // Vérifier les droits avant d'exécuter le contrôleur.
                     $this->executeMiddleware($uri);
 
                     $executed = $this->executeAction(
@@ -217,9 +198,7 @@ class Router
             }
         }
 
-        /*
-         * ROUTE NON TROUVÉE
-         */
+        // ROUTE NON TROUVÉE
         http_response_code(404);
         echo 'Page non trouvée (404)';
     }
