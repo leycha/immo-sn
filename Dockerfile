@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
     libzip-dev \
+        libcurl4-openssl-dev \
     unzip \
     git \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -19,6 +20,7 @@ RUN apt-get update && apt-get install -y \
         mbstring \
         opcache \
         zip \
+                curl \
     && a2enmod rewrite alias \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*

@@ -1,36 +1,112 @@
 <?php
-declare(strict_types=1);
+
 namespace Core;
 
 class Uploader
 {
     /**
-     * Upload plusieurs photos pour un bien.
+     * Envoie une image vers Cloudinary.
+     * Retourne son URL HTTPS permanente.
      */
-    public static function uploadPhotos(array $files, string $bienId): array
-    {
-        if (empty($files)) {
-            return [];
+    private static function envoyerVersCloudinary(
+        string $tmpName,
+        string $dossier,
+        string $nomFichier
+    ): string {
+        $cloudName = getenv('CLOUDINARY_CLOUD_NAME') ?: '';
+        $apiKey = getenv('CLOUDINARY_API_KEY') ?: '';
+        $apiSecret = getenv('CLOUDINARY_API_SECRET') ?: '';
+
+        if ($cloudName === '' || $apiKey === '' || $apiSecret === '') {
+            throw new \RuntimeException(
+                'Configuration Cloudinary incomplète.'
+            );
         }
+
+        $timestamp = time();
+
+        $parametres = [
+            'folder' => $dossier,
+            'public_id' => $nomFichier,
+            'timestamp' => $timestamp,
+        ];
+
+        ksort($parametres);
+
+        $chaineSignature = [];
+
+        foreach ($parametres as $cle => $valeur) {
+            $chaineSignature[] = $cle . '=' . $valeur;
+        }
+
+        $signature = sha1(
+            implode('&', $chaineSignature) . $apiSecret
+        );
+
+        $mime = mime_content_type($tmpName) ?: 'application/octet-stream';
+
+        $url = 'https://api.cloudinary.com/v1_1/'
+            . rawurlencode($cloudName)
+            . '/image/upload';
+
+        $donnees = [
+            'file' => new \CURLFile($tmpName, $mime, $nomFichier),
+            'api_key' => $apiKey,
+            'timestamp' => $timestamp,
+            'folder' => $dossier,
+            'public_id' => $nomFichier,
+            'signature' => $signature,
+        ];
+
+        $curl = curl_init($url);
+
+        curl_setopt_array($curl, [
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $donnees,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CONNECTTIMEOUT => 15,
+            CURLOPT_TIMEOUT => 120,
+        ]);
+
+        $reponse = curl_exec($curl);
+        $erreur = curl_error($curl);
+        $codeHTTP = (int) curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+        curl_close($curl);
+
+        if ($reponse === false) {
+            throw new \RuntimeException(
+                'Erreur de connexion Cloudinary : ' . $erreur
+            );
+        }
+
+        $resultat = json_decode($reponse, true);
 
         if (
-            !isset($files['name']) ||
-            !is_array($files['name'])
+            $codeHTTP < 200 ||
+            $codeHTTP >= 300 ||
+            !is_array($resultat) ||
+            empty($resultat['secure_url'])
         ) {
-            return [];
+            $message = $resultat['error']['message']
+                ?? 'Réponse invalide de Cloudinary.';
+
+            throw new \RuntimeException($message);
         }
 
-        $directory = BASE_PATH . '/stockage/photos';
+        return (string) $resultat['secure_url'];
+    }
 
-        if (!is_dir($directory)) {
-            if (
-                !mkdir($directory, 0775, true) &&
-                !is_dir($directory)
-            ) {
-                throw new \RuntimeException(
-                    'Impossible de créer le dossier stockage/photos.'
-                );
-            }
+    /**
+     * Upload plusieurs photos pour un bien.
+     */
+    public static function uploadPhotos(
+        array $files,
+        string $bienId
+    ): array {
+        if (empty($files) || !isset($files['name']) ||
+            !is_array($files['name'])) {
+            return [];
         }
 
         $nombreFichiers = count($files['name']);
@@ -41,19 +117,18 @@ class Uploader
             );
         }
 
-        $photos = [];
-
         $typesAutorises = [
             'image/jpeg' => 'jpg',
-            'image/png'  => 'png',
+            'image/png' => 'png',
         ];
 
-        for ($i = 0; $i < $nombreFichiers; $i++) {
+        $photos = [];
 
+        for ($i = 0; $i < $nombreFichiers; $i++) {
             $nomOriginal = $files['name'][$i] ?? '';
             $tmpName = $files['tmp_name'][$i] ?? '';
             $error = $files['error'][$i] ?? UPLOAD_ERR_NO_FILE;
-            $size = $files['size'][$i] ?? 0;
+            $size = (int) ($files['size'][$i] ?? 0);
 
             if ($error === UPLOAD_ERR_NO_FILE) {
                 continue;
@@ -61,38 +136,22 @@ class Uploader
 
             if ($error !== UPLOAD_ERR_OK) {
                 throw new \RuntimeException(
-                    'Une erreur est survenue pendant l\'upload de la photo : '
-                    . $nomOriginal
+                    'Erreur pendant l’envoi de la photo : ' . $nomOriginal
                 );
             }
 
-            if ($size > 5 * 1024 * 1024) {
+            if ($size <= 0 || $size > 5 * 1024 * 1024) {
                 throw new \RuntimeException(
                     'La photo "' . $nomOriginal .
-                    '" dépasse la taille maximale de 5 Mo.'
+                    '" ne doit pas dépasser 5 Mo.'
                 );
             }
 
             if (!is_uploaded_file($tmpName)) {
                 throw new \RuntimeException(
                     'Le fichier "' . $nomOriginal .
-                    '" n\'est pas un upload valide.'
+                    '" n’est pas un upload valide.'
                 );
-            }
-
-            $mime = '';
-
-            if (function_exists('finfo_open')) {
-                $finfo = finfo_open(FILEINFO_MIME_TYPE);
-
-                if ($finfo !== false) {
-                    $mime = (string) finfo_file(
-                        $finfo,
-                        $tmpName
-                    );
-
-                    finfo_close($finfo);
-                }
             }
 
             $imageInfo = @getimagesize($tmpName);
@@ -100,45 +159,38 @@ class Uploader
             if ($imageInfo === false) {
                 throw new \RuntimeException(
                     'Le fichier "' . $nomOriginal .
-                    '" n\'est pas une image valide.'
+                    '" n’est pas une image valide.'
                 );
             }
 
-            if ($mime === '') {
-                $mime = $imageInfo['mime'] ?? '';
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $mime = $finfo
+                ? finfo_file($finfo, $tmpName)
+                : ($imageInfo['mime'] ?? '');
+
+            if ($finfo) {
+                finfo_close($finfo);
             }
 
-            if (!isset($typesAutorises[$mime])) {
+            if (
+                !isset($typesAutorises[$mime]) ||
+                ($imageInfo['mime'] ?? '') !== $mime
+            ) {
                 throw new \RuntimeException(
-                    'La photo "' . $nomOriginal .
-                    '" doit être au format JPG ou PNG.'
+                    'La photo doit être au format JPG ou PNG.'
                 );
             }
 
-            $extension = $typesAutorises[$mime];
+            $nomFichier = $bienId . '_' . bin2hex(random_bytes(8));
 
-            $nomFichier =
-                $bienId
-                . '_'
-                . bin2hex(random_bytes(8))
-                . '.'
-                . $extension;
-
-            $destination = $directory . '/' . $nomFichier;
-
-            if (!move_uploaded_file($tmpName, $destination)) {
-                throw new \RuntimeException(
-                    'Impossible d\'enregistrer la photo "' .
-                    $nomOriginal . '".'
-                );
-            }
-
-            $cheminWeb =
-                '/immo-sn/stockage/photos/'
-                . $nomFichier;
+            $url = self::envoyerVersCloudinary(
+                $tmpName,
+                'immo-sn/photos',
+                $nomFichier
+            );
 
             $photos[] = [
-                'file_path' => $cheminWeb,
+                'file_path' => $url,
                 'is_principal' => count($photos) === 0,
             ];
         }
@@ -148,11 +200,6 @@ class Uploader
 
     /**
      * Upload du logo d'une agence.
-     *
-     * Formats acceptés : JPG, PNG et WebP.
-     * Taille maximale : 2 Mo.
-     *
-     * Retourne le chemin web du logo.
      */
     public static function uploadLogoAgence(array $file): ?string
     {
@@ -164,7 +211,7 @@ class Uploader
 
         if ($error !== UPLOAD_ERR_OK) {
             throw new \RuntimeException(
-                'Une erreur est survenue pendant l\'envoi du logo.'
+                'Une erreur est survenue pendant l’envoi du logo.'
             );
         }
 
@@ -173,7 +220,7 @@ class Uploader
 
         if (!is_uploaded_file($tmpName)) {
             throw new \RuntimeException(
-                'Le fichier du logo n\'est pas un upload valide.'
+                'Le fichier du logo n’est pas un upload valide.'
             );
         }
 
@@ -187,7 +234,7 @@ class Uploader
 
         if ($imageInfo === false) {
             throw new \RuntimeException(
-                'Le fichier sélectionné n\'est pas une image valide.'
+                'Le fichier sélectionné n’est pas une image valide.'
             );
         }
 
@@ -204,7 +251,7 @@ class Uploader
 
         $typesAutorises = [
             'image/jpeg' => 'jpg',
-            'image/png'  => 'png',
+            'image/png' => 'png',
             'image/webp' => 'webp',
         ];
 
@@ -213,39 +260,16 @@ class Uploader
             ($imageInfo['mime'] ?? '') !== $mime
         ) {
             throw new \RuntimeException(
-                'Le logo doit être une image JPG, PNG ou WebP.'
+                'Le logo doit être au format JPG, PNG ou WebP.'
             );
         }
 
-        $directory = BASE_PATH . '/stockage/logos';
+        $nomFichier = 'agence_' . bin2hex(random_bytes(12));
 
-        if (!is_dir($directory)) {
-            if (
-                !mkdir($directory, 0775, true) &&
-                !is_dir($directory)
-            ) {
-                throw new \RuntimeException(
-                    'Impossible de créer le dossier stockage/logos.'
-                );
-            }
-        }
-
-        $extension = $typesAutorises[$mime];
-
-        $nomFichier =
-            'agence_'
-            . bin2hex(random_bytes(12))
-            . '.'
-            . $extension;
-
-        $destination = $directory . '/' . $nomFichier;
-
-        if (!move_uploaded_file($tmpName, $destination)) {
-            throw new \RuntimeException(
-                'Impossible d\'enregistrer le logo de l\'agence.'
-            );
-        }
-
-        return '/immo-sn/stockage/logos/' . $nomFichier;
+        return self::envoyerVersCloudinary(
+            $tmpName,
+            'immo-sn/logos',
+            $nomFichier
+        );
     }
 }
