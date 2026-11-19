@@ -224,8 +224,9 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
 
         <!-- CONTENU ADMIN -->
 
-        <main class="immo-main-content min-w-0 flex-1 page-transition flex flex-col">
-            <header class="sticky top-0 z-30 flex items-center justify-between border-b border-[#e8ded4] bg-white px-4 py-3 lg:hidden">
+      <main class="immo-main-content min-w-0 flex-1 page-transition flex flex-col lg:ml-[270px] lg:w-[calc(100%-270px)] lg:flex-none">
+
+         <header class="sticky top-0 z-30 flex items-center justify-between border-b border-[#e8ded4] bg-white px-4 py-3 lg:hidden">
                 <div>
                     <p class="text-sm font-bold text-[#30221b]">IMMO-SN</p>
                     <p class="text-xs text-[#8d7a6b]">Administration</p>
