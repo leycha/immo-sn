@@ -66,9 +66,7 @@ function isMemberActive(string $path): bool
         transition-transform
         duration-300
         ease-in-out
-        lg:static
         lg:translate-x-0
-        lg:h-auto
     "
 >
     <button
