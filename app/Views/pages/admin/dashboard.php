@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -72,15 +71,14 @@ $tempsEcoule = static function ($date): string {
     return date('d/m/Y à H:i', $timestamp);
 };
 
-
 $cartes = [
     [
         'titre' => 'Biens immobiliers',
         'valeur' => $totalBiens,
         'description' => 'Toutes les annonces enregistrées',
         'icone' => 'building-2',
-        'couleur' => 'brown',
-        'url' => null,
+        'couleur' => 'navy',
+        'url' => '/immo-sn/admin/biens',
     ],
     [
         'titre' => 'Utilisateurs',
@@ -93,10 +91,10 @@ $cartes = [
     [
         'titre' => 'Agences',
         'valeur' => $totalAgences,
-        'description' => 'Agences enregistrées ',
+        'description' => 'Agences enregistrées',
         'icone' => 'agences',
-        'couleur' => 'violet',
-        'url' => null,
+        'couleur' => 'indigo',
+        'url' => '/immo-sn/admin/agences',
     ],
     [
         'titre' => 'Signalements',
@@ -104,21 +102,19 @@ $cartes = [
         'description' => 'Signalements reçus',
         'icone' => 'flag',
         'couleur' => 'red',
-        'url' => null,
+        'url' => '/immo-sn/admin/signalements',
     ],
 ];
-
-
 ?>
 
-<div class="min-h-screen bg-[#faf7f2] text-[#30221b]">
+<div class="min-h-screen bg-[#f8fafc] text-[#0b1528]">
 
     <!-- EN-TÊTE -->
-    <header class="sticky top-0 z-30 border-b border-[#e9dfd5] bg-[#faf7f2]/95 backdrop-blur-xl">
+    <header class="sticky top-0 z-30 border-b border-[#e2e8f0] bg-white/95 backdrop-blur-xl">
         <div class="mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-5 py-4 sm:px-8">
 
             <a href="/immo-sn/admin" class="flex items-center gap-3">
-                <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#30221b] text-[#f7b500] shadow-sm">
+                <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#071b36] text-[#f5b800] shadow-sm">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
                          fill="none" viewBox="0 0 24 24" stroke="currentColor"
                          stroke-width="1.8">
@@ -128,18 +124,18 @@ $cartes = [
                 </span>
 
                 <span>
-                    <span class="block text-lg font-black tracking-tight">IMMO-SN</span>
-                    <span class="block text-xs text-[#8d7a6b]">Administration</span>
+                    <span class="block text-lg font-black tracking-tight text-[#071b36]">IMMO-SN</span>
+                    <span class="block text-xs text-[#64748b]">Administration</span>
                 </span>
             </a>
 
             <div class="flex items-center gap-3">
-                <span class="hidden text-sm font-medium text-[#8d7a6b] sm:block">
+                <span class="hidden text-sm font-medium text-[#64748b] sm:block">
                     <?= $e($dateDuJour) ?>
                 </span>
 
                 <a href="/immo-sn/admin/signalements"
-                   class="relative flex h-11 w-11 items-center justify-center rounded-xl border border-[#e8ded4] bg-white transition hover:bg-[#f1e7df]"
+                   class="relative flex h-11 w-11 items-center justify-center rounded-xl border border-[#e2e8f0] bg-white text-[#071b36] transition hover:bg-[#f8fafc]"
                    aria-label="Ouvrir les signalements"
                    title="Signalements">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
@@ -150,14 +146,14 @@ $cartes = [
                     </svg>
 
                     <?php if ($signalementsEnAttente > 0): ?>
-                        <span class="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#f7b500] px-1 text-[10px] font-black">
+                        <span class="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#f5b800] px-1 text-[10px] font-black text-[#0b1528]">
                             <?= $signalementsEnAttente > 99 ? '99+' : $signalementsEnAttente ?>
                         </span>
                     <?php endif; ?>
                 </a>
 
-                <div class="hidden items-center gap-2 rounded-xl border border-[#e8ded4] bg-white px-3 py-2 sm:flex">
-                    <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#f1e7df] text-[#5a402d]">
+                <div class="hidden items-center gap-2 rounded-xl border border-[#e2e8f0] bg-white px-3 py-2 sm:flex">
+                    <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#f8fafc] text-[#0e2a4e]">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
                              fill="none" viewBox="0 0 24 24" stroke="currentColor"
                              stroke-width="1.8">
@@ -165,7 +161,7 @@ $cartes = [
                                   d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0"/>
                         </svg>
                     </span>
-                    <span class="text-sm font-bold">Administrateur</span>
+                    <span class="text-sm font-bold text-[#0b1528]">Administrateur</span>
                 </div>
             </div>
         </div>
@@ -174,23 +170,23 @@ $cartes = [
     <main class="mx-auto max-w-[1600px] space-y-8 px-5 py-7 sm:px-8 lg:py-10">
 
         <!-- ACCUEIL PREMIUM -->
-        <section class="relative overflow-hidden rounded-[28px] bg-[#30221b] shadow-[0_18px_50px_rgba(48,34,27,0.12)]">
-            <div class="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full bg-[#f7b500]/10 blur-3xl"></div>
-            <div class="pointer-events-none absolute -bottom-32 right-1/3 h-64 w-64 rounded-full bg-[#a98260]/15 blur-3xl"></div>
+        <section class="relative overflow-hidden rounded-[28px] bg-[#071b36] shadow-[0_18px_50px_rgba(7,27,54,0.16)]">
+            <div class="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full bg-[#f5b800]/10 blur-3xl"></div>
+            <div class="pointer-events-none absolute -bottom-32 right-1/3 h-64 w-64 rounded-full bg-[#0e2a4e]/60 blur-3xl"></div>
 
             <div class="relative grid gap-8 p-6 sm:p-9 lg:grid-cols-[1fr_300px] lg:items-center lg:p-11">
                 <div>
-                    <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-[#e6d8ca]">
-                        <span class="h-2 w-2 rounded-full bg-[#f7b500]"></span>
+                    <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-200">
+                        <span class="h-2 w-2 rounded-full bg-[#f5b800]"></span>
                         CENTRE DE PILOTAGE IMMO-SN
                     </div>
 
                     <h1 class="mt-5 max-w-3xl text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
                         Votre plateforme,
-                        <span class="text-[#f7b500]">en un coup d’œil.</span>
+                        <span class="text-[#f5b800]">en un coup d’œil.</span>
                     </h1>
 
-                    <p class="mt-4 max-w-2xl text-sm leading-7 text-[#d7cbc2] sm:text-base">
+                    <p class="mt-4 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
                         Suivez vos annonces immobilières, contrôlez leur publication
                         et gérez les activités de votre plateforme depuis un espace
                         centralisé.
@@ -198,7 +194,7 @@ $cartes = [
 
                     <div class="mt-7 flex flex-wrap gap-3">
                         <a href="/immo-sn/admin/biens"
-                           class="inline-flex items-center gap-2 rounded-xl bg-[#f7b500] px-5 py-3 text-sm font-extrabold text-[#30221b] transition hover:-translate-y-0.5 hover:bg-[#ffc21a]">
+                           class="inline-flex items-center gap-2 rounded-xl bg-[#f5b800] px-5 py-3 text-sm font-extrabold text-[#0b1528] transition hover:-translate-y-0.5 hover:bg-[#ffca28]">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                  fill="none" viewBox="0 0 24 24" stroke="currentColor"
                                  stroke-width="1.8">
@@ -216,8 +212,8 @@ $cartes = [
                     </div>
                 </div>
 
-                <div class="rounded-2xl border border-white/10 bg-white/[0.06] p-5 sm:p-6">
-                    <p class="text-xs font-bold uppercase tracking-[0.15em] text-[#cbbcad]">
+                <div class="rounded-2xl border border-white/10 bg-[#0e2a4e]/70 p-5 backdrop-blur-sm sm:p-6">
+                    <p class="text-xs font-bold uppercase tracking-[0.15em] text-slate-400">
                         Votre priorité
                     </p>
 
@@ -225,7 +221,7 @@ $cartes = [
                         <?= number_format($totalPriorites, 0, ',', ' ') ?>
                     </p>
 
-                    <p class="mt-2 text-sm leading-6 text-[#d7cbc2]">
+                    <p class="mt-2 text-sm leading-6 text-slate-300">
                         éléments en attente de traitement
                     </p>
 
@@ -233,7 +229,7 @@ $cartes = [
                         <a href="/immo-sn/admin/biens?statut=en_attente"
                            class="flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/5 px-3 py-3 transition hover:bg-white/10">
                             <span class="text-sm text-white">Annonces à examiner</span>
-                            <span class="font-black text-[#f7b500]">
+                            <span class="font-black text-[#f5b800]">
                                 <?= number_format($biensEnAttente, 0, ',', ' ') ?>
                             </span>
                         </a>
@@ -254,31 +250,31 @@ $cartes = [
         <section>
             <div class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                    <p class="text-xs font-black uppercase tracking-[0.18em] text-[#a98260]">
+                    <p class="text-xs font-black uppercase tracking-[0.18em] text-[#0e2a4e]">
                         Vue d'ensemble
                     </p>
-                    <h2 class="mt-1 text-2xl font-black tracking-tight sm:text-3xl">
+                    <h2 class="mt-1 text-2xl font-black tracking-tight text-[#071b36] sm:text-3xl">
                         Les chiffres essentiels
                     </h2>
-                    <p class="mt-2 text-sm text-[#8d7a6b]">
+                    <p class="mt-2 text-sm text-[#64748b]">
                         Indicateurs issus des données enregistrées dans la plateforme.
                     </p>
                 </div>
 
-                <span class="w-fit rounded-full border border-[#e8ded4] bg-white px-3 py-2 text-xs font-semibold text-[#8d7a6b]">
+                <span class="w-fit rounded-full border border-[#e2e8f0] bg-white px-3 py-2 text-xs font-semibold text-[#64748b]">
                     Mise à jour au chargement
                 </span>
             </div>
 
-           <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
 
                 <?php foreach ($cartes as $carte): ?>
                     <?php
                     $couleurs = [
-                        'brown' => [
-                            'fond' => 'bg-[#f1e7df]',
-                            'texte' => 'text-[#5a402d]',
-                            'barre' => 'bg-[#5a402d]',
+                        'navy' => [
+                            'fond' => 'bg-[#071b36]/10',
+                            'texte' => 'text-[#071b36]',
+                            'barre' => 'bg-[#071b36]',
                         ],
                         'green' => [
                             'fond' => 'bg-emerald-50',
@@ -288,7 +284,7 @@ $cartes = [
                         'gold' => [
                             'fond' => 'bg-amber-50',
                             'texte' => 'text-amber-700',
-                            'barre' => 'bg-amber-500',
+                            'barre' => 'bg-[#f5b800]',
                         ],
                         'red' => [
                             'fond' => 'bg-red-50',
@@ -305,9 +301,14 @@ $cartes = [
                             'texte' => 'text-sky-700',
                             'barre' => 'bg-sky-500',
                         ],
+                        'indigo' => [
+                            'fond' => 'bg-indigo-50',
+                            'texte' => 'text-indigo-700',
+                            'barre' => 'bg-[#0e2a4e]',
+                        ],
                     ];
 
-                    $couleur = $couleurs[$carte['couleur']] ?? $couleurs['brown'];
+                    $couleur = $couleurs[$carte['couleur']] ?? $couleurs['navy'];
                     $conteneur = $carte['url'] ? 'a' : 'div';
                     ?>
 
@@ -315,7 +316,7 @@ $cartes = [
                         <?php if ($carte['url']): ?>
                             href="<?= $e($carte['url']) ?>"
                         <?php endif; ?>
-                        class="group relative overflow-hidden rounded-[22px] border border-[#e8ded4] bg-white p-5 shadow-[0_5px_24px_rgba(48,34,27,0.035)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(48,34,27,0.08)] sm:p-6">
+                        class="group relative overflow-hidden rounded-[22px] border border-[#e2e8f0] bg-white p-5 shadow-[0_5px_24px_rgba(7,27,54,0.035)] transition duration-300 hover:-translate-y-1 hover:border-[#0e2a4e]/40 hover:shadow-[0_14px_34px_rgba(7,27,54,0.08)] sm:p-6">
 
                         <div class="flex items-start justify-between gap-3">
                             <span class="flex h-12 w-12 items-center justify-center rounded-2xl <?= $couleur['fond'] ?> <?= $couleur['texte'] ?>">
@@ -323,36 +324,17 @@ $cartes = [
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M5 21V5l7-3v19m7 0V9l-7-4M9 8v.01M9 12v.01M9 16v.01M15 12v.01M15 16v.01"/>
                                     </svg>
-                                <?php elseif ($carte['icone'] === 'check-circle'): ?>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                <?php elseif ($carte['icone'] === 'agences'): ?>
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         class="h-6 w-6"
+                                         fill="none"
+                                         viewBox="0 0 24 24"
+                                         stroke="currentColor"
+                                         stroke-width="1.7">
+                                        <rect x="3" y="7" width="18" height="14" rx="2"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M8 7V4h8v3M7 11h2m6 0h2M7 15h2m6 0h2M10 21v-4h4v4"/>
                                     </svg>
-                                <?php elseif ($carte['icone'] === 'clock'): ?>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
-                                        <circle cx="12" cy="12" r="9"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2"/>
-                                    </svg>
-                                <?php elseif ($carte['icone'] === 'ban'): ?>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
-                                        <circle cx="12" cy="12" r="9"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12"/>
-                                    </svg>
-                                <?php elseif ($carte['icone'] === 'calendar-clock'): ?>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
-                                        <rect x="3" y="5" width="18" height="16" rx="2"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 3v4M8 3v4M3 10h18m-9 3v3l2 1"/>
-                                    </svg>
-                                    <?php elseif ($carte['icone'] === 'agences'): ?>
-    <svg xmlns="http://www.w3.org/2000/svg"
-         class="h-6 w-6"
-         fill="none"
-         viewBox="0 0 24 24"
-         stroke="currentColor"
-         stroke-width="1.7">
-        <rect x="3" y="7" width="18" height="14" rx="2"/>
-        <path stroke-linecap="round" stroke-linejoin="round"
-              d="M8 7V4h8v3M7 11h2m6 0h2M7 15h2m6 0h2M10 21v-4h4v4"/>
-    </svg>
                                 <?php elseif ($carte['icone'] === 'users'): ?>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2m6-10a4 4 0 100-8 4 4 0 000 8zm10 10v-2a4 4 0 00-3-3.87m-1-11.13a4 4 0 010 7.75"/>
@@ -365,23 +347,23 @@ $cartes = [
                             </span>
 
                             <?php if ($carte['url']): ?>
-                                <span class="text-lg text-[#c5b5a7] transition group-hover:translate-x-1 group-hover:text-[#5a402d]">↗</span>
+                                <span class="text-lg text-slate-400 transition group-hover:translate-x-1 group-hover:text-[#071b36]">↗</span>
                             <?php endif; ?>
                         </div>
 
-                        <p class="mt-6 text-sm font-semibold text-[#8d7a6b]">
+                        <p class="mt-6 text-sm font-semibold text-[#64748b]">
                             <?= $e($carte['titre']) ?>
                         </p>
 
-                        <p class="mt-1 text-4xl font-black tracking-tight text-[#30221b]">
+                        <p class="mt-1 text-4xl font-black tracking-tight text-[#071b36]">
                             <?= number_format($carte['valeur'], 0, ',', ' ') ?>
                         </p>
 
-                        <p class="mt-2 text-xs leading-5 text-[#9a887a]">
+                        <p class="mt-2 text-xs leading-5 text-[#64748b]">
                             <?= $e($carte['description']) ?>
                         </p>
 
-                        <div class="mt-5 h-1 overflow-hidden rounded-full bg-[#f1e9e2]">
+                        <div class="mt-5 h-1 overflow-hidden rounded-full bg-slate-100">
                             <div class="h-full rounded-full <?= $couleur['barre'] ?> transition-all duration-500"
                                  style="width: <?= $pourcentage($carte['valeur'], max(1, $totalBiens, $totalUtilisateurs, $totalSignalements)) ?>%">
                             </div>
@@ -396,24 +378,23 @@ $cartes = [
         <!-- SUIVI DES ANNONCES -->
         <section class="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
 
-            <div class="rounded-[24px] border border-[#e8ded4] bg-white p-5 shadow-[0_5px_24px_rgba(48,34,27,0.035)] sm:p-7">
+            <div class="rounded-[24px] border border-[#e2e8f0] bg-white p-5 shadow-[0_5px_24px_rgba(7,27,54,0.035)] sm:p-7">
                 <div class="flex items-start justify-between gap-4">
                     <div>
-                        <p class="text-xs font-black uppercase tracking-[0.16em] text-[#a98260]">
+                        <p class="text-xs font-black uppercase tracking-[0.16em] text-[#0e2a4e]">
                             Modération
                         </p>
-                        <h2 class="mt-1 text-xl font-black">État des annonces</h2>
-                        <p class="mt-2 text-sm text-[#8d7a6b]">
+                        <h2 class="mt-1 text-xl font-black text-[#071b36]">État des annonces</h2>
+                        <p class="mt-2 text-sm text-[#64748b]">
                             Une vue rapide des annonces selon leur état.
                         </p>
                     </div>
 
                     <a href="/immo-sn/admin/biens"
-                       class="shrink-0 text-sm font-bold text-[#5a402d] hover:underline">
+                       class="shrink-0 text-sm font-bold text-[#0e2a4e] hover:underline">
                         Tout voir →
                     </a>
                 </div>
-                
 
                 <?php
                 $lignesStatuts = [
@@ -427,7 +408,7 @@ $cartes = [
                     [
                         'nom' => 'En attente',
                         'nombre' => $biensEnAttente,
-                        'couleur' => 'bg-amber-500',
+                        'couleur' => 'bg-[#f5b800]',
                         'texte' => 'text-amber-700',
                         'url' => '/immo-sn/admin/biens?statut=en_attente',
                     ],
@@ -452,18 +433,18 @@ $cartes = [
                     <?php foreach ($lignesStatuts as $ligne): ?>
                         <a href="<?= $e($ligne['url']) ?>" class="group block">
                             <div class="mb-2 flex items-center justify-between gap-3">
-                                <span class="text-sm font-semibold text-[#5a402d]">
+                                <span class="text-sm font-semibold text-[#0b1528]">
                                     <?= $e($ligne['nom']) ?>
                                 </span>
                                 <span class="text-sm font-black <?= $ligne['texte'] ?>">
                                     <?= number_format($ligne['nombre'], 0, ',', ' ') ?>
-                                    <span class="font-medium text-[#9a887a]">
+                                    <span class="font-medium text-[#64748b]">
                                         (<?= $pourcentage($ligne['nombre'], $totalBiens) ?> %)
                                     </span>
                                 </span>
                             </div>
 
-                            <div class="h-2.5 overflow-hidden rounded-full bg-[#f1e9e2]">
+                            <div class="h-2.5 overflow-hidden rounded-full bg-slate-100">
                                 <div class="h-full rounded-full <?= $ligne['couleur'] ?> transition-all duration-500 group-hover:opacity-80"
                                      style="width: <?= $pourcentage($ligne['nombre'], $totalBiens) ?>%">
                                 </div>
@@ -472,7 +453,7 @@ $cartes = [
                     <?php endforeach; ?>
                 </div>
 
-                <p class="mt-6 text-xs leading-5 text-[#9a887a]">
+                <p class="mt-6 text-xs leading-5 text-[#64748b]">
                     Les pourcentages sont calculés sur le total des annonces.
                     Les catégories peuvent se recouper si une annonce expirée conserve
                     un statut de publication.
@@ -480,9 +461,9 @@ $cartes = [
             </div>
 
             <!-- CENTRE DE SUIVI -->
-            <div class="rounded-[24px] border border-[#e8ded4] bg-[#f1e7df] p-5 sm:p-7">
+            <div class="rounded-[24px] border border-[#e2e8f0] bg-[#071b36] p-5 text-white shadow-[0_12px_35px_rgba(7,27,54,0.12)] sm:p-7">
                 <div class="flex items-center gap-3">
-                    <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-[#5a402d]">
+                    <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#f5b800]/15 text-[#f5b800]">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                              fill="none" viewBox="0 0 24 24" stroke="currentColor"
                              stroke-width="1.8">
@@ -491,15 +472,15 @@ $cartes = [
                         </svg>
                     </span>
                     <div>
-                        <h2 class="text-xl font-black">Centre de suivi</h2>
-                        <p class="text-sm text-[#8d7a6b]">Vos prochaines actions</p>
+                        <h2 class="text-xl font-black text-white">Centre de suivi</h2>
+                        <p class="text-sm text-slate-300">Vos prochaines actions</p>
                     </div>
                 </div>
 
                 <div class="mt-6 space-y-3">
                     <a href="/immo-sn/admin/biens?statut=en_attente"
-                       class="flex items-center gap-3 rounded-2xl border border-white bg-white/80 p-4 transition hover:bg-white">
-                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-50 text-amber-700">
+                       class="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#0e2a4e]/75 p-4 transition hover:bg-[#0e2a4e]">
+                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#f5b800]/15 text-[#f5b800]">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                  fill="none" viewBox="0 0 24 24" stroke="currentColor"
                                  stroke-width="1.8">
@@ -508,17 +489,17 @@ $cartes = [
                             </svg>
                         </span>
                         <span class="min-w-0 flex-1">
-                            <span class="block text-sm font-bold">Examiner les annonces</span>
-                            <span class="mt-1 block text-xs text-[#8d7a6b]">Contrôler les nouvelles publications</span>
+                            <span class="block text-sm font-bold text-white">Examiner les annonces</span>
+                            <span class="mt-1 block text-xs text-slate-300">Contrôler les nouvelles publications</span>
                         </span>
-                        <span class="rounded-full bg-amber-100 px-2.5 py-1 text-sm font-black text-amber-800">
+                        <span class="rounded-full bg-[#f5b800] px-2.5 py-1 text-sm font-black text-[#0b1528]">
                             <?= number_format($biensEnAttente, 0, ',', ' ') ?>
                         </span>
                     </a>
 
                     <a href="/immo-sn/admin/biens?statut=rejete"
-                       class="flex items-center gap-3 rounded-2xl border border-white bg-white/80 p-4 transition hover:bg-white">
-                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-700">
+                       class="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#0e2a4e]/75 p-4 transition hover:bg-[#0e2a4e]">
+                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-500/20 text-red-300">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                  fill="none" viewBox="0 0 24 24" stroke="currentColor"
                                  stroke-width="1.8">
@@ -527,17 +508,17 @@ $cartes = [
                             </svg>
                         </span>
                         <span class="min-w-0 flex-1">
-                            <span class="block text-sm font-bold">Consulter les biens rejetés</span>
-                            <span class="mt-1 block text-xs text-[#8d7a6b]">Vérifier les annonces refusées</span>
+                            <span class="block text-sm font-bold text-white">Consulter les biens rejetés</span>
+                            <span class="mt-1 block text-xs text-slate-300">Vérifier les annonces refusées</span>
                         </span>
-                        <span class="rounded-full bg-red-100 px-2.5 py-1 text-sm font-black text-red-800">
+                        <span class="rounded-full bg-red-500/20 px-2.5 py-1 text-sm font-black text-red-200">
                             <?= number_format($biensRejetes, 0, ',', ' ') ?>
                         </span>
                     </a>
 
                     <a href="/immo-sn/admin/biens?statut=expire"
-                       class="flex items-center gap-3 rounded-2xl border border-white bg-white/80 p-4 transition hover:bg-white">
-                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-700">
+                       class="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#0e2a4e]/75 p-4 transition hover:bg-[#0e2a4e]">
+                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-orange-500/20 text-orange-300">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                  fill="none" viewBox="0 0 24 24" stroke="currentColor"
                                  stroke-width="1.8">
@@ -546,17 +527,17 @@ $cartes = [
                             </svg>
                         </span>
                         <span class="min-w-0 flex-1">
-                            <span class="block text-sm font-bold">Vérifier les expirations</span>
-                            <span class="mt-1 block text-xs text-[#8d7a6b]">Suivre les annonces arrivées à échéance</span>
+                            <span class="block text-sm font-bold text-white">Vérifier les expirations</span>
+                            <span class="mt-1 block text-xs text-slate-300">Suivre les annonces arrivées à échéance</span>
                         </span>
-                        <span class="rounded-full bg-orange-100 px-2.5 py-1 text-sm font-black text-orange-800">
+                        <span class="rounded-full bg-orange-500/20 px-2.5 py-1 text-sm font-black text-orange-200">
                             <?= number_format($biensExpires, 0, ',', ' ') ?>
                         </span>
                     </a>
 
                     <a href="/immo-sn/admin/signalements"
-                       class="flex items-center gap-3 rounded-2xl border border-white bg-white/80 p-4 transition hover:bg-white">
-                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#f7b500]/20 text-[#5a402d]">
+                       class="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#0e2a4e]/75 p-4 transition hover:bg-[#0e2a4e]">
+                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#f5b800]/15 text-[#f5b800]">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                  fill="none" viewBox="0 0 24 24" stroke="currentColor"
                                  stroke-width="1.8">
@@ -565,10 +546,10 @@ $cartes = [
                             </svg>
                         </span>
                         <span class="min-w-0 flex-1">
-                            <span class="block text-sm font-bold">Traiter les signalements</span>
-                            <span class="mt-1 block text-xs text-[#8d7a6b]">Consulter les alertes des utilisateurs</span>
+                            <span class="block text-sm font-bold text-white">Traiter les signalements</span>
+                            <span class="mt-1 block text-xs text-slate-300">Consulter les alertes des utilisateurs</span>
                         </span>
-                        <span class="rounded-full bg-[#f7b500]/25 px-2.5 py-1 text-sm font-black text-[#5a402d]">
+                        <span class="rounded-full bg-[#f5b800]/20 px-2.5 py-1 text-sm font-black text-[#f5b800]">
                             <?= number_format($signalementsEnAttente, 0, ',', ' ') ?>
                         </span>
                     </a>
@@ -580,28 +561,28 @@ $cartes = [
         <section class="grid gap-6 xl:grid-cols-[1.4fr_0.8fr]">
 
             <!-- ACTIVITÉS RÉCENTES -->
-            <div class="overflow-hidden rounded-[24px] border border-[#e8ded4] bg-white shadow-[0_5px_24px_rgba(48,34,27,0.035)]">
-                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#f0e8e1] px-5 py-5 sm:px-7">
+            <div class="overflow-hidden rounded-[24px] border border-[#e2e8f0] bg-white shadow-[0_5px_24px_rgba(7,27,54,0.035)]">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#e2e8f0] px-5 py-5 sm:px-7">
                     <div>
-                        <p class="text-xs font-black uppercase tracking-[0.16em] text-[#a98260]">
+                        <p class="text-xs font-black uppercase tracking-[0.16em] text-[#0e2a4e]">
                             Journal de la plateforme
                         </p>
-                        <h2 class="mt-1 text-xl font-black">Activités récentes</h2>
-                        <p class="mt-1 text-sm text-[#8d7a6b]">
+                        <h2 class="mt-1 text-xl font-black text-[#071b36]">Activités récentes</h2>
+                        <p class="mt-1 text-sm text-[#64748b]">
                             Les dernières opérations enregistrées.
                         </p>
                     </div>
 
-                    <span class="rounded-full bg-[#f1e7df] px-3 py-1.5 text-xs font-bold text-[#5a402d]">
+                    <span class="rounded-full border border-[#e2e8f0] bg-[#f8fafc] px-3 py-1.5 text-xs font-bold text-[#071b36]">
                         <?= count($activitesRecentes) ?> activité(s)
                     </span>
                 </div>
 
                 <?php if ($activitesRecentes): ?>
-                    <div class="divide-y divide-[#f3ede7]">
+                    <div class="divide-y divide-[#e2e8f0]">
                         <?php foreach ($activitesRecentes as $activite): ?>
                             <?php
-                            $type = (string) ($activite['type'] ?? '');
+                            $type = strtolower(trim((string) ($activite['type'] ?? '')));
                             $description = trim((string) ($activite['description'] ?? ''));
                             $description = $description !== ''
                                 ? $description
@@ -615,166 +596,132 @@ $cartes = [
                                     'texte' => 'text-amber-700',
                                 ],
                                 'utilisateur' => [
-                                    'titre' => 'Nouvelle inscription',
+                                    'titre' => 'Nouveau compte',
                                     'etiquette' => 'Utilisateur',
                                     'fond' => 'bg-sky-50',
                                     'texte' => 'text-sky-700',
                                 ],
+                                'agence' => [
+                                    'titre' => 'Agence partenaire',
+                                    'etiquette' => 'Agence',
+                                    'fond' => 'bg-indigo-50',
+                                    'texte' => 'text-indigo-700',
+                                ],
                                 'signalement' => [
-                                    'titre' => 'Signalement reçu',
-                                    'etiquette' => 'Signalement',
+                                    'titre' => 'Signalement',
+                                    'etiquette' => 'Alerte',
                                     'fond' => 'bg-red-50',
                                     'texte' => 'text-red-700',
                                 ],
                             ];
 
                             $config = $typeConfig[$type] ?? [
-                                'titre' => 'Activité de la plateforme',
-                                'etiquette' => 'Activité',
-                                'fond' => 'bg-[#f1e7df]',
-                                'texte' => 'text-[#5a402d]',
+                                'titre' => 'Activité système',
+                                'etiquette' => 'Journal',
+                                'fond' => 'bg-[#071b36]/10',
+                                'texte' => 'text-[#071b36]',
                             ];
+
+                            $dateActivite = $activite['created_at'] ?? $activite['date'] ?? null;
                             ?>
 
-                            <div class="flex items-start gap-4 px-5 py-5 transition hover:bg-[#fdfbf8] sm:px-7">
-                                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl <?= $config['fond'] ?> <?= $config['texte'] ?>">
-                                    <?php if ($type === 'utilisateur'): ?>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2m6-10a4 4 0 100-8 4 4 0 000 8zm10 10v-2a4 4 0 00-3-3.87m-1-11.13a4 4 0 010 7.75"/>
-                                        </svg>
-                                    <?php elseif ($type === 'signalement'): ?>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 4h.01M5 20h14a2 2 0 001.7-3.05l-7-12a2 2 0 00-3.4 0l-7 12A2 2 0 005 20z"/>
-                                        </svg>
-                                    <?php else: ?>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5L12 3l9 7.5M5.25 9v11.25h13.5V9M9 20.25v-6h6v6"/>
-                                        </svg>
-                                    <?php endif; ?>
-                                </span>
+                            <div class="flex items-start justify-between gap-4 px-5 py-4 transition hover:bg-[#f8fafc] sm:px-7">
+                                <div class="flex min-w-0 items-start gap-3.5">
+                                    <span class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl <?= $config['fond'] ?> <?= $config['texte'] ?> text-xs font-black">
+                                        <?= $e(mb_substr($config['etiquette'], 0, 1, 'UTF-8')) ?>
+                                    </span>
 
-                                <div class="min-w-0 flex-1">
-                                    <div class="flex flex-wrap items-center gap-2">
-                                        <h3 class="text-sm font-extrabold">
-                                            <?= $e($config['titre']) ?>
-                                        </h3>
-                                        <span class="rounded-full bg-[#faf7f2] px-2.5 py-1 text-[10px] font-bold text-[#8d7a6b]">
-                                            <?= $e($config['etiquette']) ?>
-                                        </span>
+                                    <div class="min-w-0">
+                                        <div class="flex flex-wrap items-center gap-2">
+                                            <p class="text-sm font-bold text-[#071b36]">
+                                                <?= $e($config['titre']) ?>
+                                            </p>
+                                            <span class="rounded-full px-2.5 py-0.5 text-[11px] font-bold <?= $config['fond'] ?> <?= $config['texte'] ?>">
+                                                <?= $e($config['etiquette']) ?>
+                                            </span>
+                                        </div>
+
+                                        <p class="mt-1 break-words text-xs leading-5 text-[#64748b]">
+                                            <?= $e($description) ?>
+                                        </p>
                                     </div>
-
-                                    <p class="mt-1 break-words text-sm leading-6 text-[#6f5d50]">
-                                        <?= $e($description) ?>
-                                    </p>
-
-                                    <p class="mt-2 text-xs font-medium text-[#a18e7e]">
-                                        <?= $e($tempsEcoule($activite['created_at'] ?? null)) ?>
-                                    </p>
                                 </div>
+
+                                <span class="shrink-0 text-xs font-medium text-[#64748b]">
+                                    <?= $e($tempsEcoule($dateActivite)) ?>
+                                </span>
                             </div>
                         <?php endforeach; ?>
                     </div>
                 <?php else: ?>
                     <div class="px-6 py-14 text-center">
-                        <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f1e7df] text-[#5a402d]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h8m-8 5h8m-8 5h5M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"/>
-                            </svg>
-                        </span>
-                        <h3 class="mt-4 font-extrabold">Aucune activité récente</h3>
-                        <p class="mt-2 text-sm text-[#8d7a6b]">
-                            Les nouvelles annonces, inscriptions et alertes apparaîtront ici.
+                        <p class="text-sm font-bold text-[#071b36]">Aucune activité récente</p>
+                        <p class="mt-1 text-xs text-[#64748b]">
+                            Les prochaines opérations effectuées sur la plateforme apparaîtront ici.
                         </p>
                     </div>
                 <?php endif; ?>
             </div>
 
             <!-- OUTILS D'ADMINISTRATION -->
-            <aside class="rounded-[24px] border border-[#e8ded4] bg-white p-5 shadow-[0_5px_24px_rgba(48,34,27,0.035)] sm:p-7">
-                <p class="text-xs font-black uppercase tracking-[0.16em] text-[#a98260]">
-                    Administration
+            <div class="rounded-[24px] border border-[#e2e8f0] bg-white p-5 shadow-[0_5px_24px_rgba(7,27,54,0.035)] sm:p-7">
+                <p class="text-xs font-black uppercase tracking-[0.16em] text-[#0e2a4e]">
+                    Raccourcis
                 </p>
-                <h2 class="mt-1 text-xl font-black">Outils de gestion</h2>
-                <p class="mt-2 text-sm leading-6 text-[#8d7a6b]">
-                    Accédez aux principaux espaces techniques de votre plateforme.
+                <h2 class="mt-1 text-xl font-black text-[#071b36]">Outils d’administration</h2>
+                <p class="mt-1 text-sm text-[#64748b]">
+                    Accès direct aux modules de gestion et de supervision.
                 </p>
 
-                <div class="mt-5 space-y-3">
+                <div class="mt-6 space-y-3">
                     <a href="/immo-sn/admin/biens"
-                       class="group flex items-center gap-3 rounded-2xl border border-[#eee5dc] p-3 transition hover:border-[#d9c5b3] hover:bg-[#fdfaf7]">
-                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#30221b] text-[#f7b500]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5L12 3l9 7.5M5.25 9v11.25h13.5V9M9 20.25v-6h6v6"/>
-                            </svg>
-                        </span>
-                        <span class="min-w-0 flex-1">
-                            <span class="block text-sm font-extrabold">Gestion des biens</span>
-                            <span class="mt-1 block text-xs text-[#8d7a6b]">Consulter et filtrer les annonces</span>
-                        </span>
-                        <span class="text-[#a98260] transition group-hover:translate-x-1">→</span>
+                       class="flex items-center justify-between gap-3 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4 transition hover:border-[#0e2a4e]/40 hover:bg-white">
+                        <div>
+                            <p class="text-sm font-bold text-[#071b36]">Gestion des biens</p>
+                            <p class="text-xs text-[#64748b]">Valider, rejeter ou filtrer les annonces</p>
+                        </div>
+                        <span class="font-bold text-[#0e2a4e]">→</span>
+                    </a>
+
+                    <a href="/immo-sn/admin/agences"
+                       class="flex items-center justify-between gap-3 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4 transition hover:border-[#0e2a4e]/40 hover:bg-white">
+                        <div>
+                            <p class="text-sm font-bold text-[#071b36]">Gestion des agences</p>
+                            <p class="text-xs text-[#64748b]">Approuver ou suspendre les partenaires</p>
+                        </div>
+                        <span class="font-bold text-[#0e2a4e]">→</span>
                     </a>
 
                     <a href="/immo-sn/admin/signalements"
-                       class="group flex items-center gap-3 rounded-2xl border border-[#eee5dc] p-3 transition hover:border-[#d9c5b3] hover:bg-[#fdfaf7]">
-                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 4h.01M5 20h14a2 2 0 001.7-3.05l-7-12a2 2 0 00-3.4 0l-7 12A2 2 0 005 20z"/>
-                            </svg>
-                        </span>
-                        <span class="min-w-0 flex-1">
-                            <span class="block text-sm font-extrabold">Signalements</span>
-                            <span class="mt-1 block text-xs text-[#8d7a6b]">Suivre les alertes des utilisateurs</span>
-                        </span>
-                        <span class="text-[#a98260] transition group-hover:translate-x-1">→</span>
+                       class="flex items-center justify-between gap-3 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4 transition hover:border-[#0e2a4e]/40 hover:bg-white">
+                        <div>
+                            <p class="text-sm font-bold text-[#071b36]">Signalements</p>
+                            <p class="text-xs text-[#64748b]">Examiner les alertes signalées</p>
+                        </div>
+                        <span class="font-bold text-[#0e2a4e]">→</span>
                     </a>
 
                     <a href="/immo-sn/admin/cron-monitor"
-                       class="group flex items-center gap-3 rounded-2xl border border-[#eee5dc] p-3 transition hover:border-[#d9c5b3] hover:bg-[#fdfaf7]">
-                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#f1e7df] text-[#5a402d]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                                <circle cx="12" cy="12" r="9"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2"/>
-                            </svg>
-                        </span>
-                        <span class="min-w-0 flex-1">
-                            <span class="block text-sm font-extrabold">Cron Monitor</span>
-                            <span class="mt-1 block text-xs text-[#8d7a6b]">Surveiller les tâches automatiques</span>
-                        </span>
-                        <span class="text-[#a98260] transition group-hover:translate-x-1">→</span>
+                       class="flex items-center justify-between gap-3 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4 transition hover:border-[#0e2a4e]/40 hover:bg-white">
+                        <div>
+                            <p class="text-sm font-bold text-[#071b36]">Cron Monitor</p>
+                            <p class="text-xs text-[#64748b]">Superviser les tâches planifiées</p>
+                        </div>
+                        <span class="font-bold text-[#0e2a4e]">→</span>
                     </a>
 
                     <a href="/immo-sn/admin/mail-logs"
-                       class="group flex items-center gap-3 rounded-2xl border border-[#eee5dc] p-3 transition hover:border-[#d9c5b3] hover:bg-[#fdfaf7]">
-                        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 7l9 6 9-6M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z"/>
-                            </svg>
-                        </span>
-                        <span class="min-w-0 flex-1">
-                            <span class="block text-sm font-extrabold">Journaux des e-mails</span>
-                            <span class="mt-1 block text-xs text-[#8d7a6b]">Consulter les journaux d'envoi</span>
-                        </span>
-                        <span class="text-[#a98260] transition group-hover:translate-x-1">→</span>
+                       class="flex items-center justify-between gap-3 rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-4 transition hover:border-[#0e2a4e]/40 hover:bg-white">
+                        <div>
+                            <p class="text-sm font-bold text-[#071b36]">Mail Logs</p>
+                            <p class="text-xs text-[#64748b]">Vérifier l’historique des e-mails</p>
+                        </div>
+                        <span class="font-bold text-[#0e2a4e]">→</span>
                     </a>
                 </div>
+            </div>
 
-                <div class="mt-6 rounded-2xl bg-[#30221b] p-4 text-white">
-                    <div class="flex items-center gap-2">
-                        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-[#f7b500]">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/>
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/>
-                            </svg>
-                        </span>
-                        <span class="font-extrabold">Gestion centralisée</span>
-                    </div>
-                    <p class="mt-3 text-xs leading-6 text-[#d7cbc2]">
-                        Vérifiez régulièrement les annonces et les signalements
-                        afin de maintenir la qualité et la fiabilité des contenus
-                        publiés sur IMMO-SN.
-                    </p>
-                </div>
-            </aside>
         </section>
-</main>
+
+    </main>
 </div>

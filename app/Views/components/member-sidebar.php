@@ -55,12 +55,12 @@ function isMemberActive(string $path): bool
         h-screen
         min-h-screen
         shrink-0
-        bg-[#30221b]
+        bg-[#071b36]
         text-white
         flex
         flex-col
         border-r
-        border-[#46352b]
+        border-[#0e2a4e]
         overflow-y-auto
         -translate-x-full
         transition-transform
@@ -73,7 +73,7 @@ function isMemberActive(string $path): bool
         type="button"
         id="memberSidebarClose"
         aria-label="Fermer le menu"
-        class="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-lg text-white hover:bg-[#4a3930] lg:hidden"
+        class="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-lg text-white hover:bg-[#0e2a4e] lg:hidden"
     >
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -102,18 +102,18 @@ function isMemberActive(string $path): bool
                 w-11
                 h-11
                 rounded-2xl
-                bg-[#f7b500]
+                bg-[#f5b800]
                 flex
                 items-center
                 justify-center
                 shadow-lg
-                shadow-black/10
+                shadow-[#071b36]/20
                 shrink-0
                 group-hover:scale-105
                 transition
             "
         >
-            <span class="text-[#30221b] font-extrabold text-sm">
+            <span class="text-[#0b1528] font-extrabold text-sm">
                 IS
             </span>
         </div>
@@ -126,13 +126,13 @@ function isMemberActive(string $path): bool
                     ImmoSn
                 </span>
 
-                <span class="text-[#f7b500] font-bold">
+                <span class="text-[#f5b800] font-bold">
                     .com
                 </span>
 
             </div>
 
-            <p class="text-[10px] uppercase tracking-[0.18em] text-[#bcae9f] mt-0.5">
+            <p class="text-[10px] uppercase tracking-[0.18em] text-slate-400 mt-0.5">
                 Espace membre
             </p>
 
@@ -151,9 +151,9 @@ function isMemberActive(string $path): bool
     <div
         class="
             rounded-2xl
-            bg-white/[0.06]
+            bg-[#0e2a4e]/70
             border
-            border-white/[0.08]
+            border-[#163d6e]
             p-4
         "
     >
@@ -165,14 +165,14 @@ function isMemberActive(string $path): bool
                     w-10
                     h-10
                     rounded-xl
-                    bg-[#f7b500]
+                    bg-[#f5b800]
                     flex
                     items-center
                     justify-center
                     shrink-0
                 "
             >
-                <span class="text-sm font-bold text-[#30221b]">
+                <span class="text-sm font-bold text-[#0b1528]">
                     M
                 </span>
             </div>
@@ -183,7 +183,7 @@ function isMemberActive(string $path): bool
                     Espace membre
                 </p>
 
-                <p class="text-xs text-[#bcae9f] truncate mt-0.5">
+                <p class="text-xs text-slate-400 truncate mt-0.5">
                     Gestion immobilière
                 </p>
 
@@ -209,7 +209,7 @@ function isMemberActive(string $path): bool
             font-semibold
             uppercase
             tracking-[0.18em]
-            text-[#a98260]
+            text-slate-400
         "
     >
         Menu principal
@@ -235,8 +235,8 @@ function isMemberActive(string $path): bool
                 text-sm
                 transition-all
                 <?= isMemberActive('/member/dashboard')
-                    ? 'bg-[#f7b500] text-[#30221b] shadow-md shadow-black/10'
-                    : 'text-[#d8d0c8] hover:bg-white/[0.07] hover:text-white'
+                    ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-md shadow-[#071b36]/20'
+                    : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
                 ?>
             "
         >
@@ -250,8 +250,8 @@ function isMemberActive(string $path): bool
                     justify-center
                     rounded-lg
                     <?= isMemberActive('/member/dashboard')
-                        ? 'bg-[#30221b]/10'
-                        : 'bg-white/[0.05] group-hover:bg-white/[0.08]'
+                        ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                        : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
                     ?>
                 "
             >
@@ -296,8 +296,8 @@ function isMemberActive(string $path): bool
                 text-sm
                 transition-all
                 <?= isMemberActive('/member/publier')
-                    ? 'bg-[#f7b500] text-[#30221b] shadow-md shadow-black/10'
-                    : 'text-[#d8d0c8] hover:bg-white/[0.07] hover:text-white'
+                    ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-md shadow-[#071b36]/20'
+                    : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
                 ?>
             "
         >
@@ -311,8 +311,8 @@ function isMemberActive(string $path): bool
                     justify-center
                     rounded-lg
                     <?= isMemberActive('/member/publier')
-                        ? 'bg-[#30221b]/10'
-                        : 'bg-white/[0.05] group-hover:bg-white/[0.08]'
+                        ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                        : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
                     ?>
                 "
             >
@@ -357,8 +357,8 @@ function isMemberActive(string $path): bool
                 text-sm
                 transition-all
                 <?= isMemberActive('/member/mes-biens')
-                    ? 'bg-[#f7b500] text-[#30221b] shadow-md shadow-black/10'
-                    : 'text-[#d8d0c8] hover:bg-white/[0.07] hover:text-white'
+                    ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-md shadow-[#071b36]/20'
+                    : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
                 ?>
             "
         >
@@ -372,8 +372,8 @@ function isMemberActive(string $path): bool
                     justify-center
                     rounded-lg
                     <?= isMemberActive('/member/mes-biens')
-                        ? 'bg-[#30221b]/10'
-                        : 'bg-white/[0.05] group-hover:bg-white/[0.08]'
+                        ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                        : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
                     ?>
                 "
             >
@@ -418,8 +418,8 @@ function isMemberActive(string $path): bool
                 text-sm
                 transition-all
                 <?= isMemberActive('/member/alertes')
-                    ? 'bg-[#f7b500] text-[#30221b] shadow-md shadow-black/10'
-                    : 'text-[#d8d0c8] hover:bg-white/[0.07] hover:text-white'
+                    ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-md shadow-[#071b36]/20'
+                    : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
                 ?>
             "
         >
@@ -433,8 +433,8 @@ function isMemberActive(string $path): bool
                     justify-center
                     rounded-lg
                     <?= isMemberActive('/member/alertes')
-                        ? 'bg-[#30221b]/10'
-                        : 'bg-white/[0.05] group-hover:bg-white/[0.08]'
+                        ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                        : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
                     ?>
                 "
             >
@@ -479,8 +479,8 @@ function isMemberActive(string $path): bool
                 text-sm
                 transition-all
                 <?= isMemberActive('/member/messages')
-                    ? 'bg-[#f7b500] text-[#30221b] shadow-md shadow-black/10'
-                    : 'text-[#d8d0c8] hover:bg-white/[0.07] hover:text-white'
+                    ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-md shadow-[#071b36]/20'
+                    : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
                 ?>
             "
         >
@@ -494,8 +494,8 @@ function isMemberActive(string $path): bool
                     justify-center
                     rounded-lg
                     <?= isMemberActive('/member/messages')
-                        ? 'bg-[#30221b]/10'
-                        : 'bg-white/[0.05] group-hover:bg-white/[0.08]'
+                        ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                        : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
                     ?>
                 "
             >
@@ -548,8 +548,8 @@ function isMemberActive(string $path): bool
                 text-sm
                 transition-all
                 <?= isMemberActive('/member/favoris')
-                    ? 'bg-[#f7b500] text-[#30221b] shadow-md shadow-black/10'
-                    : 'text-[#d8d0c8] hover:bg-white/[0.07] hover:text-white'
+                    ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-md shadow-[#071b36]/20'
+                    : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
                 ?>
             "
         >
@@ -563,8 +563,8 @@ function isMemberActive(string $path): bool
                     justify-center
                     rounded-lg
                     <?= isMemberActive('/member/favoris')
-                        ? 'bg-[#30221b]/10'
-                        : 'bg-white/[0.05] group-hover:bg-white/[0.08]'
+                        ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                        : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
                     ?>
                 "
             >
@@ -607,7 +607,7 @@ function isMemberActive(string $path): bool
             font-semibold
             uppercase
             tracking-[0.18em]
-            text-[#a98260]
+            text-slate-400
         "
     >
         Mon compte
@@ -632,8 +632,8 @@ function isMemberActive(string $path): bool
                 text-sm
                 transition-all
                 <?= isMemberActive('/member/profil')
-                    ? 'bg-[#f7b500] text-[#30221b] shadow-md shadow-black/10'
-                    : 'text-[#d8d0c8] hover:bg-white/[0.07] hover:text-white'
+                    ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-md shadow-[#071b36]/20'
+                    : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
                 ?>
             "
         >
@@ -647,8 +647,8 @@ function isMemberActive(string $path): bool
                     justify-center
                     rounded-lg
                     <?= isMemberActive('/member/profil')
-                        ? 'bg-[#30221b]/10'
-                        : 'bg-white/[0.05] group-hover:bg-white/[0.08]'
+                        ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                        : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
                     ?>
                 "
             >
@@ -697,8 +697,8 @@ function isMemberActive(string $path): bool
                 px-3
                 py-3
                 text-sm
-                text-[#d8d0c8]
-                hover:bg-white/[0.07]
+                text-slate-300
+                hover:bg-[#0e2a4e]
                 hover:text-white
                 transition-all
             "
@@ -712,8 +712,10 @@ function isMemberActive(string $path): bool
                     items-center
                     justify-center
                     rounded-lg
-                    bg-white/[0.05]
-                    group-hover:bg-white/[0.08]
+                    bg-[#0e2a4e]
+                    text-slate-200
+                    group-hover:bg-[#163d6e]
+                    group-hover:text-[#f5b800]
                 "
             >
 
@@ -756,14 +758,14 @@ function isMemberActive(string $path): bool
 ========================================================== -->
 <div class="p-4 mt-4">
 
-    <div class="border-t border-white/[0.08] pt-4">
+    <div class="border-t border-[#0e2a4e] pt-4">
 
         <div
             class="
                 rounded-2xl
-                bg-white/[0.05]
+                bg-[#0e2a4e]/70
                 border
-                border-white/[0.07]
+                border-[#163d6e]
                 p-4
             "
         >
@@ -775,7 +777,7 @@ function isMemberActive(string $path): bool
                         w-9
                         h-9
                         rounded-xl
-                        bg-[#f7b500]/10
+                        bg-[#f5b800]/15
                         flex
                         items-center
                         justify-center
@@ -784,7 +786,7 @@ function isMemberActive(string $path): bool
 
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="w-4 h-4 text-[#f7b500]"
+                        class="w-4 h-4 text-[#f5b800]"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -819,7 +821,7 @@ function isMemberActive(string $path): bool
                         Immo-SN
                     </p>
 
-                    <p class="text-[11px] text-[#a99b8f] mt-0.5">
+                    <p class="text-[11px] text-slate-400 mt-0.5">
                         Espace sécurisé
                     </p>
 

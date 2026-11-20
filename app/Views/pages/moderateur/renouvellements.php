@@ -30,24 +30,26 @@ $formatDate = static function ($date): string {
 
 ?>
 
-<div class="min-h-screen bg-[#faf7f2] px-3 py-6 sm:px-6 sm:py-8 lg:px-8">
+<div class="min-h-screen bg-[#F5F3ED] px-3 py-6 sm:px-6 sm:py-8 lg:px-8">
 
     <div class="mx-auto max-w-7xl">
 
-        <!-- TOPBAR -->
-        <div class="mb-8 flex min-w-0 flex-col gap-4 rounded-2xl bg-white px-4 py-4 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:px-5">
+        <!-- =====================================================
+             TOPBAR
+        ====================================================== -->
+        <div class="mb-8 flex min-w-0 flex-col gap-4 rounded-2xl border border-[#E8E8E1] bg-white px-4 py-4 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:px-5">
 
             <div class="min-w-0">
 
-                <div class="flex min-w-0 flex-wrap items-center gap-2 text-xs font-medium text-[#a98260]">
+                <div class="flex min-w-0 flex-wrap items-center gap-2 text-xs font-medium text-[#71869A]">
                     <span>IMMO-SN</span>
-                    <span class="text-[#cdbba9]">/</span>
+                    <span class="text-[#B8C2C8]">/</span>
                     <span>Administration</span>
-                    <span class="text-[#cdbba9]">/</span>
-                    <span class="break-words text-[#30221b]">Renouvellements</span>
+                    <span class="text-[#B8C2C8]">/</span>
+                    <span class="break-words font-semibold text-[#101D33]">Renouvellements</span>
                 </div>
 
-                <p class="mt-1 break-words text-sm font-semibold text-[#30221b]">
+                <p class="mt-1 break-words text-sm font-semibold text-[#101D33]">
                     Espace de modération
                 </p>
 
@@ -55,7 +57,7 @@ $formatDate = static function ($date): string {
 
             <a
                 href="/immo-sn/moderateur"
-                class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#30221b] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#5a402d] sm:w-auto sm:shrink-0"
+                class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#101D33] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1C3455] sm:w-auto sm:shrink-0"
             >
                 <span aria-hidden="true">&larr;</span>
                 Tableau de bord
@@ -63,19 +65,26 @@ $formatDate = static function ($date): string {
 
         </div>
 
-        <!-- HERO -->
-        <section class="relative isolate mb-8 overflow-hidden rounded-[28px] bg-[#30221b] px-4 py-7 shadow-xl shadow-[#30221b]/10 sm:px-9 sm:py-10">
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+        <section class="relative isolate mb-8 overflow-hidden rounded-[28px] bg-[#101D33] px-4 py-7 shadow-xl shadow-[#101D33]/10 sm:px-9 sm:py-10">
 
             <div class="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full border-[35px] border-white/5"></div>
-            <div class="pointer-events-none absolute -bottom-24 right-36 h-48 w-48 rounded-full bg-[#f7b500]/10 blur-3xl"></div>
+
+            <div class="pointer-events-none absolute -bottom-24 right-36 h-48 w-48 rounded-full bg-[#7E9833]/20 blur-3xl"></div>
 
             <div class="relative z-10 flex min-w-0 flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
 
                 <div class="min-w-0 max-w-2xl">
 
-                    <div class="mb-5 inline-flex max-w-full flex-wrap items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#f7c95c]">
-                        <span class="h-2 w-2 shrink-0 rounded-full bg-[#f7b500]"></span>
+                    <div class="mb-5 inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-[#7E9833]/30 bg-[#7E9833]/15 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#B6D16C]">
+
+                        <span class="h-2 w-2 shrink-0 rounded-full bg-[#8FAF35]"></span>
+
                         Gestion des renouvellements
+
                     </div>
 
                     <h1 class="break-words text-2xl font-bold leading-tight text-white sm:text-4xl">
@@ -92,7 +101,7 @@ $formatDate = static function ($date): string {
 
                         <a
                             href="#liste-demandes"
-                            class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#f7b500] px-5 py-3 text-sm font-bold text-[#30221b] transition hover:bg-[#ffd04d] sm:w-auto"
+                            class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#8FAF35] px-5 py-3 text-sm font-bold text-[#101D33] transition hover:bg-[#A5C94B] sm:w-auto"
                         >
                             Consulter les demandes
                             <span aria-hidden="true">&darr;</span>
@@ -100,7 +109,7 @@ $formatDate = static function ($date): string {
 
                         <a
                             href="/immo-sn/moderateur"
-                            class="inline-flex w-full items-center justify-center rounded-xl bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/20 sm:w-auto"
+                            class="inline-flex w-full items-center justify-center rounded-xl border border-white/15 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/20 sm:w-auto"
                         >
                             Retour au tableau de bord
                         </a>
@@ -110,7 +119,8 @@ $formatDate = static function ($date): string {
                 </div>
 
                 <div class="hidden shrink-0 lg:flex lg:items-center lg:justify-center">
-                    <div class="flex h-36 w-36 items-center justify-center rounded-[32px] bg-white/10 text-[#f7b500]">
+
+                    <div class="flex h-36 w-36 items-center justify-center rounded-[32px] border border-white/10 bg-white/10 text-[#A5C94B]">
 
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -130,64 +140,93 @@ $formatDate = static function ($date): string {
                         </svg>
 
                     </div>
+
                 </div>
 
             </div>
 
         </section>
 
-        <!-- MESSAGES -->
+
+        <!-- =====================================================
+             MESSAGES
+        ====================================================== -->
+
         <?php if ($messageSucces): ?>
 
-            <div class="mb-6 flex min-w-0 items-start gap-3 rounded-2xl bg-green-50 px-4 py-4 text-sm font-medium text-green-800 sm:px-5">
+            <div class="mb-6 flex min-w-0 items-start gap-3 rounded-2xl border border-green-200 bg-green-50 px-4 py-4 text-sm font-medium text-green-800 sm:px-5">
+
                 <span class="shrink-0 text-lg" aria-hidden="true">&#10003;</span>
-                <p class="min-w-0 break-words"><?= $e($messageSucces) ?></p>
+
+                <p class="min-w-0 break-words">
+                    <?= $e($messageSucces) ?>
+                </p>
+
             </div>
 
         <?php endif; ?>
+
 
         <?php if ($messageErreur): ?>
 
-            <div class="mb-6 flex min-w-0 items-start gap-3 rounded-2xl bg-red-50 px-4 py-4 text-sm font-medium text-red-800 sm:px-5">
+            <div class="mb-6 flex min-w-0 items-start gap-3 rounded-2xl border border-red-200 bg-red-50 px-4 py-4 text-sm font-medium text-red-800 sm:px-5">
+
                 <span class="shrink-0 text-lg" aria-hidden="true">!</span>
-                <p class="min-w-0 break-words"><?= $e($messageErreur) ?></p>
+
+                <p class="min-w-0 break-words">
+                    <?= $e($messageErreur) ?>
+                </p>
+
             </div>
 
         <?php endif; ?>
 
-        <!-- STATISTIQUES -->
+
+        <!-- =====================================================
+             STATISTIQUES
+        ====================================================== -->
         <section class="mb-10">
 
             <div class="mb-5">
-                <p class="break-words text-xs font-bold uppercase tracking-wider text-[#a98260]">
+
+                <p class="break-words text-xs font-bold uppercase tracking-wider text-[#7E9833]">
                     Vue d'ensemble
                 </p>
 
-                <h2 class="mt-1 break-words text-xl font-bold text-[#30221b]">
+                <h2 class="mt-1 break-words text-xl font-bold text-[#101D33]">
                     Activité des renouvellements
                 </h2>
+
+                <p class="mt-1 text-sm text-[#71869A]">
+                    Suivez les demandes de prolongation des annonces.
+                </p>
+
             </div>
+
 
             <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
 
                 <!-- DEMANDES EN ATTENTE -->
-                <div class="flex min-w-0 items-center justify-between gap-3 rounded-2xl border border-[#eee5dc] bg-white p-4 shadow-sm transition hover:shadow-md sm:p-6">
+                <div class="flex min-w-0 items-center justify-between gap-3 rounded-2xl border border-[#E5E8DF] bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-6">
 
                     <div class="min-w-0">
-                        <p class="break-words text-sm font-medium text-[#75665d]">
+
+                        <p class="break-words text-sm font-medium text-[#71869A]">
                             Demandes en attente
                         </p>
 
-                        <p class="mt-3 text-3xl font-bold text-[#30221b] sm:text-4xl">
+                        <p class="mt-3 text-3xl font-bold text-[#101D33] sm:text-4xl">
                             <?= number_format(count($demandes), 0, ',', ' ') ?>
                         </p>
 
-                        <p class="mt-1 break-words text-xs text-[#a98260]">
+                        <p class="mt-1 break-words text-xs text-[#7E9833]">
                             Demandes à examiner
                         </p>
+
                     </div>
 
-                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-50 text-amber-700 sm:h-14 sm:w-14">
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-50 text-amber-600 sm:h-14 sm:w-14">
+
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-7 w-7"
@@ -199,28 +238,33 @@ $formatDate = static function ($date): string {
                             <circle cx="12" cy="12" r="9"></circle>
                             <path d="M12 7v5l3 2"></path>
                         </svg>
+
                     </div>
 
                 </div>
 
+
                 <!-- DURÉE -->
-                <div class="flex min-w-0 items-center justify-between gap-3 rounded-2xl border border-[#eee5dc] bg-white p-4 shadow-sm transition hover:shadow-md sm:p-6">
+                <div class="flex min-w-0 items-center justify-between gap-3 rounded-2xl border border-[#E5E8DF] bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-6">
 
                     <div class="min-w-0">
-                        <p class="break-words text-sm font-medium text-[#75665d]">
+
+                        <p class="break-words text-sm font-medium text-[#71869A]">
                             Durée du renouvellement
                         </p>
 
-                        <p class="mt-3 break-words text-3xl font-bold text-[#8b684d] sm:text-4xl">
+                        <p class="mt-3 break-words text-3xl font-bold text-[#7E9833] sm:text-4xl">
                             30 jours
                         </p>
 
-                        <p class="mt-1 break-words text-xs text-[#a98260]">
+                        <p class="mt-1 break-words text-xs text-[#71869A]">
                             Durée prévue par renouvellement
                         </p>
+
                     </div>
 
-                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#f5eee5] text-[#8b684d] sm:h-14 sm:w-14">
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#EEF3E3] text-[#7E9833] sm:h-14 sm:w-14">
+
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-7 w-7"
@@ -232,6 +276,7 @@ $formatDate = static function ($date): string {
                             <circle cx="12" cy="12" r="9"></circle>
                             <path d="M12 7v5l3 2"></path>
                         </svg>
+
                     </div>
 
                 </div>
@@ -240,36 +285,47 @@ $formatDate = static function ($date): string {
 
         </section>
 
-        <!-- LISTE DES DEMANDES -->
+
+        <!-- =====================================================
+             LISTE DES DEMANDES
+        ====================================================== -->
         <section id="liste-demandes" class="min-w-0">
 
             <div class="mb-6 flex min-w-0 flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
 
                 <div class="min-w-0">
-                    <p class="break-words text-xs font-bold uppercase tracking-wider text-[#a98260]">
+
+                    <p class="break-words text-xs font-bold uppercase tracking-wider text-[#7E9833]">
                         Traitement des demandes
                     </p>
 
-                    <h2 class="mt-1 break-words text-xl font-bold text-[#30221b] sm:text-2xl">
+                    <h2 class="mt-1 break-words text-xl font-bold text-[#101D33] sm:text-2xl">
                         Renouvellements à examiner
                     </h2>
+
                 </div>
 
-                <p class="break-words text-sm text-[#75665d] sm:shrink-0">
+                <p class="break-words text-sm font-medium text-[#71869A] sm:shrink-0">
+
                     <?= number_format(count($demandes), 0, ',', ' ') ?>
+
                     demande(s) en attente
+
                 </p>
 
             </div>
 
-            <!-- GRILLE : 1 COLONNE MOBILE, 2 TABLETTE, 3 ORDINATEUR -->
+
+            <!-- GRILLE DES DEMANDES -->
             <div class="grid min-w-0 grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+
 
                 <?php if (empty($demandes)): ?>
 
-                    <div class="col-span-full rounded-3xl border border-[#eee5dc] bg-white px-4 py-12 text-center shadow-sm sm:px-6 sm:py-16">
+                    <!-- AUCUNE DEMANDE -->
+                    <div class="col-span-full rounded-3xl border border-[#E5E8DF] bg-white px-4 py-12 text-center shadow-sm sm:px-6 sm:py-16">
 
-                        <div class="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-2xl bg-[#f5eee5] text-[#a98260]">
+                        <div class="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-2xl bg-[#EEF3E3] text-[#7E9833]">
 
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -289,18 +345,20 @@ $formatDate = static function ($date): string {
 
                         </div>
 
-                        <h3 class="break-words text-xl font-bold text-[#30221b]">
+                        <h3 class="break-words text-xl font-bold text-[#101D33]">
                             Aucune demande en attente
                         </h3>
 
-                        <p class="mx-auto mt-2 max-w-md break-words text-sm leading-6 text-[#75665d]">
+                        <p class="mx-auto mt-2 max-w-md break-words text-sm leading-6 text-[#71869A]">
                             Toutes les demandes de renouvellement ont été traitées.
                             Les nouvelles demandes apparaîtront ici.
                         </p>
 
                     </div>
 
+
                 <?php else: ?>
+
 
                     <?php foreach ($demandes as $demande): ?>
 
@@ -323,17 +381,22 @@ $formatDate = static function ($date): string {
 
                         ?>
 
+
                         <!-- CARTE RENOUVELLEMENT -->
-                        <article class="flex min-w-0 h-full flex-col overflow-hidden rounded-2xl border border-[#e9dfd4] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                        <article class="flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-[#E5E8DF] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+
 
                             <!-- EN-TÊTE -->
-                            <div class="min-w-0 bg-[#30221b] px-4 py-4">
+                            <div class="min-w-0 bg-[#101D33] px-4 py-4">
 
                                 <div class="mb-3 flex min-w-0 items-center justify-between gap-2">
 
-                                    <span class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-amber-400/15 px-2.5 py-1 text-[10px] font-bold text-[#ffd66e]">
-                                        <span class="h-1.5 w-1.5 rounded-full bg-[#f7b500]"></span>
+                                    <span class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-amber-300/20 bg-amber-400/15 px-2.5 py-1 text-[10px] font-bold text-amber-200">
+
+                                        <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-amber-400"></span>
+
                                         En attente
+
                                     </span>
 
                                     <span class="min-w-0 break-all text-right text-[10px] text-white/60">
@@ -352,78 +415,100 @@ $formatDate = static function ($date): string {
 
                             </div>
 
+
                             <!-- CONTENU -->
                             <div class="flex min-w-0 flex-1 flex-col p-4">
+
 
                                 <!-- PROPRIÉTAIRE -->
                                 <div class="mb-4 flex min-w-0 items-center gap-3">
 
-                                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#30221b] text-sm font-bold text-[#f7b500]">
+                                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#EEF3E3] text-sm font-bold text-[#6F892D]">
+
                                         <?= $e(mb_strtoupper(mb_substr($nomComplet, 0, 1, 'UTF-8'), 'UTF-8')) ?>
+
                                     </div>
 
                                     <div class="min-w-0 flex-1">
-                                        <p class="text-[10px] font-semibold uppercase tracking-wide text-[#a98260]">
+
+                                        <p class="text-[10px] font-semibold uppercase tracking-wide text-[#71869A]">
                                             Propriétaire
                                         </p>
 
-                                        <p class="break-words text-sm font-bold text-[#30221b]">
+                                        <p class="break-words text-sm font-bold text-[#101D33]">
                                             <?= $e($nomComplet) ?>
                                         </p>
 
-                                        <p class="break-all text-xs text-[#75665d]">
+                                        <p class="break-all text-xs text-[#71869A]">
                                             <?= $e($demande['email_proprietaire'] ?? 'E-mail non renseigné') ?>
                                         </p>
+
                                     </div>
 
                                 </div>
 
+
                                 <!-- INFORMATIONS -->
-                                <div class="mb-4 min-w-0 space-y-3 rounded-xl bg-[#faf7f2] p-3">
+                                <div class="mb-4 min-w-0 space-y-3 rounded-xl border border-[#E9ECE5] bg-[#F7F8F4] p-3">
+
 
                                     <div class="flex min-w-0 items-start justify-between gap-3">
-                                        <span class="shrink-0 text-xs text-[#8b7b70]">
+
+                                        <span class="shrink-0 text-xs text-[#71869A]">
                                             Statut actuel
                                         </span>
 
-                                        <span class="min-w-0 break-words text-right text-xs font-bold text-[#30221b]">
+                                        <span class="min-w-0 break-words text-right text-xs font-bold text-[#101D33]">
                                             <?= $e($demande['statut_bien'] ?? 'Non renseigné') ?>
                                         </span>
+
                                     </div>
 
+
                                     <div class="flex min-w-0 items-start justify-between gap-3">
-                                        <span class="shrink-0 text-xs text-[#8b7b70]">
+
+                                        <span class="shrink-0 text-xs text-[#71869A]">
                                             Expiration
                                         </span>
 
-                                        <span class="min-w-0 break-words text-right text-xs font-bold text-[#30221b]">
+                                        <span class="min-w-0 break-words text-right text-xs font-bold text-[#101D33]">
                                             <?= $e($formatDate($demande['expire_at'] ?? null)) ?>
                                         </span>
+
                                     </div>
 
+
                                     <div class="flex min-w-0 items-start justify-between gap-3">
-                                        <span class="shrink-0 text-xs text-[#8b7b70]">
+
+                                        <span class="shrink-0 text-xs text-[#71869A]">
                                             Prolongation
                                         </span>
 
-                                        <span class="shrink-0 text-xs font-bold text-[#8b684d]">
+                                        <span class="shrink-0 text-xs font-bold text-[#7E9833]">
                                             30 jours
                                         </span>
+
                                     </div>
 
                                 </div>
+
 
                                 <!-- VOIR LE BIEN -->
                                 <a
                                     href="/immo-sn/biens/<?= rawurlencode($idBien) ?>"
-                                    class="mb-4 flex w-full items-center justify-center gap-2 rounded-lg border border-[#e5d8ca] bg-white px-3 py-2.5 text-xs font-bold text-[#5a402d] transition hover:bg-[#f5eee5]"
+                                    class="mb-4 flex w-full items-center justify-center gap-2 rounded-lg border border-[#DCE3D1] bg-[#F7F8F4] px-3 py-2.5 text-xs font-bold text-[#526B25] transition hover:border-[#7E9833] hover:bg-[#EEF3E3]"
                                 >
+
                                     Consulter le bien
+
                                     <span aria-hidden="true">&rarr;</span>
+
                                 </a>
+
 
                                 <!-- ACTIONS -->
                                 <div class="mt-auto min-w-0 space-y-3">
+
 
                                     <!-- APPROUVER -->
                                     <form
@@ -440,13 +525,17 @@ $formatDate = static function ($date): string {
 
                                         <button
                                             type="submit"
-                                            class="flex w-full items-center justify-center gap-2 rounded-lg bg-green-700 px-3 py-2.5 text-xs font-bold text-white transition hover:bg-green-800"
+                                            class="flex w-full items-center justify-center gap-2 rounded-lg bg-[#7E9833] px-3 py-2.5 text-xs font-bold text-white transition hover:bg-[#667D29] focus:outline-none focus:ring-2 focus:ring-[#7E9833]/30"
                                         >
+
                                             <span aria-hidden="true">&#10003;</span>
+
                                             Approuver
+
                                         </button>
 
                                     </form>
+
 
                                     <!-- REFUSER -->
                                     <form
@@ -461,12 +550,14 @@ $formatDate = static function ($date): string {
                                             value="<?= $e(Session::csrfToken()) ?>"
                                         >
 
+
                                         <label
                                             for="<?= $e($motifId) ?>"
-                                            class="mb-1.5 block break-words text-xs font-semibold text-[#30221b]"
+                                            class="mb-1.5 block break-words text-xs font-semibold text-[#101D33]"
                                         >
                                             Motif du refus
                                         </label>
+
 
                                         <textarea
                                             id="<?= $e($motifId) ?>"
@@ -475,18 +566,23 @@ $formatDate = static function ($date): string {
                                             maxlength="2000"
                                             required
                                             placeholder="Expliquez le motif du refus..."
-                                            class="w-full min-w-0 resize-y rounded-lg border border-[#ded5cb] bg-[#fdfcfb] px-3 py-2 text-xs text-[#30221b] outline-none transition placeholder:text-[#b4a69a] focus:border-red-400 focus:ring-2 focus:ring-red-100"
+                                            class="w-full min-w-0 resize-y rounded-lg border border-[#DCE1E4] bg-[#FAFBF9] px-3 py-2 text-xs text-[#101D33] outline-none transition placeholder:text-[#9AA8B1] focus:border-red-400 focus:ring-2 focus:ring-red-100"
                                         ></textarea>
+
 
                                         <button
                                             type="submit"
-                                            class="mt-2 flex w-full items-center justify-center gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-xs font-bold text-red-700 transition hover:bg-red-100"
+                                            class="mt-2 flex w-full items-center justify-center gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-xs font-bold text-red-700 transition hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-200"
                                         >
+
                                             <span aria-hidden="true">&times;</span>
+
                                             Refuser
+
                                         </button>
 
                                     </form>
+
 
                                 </div>
 
@@ -494,22 +590,29 @@ $formatDate = static function ($date): string {
 
                         </article>
 
+
                     <?php endforeach; ?>
 
+
                 <?php endif; ?>
+
 
             </div>
 
         </section>
 
-        <!-- PIED DE PAGE -->
-        <div class="mt-12 border-t border-[#e8ded3] py-6 text-center">
 
-            <p class="break-words text-xs text-[#a98260]">
+        <!-- =====================================================
+             PIED DE PAGE
+        ====================================================== -->
+        <div class="mt-12 border-t border-[#DFE4DA] py-6 text-center">
+
+            <p class="break-words text-xs text-[#71869A]">
                 IMMO-SN &mdash; Espace de modération
             </p>
 
         </div>
+
 
     </div>
 

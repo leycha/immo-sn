@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,73 +6,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Votre annonce est validée - IMMO-SN</title>
 </head>
-<body style="margin:0;padding:0;background-color:#f5f1eb;font-family:Arial,sans-serif;color:#30221b;">
 
-    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#f5f1eb;padding:30px 12px;">
+<body style="margin:0;padding:0;background-color:#F5F3ED;font-family:Arial,Helvetica,sans-serif;color:#101D33;">
+
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+        style="background-color:#F5F3ED;padding:30px 12px;">
         <tr>
             <td align="center">
 
-                <table role="presentation" width="600" cellspacing="0" cellpadding="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:12px;overflow:hidden;">
+                <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0"
+                    style="max-width:600px;width:100%;background-color:#FFFFFF;border-radius:14px;overflow:hidden;">
 
+                    <!-- HEADER -->
                     <tr>
-                        <td style="background-color:#30221b;padding:28px;text-align:center;">
-                            <h1 style="margin:0;color:#f7b500;font-size:28px;">IMMO-SN</h1>
-                            <p style="margin:8px 0 0;color:#ffffff;font-size:14px;">
+                        <td align="center"
+                            style="background-color:#101D33;padding:32px 25px;">
+
+                            <h1 style="margin:0;color:#A9C65B;font-size:30px;font-weight:bold;letter-spacing:1px;">
+                                IMMO-SN
+                            </h1>
+
+                            <p style="margin:10px 0 0;color:#FFFFFF;font-size:14px;line-height:1.6;">
                                 Votre plateforme immobilière au Sénégal
                             </p>
+
+                            <div style="width:55px;height:3px;background-color:#7E9833;margin:20px auto 0;"></div>
+
                         </td>
                     </tr>
 
+                    <!-- CONTENU PRINCIPAL -->
                     <tr>
                         <td style="padding:35px 30px;">
 
-                            <h2 style="color:#30221b;font-size:23px;">
+                            <h2 style="margin:0 0 20px;color:#101D33;font-size:23px;line-height:1.4;">
                                 Félicitations {{prenom}} !
                             </h2>
 
-                            <p style="font-size:15px;line-height:1.7;">
+                            <p style="margin:0 0 20px;font-size:15px;line-height:1.8;color:#4B5563;">
                                 Bonne nouvelle ! Votre annonce immobilière a été examinée et approuvée par notre équipe.
                             </p>
 
-                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#f5f1eb;border-radius:8px;margin:22px 0;">
+                            <!-- BADGE VALIDATION -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0"
+                                style="margin:20px 0;">
                                 <tr>
-                                    <td style="padding:18px;">
-                                        <p style="margin:0 0 8px;font-size:13px;color:#777777;">
-                                            Annonce validée
-                                        </p>
-                                        <p style="margin:0;font-size:17px;font-weight:bold;color:#30221b;">
-                                            {{titre_bien}}
-                                        </p>
+                                    <td style="background-color:#EDF2E1;border-radius:20px;padding:9px 16px;">
+                                        <span style="font-size:13px;font-weight:bold;color:#6D852B;">
+                                            ✓ ANNONCE VALIDÉE
+                                        </span>
                                     </td>
                                 </tr>
                             </table>
 
-                            <p style="font-size:15px;line-height:1.7;">
-                                Votre annonce peut désormais être consultée sur IMMO-SN. Nous vous remercions d'avoir choisi notre plateforme.
+                            <!-- DETAILS DU BIEN -->
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+                                style="background-color:#F5F3ED;border-radius:10px;margin:22px 0;">
+                                <tr>
+                                    <td style="padding:22px 20px;border-left:4px solid #7E9833;">
+
+                                        <p style="margin:0 0 10px;font-size:13px;color:#71869A;">
+                                            Votre annonce est maintenant en ligne
+                                        </p>
+
+                                        <p style="margin:0;font-size:18px;font-weight:bold;color:#101D33;line-height:1.6;">
+                                            {{titre_bien}}
+                                        </p>
+
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <p style="margin:22px 0;font-size:15px;line-height:1.8;color:#4B5563;">
+                                Votre annonce peut désormais être consultée sur IMMO-SN. Nous vous remercions d'avoir choisi notre plateforme pour la mise en valeur de votre bien immobilier.
                             </p>
 
-                            <table role="presentation" cellspacing="0" cellpadding="0" style="margin:28px auto;">
+                            <!-- BOUTON -->
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0"
+                                align="center" style="margin:30px auto;">
                                 <tr>
-                                    <td align="center" style="background-color:#a98260;border-radius:6px;">
-                                        <a href="{{lien_bien}}" style="display:inline-block;padding:14px 28px;color:#ffffff;text-decoration:none;font-weight:bold;">
+                                    <td align="center" style="background-color:#7E9833;border-radius:8px;">
+                                        <a href="{{lien_bien}}"
+                                            style="display:inline-block;padding:15px 30px;color:#FFFFFF;text-decoration:none;font-size:15px;font-weight:bold;border-radius:8px;">
                                             Voir mon annonce
                                         </a>
                                     </td>
                                 </tr>
                             </table>
 
-                            <p style="font-size:13px;color:#777777;line-height:1.6;">
-                                Pour toute question, vous pouvez contacter notre équipe.
-                            </p>
+                            <!-- ASSISTANCE -->
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+                                style="border-top:1px solid #E6E8DF;margin-top:25px;">
+                                <tr>
+                                    <td style="padding-top:20px;">
+
+                                        <p style="margin:0;font-size:13px;line-height:1.8;color:#71869A;">
+                                            Pour toute question ou assistance concernant votre annonce, vous pouvez contacter notre équipe.
+                                        </p>
+
+                                    </td>
+                                </tr>
+                            </table>
 
                         </td>
                     </tr>
 
+                    <!-- FOOTER -->
                     <tr>
-                        <td style="background-color:#f5f1eb;padding:20px;text-align:center;">
-                            <p style="margin:0;font-size:12px;color:#777777;">
+                        <td align="center" style="background-color:#101D33;padding:22px 20px;">
+
+                            <p style="margin:0;color:#A9C65B;font-size:13px;font-weight:bold;">
+                                IMMO-SN
+                            </p>
+
+                            <p style="margin:8px 0 0;color:#FFFFFF;font-size:12px;line-height:1.6;">
                                 © IMMO-SN — Plateforme immobilière au Sénégal
                             </p>
+
                         </td>
                     </tr>
 

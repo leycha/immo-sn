@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Vue : Détails d'une agence partenaire
@@ -65,42 +64,42 @@ $premierBien = $totalBiens > 0
 $dernierBien = min($page * 3, $totalBiens);
 ?>
 
-<div class="min-h-screen bg-[#faf7f2] px-5 py-8 sm:px-8 lg:px-10">
+<div class="min-h-screen bg-[#f8fafc] px-5 py-8 text-[#0b1528] sm:px-8 lg:px-10">
     <div class="mx-auto max-w-6xl">
 
         <a href="/immo-sn/admin/agences"
-           class="inline-flex items-center gap-2 text-sm font-semibold text-[#8d7058] transition hover:text-[#30221b]">
+           class="inline-flex items-center gap-2 text-sm font-semibold text-[#64748b] transition hover:text-[#071b36]">
             <span aria-hidden="true">←</span>
             Retour à la liste des agences
         </a>
 
         <!-- EN-TÊTE -->
-        <header class="mt-6 flex flex-col justify-between gap-5 rounded-[26px] bg-[#30221b] p-7 text-white shadow-lg sm:flex-row sm:items-center sm:p-9">
+        <header class="mt-6 flex flex-col justify-between gap-5 rounded-[26px] bg-[#071b36] p-7 text-white shadow-[0_18px_50px_rgba(7,27,54,0.16)] sm:flex-row sm:items-center sm:p-9">
             <div>
-                <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#f7b500]">
+                <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#f5b800]">
                     Administration · Partenaires
                 </p>
 
-               <h1 class="mt-3 break-words text-2xl font-bold sm:text-3xl">
+                <h1 class="mt-3 break-words text-2xl font-bold sm:text-3xl">
                     <?= $e($nomAgence) ?>
                 </h1>
 
-                <p class="mt-2 text-sm text-[#d5c8bd]">
+                <p class="mt-2 text-sm text-slate-300">
                     Fiche complète de l'agence partenaire
                 </p>
             </div>
 
             <div class="flex flex-wrap items-center gap-2">
-                <span class="rounded-full bg-white/10 px-4 py-2 text-xs font-bold">
+                <span class="rounded-full bg-[#0e2a4e] px-4 py-2 text-xs font-bold text-slate-100 ring-1 ring-white/15">
                     <?= $e($statuts[$statut] ?? 'Statut inconnu') ?>
                 </span>
 
                 <?php if ($badgeVerifie): ?>
-                    <span class="rounded-full bg-[#f7b500] px-4 py-2 text-xs font-bold text-[#30221b]">
+                    <span class="rounded-full bg-[#f5b800] px-4 py-2 text-xs font-bold text-[#0b1528]">
                         ✓ Agence vérifiée
                     </span>
                 <?php else: ?>
-                    <span class="rounded-full border border-white/20 px-4 py-2 text-xs font-semibold text-white">
+                    <span class="rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold text-slate-200">
                         Non vérifiée
                     </span>
                 <?php endif; ?>
@@ -110,18 +109,18 @@ $dernierBien = min($page * 3, $totalBiens);
         <!-- INFORMATIONS DE L'AGENCE -->
         <div class="mt-7 grid grid-cols-1 gap-6 lg:grid-cols-3">
 
-            <section class="rounded-2xl border border-[#e8ded4] bg-white p-6 shadow-sm lg:col-span-2">
-                <div class="flex items-center gap-3 border-b border-[#f1ece5] pb-5">
-                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#f5eee6] text-xl text-[#a98260]">
+            <section class="rounded-2xl border border-[#e2e8f0] bg-white p-6 shadow-[0_5px_24px_rgba(7,27,54,0.035)] lg:col-span-2">
+                <div class="flex items-center gap-3 border-b border-[#e2e8f0] pb-5">
+                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#071b36]/10 text-xl text-[#071b36]">
                         ◈
                     </div>
 
                     <div>
-                        <h2 class="text-lg font-bold text-[#30221b]">
+                        <h2 class="text-lg font-bold text-[#071b36]">
                             Informations professionnelles
                         </h2>
 
-                        <p class="text-xs text-[#9a887a]">
+                        <p class="text-xs text-[#64748b]">
                             Identité et coordonnées de l'agence
                         </p>
                     </div>
@@ -131,50 +130,50 @@ $dernierBien = min($page * 3, $totalBiens);
                     <div class="my-5">
                         <img src="<?= $e($logo) ?>"
                              alt="Logo de <?= $e($nomAgence) ?>"
-                             class="h-24 w-24 rounded-xl border border-[#e8ded4] bg-white object-contain p-2">
+                             class="h-24 w-24 rounded-xl border border-[#e2e8f0] bg-white object-contain p-2">
                     </div>
                 <?php endif; ?>
 
                 <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
 
                     <div>
-                        <p class="text-xs text-[#9a887a]">Nom de l'agence</p>
-                        <p class="mt-1 font-semibold text-[#30221b]">
+                        <p class="text-xs text-[#64748b]">Nom de l'agence</p>
+                        <p class="mt-1 font-semibold text-[#0b1528]">
                             <?= $e($nomAgence) ?>
                         </p>
                     </div>
 
                     <div>
-                        <p class="text-xs text-[#9a887a]">NINEA</p>
-                        <p class="mt-1 font-semibold text-[#30221b]">
+                        <p class="text-xs text-[#64748b]">NINEA</p>
+                        <p class="mt-1 font-semibold text-[#0b1528]">
                             <?= $e($agence['ninea'] ?? 'Non renseigné') ?>
                         </p>
                     </div>
 
                     <div>
-                        <p class="text-xs text-[#9a887a]">Email professionnel</p>
-                        <p class="mt-1 break-all font-semibold text-[#30221b]">
+                        <p class="text-xs text-[#64748b]">Email professionnel</p>
+                        <p class="mt-1 break-all font-semibold text-[#0b1528]">
                             <?= $e($agence['email_agence'] ?? 'Non renseigné') ?>
                         </p>
                     </div>
 
                     <div>
-                        <p class="text-xs text-[#9a887a]">Téléphone professionnel</p>
-                        <p class="mt-1 font-semibold text-[#30221b]">
+                        <p class="text-xs text-[#64748b]">Téléphone professionnel</p>
+                        <p class="mt-1 font-semibold text-[#0b1528]">
                             <?= $e($agence['telephone_agence'] ?? 'Non renseigné') ?>
                         </p>
                     </div>
 
                     <div class="sm:col-span-2">
-                        <p class="text-xs text-[#9a887a]">Adresse professionnelle</p>
-                        <p class="mt-1 font-semibold text-[#30221b]">
+                        <p class="text-xs text-[#64748b]">Adresse professionnelle</p>
+                        <p class="mt-1 font-semibold text-[#0b1528]">
                             <?= $e($agence['adresse'] ?? 'Non renseignée') ?>
                         </p>
                     </div>
 
                     <div class="sm:col-span-2">
-                        <p class="text-xs text-[#9a887a]">Description</p>
-                        <p class="mt-2 whitespace-pre-line leading-7 text-[#5a402d]">
+                        <p class="text-xs text-[#64748b]">Description</p>
+                        <p class="mt-2 whitespace-pre-line leading-7 text-[#0e2a4e]">
                             <?= $e($agence['description'] ?? 'Aucune description renseignée.') ?>
                         </p>
                     </div>
@@ -183,18 +182,18 @@ $dernierBien = min($page * 3, $totalBiens);
             </section>
 
             <!-- RESPONSABLE -->
-            <section class="rounded-2xl border border-[#e8ded4] bg-white p-6 shadow-sm">
-                <div class="flex items-center gap-3 border-b border-[#f1ece5] pb-5">
-                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#f5eee6] text-xl text-[#a98260]">
+            <section class="rounded-2xl border border-[#e2e8f0] bg-white p-6 shadow-[0_5px_24px_rgba(7,27,54,0.035)]">
+                <div class="flex items-center gap-3 border-b border-[#e2e8f0] pb-5">
+                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#f5b800]/15 text-xl text-[#071b36]">
                         ♙
                     </div>
 
                     <div>
-                        <h2 class="text-lg font-bold text-[#30221b]">
+                        <h2 class="text-lg font-bold text-[#071b36]">
                             Responsable
                         </h2>
 
-                        <p class="text-xs text-[#9a887a]">
+                        <p class="text-xs text-[#64748b]">
                             Compte personnel associé
                         </p>
                     </div>
@@ -203,8 +202,8 @@ $dernierBien = min($page * 3, $totalBiens);
                 <div class="mt-5 space-y-5">
 
                     <div>
-                        <p class="text-xs text-[#9a887a]">Nom complet</p>
-                        <p class="mt-1 font-semibold text-[#30221b]">
+                        <p class="text-xs text-[#64748b]">Nom complet</p>
+                        <p class="mt-1 font-semibold text-[#0b1528]">
                             <?= $e(trim(
                                 ($agence['responsable_prenom'] ?? '')
                                 . ' '
@@ -214,22 +213,22 @@ $dernierBien = min($page * 3, $totalBiens);
                     </div>
 
                     <div>
-                        <p class="text-xs text-[#9a887a]">Email personnel</p>
-                        <p class="mt-1 break-all font-semibold text-[#30221b]">
+                        <p class="text-xs text-[#64748b]">Email personnel</p>
+                        <p class="mt-1 break-all font-semibold text-[#0b1528]">
                             <?= $e($agence['responsable_email'] ?? 'Non renseigné') ?>
                         </p>
                     </div>
 
                     <div>
-                        <p class="text-xs text-[#9a887a]">Téléphone personnel</p>
-                        <p class="mt-1 font-semibold text-[#30221b]">
+                        <p class="text-xs text-[#64748b]">Téléphone personnel</p>
+                        <p class="mt-1 font-semibold text-[#0b1528]">
                             <?= $e($agence['responsable_telephone'] ?? 'Non renseigné') ?>
                         </p>
                     </div>
 
                     <div>
-                        <p class="text-xs text-[#9a887a]">Ville</p>
-                        <p class="mt-1 font-semibold text-[#30221b]">
+                        <p class="text-xs text-[#64748b]">Ville</p>
+                        <p class="mt-1 font-semibold text-[#0b1528]">
                             <?= $e($agence['responsable_ville'] ?? 'Non renseignée') ?>
                         </p>
                     </div>
@@ -246,25 +245,25 @@ $dernierBien = min($page * 3, $totalBiens);
             <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
 
                 <div>
-                    <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#a98260]">
+                    <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#0e2a4e]">
                         Portefeuille immobilier
                     </p>
 
-                    <h2 class="mt-2 text-2xl font-bold text-[#30221b]">
+                    <h2 class="mt-2 text-2xl font-bold text-[#071b36]">
                         Biens de cette agence
                     </h2>
 
-                    <p class="mt-1 text-sm text-[#8d7b6c]">
+                    <p class="mt-1 text-sm text-[#64748b]">
                         Toutes les annonces associées à cette agence.
                     </p>
                 </div>
 
-                <div class="rounded-xl border border-[#e8ded4] bg-white px-4 py-3">
-                    <span class="text-sm text-[#8d7b6c]">
+                <div class="rounded-xl border border-[#e2e8f0] bg-white px-4 py-3 shadow-xs">
+                    <span class="text-sm text-[#64748b]">
                         Total des biens :
                     </span>
 
-                    <strong class="ml-1 text-lg text-[#30221b]">
+                    <strong class="ml-1 text-lg text-[#071b36]">
                         <?= $totalBiens ?>
                     </strong>
                 </div>
@@ -273,17 +272,17 @@ $dernierBien = min($page * 3, $totalBiens);
 
             <?php if (empty($biens)): ?>
 
-                <div class="mt-5 rounded-2xl border border-dashed border-[#d9cbbd] bg-white px-6 py-14 text-center">
+                <div class="mt-5 rounded-2xl border border-dashed border-[#cbd5e1] bg-white px-6 py-14 text-center">
 
-                    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#f5eee6] text-3xl text-[#a98260]">
+                    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#f8fafc] text-3xl text-[#0e2a4e]">
                         ⌂
                     </div>
 
-                    <h3 class="mt-5 text-lg font-bold text-[#30221b]">
+                    <h3 class="mt-5 text-lg font-bold text-[#071b36]">
                         Aucun bien enregistré
                     </h3>
 
-                    <p class="mt-2 text-sm text-[#9a887a]">
+                    <p class="mt-2 text-sm text-[#64748b]">
                         Cette agence ne possède actuellement aucune annonce.
                     </p>
 
@@ -313,10 +312,10 @@ $dernierBien = min($page * 3, $totalBiens);
                         $localisationTexte = implode(', ', $localisation);
                         ?>
 
-                        <article class="overflow-hidden rounded-2xl border border-[#e8ded4] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                        <article class="overflow-hidden rounded-2xl border border-[#e2e8f0] bg-white shadow-[0_5px_24px_rgba(7,27,54,0.035)] transition duration-300 hover:-translate-y-1 hover:border-[#0e2a4e]/40 hover:shadow-[0_14px_34px_rgba(7,27,54,0.08)]">
 
                             <!-- PHOTO -->
-                            <div class="relative h-48 bg-[#f1ece5]">
+                            <div class="relative h-48 bg-[#0e2a4e]/10">
 
                                 <?php if ($photo !== ''): ?>
 
@@ -327,13 +326,13 @@ $dernierBien = min($page * 3, $totalBiens);
 
                                 <?php else: ?>
 
-                                    <div class="flex h-full items-center justify-center text-4xl text-[#b9a895]">
+                                    <div class="flex h-full items-center justify-center text-4xl text-[#0e2a4e]/50">
                                         ⌂
                                     </div>
 
                                 <?php endif; ?>
 
-                                <span class="absolute left-3 top-3 rounded-full bg-white px-3 py-1.5 text-xs font-bold text-[#30221b] shadow">
+                                <span class="absolute left-3 top-3 rounded-full bg-[#071b36] px-3 py-1.5 text-xs font-bold text-white shadow">
                                     <?= $e($libelleStatut) ?>
                                 </span>
 
@@ -342,15 +341,15 @@ $dernierBien = min($page * 3, $totalBiens);
                             <!-- INFORMATIONS -->
                             <div class="p-3">
 
-                                <p class="text-xs font-semibold uppercase tracking-wide text-[#a98260]">
+                                <p class="text-xs font-semibold uppercase tracking-wide text-[#0e2a4e]">
                                     <?= $e($bien['categorie_nom'] ?? 'Catégorie non renseignée') ?>
                                 </p>
 
-                                <h3 class="mt-1 line-clamp-2 text-lg font-bold text-[#30221b]">
+                                <h3 class="mt-1 line-clamp-2 text-lg font-bold text-[#071b36]">
                                     <?= $e($bien['titre'] ?? 'Bien sans titre') ?>
                                 </h3>
 
-                                <p class="mt-1 text-xl font-bold text-[#8b674a]">
+                                <p class="mt-1 text-xl font-bold text-[#0e2a4e]">
                                     <?php if (isset($bien['prix']) && $bien['prix'] !== ''): ?>
                                         <?= $e(number_format((float) $bien['prix'], 0, ',', ' ')) ?> FCFA
                                     <?php else: ?>
@@ -358,13 +357,13 @@ $dernierBien = min($page * 3, $totalBiens);
                                     <?php endif; ?>
                                 </p>
 
-                                <div class="mt-2 space-y-1 border-t border-[#f1ece5] pt-4 text-sm text-[#78685b]">
+                                <div class="mt-2 space-y-1 border-t border-[#e2e8f0] pt-4 text-sm text-[#64748b]">
 
                                     <?php if ($localisationTexte !== ''): ?>
                                         <p class="break-words">
-    <span class="mr-2">⌖</span>
-    <?= $e($localisationTexte) ?>
-</p>
+                                            <span class="mr-2 text-[#0e2a4e]">⌖</span>
+                                            <?= $e($localisationTexte) ?>
+                                        </p>
                                     <?php else: ?>
                                         <p>Localisation non renseignée</p>
                                     <?php endif; ?>
@@ -400,9 +399,9 @@ $dernierBien = min($page * 3, $totalBiens);
 
                                 </div>
 
-                                <div class="mt-2 flex items-center justify-between border-t border-[#f1ece5] pt-4">
+                                <div class="mt-2 flex items-center justify-between border-t border-[#e2e8f0] pt-4">
 
-                                    <span class="text-xs text-[#9a887a]">
+                                    <span class="text-xs text-[#64748b]">
                                         <?php if (!empty($bien['created_at']) && strtotime((string) $bien['created_at']) !== false): ?>
                                             Publié le <?= $e(date('d/m/Y', strtotime((string) $bien['created_at']))) ?>
                                         <?php else: ?>
@@ -410,7 +409,7 @@ $dernierBien = min($page * 3, $totalBiens);
                                         <?php endif; ?>
                                     </span>
 
-                                    <span class="text-xs font-semibold text-[#a98260]">
+                                    <span class="text-xs font-semibold text-[#0e2a4e]">
                                         <?= (int) ($bien['nb_vues'] ?? 0) ?> vue(s)
                                     </span>
 
@@ -427,15 +426,15 @@ $dernierBien = min($page * 3, $totalBiens);
                 <!-- PAGINATION -->
                 <?php if ($totalPages > 1): ?>
 
-                    <div class="mt-7 flex flex-col items-center justify-between gap-4 rounded-2xl border border-[#e8ded4] bg-white p-3 sm:flex-row">
+                    <div class="mt-7 flex flex-col items-center justify-between gap-4 rounded-2xl border border-[#e2e8f0] bg-white p-3 shadow-xs sm:flex-row">
 
-                        <p class="text-sm text-[#8d7b6c]">
+                        <p class="text-sm text-[#64748b]">
                             Affichage de
-                            <strong class="text-[#30221b]"><?= $premierBien ?></strong>
+                            <strong class="text-[#071b36]"><?= $premierBien ?></strong>
                             à
-                            <strong class="text-[#30221b]"><?= $dernierBien ?></strong>
+                            <strong class="text-[#071b36]"><?= $dernierBien ?></strong>
                             sur
-                            <strong class="text-[#30221b]"><?= $totalBiens ?></strong>
+                            <strong class="text-[#071b36]"><?= $totalBiens ?></strong>
                             biens
                         </p>
 
@@ -444,7 +443,7 @@ $dernierBien = min($page * 3, $totalBiens);
 
                             <?php if ($page > 1): ?>
                                 <a href="<?= $e($urlDetails . '?page=' . ($page - 1)) ?>"
-                                   class="rounded-xl border border-[#e8ded4] px-4 py-2 text-sm font-semibold text-[#5a402d] transition hover:bg-[#f5eee6]">
+                                   class="rounded-xl border border-[#e2e8f0] bg-white px-4 py-2 text-sm font-semibold text-[#071b36] transition hover:bg-[#f8fafc]">
                                     ← Précédent
                                 </a>
                             <?php endif; ?>
@@ -455,8 +454,8 @@ $dernierBien = min($page * 3, $totalBiens);
                                    aria-current="<?= $numero === $page ? 'page' : 'false' ?>"
                                    class="flex h-10 min-w-10 items-center justify-center rounded-xl px-3 text-sm font-bold transition
                                    <?= $numero === $page
-                                       ? 'bg-[#30221b] text-white'
-                                       : 'border border-[#e8ded4] text-[#5a402d] hover:bg-[#f5eee6]' ?>">
+                                       ? 'bg-[#071b36] text-[#f5b800]'
+                                       : 'border border-[#e2e8f0] bg-white text-[#071b36] hover:bg-[#f8fafc]' ?>">
                                     <?= $numero ?>
                                 </a>
 
@@ -464,7 +463,7 @@ $dernierBien = min($page * 3, $totalBiens);
 
                             <?php if ($page < $totalPages): ?>
                                 <a href="<?= $e($urlDetails . '?page=' . ($page + 1)) ?>"
-                                   class="rounded-xl border border-[#e8ded4] px-4 py-2 text-sm font-semibold text-[#5a402d] transition hover:bg-[#f5eee6]">
+                                   class="rounded-xl border border-[#e2e8f0] bg-white px-4 py-2 text-sm font-semibold text-[#071b36] transition hover:bg-[#f8fafc]">
                                     Suivant →
                                 </a>
                             <?php endif; ?>

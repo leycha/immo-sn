@@ -1,7 +1,7 @@
 
 <?php
 /**
- * Vue : Gestion des utilisateurs — Administration IMMO-SN
+ * Vue : Gestion des utilisateurs — Administration IMMO-SN | Urban Signature
  * Emplacement : app/Views/pages/admin/utilisateurs.php
  *
  * Variables fournies par AdminController :
@@ -36,11 +36,11 @@ $roleLabel = static function ($role) use ($normaliser): string {
 
 $roleBadge = static function ($role) use ($normaliser): string {
     return match ($normaliser($role)) {
-        'admin' => 'bg-[#30221b] text-white',
-        'moderateur' => 'bg-[#eee8f8] text-[#7152a3]',
-        'agence' => 'bg-[#fff4cf] text-[#926b00]',
-        'particulier' => 'bg-[#edf5ef] text-[#497657]',
-        default => 'bg-[#f2e8e1] text-[#725238]',
+        'admin' => 'bg-[#101D33] text-white',
+        'moderateur' => 'bg-[#E8EDF4] text-[#3E5878]',
+        'agence' => 'bg-[#EAF0D7] text-[#526B22]',
+        'particulier' => 'bg-[#EAF1DF] text-[#526B22]',
+        default => 'bg-[#EEF1F4] text-[#526174]',
     };
 };
 
@@ -58,11 +58,11 @@ $statutLabel = static function ($statut) use ($normaliser): string {
 
 $statutBadge = static function ($statut) use ($normaliser): string {
     return match ($normaliser($statut)) {
-        'actif', 'active', '1' => 'bg-[#edf5ef] text-[#497657]',
+        'actif', 'active', '1' => 'bg-[#EAF1DF] text-[#526B22]',
         'suspendu', 'suspendue', 'suspended',
-        'bloque', 'bloquee', 'blocked' => 'bg-[#fbe9e7] text-[#a43d35]',
-        'inactif', 'inactive', '0' => 'bg-[#f2e8e1] text-[#725238]',
-        default => 'bg-[#f5f0e9] text-[#725238]',
+        'bloque', 'bloquee', 'blocked' => 'bg-[#FBE9E7] text-[#A43D35]',
+        'inactif', 'inactive', '0' => 'bg-[#EEF1F4] text-[#526174]',
+        default => 'bg-[#EEF1F4] text-[#526174]',
     };
 };
 
@@ -138,30 +138,30 @@ $messageAdmin = trim((string) ($_GET['message'] ?? ''));
 $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
 ?>
 
-<div class="min-h-screen bg-[#faf7f2]">
+<div class="min-h-screen bg-[#F5F3ED]">
 
     <!-- En-tête -->
-    <header class="sticky top-0 z-20 border-b border-[#e8ded4] bg-[#faf7f2]/95 backdrop-blur-xl">
+    <header class="sticky top-0 z-20 border-b border-[#E2E8EE] bg-[#F5F3ED]/95 backdrop-blur-xl">
         <div class="px-5 py-4 sm:px-8 lg:px-10">
             <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                    <div class="flex items-center gap-2 text-xs font-medium text-[#a98260]">
+                    <div class="flex items-center gap-2 text-xs font-medium text-[#7E9833]">
                         <span>Administration</span>
                         <span>/</span>
                         <span>Utilisateurs</span>
                     </div>
 
-                    <h1 class="mt-1 text-2xl font-bold tracking-tight text-[#30221b] sm:text-3xl">
+                    <h1 class="mt-1 text-2xl font-bold tracking-tight text-[#101D33] sm:text-3xl">
                         Gestion des utilisateurs
                     </h1>
 
-                    <p class="mt-1 text-sm text-[#8d7a6b]">
+                    <p class="mt-1 text-sm text-[#71869A]">
                         Consultez les comptes et gérez leurs informations et leurs accès.
                     </p>
                 </div>
 
                 <a href="/immo-sn/admin"
-                   class="inline-flex w-fit items-center justify-center gap-2 rounded-xl bg-[#30221b] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#5a402d]">
+                   class="inline-flex w-fit items-center justify-center gap-2 rounded-xl bg-[#101D33] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#1D3854]">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                          fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -195,36 +195,36 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
             <?php endif; ?>
 
             <!-- Présentation -->
-            <section class="relative overflow-hidden rounded-[26px] bg-[#30221b] shadow-[0_18px_50px_rgba(48,34,27,0.14)]">
-                <div class="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#f7b500]/10 blur-3xl"></div>
-                <div class="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-[#a98260]/10 blur-3xl"></div>
+            <section class="relative overflow-hidden rounded-[26px] bg-[#101D33] shadow-[0_18px_50px_rgba(16,29,51,0.16)]">
+                <div class="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#8FAF35]/12 blur-3xl"></div>
+                <div class="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-[#7E9833]/10 blur-3xl"></div>
 
                 <div class="relative flex flex-col gap-7 px-6 py-8 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
                     <div class="max-w-2xl">
                         <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
-                            <span class="h-2 w-2 rounded-full bg-[#f7b500]"></span>
+                            <span class="h-2 w-2 rounded-full bg-[#8FAF35]"></span>
                             <span class="text-xs font-medium text-[#ded3ca]">Centre de gestion des comptes</span>
                         </div>
 
                         <h2 class="text-3xl font-semibold leading-tight text-white sm:text-4xl">
-                            Gestion des <span class="text-[#f7b500]">utilisateurs</span>
+                            Gestion des <span class="text-[#8FAF35]">utilisateurs</span>
                         </h2>
 
-                        <p class="mt-4 max-w-xl text-sm leading-7 text-[#cfc3ba] sm:text-base">
+                        <p class="mt-4 max-w-xl text-sm leading-7 text-[#D2DCE6] sm:text-base">
                             Retrouvez les comptes inscrits sur IMMO-SN, consultez leurs rôles
                             et statuts, et gérez leurs informations depuis cet espace.
                         </p>
                     </div>
 
                     <div class="shrink-0 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm lg:min-w-[270px]">
-                  <p class="text-xs uppercase tracking-[0.15em] text-[#bcaea3]">Total des comptes inscrits</p>
+                  <p class="text-xs uppercase tracking-[0.15em] text-[#A8B6C7]">Total des comptes inscrits</p>
                         <p class="mt-2 text-3xl font-bold tabular-nums text-white">
                             <?= number_format($totalUtilisateurs, 0, ',', ' ') ?>
                         </p>
 
-               <p class="mt-1 text-xs text-[#cfc3ba]">Comptes enregistrés sur IMMO-SN</p>
+               <p class="mt-1 text-xs text-[#D2DCE6]">Comptes enregistrés sur IMMO-SN</p>
                         <div class="mt-5 h-1.5 overflow-hidden rounded-full bg-white/10">
-                            <div class="h-full w-full rounded-full bg-[#f7b500]"></div>
+                            <div class="h-full w-full rounded-full bg-[#8FAF35]"></div>
                         </div>
                     </div>
                 </div>
@@ -232,9 +232,9 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
 
             <!-- Statistiques -->
            <section class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-5">
-                <div class="rounded-[20px] border border-[#e8ded4] bg-white p-5 shadow-sm">
+                <div class="rounded-[20px] border border-[#E2E8EE] bg-white p-5 shadow-sm">
                     <div class="flex items-center gap-4">
-                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#30221b] text-[#f7b500]">
+                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#101D33] text-[#8FAF35]">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                  fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -243,14 +243,14 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
                         </div>
                         <div>
                             <p class="text-xs font-medium text-[#9a887a]">Total des comptes</p>
-                            <p class="mt-1 text-2xl font-bold text-[#30221b]"><?= $totalUtilisateurs ?></p>
+                            <p class="mt-1 text-2xl font-bold text-[#101D33]"><?= $totalUtilisateurs ?></p>
                         </div>
                     </div>
                 </div>
 
-                <div class="rounded-[20px] border border-[#e8ded4] bg-white p-5 shadow-sm">
+                <div class="rounded-[20px] border border-[#E2E8EE] bg-white p-5 shadow-sm">
                     <div class="flex items-center gap-4">
-                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#fff4cf] text-[#926b00]">
+                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#EAF0D7] text-[#526B22]">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                  fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -259,14 +259,14 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
                         </div>
                         <div>
                             <p class="text-xs font-medium text-[#9a887a]">Administrateurs</p>
-                            <p class="mt-1 text-2xl font-bold text-[#30221b]"><?= $totalAdmins ?></p>
+                            <p class="mt-1 text-2xl font-bold text-[#101D33]"><?= $totalAdmins ?></p>
                         </div>
                     </div>
                 </div>
                 <!-- Modérateurs -->
-<div class="rounded-[20px] border border-[#e8ded4] bg-white p-5 shadow-sm">
+<div class="rounded-[20px] border border-[#E2E8EE] bg-white p-5 shadow-sm">
     <div class="flex items-center gap-4">
-        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#eee8f8] text-[#7152a3]">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#E8EDF4] text-[#3E5878]">
             <svg xmlns="http://www.w3.org/2000/svg"
                  class="h-5 w-5"
                  fill="none"
@@ -281,15 +281,15 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
 
         <div>
             <p class="text-xs font-medium text-[#9a887a]">Modérateurs</p>
-            <p class="mt-1 text-2xl font-bold text-[#30221b]">
+            <p class="mt-1 text-2xl font-bold text-[#101D33]">
                 <?= $totalModerateurs ?>
             </p>
         </div>
     </div>
 </div>
-                <div class="rounded-[20px] border border-[#e8ded4] bg-white p-5 shadow-sm">
+                <div class="rounded-[20px] border border-[#E2E8EE] bg-white p-5 shadow-sm">
                     <div class="flex items-center gap-4">
-                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#edf5ef] text-[#497657]">
+                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#EAF1DF] text-[#526B22]">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                  fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
@@ -297,14 +297,14 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
                         </div>
                         <div>
                             <p class="text-xs font-medium text-[#9a887a]">Particuliers</p>
-                            <p class="mt-1 text-2xl font-bold text-[#30221b]"><?= $totalParticuliers ?></p>
+                            <p class="mt-1 text-2xl font-bold text-[#101D33]"><?= $totalParticuliers ?></p>
                         </div>
                     </div>
                 </div>
 
-                <div class="rounded-[20px] border border-[#e8ded4] bg-white p-5 shadow-sm">
+                <div class="rounded-[20px] border border-[#E2E8EE] bg-white p-5 shadow-sm">
                     <div class="flex items-center gap-4">
-                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#fbe9e7] text-[#a43d35]">
+                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#FBE9E7] text-[#A43D35]">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                  fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M4.93 4.93l14.14 14.14"/>
@@ -313,7 +313,7 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
                         </div>
                         <div>
                             <p class="text-xs font-medium text-[#9a887a]">Comptes suspendus</p>
-                            <p class="mt-1 text-2xl font-bold text-[#30221b]"><?= $totalSuspendus ?></p>
+                            <p class="mt-1 text-2xl font-bold text-[#101D33]"><?= $totalSuspendus ?></p>
                         </div>
                     </div>
                 </div>
@@ -322,10 +322,10 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
 
             <!-- Filtres -->
             <section id="filtres-utilisateurs"
-                     class="mt-7 scroll-mt-28 rounded-[24px] border border-[#e8ded4] bg-white p-5 shadow-sm sm:p-7">
+                     class="mt-7 scroll-mt-28 rounded-[24px] border border-[#E2E8EE] bg-white p-5 shadow-sm sm:p-7">
                 <div class="mb-5">
-                    <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#a98260]">Recherche avancée</p>
-                    <h2 class="mt-1 text-lg font-bold text-[#30221b]">Filtrer les utilisateurs</h2>
+                    <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#7E9833]">Recherche avancée</p>
+                    <h2 class="mt-1 text-lg font-bold text-[#101D33]">Filtrer les utilisateurs</h2>
                 </div>
 
                 <form method="GET"
@@ -333,19 +333,19 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
                       class="grid gap-4 xl:grid-cols-[minmax(220px,1fr)_220px_220px_auto_auto]">
 
                     <div>
-                        <label for="q" class="mb-2 block text-xs font-semibold text-[#5a402d]">Recherche</label>
+                        <label for="q" class="mb-2 block text-xs font-semibold text-[#1D3854]">Recherche</label>
                         <input id="q"
                                name="q"
                                type="search"
                                value="<?= $e($recherche) ?>"
                                placeholder="Nom, prénom, e-mail, téléphone..."
-                               class="h-12 w-full rounded-xl border border-[#ddd2c7] bg-[#fdfbf9] px-4 text-sm text-[#30221b] outline-none transition placeholder:text-[#aa9a8d] focus:border-[#a98260] focus:bg-white focus:ring-4 focus:ring-[#a98260]/10">
+                               class="h-12 w-full rounded-xl border border-[#D5DEE7] bg-[#FCFCFA] px-4 text-sm text-[#101D33] outline-none transition placeholder:text-[#95A5B7] focus:border-[#7E9833] focus:bg-white focus:ring-4 focus:ring-[#7E9833]/10">
                     </div>
 
                     <div>
-                        <label for="role" class="mb-2 block text-xs font-semibold text-[#5a402d]">Rôle</label>
+                        <label for="role" class="mb-2 block text-xs font-semibold text-[#1D3854]">Rôle</label>
                         <select id="role" name="role"
-                                class="h-12 w-full rounded-xl border border-[#ddd2c7] bg-[#fdfbf9] px-3 text-sm text-[#5a402d] outline-none focus:border-[#a98260] focus:ring-4 focus:ring-[#a98260]/10">
+                                class="h-12 w-full rounded-xl border border-[#D5DEE7] bg-[#FCFCFA] px-3 text-sm text-[#1D3854] outline-none focus:border-[#7E9833] focus:ring-4 focus:ring-[#7E9833]/10">
                             <option value="">Tous les rôles</option>
                             <option value="admin" <?= $roleSelectionne === 'admin' ? 'selected' : '' ?>>Administrateur</option>
                             <option value="moderateur" <?= $roleSelectionne === 'moderateur' ? 'selected' : '' ?>>Modérateur</option>
@@ -355,9 +355,9 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
                     </div>
 
                     <div>
-                        <label for="statut" class="mb-2 block text-xs font-semibold text-[#5a402d]">Statut</label>
+                        <label for="statut" class="mb-2 block text-xs font-semibold text-[#1D3854]">Statut</label>
                         <select id="statut" name="statut"
-                                class="h-12 w-full rounded-xl border border-[#ddd2c7] bg-[#fdfbf9] px-3 text-sm text-[#5a402d] outline-none focus:border-[#a98260] focus:ring-4 focus:ring-[#a98260]/10">
+                                class="h-12 w-full rounded-xl border border-[#D5DEE7] bg-[#FCFCFA] px-3 text-sm text-[#1D3854] outline-none focus:border-[#7E9833] focus:ring-4 focus:ring-[#7E9833]/10">
                             <option value="">Tous les statuts</option>
                             <option value="actif" <?= $statutSelectionne === 'actif' ? 'selected' : '' ?>>Actif</option>
                             <option value="suspendu" <?= $statutSelectionne === 'suspendu' ? 'selected' : '' ?>>Suspendu</option>
@@ -368,14 +368,14 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
 
                     <div class="flex items-end">
                         <button type="submit"
-                                class="h-12 w-full rounded-xl bg-[#30221b] px-5 text-sm font-bold text-white transition hover:bg-[#5a402d] xl:w-auto">
+                                class="h-12 w-full rounded-xl bg-[#101D33] px-5 text-sm font-bold text-white transition hover:bg-[#1D3854] xl:w-auto">
                             Rechercher
                         </button>
                     </div>
 
                     <div class="flex items-end">
                         <a href="/immo-sn/admin/utilisateurs"
-                           class="inline-flex h-12 w-full items-center justify-center rounded-xl border border-[#ddcfc2] bg-white px-4 text-sm font-semibold text-[#5a402d] transition hover:bg-[#faf7f2] xl:w-auto">
+                           class="inline-flex h-12 w-full items-center justify-center rounded-xl border border-[#D5DEE7] bg-white px-4 text-sm font-semibold text-[#1D3854] transition hover:bg-[#F5F3ED] xl:w-auto">
                             Réinitialiser
                         </a>
                     </div>
@@ -386,38 +386,38 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
             <section class="mt-7">
                 <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
                     <div>
-                        <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#a98260]">Comptes enregistrés</p>
-                        <h2 class="mt-1 text-xl font-bold text-[#30221b]">Liste des utilisateurs</h2>
+                        <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#7E9833]">Comptes enregistrés</p>
+                        <h2 class="mt-1 text-xl font-bold text-[#101D33]">Liste des utilisateurs</h2>
                     </div>
 
-                    <p class="text-sm text-[#8d7a6b]">
-                        <strong class="text-[#30221b]"><?= $totalUtilisateurs ?></strong>
+                    <p class="text-sm text-[#71869A]">
+                        <strong class="text-[#101D33]"><?= $totalUtilisateurs ?></strong>
                         utilisateur(s)
                     </p>
                 </div>
 
                 <?php if ($utilisateurs): ?>
-                    <div class="overflow-hidden rounded-[20px] border border-[#e8ded4] bg-white shadow-[0_8px_25px_rgba(48,34,27,0.04)]">
+                    <div class="overflow-hidden rounded-[20px] border border-[#E2E8EE] bg-white shadow-[0_8px_25px_rgba(48,34,27,0.04)]">
                         <div class="overflow-x-auto">
                             <table class="w-full min-w-[850px] border-collapse text-left">
                               <thead>
-    <tr class="border-b border-[#e8ded4] bg-[#fdfbf9]">
+    <tr class="border-b border-[#E2E8EE] bg-[#FCFCFA]">
            <th scope="col"
-    class="px-5 py-4 text-center text-xs font-bold uppercase tracking-wide text-[#8d7a6b]">
+    class="px-5 py-4 text-center text-xs font-bold uppercase tracking-wide text-[#71869A]">
     <span >Utilisateur</span>
 </th>
         <th scope="col"
-    class="px-5 py-4 text-center text-xs font-bold uppercase tracking-wide text-[#8d7a6b]">
+    class="px-5 py-4 text-center text-xs font-bold uppercase tracking-wide text-[#71869A]">
     <span >Rôle</span>
 </th>
 
         <th scope="col"
-    class="px-5 py-4 text-center text-xs font-bold uppercase tracking-wide text-[#8d7a6b]">
+    class="px-5 py-4 text-center text-xs font-bold uppercase tracking-wide text-[#71869A]">
     <span >Statut</span>
 </th>
        
        <th scope="col"
-    class="px-5 py-4 text-center text-xs font-bold uppercase tracking-wide text-[#8d7a6b]">
+    class="px-5 py-4 text-center text-xs font-bold uppercase tracking-wide text-[#71869A]">
     <span >Actions</span>
 </th>
     </tr>
@@ -439,7 +439,7 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
                                         $estAdmin = $normaliser($role) === 'admin';
                                         $estVerifie = filter_var($u['is_verified'] ?? false, FILTER_VALIDATE_BOOLEAN);
                                         ?>
-                                        <tr class="ligne-utilisateur transition hover:bg-[#fdfbf9]"
+                                        <tr class="ligne-utilisateur transition hover:bg-[#FCFCFA]"
                                             data-nom="<?= $e($nomComplet) ?>"
                                             data-email="<?= $e($email) ?>"
                                             data-role="<?= $e($normaliser($role)) ?>"
@@ -448,18 +448,18 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
                                             <!-- Utilisateur -->
                                             <td class="px-5 py-4">
                                                 <div class="flex min-w-0 items-center gap-3">
-                                                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#30221b] text-xs font-bold text-[#f7b500]">
+                                                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#101D33] text-xs font-bold text-[#8FAF35]">
                                                         <?= $e($initiales($u)) ?>
                                                     </div>
 
                                                     <div class="min-w-0">
-                                                        <p class="truncate text-sm font-bold text-[#30221b]">
+                                                        <p class="truncate text-sm font-bold text-[#101D33]">
                                                             <?= $e($nomComplet ?: 'Nom non renseigné') ?>
                                                             <?php if ($estConnecte): ?>
-                                                                <span class="ml-1 inline-flex rounded-md bg-[#fff4cf] px-1.5 py-0.5 text-[10px] font-bold text-[#926b00]">Vous</span>
+                                                                <span class="ml-1 inline-flex rounded-md bg-[#EAF0D7] px-1.5 py-0.5 text-[10px] font-bold text-[#526B22]">Vous</span>
                                                             <?php endif; ?>
                                                         </p>
-                                                       <p class="max-w-[240px] break-all text-sm text-[#5a402d]"><?= $e($email ?: 'E-mail non renseigné') ?></p>
+                                                       <p class="max-w-[240px] break-all text-sm text-[#1D3854]"><?= $e($email ?: 'E-mail non renseigné') ?></p>
                                                        
                                                     </div>
                                                 </div>
@@ -489,7 +489,7 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
     <!-- Modifier -->
     <button
         type="button"
-        class="bouton-modifier inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg border border-[#ddcfc2] bg-white px-3 py-2 text-xs font-bold text-[#5a402d] transition hover:border-[#a98260] hover:bg-[#faf7f2]"
+        class="bouton-modifier inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg border border-[#D5DEE7] bg-white px-3 py-2 text-xs font-bold text-[#1D3854] transition hover:border-[#7E9833] hover:bg-[#F5F3ED]"
         data-id="<?= $e($id) ?>"
         data-nom="<?= $e($nom) ?>"
         data-prenom="<?= $e($prenom) ?>"
@@ -523,7 +523,7 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
 
         <button
             type="submit"
-            class="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg border border-[#f0d2cf] bg-[#fff8f7] px-3 py-2 text-xs font-bold text-[#a43d35] transition hover:bg-[#fbe9e7]">
+            class="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg border border-[#f0d2cf] bg-[#fff8f7] px-3 py-2 text-xs font-bold text-[#A43D35] transition hover:bg-[#FBE9E7]">
 
             <svg xmlns="http://www.w3.org/2000/svg"
                  class="h-3.5 w-3.5"
@@ -569,15 +569,15 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
                         </div>
 
 <!-- Pagination côté serveur -->
-<div class="flex flex-col gap-4 border-t border-[#e8ded4] bg-[#fdfbf9] px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+<div class="flex flex-col gap-4 border-t border-[#E2E8EE] bg-[#FCFCFA] px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
 
-    <p class="text-sm text-[#8d7a6b]" aria-live="polite">
+    <p class="text-sm text-[#71869A]" aria-live="polite">
         Affichage de
-        <strong class="text-[#30221b]"><?= $debutUtilisateurs ?></strong>
+        <strong class="text-[#101D33]"><?= $debutUtilisateurs ?></strong>
         à
-        <strong class="text-[#30221b]"><?= $finUtilisateurs ?></strong>
+        <strong class="text-[#101D33]"><?= $finUtilisateurs ?></strong>
         sur
-        <strong class="text-[#30221b]"><?= number_format($totalUtilisateurs, 0, ',', ' ') ?></strong>
+        <strong class="text-[#101D33]"><?= number_format($totalUtilisateurs, 0, ',', ' ') ?></strong>
         utilisateur(s)
     </p>
 
@@ -587,11 +587,11 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
 
             <?php if ($page > 1): ?>
                 <a href="<?= $e($urlPage($page - 1)) ?>"
-                   class="rounded-lg border border-[#ddcfc2] bg-white px-3 py-2 text-sm font-semibold text-[#5a402d] transition hover:bg-[#faf7f2]">
+                   class="rounded-lg border border-[#D5DEE7] bg-white px-3 py-2 text-sm font-semibold text-[#1D3854] transition hover:bg-[#F5F3ED]">
                     Précédente
                 </a>
             <?php else: ?>
-                <span class="cursor-not-allowed rounded-lg border border-[#e8ded4] bg-[#f5f0e9] px-3 py-2 text-sm text-[#b5a79b]">
+                <span class="cursor-not-allowed rounded-lg border border-[#E2E8EE] bg-[#EEF1F4] px-3 py-2 text-sm text-[#b5a79b]">
                     Précédente
                 </span>
             <?php endif; ?>
@@ -603,24 +603,24 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
 
             <?php if ($premierePage > 1): ?>
                 <a href="<?= $e($urlPage(1)) ?>"
-                   class="rounded-lg border border-[#ddcfc2] bg-white px-3 py-2 text-sm font-semibold text-[#5a402d] hover:bg-[#faf7f2]">
+                   class="rounded-lg border border-[#D5DEE7] bg-white px-3 py-2 text-sm font-semibold text-[#1D3854] hover:bg-[#F5F3ED]">
                     1
                 </a>
 
                 <?php if ($premierePage > 2): ?>
-                    <span class="px-1 text-[#8d7a6b]">…</span>
+                    <span class="px-1 text-[#71869A]">…</span>
                 <?php endif; ?>
             <?php endif; ?>
 
             <?php for ($numero = $premierePage; $numero <= $dernierePage; $numero++): ?>
                 <?php if ($numero === $page): ?>
                     <span aria-current="page"
-                          class="rounded-lg border border-[#30221b] bg-[#30221b] px-3 py-2 text-sm font-bold text-white">
+                          class="rounded-lg border border-[#101D33] bg-[#101D33] px-3 py-2 text-sm font-bold text-white">
                         <?= $numero ?>
                     </span>
                 <?php else: ?>
                     <a href="<?= $e($urlPage($numero)) ?>"
-                       class="rounded-lg border border-[#ddcfc2] bg-white px-3 py-2 text-sm font-semibold text-[#5a402d] transition hover:bg-[#faf7f2]">
+                       class="rounded-lg border border-[#D5DEE7] bg-white px-3 py-2 text-sm font-semibold text-[#1D3854] transition hover:bg-[#F5F3ED]">
                         <?= $numero ?>
                     </a>
                 <?php endif; ?>
@@ -628,22 +628,22 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
 
             <?php if ($dernierePage < $totalPages): ?>
                 <?php if ($dernierePage < $totalPages - 1): ?>
-                    <span class="px-1 text-[#8d7a6b]">…</span>
+                    <span class="px-1 text-[#71869A]">…</span>
                 <?php endif; ?>
 
                 <a href="<?= $e($urlPage($totalPages)) ?>"
-                   class="rounded-lg border border-[#ddcfc2] bg-white px-3 py-2 text-sm font-semibold text-[#5a402d] hover:bg-[#faf7f2]">
+                   class="rounded-lg border border-[#D5DEE7] bg-white px-3 py-2 text-sm font-semibold text-[#1D3854] hover:bg-[#F5F3ED]">
                     <?= $totalPages ?>
                 </a>
             <?php endif; ?>
 
             <?php if ($page < $totalPages): ?>
                 <a href="<?= $e($urlPage($page + 1)) ?>"
-                   class="rounded-lg border border-[#ddcfc2] bg-white px-3 py-2 text-sm font-semibold text-[#5a402d] transition hover:bg-[#faf7f2]">
+                   class="rounded-lg border border-[#D5DEE7] bg-white px-3 py-2 text-sm font-semibold text-[#1D3854] transition hover:bg-[#F5F3ED]">
                     Suivante
                 </a>
             <?php else: ?>
-                <span class="cursor-not-allowed rounded-lg border border-[#e8ded4] bg-[#f5f0e9] px-3 py-2 text-sm text-[#b5a79b]">
+                <span class="cursor-not-allowed rounded-lg border border-[#E2E8EE] bg-[#EEF1F4] px-3 py-2 text-sm text-[#b5a79b]">
                     Suivante
                 </span>
             <?php endif; ?>
@@ -659,25 +659,25 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
 
 <!-- Fenêtre de modification -->
 <div id="modal-modifier-utilisateur"
-     class="fixed inset-0 z-50 hidden items-center justify-center overflow-y-auto bg-[#30221b]/60 p-4 backdrop-blur-sm"
+     class="fixed inset-0 z-50 hidden items-center justify-center overflow-y-auto bg-[#101D33]/60 p-4 backdrop-blur-sm"
      aria-hidden="true">
 
-    <div class="my-auto w-full max-w-2xl overflow-hidden rounded-[24px] border border-[#e8ded4] bg-white shadow-2xl"
+    <div class="my-auto w-full max-w-2xl overflow-hidden rounded-[24px] border border-[#E2E8EE] bg-white shadow-2xl"
          role="dialog"
          aria-modal="true"
          aria-labelledby="titre-modal-utilisateur">
 
-        <div class="flex items-start justify-between gap-4 border-b border-[#e8ded4] bg-[#fdfbf9] px-6 py-5 sm:px-7">
+        <div class="flex items-start justify-between gap-4 border-b border-[#E2E8EE] bg-[#FCFCFA] px-6 py-5 sm:px-7">
             <div>
-                <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#a98260]">Administration</p>
-                <h2 id="titre-modal-utilisateur" class="mt-1 text-xl font-bold text-[#30221b]">
+                <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#7E9833]">Administration</p>
+                <h2 id="titre-modal-utilisateur" class="mt-1 text-xl font-bold text-[#101D33]">
                     Modifier l’utilisateur
                 </h2>
-                <p class="mt-1 text-sm text-[#8d7a6b]">Modifiez les informations du compte sélectionné.</p>
+                <p class="mt-1 text-sm text-[#71869A]">Modifiez les informations du compte sélectionné.</p>
             </div>
 
             <button type="button" id="fermer-modal-utilisateur"
-                    class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#e8ded4] bg-white text-[#725f50] transition hover:bg-[#f2e8e1]"
+                    class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#E2E8EE] bg-white text-[#526174] transition hover:bg-[#EEF1F4]"
                     aria-label="Fermer la fenêtre">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                      fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
@@ -697,43 +697,43 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
 
                 <div class="grid gap-4 sm:grid-cols-2">
                     <div>
-                        <label for="edit-prenom" class="mb-2 block text-xs font-semibold text-[#5a402d]">Prénom</label>
+                        <label for="edit-prenom" class="mb-2 block text-xs font-semibold text-[#1D3854]">Prénom</label>
                         <input id="edit-prenom" name="prenom" type="text" required maxlength="100"
-                               class="h-11 w-full rounded-xl border border-[#ddd2c7] bg-[#fdfbf9] px-3 text-sm text-[#30221b] outline-none focus:border-[#a98260] focus:ring-4 focus:ring-[#a98260]/10">
+                               class="h-11 w-full rounded-xl border border-[#D5DEE7] bg-[#FCFCFA] px-3 text-sm text-[#101D33] outline-none focus:border-[#7E9833] focus:ring-4 focus:ring-[#7E9833]/10">
                     </div>
 
                     <div>
-                        <label for="edit-nom" class="mb-2 block text-xs font-semibold text-[#5a402d]">Nom</label>
+                        <label for="edit-nom" class="mb-2 block text-xs font-semibold text-[#1D3854]">Nom</label>
                         <input id="edit-nom" name="nom" type="text" required maxlength="100"
-                               class="h-11 w-full rounded-xl border border-[#ddd2c7] bg-[#fdfbf9] px-3 text-sm text-[#30221b] outline-none focus:border-[#a98260] focus:ring-4 focus:ring-[#a98260]/10">
+                               class="h-11 w-full rounded-xl border border-[#D5DEE7] bg-[#FCFCFA] px-3 text-sm text-[#101D33] outline-none focus:border-[#7E9833] focus:ring-4 focus:ring-[#7E9833]/10">
                     </div>
                 </div>
 
                 <div>
-                    <label for="edit-email" class="mb-2 block text-xs font-semibold text-[#5a402d]">Adresse e-mail</label>
+                    <label for="edit-email" class="mb-2 block text-xs font-semibold text-[#1D3854]">Adresse e-mail</label>
                     <input id="edit-email" name="email" type="email" required maxlength="255"
-                           class="h-11 w-full rounded-xl border border-[#ddd2c7] bg-[#fdfbf9] px-3 text-sm text-[#30221b] outline-none focus:border-[#a98260] focus:ring-4 focus:ring-[#a98260]/10">
+                           class="h-11 w-full rounded-xl border border-[#D5DEE7] bg-[#FCFCFA] px-3 text-sm text-[#101D33] outline-none focus:border-[#7E9833] focus:ring-4 focus:ring-[#7E9833]/10">
                 </div>
 
                 <div class="grid gap-4 sm:grid-cols-2">
                     <div>
-                        <label for="edit-telephone" class="mb-2 block text-xs font-semibold text-[#5a402d]">Téléphone</label>
+                        <label for="edit-telephone" class="mb-2 block text-xs font-semibold text-[#1D3854]">Téléphone</label>
                         <input id="edit-telephone" name="telephone" type="tel" maxlength="30"
-                               class="h-11 w-full rounded-xl border border-[#ddd2c7] bg-[#fdfbf9] px-3 text-sm text-[#30221b] outline-none focus:border-[#a98260] focus:ring-4 focus:ring-[#a98260]/10">
+                               class="h-11 w-full rounded-xl border border-[#D5DEE7] bg-[#FCFCFA] px-3 text-sm text-[#101D33] outline-none focus:border-[#7E9833] focus:ring-4 focus:ring-[#7E9833]/10">
                     </div>
 
                     <div>
-                        <label for="edit-ville" class="mb-2 block text-xs font-semibold text-[#5a402d]">Ville</label>
+                        <label for="edit-ville" class="mb-2 block text-xs font-semibold text-[#1D3854]">Ville</label>
                         <input id="edit-ville" name="ville" type="text" maxlength="150"
-                               class="h-11 w-full rounded-xl border border-[#ddd2c7] bg-[#fdfbf9] px-3 text-sm text-[#30221b] outline-none focus:border-[#a98260] focus:ring-4 focus:ring-[#a98260]/10">
+                               class="h-11 w-full rounded-xl border border-[#D5DEE7] bg-[#FCFCFA] px-3 text-sm text-[#101D33] outline-none focus:border-[#7E9833] focus:ring-4 focus:ring-[#7E9833]/10">
                     </div>
                 </div>
 
                 <div class="grid gap-4 sm:grid-cols-2">
                     <div>
-                        <label for="edit-role" class="mb-2 block text-xs font-semibold text-[#5a402d]">Rôle</label>
+                        <label for="edit-role" class="mb-2 block text-xs font-semibold text-[#1D3854]">Rôle</label>
                         <select id="edit-role" name="role" required
-                                class="h-11 w-full rounded-xl border border-[#ddd2c7] bg-[#fdfbf9] px-3 text-sm text-[#30221b] outline-none focus:border-[#a98260] focus:ring-4 focus:ring-[#a98260]/10">
+                                class="h-11 w-full rounded-xl border border-[#D5DEE7] bg-[#FCFCFA] px-3 text-sm text-[#101D33] outline-none focus:border-[#7E9833] focus:ring-4 focus:ring-[#7E9833]/10">
                             <option value="particulier">Particulier</option>
                             <option value="agence">Agence</option>
                             <option value="moderateur">Modérateur</option>
@@ -742,9 +742,9 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
                     </div>
 
                     <div>
-                        <label for="edit-statut" class="mb-2 block text-xs font-semibold text-[#5a402d]">Statut</label>
+                        <label for="edit-statut" class="mb-2 block text-xs font-semibold text-[#1D3854]">Statut</label>
                         <select id="edit-statut" name="status" required
-                                class="h-11 w-full rounded-xl border border-[#ddd2c7] bg-[#fdfbf9] px-3 text-sm text-[#30221b] outline-none focus:border-[#a98260] focus:ring-4 focus:ring-[#a98260]/10">
+                                class="h-11 w-full rounded-xl border border-[#D5DEE7] bg-[#FCFCFA] px-3 text-sm text-[#101D33] outline-none focus:border-[#7E9833] focus:ring-4 focus:ring-[#7E9833]/10">
                             <option value="actif">Actif</option>
                             <option value="suspendu">Suspendu</option>
                             <option value="inactif">Inactif</option>
@@ -753,12 +753,12 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
                     </div>
                 </div>
 
-                <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-[#e8ded4] bg-[#fdfbf9] p-4">
+                <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-[#E2E8EE] bg-[#FCFCFA] p-4">
                     <input id="edit-verifie" name="is_verified" type="checkbox" value="1"
-                           class="mt-0.5 h-4 w-4 rounded border-[#cdbba9] accent-[#30221b]">
+                           class="mt-0.5 h-4 w-4 rounded border-[#B9C6D3] accent-[#101D33]">
                     <span>
-                        <span class="block text-sm font-semibold text-[#30221b]">Adresse e-mail vérifiée</span>
-                        <span class="mt-1 block text-xs leading-5 text-[#8d7a6b]">
+                        <span class="block text-sm font-semibold text-[#101D33]">Adresse e-mail vérifiée</span>
+                        <span class="mt-1 block text-xs leading-5 text-[#71869A]">
                             Indique si l’adresse e-mail de cet utilisateur est vérifiée.
                         </span>
                     </span>
@@ -769,14 +769,14 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
                 </p>
             </div>
 
-            <div class="flex flex-col-reverse gap-3 border-t border-[#e8ded4] bg-[#fdfbf9] px-6 py-5 sm:flex-row sm:justify-end sm:px-7">
+            <div class="flex flex-col-reverse gap-3 border-t border-[#E2E8EE] bg-[#FCFCFA] px-6 py-5 sm:flex-row sm:justify-end sm:px-7">
                 <button type="button" id="annuler-modal-utilisateur"
-                        class="rounded-xl border border-[#ddcfc2] bg-white px-5 py-3 text-sm font-bold text-[#5a402d] transition hover:bg-[#faf7f2]">
+                        class="rounded-xl border border-[#D5DEE7] bg-white px-5 py-3 text-sm font-bold text-[#1D3854] transition hover:bg-[#F5F3ED]">
                     Annuler
                 </button>
 
                 <button type="submit" id="enregistrer-utilisateur"
-                        class="rounded-xl bg-[#30221b] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#5a402d] disabled:cursor-wait disabled:opacity-60">
+                        class="rounded-xl bg-[#101D33] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#1D3854] disabled:cursor-wait disabled:opacity-60">
                     Enregistrer les modifications
                 </button>
             </div>

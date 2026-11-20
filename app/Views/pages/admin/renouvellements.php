@@ -1,4 +1,3 @@
-
 <?php
 
 use Core\Session;
@@ -32,34 +31,34 @@ $totalDemandes = count($demandes);
 
 ?>
 
-<div class="min-h-screen bg-[#faf7f2]">
+<div class="min-h-screen bg-[#f8fafc] text-[#0b1528]">
 
     <!-- EN-TÊTE -->
-    <header class="sticky top-0 z-20 border-b border-[#e8ded4] bg-[#faf7f2]/95 backdrop-blur-xl">
+    <header class="sticky top-0 z-20 border-b border-[#e2e8f0] bg-white/95 backdrop-blur-xl">
         <div class="px-5 py-4 sm:px-8 lg:px-10">
             <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
                 <div>
-                    <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-[#a98260]">
+                    <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-[#64748b]">
                         <span>IMMO-SN</span>
                         <span>/</span>
                         <span>Administration</span>
                         <span>/</span>
-                        <span class="text-[#30221b]">Renouvellements</span>
+                        <span class="text-[#071b36]">Renouvellements</span>
                     </div>
 
-                    <h1 class="mt-1 text-2xl font-bold tracking-tight text-[#30221b] sm:text-3xl">
+                    <h1 class="mt-1 text-2xl font-bold tracking-tight text-[#071b36] sm:text-3xl">
                         Demandes de renouvellement
                     </h1>
 
-                    <p class="mt-1 text-sm text-[#8d7a6b]">
+                    <p class="mt-1 text-sm text-[#64748b]">
                         Gestion et prolongation des annonces expirées.
                     </p>
                 </div>
 
                 <a
                     href="/immo-sn/admin"
-                    class="inline-flex w-fit items-center justify-center gap-2 rounded-xl bg-[#30221b] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#5a402d]"
+                    class="inline-flex w-fit items-center justify-center gap-2 rounded-xl bg-[#071b36] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0e2a4e]"
                 >
                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m15 18-6-6 6-6M9 12h12"/>
@@ -94,28 +93,28 @@ $totalDemandes = count($demandes);
             <?php endif; ?>
 
             <!-- BANNIÈRE PRINCIPALE -->
-            <section class="relative overflow-hidden rounded-[26px] bg-[#30221b] shadow-[0_18px_50px_rgba(48,34,27,0.14)]">
+            <section class="relative overflow-hidden rounded-[26px] bg-[#071b36] shadow-[0_18px_50px_rgba(7,27,54,0.16)]">
 
-                <div class="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#f7b500]/10 blur-3xl"></div>
-                <div class="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-[#a98260]/10 blur-3xl"></div>
+                <div class="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#f5b800]/10 blur-3xl"></div>
+                <div class="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-[#0e2a4e]/60 blur-3xl"></div>
 
                 <div class="relative flex flex-col gap-7 px-6 py-8 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">
 
                     <div class="max-w-2xl">
 
                         <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
-                            <span class="h-2 w-2 rounded-full bg-[#f7b500]"></span>
-                            <span class="text-xs font-medium text-[#ded3ca]">
+                            <span class="h-2 w-2 rounded-full bg-[#f5b800]"></span>
+                            <span class="text-xs font-medium text-slate-200">
                                 Centre de gestion immobilière
                             </span>
                         </div>
 
                         <h2 class="font-['Playfair_Display'] text-3xl font-semibold leading-tight text-white sm:text-4xl">
                             Gestion des
-                            <span class="text-[#f7b500]">renouvellements</span>
+                            <span class="text-[#f5b800]">renouvellements</span>
                         </h2>
 
-                        <p class="mt-4 max-w-xl text-sm leading-7 text-[#cfc3ba]">
+                        <p class="mt-4 max-w-xl text-sm leading-7 text-slate-300">
                             Examinez les demandes de prolongation des annonces.
                             Consultez les informations des propriétaires et les
                             détails des biens avant de prendre votre décision.
@@ -125,7 +124,7 @@ $totalDemandes = count($demandes);
 
                             <a
                                 href="#liste-renouvellements"
-                                class="inline-flex items-center gap-2 rounded-xl bg-[#f7b500] px-5 py-3 text-sm font-bold text-[#30221b] transition hover:bg-[#ffca38]"
+                                class="inline-flex items-center gap-2 rounded-xl bg-[#f5b800] px-5 py-3 text-sm font-bold text-[#0b1528] transition hover:bg-[#ffca28]"
                             >
                                 Consulter les demandes
                                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -145,14 +144,14 @@ $totalDemandes = count($demandes);
                     </div>
 
                     <!-- ILLUSTRATION -->
-                    <div class="hidden h-48 w-48 shrink-0 items-center justify-center rounded-[30px] border border-white/10 bg-white/5 lg:flex">
+                    <div class="hidden h-48 w-48 shrink-0 items-center justify-center rounded-[30px] border border-white/10 bg-[#0e2a4e]/70 backdrop-blur-sm lg:flex">
 
-                        <svg class="h-28 w-28 text-[#f7b500]" viewBox="0 0 120 120" fill="none">
+                        <svg class="h-28 w-28 text-[#f5b800]" viewBox="0 0 120 120" fill="none">
                             <rect x="22" y="25" width="76" height="72" rx="9" stroke="currentColor" stroke-width="3.5"/>
                             <path d="M22 45h76" stroke="currentColor" stroke-width="3.5"/>
                             <path d="M42 17v16M78 17v16" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
                             <path d="M39 62h17M39 76h10" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
-                            <circle cx="78" cy="75" r="17" fill="#30221b" stroke="currentColor" stroke-width="3.5"/>
+                            <circle cx="78" cy="75" r="17" fill="#071b36" stroke="currentColor" stroke-width="3.5"/>
                             <path d="M78 66v10l6 4" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
                         </svg>
 
@@ -166,20 +165,20 @@ $totalDemandes = count($demandes);
 
                 <div class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
                     <div>
-                        <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#a98260]">
+                        <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#0e2a4e]">
                             Vue d'ensemble
                         </p>
 
-                        <h2 class="mt-1 text-xl font-bold text-[#30221b]">
+                        <h2 class="mt-1 text-xl font-bold text-[#071b36]">
                             Suivi des renouvellements
                         </h2>
 
-                        <p class="mt-1 text-sm text-[#8d7a6b]">
+                        <p class="mt-1 text-sm text-[#64748b]">
                             État actuel des demandes reçues.
                         </p>
                     </div>
 
-                    <span class="w-fit rounded-full border border-[#e8ded4] bg-white px-4 py-2 text-xs font-bold text-[#5a402d]">
+                    <span class="w-fit rounded-full border border-[#e2e8f0] bg-white px-4 py-2 text-xs font-bold text-[#071b36]">
                         <?= number_format($totalDemandes, 0, ',', ' ') ?> demande(s)
                     </span>
                 </div>
@@ -187,47 +186,47 @@ $totalDemandes = count($demandes);
                 <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
 
                     <!-- DEMANDES EN ATTENTE -->
-                    <div class="rounded-[20px] border border-[#e8ded4] bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                    <div class="rounded-[20px] border border-[#e2e8f0] bg-white p-5 shadow-[0_5px_24px_rgba(7,27,54,0.035)] transition hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(7,27,54,0.08)]">
 
                         <div class="flex items-center justify-between gap-4">
 
-                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#fff4cf] text-[#9a7000]">
+                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-50 text-amber-700">
                                 <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                                     <circle cx="12" cy="12" r="9"/>
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2"/>
                                 </svg>
                             </div>
 
-                            <span class="rounded-full bg-[#fff4cf] px-3 py-1.5 text-xs font-bold text-[#9a7000]">
+                            <span class="rounded-full bg-amber-100 px-3 py-1.5 text-xs font-bold text-amber-800">
                                 À examiner
                             </span>
 
                         </div>
 
-                        <p class="mt-5 text-3xl font-bold tabular-nums text-[#30221b]">
+                        <p class="mt-5 text-3xl font-bold tabular-nums text-[#071b36]">
                             <?= number_format($totalDemandes, 0, ',', ' ') ?>
                         </p>
 
-                        <p class="mt-1 text-sm font-semibold text-[#5a402d]">
+                        <p class="mt-1 text-sm font-semibold text-[#0b1528]">
                             Demandes en attente
                         </p>
 
-                        <p class="mt-1 text-xs text-[#9a887a]">
+                        <p class="mt-1 text-xs text-[#64748b]">
                             Prolongations à examiner par l'administration.
                         </p>
 
-                        <div class="mt-5 h-1.5 overflow-hidden rounded-full bg-[#f5eddd]">
-                            <div class="h-full w-full rounded-full bg-[#f7b500]"></div>
+                        <div class="mt-5 h-1.5 overflow-hidden rounded-full bg-slate-100">
+                            <div class="h-full w-full rounded-full bg-[#f5b800]"></div>
                         </div>
 
                     </div>
 
                     <!-- DURÉE DU RENOUVELLEMENT -->
-                    <div class="rounded-[20px] border border-[#e8ded4] bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                    <div class="rounded-[20px] border border-[#e2e8f0] bg-white p-5 shadow-[0_5px_24px_rgba(7,27,54,0.035)] transition hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(7,27,54,0.08)]">
 
                         <div class="flex items-center justify-between gap-4">
 
-                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#edf5ef] text-[#497657]">
+                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
                                 <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                                     <rect x="3" y="5" width="18" height="16" rx="2"/>
                                     <path d="M16 3v4M8 3v4M3 10h18"/>
@@ -235,26 +234,26 @@ $totalDemandes = count($demandes);
                                 </svg>
                             </div>
 
-                            <span class="rounded-full bg-[#edf5ef] px-3 py-1.5 text-xs font-bold text-[#497657]">
+                            <span class="rounded-full bg-emerald-100 px-3 py-1.5 text-xs font-bold text-emerald-800">
                                 Durée fixe
                             </span>
 
                         </div>
 
-                        <p class="mt-5 text-3xl font-bold tabular-nums text-[#30221b]">
+                        <p class="mt-5 text-3xl font-bold tabular-nums text-[#071b36]">
                             30 jours
                         </p>
 
-                        <p class="mt-1 text-sm font-semibold text-[#5a402d]">
+                        <p class="mt-1 text-sm font-semibold text-[#0b1528]">
                             Durée du renouvellement
                         </p>
 
-                        <p class="mt-1 text-xs text-[#9a887a]">
+                        <p class="mt-1 text-xs text-[#64748b]">
                             Prolongation prévue après approbation.
                         </p>
 
-                        <div class="mt-5 h-1.5 overflow-hidden rounded-full bg-[#edf5ef]">
-                            <div class="h-full w-full rounded-full bg-[#497657]"></div>
+                        <div class="mt-5 h-1.5 overflow-hidden rounded-full bg-slate-100">
+                            <div class="h-full w-full rounded-full bg-emerald-600"></div>
                         </div>
 
                     </div>
@@ -268,20 +267,20 @@ $totalDemandes = count($demandes);
                 <div class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
 
                     <div>
-                        <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#a98260]">
+                        <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#0e2a4e]">
                             Gestion des dossiers
                         </p>
 
-                        <h2 class="mt-1 text-xl font-bold text-[#30221b]">
+                        <h2 class="mt-1 text-xl font-bold text-[#071b36]">
                             Liste des demandes
                         </h2>
 
-                        <p class="mt-1 text-sm text-[#8d7a6b]">
+                        <p class="mt-1 text-sm text-[#64748b]">
                             Consultez les annonces et gérez les prolongations.
                         </p>
                     </div>
 
-                    <span class="w-fit rounded-full border border-[#e8ded4] bg-white px-4 py-2 text-xs font-bold text-[#5a402d]">
+                    <span class="w-fit rounded-full border border-[#e2e8f0] bg-white px-4 py-2 text-xs font-bold text-[#071b36]">
                         <?= number_format($totalDemandes, 0, ',', ' ') ?> demande(s)
                     </span>
 
@@ -290,20 +289,20 @@ $totalDemandes = count($demandes);
                 <?php if (empty($demandes)): ?>
 
                     <!-- AUCUNE DEMANDE -->
-                    <div class="rounded-[24px] border border-[#e8ded4] bg-white px-6 py-16 text-center shadow-sm">
+                    <div class="rounded-[24px] border border-[#e2e8f0] bg-white px-6 py-16 text-center shadow-[0_5px_24px_rgba(7,27,54,0.035)]">
 
-                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#f2e8e1] text-[#a98260]">
+                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#f8fafc] border border-[#e2e8f0] text-[#0e2a4e]">
                             <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8 6h13M8 12h13M8 18h13"/>
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 6h.01M3 12h.01M3 18h.01"/>
                             </svg>
                         </div>
 
-                        <h3 class="mt-5 text-lg font-bold text-[#30221b]">
+                        <h3 class="mt-5 text-lg font-bold text-[#071b36]">
                             Aucune demande en attente
                         </h3>
 
-                        <p class="mx-auto mt-2 max-w-md text-sm leading-6 text-[#9a887a]">
+                        <p class="mx-auto mt-2 max-w-md text-sm leading-6 text-[#64748b]">
                             Toutes les demandes de renouvellement ont été traitées.
                             Les nouvelles demandes apparaîtront ici.
                         </p>
@@ -336,10 +335,10 @@ $totalDemandes = count($demandes);
                             $email = $demande['email_proprietaire'] ?? 'Non renseignée';
                             ?>
 
-                            <article class="group relative flex h-full flex-col overflow-hidden rounded-[24px] border border-[#e8ded4] bg-white shadow-[0_8px_25px_rgba(48,34,27,0.04)] transition duration-300 hover:-translate-y-1 hover:border-[#c9ad91] hover:shadow-[0_18px_40px_rgba(48,34,27,0.10)]">
+                            <article class="group relative flex h-full flex-col overflow-hidden rounded-[24px] border border-[#e2e8f0] bg-white shadow-[0_8px_25px_rgba(7,27,54,0.04)] transition duration-300 hover:-translate-y-1 hover:border-[#0e2a4e]/40 hover:shadow-[0_18px_40px_rgba(7,27,54,0.10)]">
 
                                 <!-- BANDEAU SUPÉRIEUR -->
-                                <div class="h-2 bg-gradient-to-r from-[#30221b] via-[#a98260] to-[#f7b500]"></div>
+                                <div class="h-2 bg-gradient-to-r from-[#071b36] via-[#0e2a4e] to-[#f5b800]"></div>
 
                                 <div class="flex flex-1 flex-col p-5 sm:p-6">
 
@@ -348,43 +347,43 @@ $totalDemandes = count($demandes);
 
                                         <div class="flex min-w-0 items-center gap-3">
 
-                                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#faf7f2] text-[#a98260] ring-1 ring-[#e8ded4]">
+                                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#f8fafc] text-[#0e2a4e] ring-1 ring-[#e2e8f0]">
                                                 <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5M9 9h.01M15 9h.01"/>
                                                 </svg>
                                             </div>
 
                                             <div class="min-w-0">
-                                                <p class="text-[10px] font-bold uppercase tracking-wider text-[#a98260]">
+                                                <p class="text-[10px] font-bold uppercase tracking-wider text-[#0e2a4e]">
                                                     Annonce immobilière
                                                 </p>
-<h3 class="mt-1 min-w-0 break-words text-base font-bold leading-6 text-[#30221b]">
-                                                   <?= $e($titreBien) ?>
+                                                <h3 class="mt-1 min-w-0 break-words text-base font-bold leading-6 text-[#071b36]">
+                                                    <?= $e($titreBien) ?>
                                                 </h3>
                                             </div>
 
                                         </div>
 
-                                        <span class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[#fff4cf] px-3 py-1.5 text-[10px] font-bold text-[#9a7000]">
-                                            <span class="h-1.5 w-1.5 rounded-full bg-[#d9a400]"></span>
+                                        <span class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-amber-100 px-3 py-1.5 text-[10px] font-bold text-amber-800">
+                                            <span class="h-1.5 w-1.5 rounded-full bg-[#f5b800]"></span>
                                             En attente
                                         </span>
 
                                     </div>
 
                                     <!-- DATE DE DEMANDE -->
-                                    <div class="mt-5 flex items-center gap-2 rounded-xl bg-[#faf7f2] px-4 py-3">
-                                        <svg class="h-4 w-4 shrink-0 text-[#a98260]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                                    <div class="mt-5 flex items-center gap-2 rounded-xl bg-[#f8fafc] border border-[#e2e8f0] px-4 py-3">
+                                        <svg class="h-4 w-4 shrink-0 text-[#0e2a4e]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
                                             <rect x="3" y="4" width="18" height="17" rx="2"/>
                                             <path d="M16 2v4M8 2v4M3 10h18"/>
                                         </svg>
 
                                         <div class="min-w-0">
-                                            <p class="text-[10px] font-semibold uppercase tracking-wider text-[#9a887a]">
+                                            <p class="text-[10px] font-semibold uppercase tracking-wider text-[#64748b]">
                                                 Date de la demande
                                             </p>
 
-                                            <p class="mt-0.5 text-xs font-bold text-[#30221b]">
+                                            <p class="mt-0.5 text-xs font-bold text-[#071b36]">
                                                 <?= $e($formatDate($demande['date_demande'] ?? null)) ?>
                                             </p>
                                         </div>
@@ -394,72 +393,72 @@ $totalDemandes = count($demandes);
                                     <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
 
                                         <!-- PROPRIÉTAIRE -->
-                                        <div class="rounded-2xl border border-[#eee7de] bg-white p-4">
+                                        <div class="rounded-2xl border border-[#e2e8f0] bg-white p-4">
                                             <div class="flex items-center gap-2">
-                                                <svg class="h-4 w-4 text-[#a98260]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                                                <svg class="h-4 w-4 text-[#0e2a4e]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
                                                     <circle cx="12" cy="8" r="4"/>
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 21v-2a8 8 0 0116 0v2"/>
                                                 </svg>
 
-                                                <p class="text-[10px] font-bold uppercase tracking-wider text-[#9a887a]">
+                                                <p class="text-[10px] font-bold uppercase tracking-wider text-[#64748b]">
                                                     Propriétaire
                                                 </p>
                                             </div>
 
-                                            <p class="mt-2 break-words text-sm font-bold text-[#30221b]">
+                                            <p class="mt-2 break-words text-sm font-bold text-[#071b36]">
                                                 <?= $e($nomComplet) ?>
                                             </p>
                                         </div>
 
                                         <!-- STATUT DU BIEN -->
-                                        <div class="rounded-2xl border border-[#eee7de] bg-white p-4">
+                                        <div class="rounded-2xl border border-[#e2e8f0] bg-white p-4">
                                             <div class="flex items-center gap-2">
-                                                <svg class="h-4 w-4 text-[#a98260]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                                                <svg class="h-4 w-4 text-[#0e2a4e]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
                                                     <circle cx="12" cy="12" r="9"/>
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2"/>
                                                 </svg>
 
-                                                <p class="text-[10px] font-bold uppercase tracking-wider text-[#9a887a]">
+                                                <p class="text-[10px] font-bold uppercase tracking-wider text-[#64748b]">
                                                     Statut de l'annonce
                                                 </p>
                                             </div>
 
-                                            <p class="mt-2 break-words text-sm font-bold text-[#30221b]">
+                                            <p class="mt-2 break-words text-sm font-bold text-[#071b36]">
                                                 <?= $e($statutBien) ?>
                                             </p>
                                         </div>
 
                                         <!-- EMAIL -->
-                                        <div class="rounded-2xl border border-[#eee7de] bg-white p-4 sm:col-span-2">
+                                        <div class="rounded-2xl border border-[#e2e8f0] bg-white p-4 sm:col-span-2">
                                             <div class="flex items-center gap-2">
-                                                <svg class="h-4 w-4 text-[#a98260]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                                                <svg class="h-4 w-4 text-[#0e2a4e]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 7l9 6 9-6M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z"/>
                                                 </svg>
 
-                                                <p class="text-[10px] font-bold uppercase tracking-wider text-[#9a887a]">
+                                                <p class="text-[10px] font-bold uppercase tracking-wider text-[#64748b]">
                                                     Adresse e-mail
                                                 </p>
                                             </div>
 
-                                            <p class="mt-2 break-all text-sm font-medium text-[#5a402d]">
+                                            <p class="mt-2 break-all text-sm font-medium text-[#0e2a4e]">
                                                 <?= $e($email) ?>
                                             </p>
                                         </div>
 
                                         <!-- EXPIRATION -->
-                                        <div class="rounded-2xl border border-[#eee7de] bg-white p-4 sm:col-span-2">
+                                        <div class="rounded-2xl border border-[#e2e8f0] bg-white p-4 sm:col-span-2">
                                             <div class="flex items-center gap-2">
-                                                <svg class="h-4 w-4 text-[#a98260]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                                                <svg class="h-4 w-4 text-[#0e2a4e]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
                                                     <circle cx="12" cy="12" r="9"/>
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2"/>
                                                 </svg>
 
-                                                <p class="text-[10px] font-bold uppercase tracking-wider text-[#9a887a]">
+                                                <p class="text-[10px] font-bold uppercase tracking-wider text-[#64748b]">
                                                     Date d'expiration
                                                 </p>
                                             </div>
 
-                                            <p class="mt-2 text-sm font-bold text-[#30221b]">
+                                            <p class="mt-2 text-sm font-bold text-[#071b36]">
                                                 <?= $e($formatDate($demande['expire_at'] ?? null)) ?>
                                             </p>
                                         </div>
@@ -467,15 +466,15 @@ $totalDemandes = count($demandes);
                                     </div>
 
                                     <!-- ACTIONS -->
-                                    <div class="mt-auto border-t border-[#f1ece5] pt-5">
+                                    <div class="mt-auto border-t border-[#e2e8f0] pt-5">
 
                                         <!-- CONSULTER LE BIEN -->
                                         <a
                                             href="/immo-sn/biens/<?= rawurlencode($idBien) ?>"
-                                            class="group flex w-full items-center justify-between rounded-xl border border-[#e8ded4] bg-[#faf7f2] px-4 py-3.5 text-sm font-bold text-[#30221b] transition hover:border-[#a98260] hover:bg-[#f2e8e1]"
+                                            class="group flex w-full items-center justify-between rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-4 py-3.5 text-sm font-bold text-[#071b36] transition hover:border-[#0e2a4e]/40 hover:bg-slate-100"
                                         >
                                             <span class="inline-flex items-center gap-2">
-                                                <svg class="h-5 w-5 text-[#a98260]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                                <svg class="h-5 w-5 text-[#0e2a4e]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7z"/>
                                                     <circle cx="12" cy="12" r="3"/>
                                                 </svg>
@@ -503,9 +502,9 @@ $totalDemandes = count($demandes);
 
                                             <button
                                                 type="submit"
-                                                class="flex w-full items-center justify-center gap-2 rounded-xl bg-[#30221b] px-4 py-3.5 text-sm font-bold text-white transition hover:bg-[#5a402d]"
+                                                class="flex w-full items-center justify-center gap-2 rounded-xl bg-[#071b36] px-4 py-3.5 text-sm font-bold text-white transition hover:bg-[#0e2a4e]"
                                             >
-                                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <svg class="h-4 w-4 text-[#f5b800]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4L19 6"/>
                                                 </svg>
                                                 Approuver le renouvellement
@@ -517,7 +516,7 @@ $totalDemandes = count($demandes);
                                         <form
                                             method="POST"
                                             action="/immo-sn/admin/renouvellements/<?= rawurlencode($demandeId) ?>/refuser"
-                                            class="mt-4 rounded-xl border border-[#f1d9d5] bg-[#fff9f8] p-4"
+                                            class="mt-4 rounded-xl border border-red-200 bg-red-50/50 p-4"
                                             onsubmit="return confirm('Confirmer le refus de cette demande ?');"
                                         >
 
@@ -529,9 +528,9 @@ $totalDemandes = count($demandes);
 
                                             <label
                                                 for="motif-<?= $e($demandeId) ?>"
-                                                class="mb-2 flex items-center gap-2 text-xs font-bold text-[#30221b]"
+                                                class="mb-2 flex items-center gap-2 text-xs font-bold text-[#071b36]"
                                             >
-                                                <svg class="h-4 w-4 text-[#a43d35]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                                <svg class="h-4 w-4 text-red-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01"/>
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.3 3.8 2.6 17.2A2 2 0 004.3 20h15.4a2 2 0 001.7-2.8L13.7 3.8a2 2 0 00-3.4 0z"/>
                                                 </svg>
@@ -545,12 +544,12 @@ $totalDemandes = count($demandes);
                                                 maxlength="2000"
                                                 required
                                                 placeholder="Expliquez pourquoi cette demande est refusée..."
-                                                class="w-full resize-y rounded-xl border border-[#ead7d3] bg-white px-4 py-3 text-sm text-[#30221b] outline-none transition placeholder:text-[#b5a79d] focus:border-[#a43d35] focus:ring-2 focus:ring-red-100"
+                                                class="w-full resize-y rounded-xl border border-[#cbd5e1] bg-white px-4 py-3 text-sm text-[#0b1528] outline-none transition placeholder:text-slate-400 focus:border-red-600 focus:ring-2 focus:ring-red-100"
                                             ></textarea>
 
                                             <button
                                                 type="submit"
-                                                class="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-[#e9c7c2] bg-white px-4 py-3 text-sm font-bold text-[#a43d35] transition hover:bg-[#fbe9e7]"
+                                                class="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-red-200 bg-white px-4 py-3 text-sm font-bold text-red-700 transition hover:bg-red-50"
                                             >
                                                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6 6 18"/>
@@ -574,8 +573,8 @@ $totalDemandes = count($demandes);
             </section>
 
             <!-- PIED DE PAGE -->
-            <footer class="mt-10 border-t border-[#e8ded4] py-6 text-center">
-                <p class="text-xs font-medium text-[#a99484]">
+            <footer class="mt-10 border-t border-[#e2e8f0] py-6 text-center">
+                <p class="text-xs font-medium text-[#64748b]">
                     IMMO-SN — Administration
                 </p>
             </footer>

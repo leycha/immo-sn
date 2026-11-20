@@ -1,19 +1,19 @@
 <?php
 /**
- * Navbar public ImmoSn
+- Navbar public ImmoSn
  *
- * Menus :
- * - Accueil
- * - Recherche & Filtre
- * - Carte interactive
- * - Scanner QR
- * - Se connecter
+- Menus :
+- - Accueil
+- - Recherche & Filtre
+- - Carte interactive
+- - Scanner QR
+- - Se connecter
  */
 
 $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 
 /**
- * Détermine si un lien est actif.
+- Détermine si un lien est actif.
  */
 function navActive(string $path, string $currentPath): string
 {
@@ -21,16 +21,16 @@ function navActive(string $path, string $currentPath): string
     if ($path === '/') {
         return $currentPath === '/'
             || $currentPath === '/immo-sn/public/'
-            ? 'bg-white shadow-sm text-[#30221b]'
-            : 'text-[#725238]';
+            ? 'bg-white shadow-sm text-[#071b36]'
+            : 'text-[#64748b]';
     }
 
     // Carte : doit être testée avant /biens
     if ($path === '/biens/carte') {
         return $currentPath === '/biens/carte'
             || $currentPath === '/immo-sn/public/biens/carte'
-            ? 'bg-white shadow-sm text-[#30221b]'
-            : 'text-[#725238]';
+            ? 'bg-white shadow-sm text-[#071b36]'
+            : 'text-[#64748b]';
     }
 
     // Autres pages
@@ -38,8 +38,8 @@ function navActive(string $path, string $currentPath): string
 
     return $currentPath === $path
         || str_starts_with($currentPath, $fullPath)
-        ? 'bg-white shadow-sm text-[#30221b]'
-        : 'text-[#725238]';
+        ? 'bg-white shadow-sm text-[#071b36]'
+        : 'text-[#64748b]';
 }
 ?>
 
@@ -49,8 +49,8 @@ function navActive(string $path, string $currentPath): string
         top-0
         z-50
         border-b
-        border-[#eadfd5]
-        bg-[#fffdf9]/95
+        border-[#e2e8f0]
+        bg-white/95
         backdrop-blur-xl
     "
 >
@@ -78,9 +78,9 @@ function navActive(string $path, string $currentPath): string
                         items-center
                         justify-center
                         rounded-2xl
-                        bg-[#30221b]
+                        bg-[#071b36]
                         shadow-lg
-                        shadow-[#30221b]/10
+                        shadow-[#071b36]/10
                         transition
                         duration-200
                         group-hover:-translate-y-0.5
@@ -91,7 +91,7 @@ function navActive(string $path, string $currentPath): string
                             text-sm
                             font-extrabold
                             tracking-tight
-                            text-[#f7b500]
+                            text-[#f5b800]
                         "
                     >
                         IS
@@ -109,7 +109,7 @@ function navActive(string $path, string $currentPath): string
                                 text-xl
                                 font-extrabold
                                 tracking-tight
-                                text-[#30221b]
+                                text-[#071b36]
                             "
                         >
                             ImmoSn
@@ -121,7 +121,7 @@ function navActive(string $path, string $currentPath): string
                                 text-xl
                                 font-extrabold
                                 tracking-tight
-                                text-[#f7b500]
+                                text-[#f5b800]
                             "
                         >
                             .com
@@ -136,7 +136,7 @@ function navActive(string $path, string $currentPath): string
                             font-semibold
                             uppercase
                             tracking-[0.2em]
-                            text-[#a98260]
+                            text-[#64748b]
                         "
                     >
                         Immobilier au Sénégal
@@ -159,15 +159,15 @@ function navActive(string $path, string $currentPath): string
                     gap-1
                     rounded-2xl
                     border
-                    border-[#eadfd5]
-                    bg-[#faf7f2]
+                    border-[#e2e8f0]
+                    bg-[#f8fafc]
                     p-1.5
                 "
             >
 
 
                 <!-- =================================================
-                     1. ACCUEIL
+1. ACCUEIL
                 ================================================== -->
 
                 <li>
@@ -186,7 +186,7 @@ function navActive(string $path, string $currentPath): string
                             font-semibold
                             transition-all
                             hover:bg-white
-                            hover:text-[#30221b]
+                            hover:text-[#071b36]
                             hover:shadow-sm
                             <?= navActive('/', $currentPath) ?>
                         "
@@ -200,11 +200,11 @@ function navActive(string $path, string $currentPath): string
                                 items-center
                                 justify-center
                                 rounded-lg
-                                bg-[#f2eadf]
-                                text-[#725238]
+                                bg-[#e2e8f0]/70
+                                text-[#0e2a4e]
                                 transition
-                                group-hover:bg-[#f7b500]
-                                group-hover:text-[#30221b]
+                                group-hover:bg-[#f5b800]
+                                group-hover:text-[#0b1528]
                             "
                         >
 
@@ -236,7 +236,7 @@ function navActive(string $path, string $currentPath): string
 
 
                 <!-- =================================================
-                     2. RECHERCHE & FILTRE
+2. RECHERCHE & FILTRE
                 ================================================== -->
 
                 <li>
@@ -255,7 +255,7 @@ function navActive(string $path, string $currentPath): string
                             font-semibold
                             transition-all
                             hover:bg-white
-                            hover:text-[#30221b]
+                            hover:text-[#071b36]
                             hover:shadow-sm
                             <?= navActive('/biens', $currentPath) ?>
                         "
@@ -269,11 +269,11 @@ function navActive(string $path, string $currentPath): string
                                 items-center
                                 justify-center
                                 rounded-lg
-                                bg-[#f2eadf]
-                                text-[#725238]
+                                bg-[#e2e8f0]/70
+                                text-[#0e2a4e]
                                 transition
-                                group-hover:bg-[#f7b500]
-                                group-hover:text-[#30221b]
+                                group-hover:bg-[#f5b800]
+                                group-hover:text-[#0b1528]
                             "
                         >
 
@@ -312,7 +312,7 @@ function navActive(string $path, string $currentPath): string
 
 
                 <!-- =================================================
-                     3. CARTE INTERACTIVE
+3. CARTE INTERACTIVE
                 ================================================== -->
 
                 <li>
@@ -331,7 +331,7 @@ function navActive(string $path, string $currentPath): string
                             font-semibold
                             transition-all
                             hover:bg-white
-                            hover:text-[#30221b]
+                            hover:text-[#071b36]
                             hover:shadow-sm
                             <?= navActive('/biens/carte', $currentPath) ?>
                         "
@@ -345,11 +345,11 @@ function navActive(string $path, string $currentPath): string
                                 items-center
                                 justify-center
                                 rounded-lg
-                                bg-[#f2eadf]
-                                text-[#725238]
+                                bg-[#e2e8f0]/70
+                                text-[#0e2a4e]
                                 transition
-                                group-hover:bg-[#f7b500]
-                                group-hover:text-[#30221b]
+                                group-hover:bg-[#f5b800]
+                                group-hover:text-[#0b1528]
                             "
                         >
 
@@ -395,7 +395,7 @@ function navActive(string $path, string $currentPath): string
 
 
                 <!-- =================================================
-                     4. SCANNER QR
+4. SCANNER QR
                 ================================================== -->
 
                 <li>
@@ -414,7 +414,7 @@ function navActive(string $path, string $currentPath): string
                             font-semibold
                             transition-all
                             hover:bg-white
-                            hover:text-[#30221b]
+                            hover:text-[#071b36]
                             hover:shadow-sm
                             <?= navActive('/scanner', $currentPath) ?>
                         "
@@ -428,11 +428,11 @@ function navActive(string $path, string $currentPath): string
                                 items-center
                                 justify-center
                                 rounded-lg
-                                bg-[#f2eadf]
-                                text-[#725238]
+                                bg-[#e2e8f0]/70
+                                text-[#0e2a4e]
                                 transition
-                                group-hover:bg-[#f7b500]
-                                group-hover:text-[#30221b]
+                                group-hover:bg-[#f5b800]
+                                group-hover:text-[#0b1528]
                             "
                         >
 
@@ -507,7 +507,7 @@ function navActive(string $path, string $currentPath): string
     <details class="relative md:hidden">
 
         <summary
-            class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-xl border border-[#eadfd5] bg-white text-[#30221b] hover:bg-[#f2eadf]"
+            class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-xl border border-[#e2e8f0] bg-white text-[#071b36] hover:bg-[#f8fafc]"
             aria-label="Ouvrir le menu de navigation"
         >
             <svg
@@ -526,39 +526,39 @@ function navActive(string $path, string $currentPath): string
             </svg>
         </summary>
 
-        <div class="absolute right-0 top-14 z-[60] w-[min(88vw,340px)] rounded-2xl border border-[#eadfd5] bg-[#fffdf9] p-3 shadow-2xl">
+        <div class="absolute right-0 top-14 z-[60] w-[min(88vw,340px)] rounded-2xl border border-[#e2e8f0] bg-white p-3 shadow-2xl">
 
             <nav class="flex flex-col gap-1" aria-label="Navigation mobile">
 
                 <a href="/immo-sn/"
-                   class="rounded-xl px-4 py-3 text-sm font-semibold text-[#725238] hover:bg-[#f2eadf]">
+                   class="rounded-xl px-4 py-3 text-sm font-semibold text-[#0b1528] hover:bg-[#f8fafc] hover:text-[#071b36]">
                     Accueil
                 </a>
 
                 <a href="/immo-sn/biens"
-                   class="rounded-xl px-4 py-3 text-sm font-semibold text-[#725238] hover:bg-[#f2eadf]">
+                   class="rounded-xl px-4 py-3 text-sm font-semibold text-[#0b1528] hover:bg-[#f8fafc] hover:text-[#071b36]">
                     Recherche &amp; Filtre
                 </a>
 
                 <a href="/immo-sn/biens/carte"
-                   class="rounded-xl px-4 py-3 text-sm font-semibold text-[#725238] hover:bg-[#f2eadf]">
+                   class="rounded-xl px-4 py-3 text-sm font-semibold text-[#0b1528] hover:bg-[#f8fafc] hover:text-[#071b36]">
                     Carte interactive
                 </a>
 
                 <a href="/immo-sn/scanner"
-                   class="rounded-xl px-4 py-3 text-sm font-semibold text-[#725238] hover:bg-[#f2eadf]">
+                   class="rounded-xl px-4 py-3 text-sm font-semibold text-[#0b1528] hover:bg-[#f8fafc] hover:text-[#071b36]">
                     Scanner QR
                 </a>
 
                 <a href="/immo-sn/member/favoris"
-                   class="rounded-xl px-4 py-3 text-sm font-semibold text-[#725238] hover:bg-[#f2eadf]">
+                   class="rounded-xl px-4 py-3 text-sm font-semibold text-[#0b1528] hover:bg-[#f8fafc] hover:text-[#071b36]">
                     Mes favoris
                 </a>
 
-                <div class="my-2 border-t border-[#eadfd5]"></div>
+                <div class="my-2 border-t border-[#e2e8f0]"></div>
 
                 <a href="/immo-sn/login"
-                   class="rounded-xl bg-[#30221b] px-4 py-3 text-center text-sm font-semibold text-white hover:bg-[#5a402d]">
+                   class="rounded-xl bg-[#071b36] px-4 py-3 text-center text-sm font-semibold text-white hover:bg-[#0e2a4e]">
                     Se connecter
                 </a>
 
@@ -583,13 +583,13 @@ function navActive(string $path, string $currentPath): string
                         justify-center
                         rounded-xl
                         border
-                        border-[#eadfd5]
+                        border-[#e2e8f0]
                         bg-white
-                        text-[#725238]
+                        text-[#0e2a4e]
                         transition-all
-                        hover:border-[#d8c4b2]
-                        hover:bg-[#f2eadf]
-                        hover:text-[#30221b]
+                        hover:border-[#071b36]/30
+                        hover:bg-[#f8fafc]
+                        hover:text-[#071b36]
                     "
                 >
 
@@ -626,24 +626,24 @@ function navActive(string $path, string $currentPath): string
                         justify-center
                         gap-2
                         rounded-xl
-                        bg-[#30221b]
+                        bg-[#071b36]
                         px-5
                         py-2.5
                         text-sm
                         font-semibold
                         text-white
                         shadow-lg
-                        shadow-[#30221b]/10
+                        shadow-[#071b36]/10
                         transition-all
                         hover:-translate-y-0.5
-                        hover:bg-[#5a402d]
+                        hover:bg-[#0e2a4e]
                         hover:shadow-xl
                     "
                 >
 
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-4 w-4"
+                        class="h-4 w-4 text-[#f5b800]"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"

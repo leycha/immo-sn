@@ -1,7 +1,7 @@
-﻿<?php
+﻿
+<?php
 
 $biensCarte = $biens ?? [];
-
 $nombreBiens = count($biensCarte);
 
 $imageParDefaut = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=85';
@@ -9,140 +9,160 @@ $imageParDefaut = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?
 ?>
 
 <!-- =========================================================
-     PAGE : CARTE INTERACTIVE
+     PAGE : CARTE INTERACTIVE — IMMO-SN
 ========================================================= -->
 
-<div class="min-h-screen bg-[#faf7f2]">
+<div class="min-h-screen bg-[#F5F3ED]">
 
-<!-- EN-TÊTE PREMIUM -->
-<section class="relative isolate overflow-hidden rounded-[28px] bg-[#30221b] text-white shadow-[0_16px_45px_rgba(48,34,27,0.15)] sm:rounded-[32px]">
+    <!-- =====================================================
+         EN-TÊTE PREMIUM
+    ====================================================== -->
 
-    <div class="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-[#f7b500]/10 blur-3xl"></div>
-    <div class="pointer-events-none absolute -bottom-24 left-1/4 h-52 w-52 rounded-full bg-[#a98260]/15 blur-3xl"></div>
+    <section class="relative isolate overflow-hidden rounded-[28px] bg-[#101D33] text-white shadow-[0_16px_45px_rgba(16,29,51,0.14)] sm:rounded-[32px]">
 
-    <div class="relative mx-auto max-w-7xl px-5 py-7 sm:px-7 sm:py-9 lg:px-9">
+        <div class="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-[#7E9833]/20 blur-3xl"></div>
+        <div class="pointer-events-none absolute -bottom-24 left-1/4 h-52 w-52 rounded-full bg-[#71869A]/20 blur-3xl"></div>
 
-        <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+        <div class="relative mx-auto max-w-7xl px-5 py-7 sm:px-7 sm:py-9 lg:px-9">
 
-            <div class="max-w-2xl">
+            <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
 
-                <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-[#f7b500]/25 bg-white/5 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-[#e8c99f] sm:text-xs">
-                    <span class="h-1.5 w-1.5 rounded-full bg-[#f7b500]"></span>
-                    Explorer IMMO-SN
-                    <span class="text-white/30">/</span>
-                    Carte interactive
+                <div class="max-w-2xl">
+
+                    <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-[#7E9833]/40 bg-white/5 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-[#C5D59A] sm:text-xs">
+
+                        <span class="h-1.5 w-1.5 rounded-full bg-[#8FAF35]"></span>
+
+                        Explorer IMMO-SN
+
+                        <span class="text-white/30">/</span>
+
+                        Carte interactive
+
+                    </div>
+
+                    <h1 class="text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-4xl">
+
+                        Explorez l'immobilier
+
+                        <span class="text-[#A8C46A]">autrement.</span>
+
+                    </h1>
+
+                    <p class="mt-3 max-w-xl text-xs leading-6 text-white/65 sm:text-sm">
+
+                        Localisez les biens disponibles, découvrez leur environnement
+                        et trouvez votre prochain logement au Sénégal.
+
+                    </p>
+
                 </div>
 
-                <h1 class="text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-4xl">
-                    Explorez l'immobilier
-                    <span class="text-[#e8bd78]">autrement.</span>
-                </h1>
+                <!-- Compteur de biens -->
 
-                <p class="mt-3 max-w-xl text-xs leading-6 text-white/65 sm:text-sm">
-                    Localisez les biens disponibles, découvrez leur environnement
-                    et trouvez votre prochain logement au Sénégal.
-                </p>
+                <div class="flex shrink-0 items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-4 backdrop-blur-sm">
 
-            </div>
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#7E9833]/20 text-[#A8C46A]">
 
-            <!-- Compteur de biens -->
-            <div class="flex shrink-0 items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-4 backdrop-blur-sm">
+                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                            <path d="M3 10.5 12 3l9 7.5M5 9v11h14V9M9 20v-6h6v6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
 
-                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#f7b500]/10 text-[#f7b500]">
-                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
-                        <path d="M3 10.5 12 3l9 7.5M5 9v11h14V9M9 20v-6h6v6" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-
-                <div>
-                    <div class="text-2xl font-extrabold leading-none text-[#f7b500]">
-                        <?= $nombreBiens ?>
                     </div>
-                    <div class="mt-1.5 text-xs text-white/60">
-                        Bien<?= $nombreBiens > 1 ? 's' : '' ?> sur la carte
+
+                    <div>
+
+                        <div class="text-2xl font-extrabold leading-none text-[#A8C46A]">
+                            <?= $nombreBiens ?>
+                        </div>
+
+                        <div class="mt-1.5 text-xs text-white/60">
+                            Bien<?= $nombreBiens > 1 ? 's' : '' ?> sur la carte
+                        </div>
+
                     </div>
+
                 </div>
 
             </div>
 
         </div>
 
-    </div>
-</section>
+    </section>
+
 
     <!-- =====================================================
          CONTENU PRINCIPAL
     ====================================================== -->
 
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
 
-       <div class="grid grid-cols-1 lg:grid-cols-[440px_minmax(0,1fr)] gap-5">
+        <div class="grid grid-cols-1 gap-5 lg:grid-cols-[440px_minmax(0,1fr)]">
 
             <!-- =================================================
                  LISTE DES BIENS
             ================================================== -->
 
-            <aside class="overflow-hidden rounded-[26px] border border-[#30221b]/[0.08] bg-white shadow-[0_12px_35px_rgba(48,34,27,0.06)]">
-                <div class="border-b border-[#30221b]/[0.08] bg-gradient-to-br from-white to-[#faf7f2] px-5 py-5">
+            <aside class="overflow-hidden rounded-[26px] border border-[#101D33]/[0.07] bg-white shadow-[0_12px_35px_rgba(16,29,51,0.05)]">
 
-    <div class="flex items-center justify-between gap-3">
+                <!-- En-tête de la liste -->
 
-        <div>
-            <h2 class="text-base font-extrabold tracking-tight text-[#30221b]">
-                Biens à explorer
-            </h2>
+                <div class="border-b border-[#101D33]/[0.07] bg-gradient-to-br from-white to-[#F5F3ED] px-5 py-5">
 
-            <p class="mt-1 text-xs text-[#30221b]/55">
-                <?= $nombreBiens ?>
-                bien<?= $nombreBiens > 1 ? 's' : '' ?>
-                disponible<?= $nombreBiens > 1 ? 's' : '' ?>
-            </p>
-        </div>
+                    <div class="flex items-center justify-between gap-3">
 
-        <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#30221b] text-[#f7b500] shadow-sm">
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
-                    d="M9 20l-5-2V6l5 2m0 12l6-2m-6 2V8m6 10l5 2V6l-5-2m0 12V8m0-4L9 6"/>
-            </svg>
-        </div>
+                        <div>
 
-    </div>
-</div>
+                            <h2 class="text-base font-extrabold tracking-tight text-[#101D33]">
+                                Biens à explorer
+                            </h2>
+
+                            <p class="mt-1 text-xs text-[#71869A]">
+                                <?= $nombreBiens ?>
+                                bien<?= $nombreBiens > 1 ? 's' : '' ?>
+                                disponible<?= $nombreBiens > 1 ? 's' : '' ?>
+                            </p>
+
+                        </div>
+
+                        <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#101D33] text-[#A8C46A] shadow-sm">
+
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                                    d="M9 20l-5-2V6l5 2m0 12l6-2m-6 2V8m6 10l5 2V6l-5-2m0 12V8m0-4L9 6"/>
+                            </svg>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
 
                 <!-- =================================================
                      LISTE
                 ================================================== -->
 
-             <div class="max-h-[520px] overflow-y-auto custom-scrollbar lg:max-h-[calc(100vh-260px)]">
-                 <?php if (empty($biensCarte)): ?>
+                <div class="custom-scrollbar max-h-[520px] overflow-y-auto lg:max-h-[calc(100vh-260px)]">
+
+                    <?php if (empty($biensCarte)): ?>
 
                         <div class="p-8 text-center">
 
-                            <div class="w-16 h-16 mx-auto rounded-full bg-[#faf7f2] flex items-center justify-center mb-4">
+                            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#F5F3ED]">
 
-                                <svg
-                                    class="w-8 h-8 text-[#a98260]"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="1.5"
-                                        d="M9 20l-5-2V6l5 2m0 12l6-2m-6 2V8m6 10l5 2V6l-5-2m0 12V8m0-4L9 6"
-                                    />
-
+                                <svg class="h-8 w-8 text-[#7E9833]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M9 20l-5-2V6l5 2m0 12l6-2m-6 2V8m6 10l5 2V6l-5-2m0 12V8m0-4L9 6"/>
                                 </svg>
 
                             </div>
 
-                            <h3 class="font-semibold text-[#30221b]">
+                            <h3 class="font-semibold text-[#101D33]">
                                 Aucun bien disponible
                             </h3>
 
-                            <p class="text-sm text-[#30221b]/50 mt-2">
+                            <p class="mt-2 text-sm leading-6 text-[#71869A]">
                                 Aucun bien avec des coordonnées GPS n'est actuellement disponible.
                             </p>
 
@@ -150,7 +170,8 @@ $imageParDefaut = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?
 
                     <?php else: ?>
 
-                       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3">
+                        <div class="grid grid-cols-1 gap-3 p-3 sm:grid-cols-2">
+
                             <?php foreach ($biensCarte as $bien): ?>
 
                                 <?php
@@ -220,23 +241,22 @@ $imageParDefaut = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?
                                 ?>
 
                                 <div
-                                 
-    class="bien-card min-w-0 overflow-hidden rounded-2xl border border-[#30221b]/[0.08] 
-    bg-white p-2.5 transition-all duration-200 hover:border-[#a98260]/40 hover:bg-[#faf7f2]
-     hover:shadow-md cursor-pointer"
+                                    class="bien-card min-w-0 cursor-pointer overflow-hidden rounded-2xl border border-[#101D33]/[0.08] bg-white p-2.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#7E9833]/50 hover:bg-[#F5F3ED]/50 hover:shadow-lg"
                                     data-id="<?= htmlspecialchars((string) $id) ?>"
                                     data-lat="<?= htmlspecialchars((string) $latitude) ?>"
                                     data-lng="<?= htmlspecialchars((string) $longitude) ?>"
                                 >
 
-                                   <div class="flex flex-col gap-2">
+                                    <div class="flex flex-col gap-2">
 
                                         <!-- Image -->
-<div class="h-28 w-full overflow-hidden rounded-xl bg-[#faf7f2]">
+
+                                        <div class="h-28 w-full overflow-hidden rounded-xl bg-[#F5F3ED]">
+
                                             <img
                                                 src="<?= htmlspecialchars($photo) ?>"
                                                 alt="<?= htmlspecialchars($titre) ?>"
-                                                class="w-full h-full object-cover"
+                                                class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                                                 onerror="this.src='<?= htmlspecialchars($imageParDefaut) ?>'"
                                             >
 
@@ -249,7 +269,7 @@ $imageParDefaut = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?
 
                                             <div class="flex items-start justify-between gap-2">
 
-                                                <span class="inline-flex items-center px-2 py-1 rounded-lg bg-[#f7b500]/10 text-[#8a6500] text-[10px] font-semibold uppercase tracking-wide">
+                                                <span class="inline-flex items-center rounded-lg bg-[#7E9833]/10 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-[#617A25]">
 
                                                     <?= htmlspecialchars($categorie) ?>
 
@@ -258,7 +278,7 @@ $imageParDefaut = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?
                                             </div>
 
 
-                                            <h3 class="font-semibold text-[#30221b] text-sm mt-2 line-clamp-2">
+                                            <h3 class="mt-2 line-clamp-2 text-sm font-semibold text-[#101D33]">
 
                                                 <?= htmlspecialchars($titre) ?>
 
@@ -267,13 +287,14 @@ $imageParDefaut = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?
 
                                             <?php if ($localisation): ?>
 
-                                                <p class="text-xs text-[#30221b]/50 mt-1 flex items-center gap-1">
+                                                <p class="mt-1 flex items-center gap-1 text-xs text-[#71869A]">
 
                                                     <svg
-                                                        class="w-3.5 h-3.5 flex-shrink-0"
+                                                        class="h-3.5 w-3.5 flex-shrink-0 text-[#7E9833]"
                                                         fill="none"
                                                         stroke="currentColor"
                                                         viewBox="0 0 24 24"
+                                                        aria-hidden="true"
                                                     >
 
                                                         <path
@@ -301,9 +322,9 @@ $imageParDefaut = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?
                                             <?php endif; ?>
 
 
-                                            <div class="flex items-center justify-between gap-2 mt-2">
+                                            <div class="mt-2 flex items-center justify-between gap-2">
 
-                                                <span class="font-bold text-[#30221b] text-sm">
+                                                <span class="text-sm font-bold text-[#101D33]">
 
                                                     <?= number_format($prix, 0, ',', ' ') ?> FCFA
 
@@ -312,16 +333,17 @@ $imageParDefaut = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?
 
                                                 <a
                                                     href="/immo-sn/biens/<?= urlencode((string) $id) ?>"
-                                                    class="text-[#f7b500] hover:text-[#30221b] transition"
+                                                    class="text-[#7E9833] transition hover:text-[#101D33]"
                                                     title="Voir le bien"
                                                     onclick="event.stopPropagation();"
                                                 >
 
                                                     <svg
-                                                        class="w-5 h-5"
+                                                        class="h-5 w-5"
                                                         fill="none"
                                                         stroke="currentColor"
                                                         viewBox="0 0 24 24"
+                                                        aria-hidden="true"
                                                     >
 
                                                         <path
@@ -355,14 +377,14 @@ $imageParDefaut = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?
 
 
             <!-- =================================================
-                 CARTE
+                 CARTE INTERACTIVE
             ================================================== -->
 
-            <div class="relative">
+            <div class="relative overflow-hidden rounded-3xl border border-[#101D33]/10 bg-white shadow-[0_12px_35px_rgba(16,29,51,0.07)]">
 
                 <div
                     id="map"
-                    class="w-full h-[650px] lg:h-[calc(100vh-205px)] min-h-[580px] rounded-3xl overflow-hidden shadow-sm border border-[#30221b]/10 z-0"
+                    class="z-0 h-[650px] min-h-[580px] w-full lg:h-[calc(100vh-205px)]"
                 ></div>
 
 
@@ -371,14 +393,15 @@ $imageParDefaut = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?
                 <button
                     type="button"
                     id="ma-position"
-                    class="absolute top-4 right-4 z-[1000] bg-white hover:bg-[#faf7f2] text-[#30221b] shadow-lg rounded-xl px-4 py-3 flex items-center gap-2 font-semibold text-sm transition-all"
+                    class="absolute right-4 top-4 z-[1000] flex items-center gap-2 rounded-xl border border-[#101D33]/10 bg-white px-4 py-3 text-sm font-semibold text-[#101D33] shadow-lg transition-all hover:bg-[#F5F3ED] hover:shadow-xl disabled:cursor-wait disabled:opacity-70"
                 >
 
                     <svg
-                        class="w-5 h-5 text-[#f7b500]"
+                        class="h-5 w-5 text-[#7E9833]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
+                        aria-hidden="true"
                     >
 
                         <path
@@ -489,30 +512,11 @@ document.addEventListener('DOMContentLoaded', function () {
     ).addTo(map);
 
 
-  function createIcon(titre) {
-
-    const titreFormate = escapeHtml(
-        titre || 'Bien immobilier'
-    );
-
-    return L.divIcon({
-
-        className: 'custom-price-marker',
-
-        html: `
-            <div class="price-marker">
-                ${titreFormate}
-            </div>
-        `,
-
-        iconSize: [140, 36],
-
-        iconAnchor: [70, 18],
-
-        popupAnchor: [0, -20]
-
-    });
-}
+    /*
+     * ========================================================
+     * ÉCHAPPEMENT HTML
+     * ========================================================
+     */
 
     function escapeHtml(value) {
 
@@ -522,6 +526,39 @@ document.addEventListener('DOMContentLoaded', function () {
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#039;');
+
+    }
+
+
+    /*
+     * ========================================================
+     * ICÔNE DES MARQUEURS
+     * ========================================================
+     */
+
+    function createIcon(titre) {
+
+        const titreFormate = escapeHtml(
+            titre || 'Bien immobilier'
+        );
+
+        return L.divIcon({
+
+            className: 'custom-price-marker',
+
+            html: `
+                <div class="price-marker">
+                    ${titreFormate}
+                </div>
+            `,
+
+            iconSize: [140, 36],
+
+            iconAnchor: [70, 18],
+
+            popupAnchor: [0, -20]
+
+        });
 
     }
 
@@ -641,7 +678,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         ${escapeHtml(titre)}
                     </h3>
 
-
                     ${
                         localisation
                             ? `
@@ -679,11 +715,9 @@ document.addEventListener('DOMContentLoaded', function () {
                             : ''
                     }
 
-
                     <div class="prix">
                         ${prixFormate} FCFA
                     </div>
-
 
                     <a href="${lien}">
 
@@ -698,6 +732,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
 
         `;
+
     }
 
 
@@ -752,11 +787,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         const marker = L.marker(
-    [latitude, longitude],
-    {
-        icon: createIcon(bien.titre)
-    }
-);
+            [latitude, longitude],
+            {
+                icon: createIcon(bien.titre)
+            }
+        );
 
 
         /*
@@ -954,7 +989,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 boutonPosition.innerHTML = `
 
                     <svg
-                        class="w-5 h-5 animate-spin text-[#f7b500]"
+                        class="h-5 w-5 animate-spin text-[#7E9833]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -1039,7 +1074,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     radius: 8,
                                     color: '#ffffff',
                                     weight: 3,
-                                    fillColor: '#f7b500',
+                                    fillColor: '#7E9833',
                                     fillOpacity: 1
                                 }
 
@@ -1166,10 +1201,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 <!-- =========================================================
-     STYLE
+     STYLE PERSONNALISÉ
 ========================================================= -->
 
 <style>
+
+/* Marqueurs personnalisés */
 
 .custom-price-marker {
 
@@ -1182,7 +1219,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 .price-marker {
 
-    background: #30221b;
+    background: #101D33;
 
     color: white;
 
@@ -1197,7 +1234,7 @@ document.addEventListener('DOMContentLoaded', function () {
     white-space: nowrap;
 
     box-shadow:
-        0 4px 12px rgba(48, 34, 27, 0.25);
+        0 4px 12px rgba(16, 29, 51, 0.22);
 
     border: 2px solid white;
 
@@ -1228,10 +1265,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     border-right: 7px solid transparent;
 
-    border-top: 7px solid #30221b;
+    border-top: 7px solid #101D33;
 
 }
 
+
+/* Popup */
 
 .gps-popup {
 
@@ -1272,9 +1311,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     display: inline-block;
 
-    background: rgba(247, 181, 0, 0.12);
+    background: rgba(126, 152, 51, 0.12);
 
-    color: #8a6500;
+    color: #617A25;
 
     padding: 5px 8px;
 
@@ -1297,7 +1336,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     margin: 0;
 
-    color: #30221b;
+    color: #101D33;
 
     font-size: 16px;
 
@@ -1318,9 +1357,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     margin-top: 7px;
 
-    color: rgba(48, 34, 27, 0.55);
+    color: #71869A;
 
     font-size: 12px;
+
+}
+
+
+.gps-popup .localisation svg {
+
+    flex-shrink: 0;
+
+    color: #7E9833;
 
 }
 
@@ -1329,7 +1377,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     margin-top: 10px;
 
-    color: #30221b;
+    color: #101D33;
 
     font-size: 15px;
 
@@ -1350,7 +1398,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     padding: 9px 11px;
 
-    background: #30221b;
+    background: #101D33;
 
     color: white;
 
@@ -1369,9 +1417,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 .gps-popup a:hover {
 
-    background: #f7b500;
+    background: #7E9833;
 
-    color: #30221b;
+    color: white;
 
 }
 
@@ -1380,12 +1428,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     padding: 3px 5px;
 
-    color: #30221b;
+    color: #101D33;
 
     font-size: 13px;
 
 }
 
+
+/* Barre de défilement */
 
 .custom-scrollbar::-webkit-scrollbar {
 
@@ -1403,7 +1453,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
 
-    background: rgba(48, 34, 27, 0.15);
+    background: rgba(16, 29, 51, 0.15);
 
     border-radius: 999px;
 
@@ -1412,24 +1462,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
 
-    background: rgba(48, 34, 27, 0.25);
+    background: rgba(16, 29, 51, 0.28);
 
 }
 
+
+/* Contrôles Leaflet */
 
 .leaflet-control-zoom {
 
     border: none !important;
 
     box-shadow:
-        0 4px 12px rgba(48, 34, 27, 0.15) !important;
+        0 4px 12px rgba(16, 29, 51, 0.15) !important;
+
+    border-radius: 10px !important;
+
+    overflow: hidden;
 
 }
 
 
 .leaflet-control-zoom a {
 
-    color: #30221b !important;
+    color: #101D33 !important;
 
     background: white !important;
 
@@ -1438,10 +1494,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 .leaflet-control-zoom a:hover {
 
-    background: #faf7f2 !important;
+    background: #F5F3ED !important;
+
+    color: #7E9833 !important;
 
 }
 
+
+/* Fenêtres Leaflet */
 
 .leaflet-popup-content-wrapper {
 
@@ -1464,6 +1524,19 @@ document.addEventListener('DOMContentLoaded', function () {
 .leaflet-popup-tip {
 
     background: white;
+
+}
+
+
+/* Adaptation mobile */
+
+@media (max-width: 640px) {
+
+    .gps-popup {
+
+        max-width: calc(100vw - 70px);
+
+    }
 
 }
 

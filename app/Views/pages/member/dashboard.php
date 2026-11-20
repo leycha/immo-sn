@@ -1,13 +1,29 @@
+
 <?php
 /**
- * Dashboard membre ImmoSn
+ * Dashboard membre IMMO-SN
  *
  * Variables disponibles :
  * $stats
  * $user
  * $derniersBiens
  * $dernieresAlertes
+ * $activite30Jours
  */
+
+/*
+ * =========================================================
+ * FONCTION D'ÉCHAPPEMENT HTML
+ * =========================================================
+ */
+
+$e = static function ($value): string {
+    return htmlspecialchars(
+        (string) ($value ?? ''),
+        ENT_QUOTES,
+        'UTF-8'
+    );
+};
 
 
 /*
@@ -53,11 +69,8 @@ if ($role === '') {
  */
 
 $nombreBiens = (int) ($stats['biens'] ?? 0);
-
 $nombreAlertes = (int) ($stats['alertes'] ?? 0);
-
 $nombreVues = (int) ($stats['vues'] ?? 0);
-
 $nombreFavoris = (int) ($stats['favoris'] ?? 0);
 
 $nombreMessagesNonLus = (int) (
@@ -74,7 +87,9 @@ $nombreMessagesNonLus = (int) (
 $derniersBiens = is_array($derniersBiens ?? null)
     ? $derniersBiens
     : [];
-    /*
+
+
+/*
  * =========================================================
  * ACTIVITÉ DES 30 DERNIERS JOURS
  * =========================================================
@@ -87,7 +102,6 @@ $activite30Jours = is_array($activite30Jours ?? null)
 $maxVues = 0;
 
 foreach ($activite30Jours as $jour) {
-
     $total = (int) ($jour['total'] ?? 0);
 
     if ($total > $maxVues) {
@@ -95,10 +109,6 @@ foreach ($activite30Jours as $jour) {
     }
 }
 
-/*
- * Évite une division par zéro
- * lorsqu'il n'y a encore aucune vue.
- */
 if ($maxVues <= 0) {
     $maxVues = 1;
 }
@@ -124,7 +134,6 @@ $derniereAlerte = $dernieresAlertes[0] ?? null;
  */
 
 $formatDate = static function ($date): string {
-
     if (empty($date)) {
         return '';
     }
@@ -146,50 +155,38 @@ $formatDate = static function ($date): string {
  */
 
 $libelleStatut = static function ($statut): string {
-
-    $statut = strtolower(
-        trim((string) $statut)
-    );
+    $statut = strtolower(trim((string) $statut));
 
     return match ($statut) {
-
         'actif',
         'active',
         'valide',
         'validé',
-        'approved'
-            => 'Validé',
+        'approved' => 'Validé',
 
         'en-attente',
         'en_attente',
         'attente',
-        'pending'
-            => 'En attente',
+        'pending' => 'En attente',
 
         'rejete',
         'rejeté',
-        'rejected'
-            => 'Rejeté',
+        'rejected' => 'Rejeté',
 
         'expire',
         'expiré',
-        'expired'
-            => 'Expiré',
+        'expired' => 'Expiré',
 
         'inactif',
-        'inactive'
-            => 'Inactif',
+        'inactive' => 'Inactif',
 
-        default
-            => ucfirst(
-                str_replace(
-                    ['-', '_'],
-                    ' ',
-                    $statut !== ''
-                        ? $statut
-                        : 'Inconnu'
-                )
-            ),
+        default => ucfirst(
+            str_replace(
+                ['-', '_'],
+                ' ',
+                $statut !== '' ? $statut : 'Inconnu'
+            )
+        ),
     };
 };
 
@@ -201,104 +198,78 @@ $libelleStatut = static function ($statut): string {
  */
 
 $classesStatut = static function ($statut): array {
-
-    $statut = strtolower(
-        trim((string) $statut)
-    );
+    $statut = strtolower(trim((string) $statut));
 
     return match ($statut) {
-
         'actif',
         'active',
         'valide',
         'validé',
-        'approved'
-            => [
-                'container' =>
-                    'bg-[#edf5ef] text-[#497657]',
-                'dot' =>
-                    'bg-[#5caa70]',
-            ],
+        'approved' => [
+            'container' => 'bg-[#EDF5EF] text-[#497657]',
+            'dot' => 'bg-[#5CAA70]',
+        ],
 
         'en-attente',
         'en_attente',
         'attente',
-        'pending'
-            => [
-                'container' =>
-                    'bg-[#fff4d9] text-[#a8750d]',
-                'dot' =>
-                    'bg-[#dca94b]',
-            ],
+        'pending' => [
+            'container' => 'bg-[#FFF4D9] text-[#A8750D]',
+            'dot' => 'bg-[#DCA94B]',
+        ],
 
         'rejete',
         'rejeté',
-        'rejected'
-            => [
-                'container' =>
-                    'bg-[#fbecec] text-[#9b4e4e]',
-                'dot' =>
-                    'bg-[#c96c6c]',
-            ],
+        'rejected' => [
+            'container' => 'bg-[#FBECEC] text-[#9B4E4E]',
+            'dot' => 'bg-[#C96C6C]',
+        ],
 
-        default
-            => [
-                'container' =>
-                    'bg-[#f2eadf] text-[#725238]',
-                'dot' =>
-                    'bg-[#a98260]',
-            ],
+        'expire',
+        'expiré',
+        'expired' => [
+            'container' => 'bg-[#F1F2F4] text-[#64748B]',
+            'dot' => 'bg-[#94A3B8]',
+        ],
+
+        default => [
+            'container' => 'bg-[#F1F2F4] text-[#64748B]',
+            'dot' => 'bg-[#94A3B8]',
+        ],
     };
 };
 
 ?>
 
-<div class="min-h-screen bg-[#faf7f2]">
+<div class="min-h-screen bg-[#F5F3ED]">
 
-
-    <!-- =========================================================
+    <!-- =====================================================
          HEADER
-    ========================================================== -->
-    <header class="sticky top-0 z-20 border-b border-[#e8dfd5] bg-white/95 backdrop-blur">
+    ====================================================== -->
+
+    <header class="sticky top-0 z-20 border-b border-[#E1E6E8] bg-white/95 backdrop-blur">
 
         <div class="flex min-h-[82px] flex-col items-start justify-center gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-            <div>
 
-                <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#a98260]">
+            <div>
+                <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#7E9833]">
                     Espace membre
                 </p>
 
-                <h1 class="mt-1 break-words text-xl font-bold text-[#30221b] md:text-2xl">
-
-                  Dashboard
+                <h1 class="mt-1 text-xl font-bold text-[#101D33] md:text-2xl">
+                    Dashboard
                 </h1>
-
             </div>
-
 
             <div class="flex items-center gap-4">
 
-
                 <!-- Notification -->
+
                 <a
                     href="/immo-sn/member/alertes"
-                    class="
-                        relative
-                        flex
-                        h-10
-                        w-10
-                        items-center
-                        justify-center
-                        rounded-xl
-                        border
-                        border-[#e8dfd5]
-                        bg-white
-                        text-[#725238]
-                        hover:bg-[#faf7f2]
-                    "
+                    class="relative flex h-10 w-10 items-center justify-center rounded-xl border border-[#E1E6E8] bg-white text-[#526477] transition hover:border-[#7E9833] hover:bg-[#EDF0E5] hover:text-[#7E9833]"
                     title="Mes alertes"
                 >
-
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         class="h-5 w-5"
@@ -312,59 +283,40 @@ $classesStatut = static function ($statut): array {
                             stroke-linejoin="round"
                             d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
                         />
-
                         <path
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             d="M10 21h4"
                         />
-
                     </svg>
 
                     <?php if ($nombreAlertes > 0): ?>
-
-                        <span class="absolute right-2 top-2 h-2 w-2 rounded-full bg-[#f7b500] ring-2 ring-white"></span>
-
+                        <span class="absolute right-2 top-2 h-2 w-2 rounded-full bg-[#7E9833] ring-2 ring-white"></span>
                     <?php endif; ?>
-
                 </a>
 
-
                 <!-- Profil -->
-                <div class="hidden sm:flex items-center gap-3">
+
+                <div class="hidden items-center gap-3 sm:flex">
 
                     <div class="text-right">
-
-                        <p class="text-sm font-semibold text-[#30221b]">
-                            <?= htmlspecialchars($nomComplet) ?>
+                        <p class="text-sm font-semibold text-[#101D33]">
+                            <?= $e($nomComplet) ?>
                         </p>
 
-                        <p class="text-xs text-[#9a897b] mt-0.5">
-                            <?= htmlspecialchars($role) ?>
+                        <p class="mt-0.5 text-xs text-[#71869A]">
+                            <?= $e($role) ?>
                         </p>
-
                     </div>
-
 
                     <a
                         href="/immo-sn/member/profil"
-                        class="
-                            flex
-                            h-11
-                            w-11
-                            items-center
-                            justify-center
-                            rounded-2xl
-                            bg-[#30221b]
-                            shadow-sm
-                        "
+                        class="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#101D33] shadow-sm transition hover:bg-[#1B304D]"
                         title="Mon profil"
                     >
-
-                        <span class="text-sm font-bold text-[#f7b500]">
-                            <?= htmlspecialchars($initiale) ?>
+                        <span class="text-sm font-bold text-[#B6CE75]">
+                            <?= $e($initiale) ?>
                         </span>
-
                     </a>
 
                 </div>
@@ -376,99 +328,67 @@ $classesStatut = static function ($statut): array {
     </header>
 
 
-    <!-- =========================================================
-         CONTENU
-    ========================================================== -->
+    <!-- =====================================================
+         CONTENU PRINCIPAL
+    ====================================================== -->
+
     <main class="p-4 sm:p-6 lg:p-8">
+
         <div class="mx-auto max-w-7xl">
 
 
             <!-- =================================================
-                 HERO / WELCOME
+                 HERO / BIENVENUE
             ================================================== -->
-            <section
-                class="
-                    relative
-                    overflow-hidden
-                    rounded-[28px]
-                    bg-[#30221b]
-                    shadow-xl
-                    mb-8
-                "
-            >
+
+            <section class="relative mb-8 overflow-hidden rounded-[28px] bg-[#101D33] shadow-xl">
 
                 <!-- Décorations -->
-                <div class="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[#f7b500]/10"></div>
 
-                <div class="absolute right-28 -bottom-32 h-72 w-72 rounded-full border border-[#f7b500]/10"></div>
+                <div class="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[#7E9833]/15"></div>
+
+                <div class="absolute -bottom-32 right-28 h-72 w-72 rounded-full border border-[#7E9833]/20"></div>
+
+                <div class="absolute -bottom-20 -left-20 h-56 w-56 rounded-full bg-white/[0.03]"></div>
 
                 <div class="relative px-6 py-7 md:px-8 md:py-9">
 
-                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-
+                    <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
 
                         <!-- Texte -->
+
                         <div class="max-w-2xl">
 
-                            <div
-                                class="
-                                    inline-flex
-                                    items-center
-                                    gap-2
-                                    rounded-full
-                                    border
-                                    border-white/10
-                                    bg-white/10
-                                    px-3
-                                    py-1.5
-                                    mb-5
-                                "
-                            >
+                            <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1.5">
 
-                                <span class="h-2 w-2 rounded-full bg-[#f7b500]"></span>
+                                <span class="h-2 w-2 rounded-full bg-[#A8C65B]"></span>
 
-                                <span class="text-xs font-semibold text-[#f7ead8]">
+                                <span class="text-xs font-semibold text-[#E5EBD7]">
                                     Bienvenue dans votre espace
                                 </span>
 
                             </div>
 
-
-                            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
-                                Bonjour <?= htmlspecialchars($prenomAffichage) ?> 👋
+                            <h2 class="text-2xl font-bold text-white md:text-3xl lg:text-4xl">
+                                Bonjour <?= $e($prenomAffichage) ?> 👋
                             </h2>
 
-                            <p class="mt-3 max-w-xl text-sm md:text-base leading-7 text-[#d7cbc1]">
+                            <p class="mt-3 max-w-xl text-sm leading-7 text-[#CBD4E0] md:text-base">
                                 Retrouvez ici vos annonces, vos favoris, vos alertes
                                 et les principales activités de votre compte immobilier.
                             </p>
 
-
                             <!-- Boutons -->
-                            <div class="mt-6 flex flex-col sm:flex-row gap-3">
+
+                            <div class="mt-6 flex flex-col gap-3 sm:flex-row">
 
                                 <a
                                     href="/immo-sn/member/publier"
-                                    class="
-                                        inline-flex
-                                        items-center
-                                        justify-center
-                                        gap-2
-                                        rounded-xl
-                                        bg-[#f7b500]
-                                        px-5
-                                        py-3
-                                        text-sm
-                                        font-bold
-                                        text-[#30221b]
-                                        hover:bg-[#ffc52e]
-                                        shadow-sm
-                                    "
+                                    class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#7E9833] px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#8FAF35]"
                                 >
-
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        class="w-4 h-4"
+                                        class="h-4 w-4"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -482,35 +402,17 @@ $classesStatut = static function ($statut): array {
                                     </svg>
 
                                     Publier un bien
-
                                 </a>
-
 
                                 <a
                                     href="/immo-sn/member/mes-biens"
-                                    class="
-                                        inline-flex
-                                        items-center
-                                        justify-center
-                                        gap-2
-                                        rounded-xl
-                                        border
-                                        border-white/15
-                                        bg-white/5
-                                        px-5
-                                        py-3
-                                        text-sm
-                                        font-semibold
-                                        text-white
-                                        hover:bg-white/10
-                                    "
+                                    class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
                                 >
-
                                     Mes biens
 
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        class="w-4 h-4"
+                                        class="h-4 w-4"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -522,7 +424,6 @@ $classesStatut = static function ($statut): array {
                                             d="M5 12h14M13 6l6 6-6 6"
                                         />
                                     </svg>
-
                                 </a>
 
                             </div>
@@ -531,28 +432,16 @@ $classesStatut = static function ($statut): array {
 
 
                         <!-- Illustration -->
-                        <div class="hidden lg:flex w-56 h-44 items-center justify-center">
+
+                        <div class="hidden h-44 w-56 items-center justify-center lg:flex">
 
                             <div class="relative">
 
-                                <!-- Cercle -->
-                                <div
-                                    class="
-                                        flex
-                                        h-40
-                                        w-40
-                                        items-center
-                                        justify-center
-                                        rounded-full
-                                        border
-                                        border-[#f7b500]/20
-                                        bg-[#f7b500]/10
-                                    "
-                                >
+                                <div class="flex h-40 w-40 items-center justify-center rounded-full border border-[#7E9833]/30 bg-[#7E9833]/15">
 
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        class="h-20 w-20 text-[#f7b500]"
+                                        class="h-20 w-20 text-[#A8C65B]"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -567,27 +456,11 @@ $classesStatut = static function ($statut): array {
 
                                 </div>
 
-
-                                <!-- Petit badge -->
-                                <div
-                                    class="
-                                        absolute
-                                        -right-2
-                                        bottom-2
-                                        flex
-                                        h-12
-                                        w-12
-                                        items-center
-                                        justify-center
-                                        rounded-2xl
-                                        bg-white
-                                        shadow-lg
-                                    "
-                                >
+                                <div class="absolute -right-2 bottom-2 flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-lg">
 
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        class="h-5 w-5 text-[#30221b]"
+                                        class="h-5 w-5 text-[#7E9833]"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -616,83 +489,58 @@ $classesStatut = static function ($statut): array {
             <!-- =================================================
                  STATISTIQUES
             ================================================== -->
+
             <section class="mb-8">
 
-                <div class="flex items-end justify-between mb-5">
+                <div class="mb-5 flex items-end justify-between">
 
                     <div>
-
-                        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#a98260]">
+                        <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#7E9833]">
                             Vue d'ensemble
                         </p>
 
-                        <h2 class="mt-1 text-xl font-bold text-[#30221b]">
+                        <h2 class="mt-1 text-xl font-bold text-[#101D33]">
                             Vos statistiques
                         </h2>
-
                     </div>
 
-                    <span class="hidden sm:block text-xs text-[#9a897b]">
+                    <span class="hidden text-xs text-[#71869A] sm:block">
                         Activité de votre compte
                     </span>
 
                 </div>
 
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+                <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
 
 
                     <!-- Biens -->
+
                     <a
                         href="/immo-sn/member/mes-biens"
-                        class="
-                            group
-                            rounded-[22px]
-                            border
-                            border-[#e8dfd5]
-                            bg-white
-                            p-5
-                            shadow-sm
-                            hover:-translate-y-0.5
-                            hover:shadow-md
-                            transition
-                        "
+                        class="group rounded-[22px] border border-[#E1E6E8] bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-[#B7C78E] hover:shadow-md"
                     >
 
                         <div class="flex items-start justify-between">
 
                             <div>
-
-                                <p class="text-sm font-medium text-[#8b7b6f]">
+                                <p class="text-sm font-medium text-[#71869A]">
                                     Mes biens
                                 </p>
 
-                                <p class="mt-3 text-3xl font-bold text-[#30221b]">
+                                <p class="mt-3 text-3xl font-bold text-[#101D33]">
                                     <?= $nombreBiens ?>
                                 </p>
 
-                                <p class="mt-2 text-xs text-[#a98260]">
+                                <p class="mt-2 text-xs font-medium text-[#7E9833]">
                                     Annonces immobilières
                                 </p>
-
                             </div>
 
-
-                            <div
-                                class="
-                                    flex
-                                    h-12
-                                    w-12
-                                    items-center
-                                    justify-center
-                                    rounded-2xl
-                                    bg-[#f2eadf]
-                                "
-                            >
-
+                            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EDF0E5]">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="h-6 w-6 text-[#725238]"
+                                    class="h-6 w-6 text-[#7E9833]"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -703,15 +551,12 @@ $classesStatut = static function ($statut): array {
                                         stroke-linejoin="round"
                                         d="M3 10.5L12 3l9 7.5"
                                     />
-
                                     <path
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
                                         d="M5 9.5V21h14V9.5"
                                     />
-
                                 </svg>
-
                             </div>
 
                         </div>
@@ -720,56 +565,32 @@ $classesStatut = static function ($statut): array {
 
 
                     <!-- Alertes -->
+
                     <a
                         href="/immo-sn/member/alertes"
-                        class="
-                            group
-                            rounded-[22px]
-                            border
-                            border-[#e8dfd5]
-                            bg-white
-                            p-5
-                            shadow-sm
-                            hover:-translate-y-0.5
-                            hover:shadow-md
-                            transition
-                        "
+                        class="group rounded-[22px] border border-[#E1E6E8] bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-[#B7C78E] hover:shadow-md"
                     >
 
                         <div class="flex items-start justify-between">
 
                             <div>
-
-                                <p class="text-sm font-medium text-[#8b7b6f]">
+                                <p class="text-sm font-medium text-[#71869A]">
                                     Mes alertes
                                 </p>
 
-                                <p class="mt-3 text-3xl font-bold text-[#30221b]">
+                                <p class="mt-3 text-3xl font-bold text-[#101D33]">
                                     <?= $nombreAlertes ?>
                                 </p>
 
-                                <p class="mt-2 text-xs text-[#a98260]">
+                                <p class="mt-2 text-xs font-medium text-[#7E9833]">
                                     Alertes immobilières
                                 </p>
-
                             </div>
 
-
-                            <div
-                                class="
-                                    flex
-                                    h-12
-                                    w-12
-                                    items-center
-                                    justify-center
-                                    rounded-2xl
-                                    bg-[#fff7df]
-                                "
-                            >
-
+                            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EDF0E5]">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="h-6 w-6 text-[#b98516]"
+                                    class="h-6 w-6 text-[#7E9833]"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -780,15 +601,12 @@ $classesStatut = static function ($statut): array {
                                         stroke-linejoin="round"
                                         d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
                                     />
-
                                     <path
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
                                         d="M10 21h4"
                                     />
-
                                 </svg>
-
                             </div>
 
                         </div>
@@ -797,55 +615,29 @@ $classesStatut = static function ($statut): array {
 
 
                     <!-- Vues -->
-                    <div
-                        class="
-                            group
-                            rounded-[22px]
-                            border
-                            border-[#e8dfd5]
-                            bg-white
-                            p-5
-                            shadow-sm
-                            hover:-translate-y-0.5
-                            hover:shadow-md
-                            transition
-                        "
-                    >
+
+                    <div class="group rounded-[22px] border border-[#E1E6E8] bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md">
 
                         <div class="flex items-start justify-between">
 
                             <div>
-
-                                <p class="text-sm font-medium text-[#8b7b6f]">
+                                <p class="text-sm font-medium text-[#71869A]">
                                     Vues
                                 </p>
 
-                                <p class="mt-3 text-3xl font-bold text-[#30221b]">
+                                <p class="mt-3 text-3xl font-bold text-[#101D33]">
                                     <?= number_format($nombreVues, 0, ',', ' ') ?>
                                 </p>
 
-                                <p class="mt-2 text-xs text-[#a98260]">
+                                <p class="mt-2 text-xs font-medium text-[#7E9833]">
                                     Vues sur vos annonces
                                 </p>
-
                             </div>
 
-
-                            <div
-                                class="
-                                    flex
-                                    h-12
-                                    w-12
-                                    items-center
-                                    justify-center
-                                    rounded-2xl
-                                    bg-[#f2eadf]
-                                "
-                            >
-
+                            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EDF0E5]">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="h-6 w-6 text-[#725238]"
+                                    class="h-6 w-6 text-[#7E9833]"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -856,15 +648,8 @@ $classesStatut = static function ($statut): array {
                                         stroke-linejoin="round"
                                         d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"
                                     />
-
-                                    <circle
-                                        cx="12"
-                                        cy="12"
-                                        r="2.5"
-                                    />
-
+                                    <circle cx="12" cy="12" r="2.5"/>
                                 </svg>
-
                             </div>
 
                         </div>
@@ -873,56 +658,32 @@ $classesStatut = static function ($statut): array {
 
 
                     <!-- Favoris -->
+
                     <a
                         href="/immo-sn/member/favoris"
-                        class="
-                            group
-                            rounded-[22px]
-                            border
-                            border-[#e8dfd5]
-                            bg-white
-                            p-5
-                            shadow-sm
-                            hover:-translate-y-0.5
-                            hover:shadow-md
-                            transition
-                        "
+                        class="group rounded-[22px] border border-[#E1E6E8] bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-[#B7C78E] hover:shadow-md"
                     >
 
                         <div class="flex items-start justify-between">
 
                             <div>
-
-                                <p class="text-sm font-medium text-[#8b7b6f]">
+                                <p class="text-sm font-medium text-[#71869A]">
                                     Mes favoris
                                 </p>
 
-                                <p class="mt-3 text-3xl font-bold text-[#30221b]">
+                                <p class="mt-3 text-3xl font-bold text-[#101D33]">
                                     <?= $nombreFavoris ?>
                                 </p>
 
-                                <p class="mt-2 text-xs text-[#a98260]">
+                                <p class="mt-2 text-xs font-medium text-[#7E9833]">
                                     Biens sauvegardés
                                 </p>
-
                             </div>
 
-
-                            <div
-                                class="
-                                    flex
-                                    h-12
-                                    w-12
-                                    items-center
-                                    justify-center
-                                    rounded-2xl
-                                    bg-[#f8eeee]
-                                "
-                            >
-
+                            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#F1F2F4]">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="h-6 w-6 text-[#9b6666]"
+                                    class="h-6 w-6 text-[#71869A]"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -934,7 +695,6 @@ $classesStatut = static function ($statut): array {
                                         d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25A5.25 5.25 0 017.5 3c1.387 0 2.64.576 3.5 1.501A5.25 5.25 0 0114.5 3a5.25 5.25 0 015.25 5.25c0 3.924-2.438 7.11-4.739 9.257a25.18 25.18 0 01-4.244 3.17 15.247 15.247 0 01-.383.218l-.022.012-.007.003-.003.001a.752.752 0 01-.707 0l-.003-.001Z"
                                     />
                                 </svg>
-
                             </div>
 
                         </div>
@@ -947,232 +707,141 @@ $classesStatut = static function ($statut): array {
 
 
             <!-- =================================================
-                 ACTIVITÉ + ALERTE
+                 ACTIVITÉ + DERNIÈRE ALERTE
             ================================================== -->
-            <section class="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-8">
+
+            <section class="mb-8 grid grid-cols-1 gap-5 lg:grid-cols-3">
 
 
                 <!-- Statistiques 30 jours -->
-                <div
-                    class="
-                        lg:col-span-2
-                        rounded-[24px]
-                        border
-                        border-[#e8dfd5]
-                        bg-white
-                        p-6
-                        shadow-sm
-                    "
-                >
 
-                    <div class="flex items-center justify-between mb-6">
+                <div class="rounded-[24px] border border-[#E1E6E8] bg-white p-6 shadow-sm lg:col-span-2">
+
+                    <div class="mb-6 flex items-center justify-between">
 
                         <div>
-
-                            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#a98260]">
+                            <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#7E9833]">
                                 Activité
                             </p>
 
-                            <h3 class="mt-1 text-lg font-bold text-[#30221b]">
+                            <h3 class="mt-1 text-lg font-bold text-[#101D33]">
                                 Statistiques des 30 derniers jours
                             </h3>
-
                         </div>
 
-                        <span
-                            class="
-                                inline-flex
-                                items-center
-                                gap-1.5
-                                rounded-full
-                                bg-[#fff7df]
-                                px-3
-                                py-1.5
-                                text-xs
-                                font-semibold
-                                text-[#a8750d]
-                            "
-                        >
-                            <span class="h-1.5 w-1.5 rounded-full bg-[#f7b500]"></span>
+                        <span class="inline-flex items-center gap-1.5 rounded-full bg-[#EDF0E5] px-3 py-1.5 text-xs font-semibold text-[#61782B]">
+                            <span class="h-1.5 w-1.5 rounded-full bg-[#7E9833]"></span>
                             Activité
                         </span>
 
                     </div>
 
 
-             <!-- Graphique dynamique des 30 derniers jours -->
+                    <!-- Graphique dynamique -->
 
-<div class="flex h-40 items-end gap-1.5 sm:gap-2">
+                    <div class="flex h-40 items-end gap-1.5 sm:gap-2">
 
-    <?php if (!empty($activite30Jours)): ?>
+                        <?php if (!empty($activite30Jours)): ?>
 
-        <?php foreach ($activite30Jours as $jour): ?>
+                            <?php foreach ($activite30Jours as $jour): ?>
 
-            <?php
-            $total = (int) ($jour['total'] ?? 0);
+                                <?php
+                                $total = (int) ($jour['total'] ?? 0);
 
-            /*
-             * Hauteur de la barre proportionnelle
-             * au nombre de vues du jour.
-             */
-            if ($total > 0) {
+                                if ($total > 0) {
+                                    $hauteur = (int) round(
+                                        ($total / $maxVues) * 100
+                                    );
 
-                $hauteur = (int) round(
-                    ($total / $maxVues) * 100
-                );
+                                    $hauteur = max(8, $hauteur);
+                                } else {
+                                    $hauteur = 3;
+                                }
 
-                /*
-                 * Une petite hauteur minimale permet
-                 * de voir les jours qui ont au moins 1 vue.
-                 */
-                $hauteur = max(8, $hauteur);
+                                $date = $jour['jour'] ?? '';
+                                $dateFormatee = '';
 
-            } else {
+                                if ($date !== '') {
+                                    $timestamp = strtotime($date);
 
-                /*
-                 * Jour sans aucune vue.
-                 */
-                $hauteur = 3;
-            }
+                                    if ($timestamp !== false) {
+                                        $dateFormatee = date(
+                                            'd/m/Y',
+                                            $timestamp
+                                        );
+                                    }
+                                }
 
+                                $texteVue = $total . ' vue' .
+                                    ($total > 1 ? 's' : '');
 
-            /*
-             * Date du jour
-             */
-            $date = $jour['jour'] ?? '';
+                                $tooltip = $dateFormatee !== ''
+                                    ? $dateFormatee . ' : ' . $texteVue
+                                    : $texteVue;
+                                ?>
 
-            $dateFormatee = '';
+                                <div class="group relative flex h-full flex-1 items-end">
 
-            if ($date !== '') {
+                                    <div
+                                        class="w-full rounded-t-lg bg-[#7E9833] transition-all duration-200 hover:bg-[#536C20]"
+                                        style="height: <?= $hauteur ?>%;"
+                                        title="<?= $e($tooltip) ?>"
+                                    ></div>
 
-                $timestamp = strtotime($date);
+                                </div>
 
-                if ($timestamp !== false) {
+                            <?php endforeach; ?>
 
-                    $dateFormatee = date(
-                        'd/m/Y',
-                        $timestamp
-                    );
-                }
-            }
+                        <?php else: ?>
 
+                            <!-- Aucun historique -->
 
-            /*
-             * Texte du tooltip
-             */
-            $texteVue =
-                $total . ' vue' .
-                ($total > 1 ? 's' : '');
+                            <div class="flex h-full w-full items-end gap-2">
 
-            $tooltip =
-                $dateFormatee !== ''
-                    ? $dateFormatee . ' : ' . $texteVue
-                    : $texteVue;
-            ?>
+                                <?php for ($i = 0; $i < 30; $i++): ?>
 
+                                    <div
+                                        class="h-[3%] flex-1 rounded-t-lg bg-[#E9EDE2]"
+                                        title="Aucune vue"
+                                    ></div>
 
-            <div class="group relative flex h-full flex-1 items-end">
+                                <?php endfor; ?>
 
-                <div
-                    class="
-                        w-full
-                        rounded-t-lg
-                        bg-[#a98260]
-                        transition-all
-                        duration-200
-                        hover:bg-[#725238]
-                    "
-                    style="height: <?= $hauteur ?>%;"
-                    title="<?= htmlspecialchars(
-                        $tooltip,
-                        ENT_QUOTES,
-                        'UTF-8'
-                    ) ?>"
-                ></div>
+                            </div>
 
-            </div>
+                        <?php endif; ?>
 
-        <?php endforeach; ?>
+                    </div>
 
-    <?php else: ?>
-
-        <!-- Aucun historique disponible -->
-
-        <div class="flex h-full w-full items-end gap-2">
-
-            <?php for ($i = 0; $i < 30; $i++): ?>
-
-                <div
-                    class="
-                        h-[3%]
-                        flex-1
-                        rounded-t-lg
-                        bg-[#eee6de]
-                    "
-                    title="Aucune vue"
-                ></div>
-
-            <?php endfor; ?>
-
-        </div>
-
-    <?php endif; ?>
-
-</div>
-
-
-                    <div class="mt-3 flex justify-between text-[10px] text-[#a9998c]">
-
+                    <div class="mt-3 flex justify-between text-[10px] font-medium text-[#71869A]">
                         <span>30 jours</span>
                         <span>Aujourd'hui</span>
-
                     </div>
 
                 </div>
 
 
                 <!-- Dernière alerte -->
-                <div
-                    class="
-                        rounded-[24px]
-                        border
-                        border-[#e8dfd5]
-                        bg-white
-                        p-6
-                        shadow-sm
-                    "
-                >
 
-                    <div class="flex items-center justify-between mb-5">
+                <div class="rounded-[24px] border border-[#E1E6E8] bg-white p-6 shadow-sm">
+
+                    <div class="mb-5 flex items-center justify-between">
 
                         <div>
-
-                            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#a98260]">
+                            <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#7E9833]">
                                 Notification
                             </p>
 
-                            <h3 class="mt-1 text-lg font-bold text-[#30221b]">
+                            <h3 class="mt-1 text-lg font-bold text-[#101D33]">
                                 Dernière alerte
                             </h3>
-
                         </div>
 
-
-                        <div
-                            class="
-                                flex
-                                h-10
-                                w-10
-                                items-center
-                                justify-center
-                                rounded-xl
-                                bg-[#fff7df]
-                            "
-                        >
+                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#EDF0E5]">
 
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5 text-[#b98516]"
+                                class="h-5 w-5 text-[#7E9833]"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -1183,13 +852,11 @@ $classesStatut = static function ($statut): array {
                                     stroke-linejoin="round"
                                     d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
                                 />
-
                                 <path
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
                                     d="M10 21h4"
                                 />
-
                             </svg>
 
                         </div>
@@ -1201,47 +868,29 @@ $classesStatut = static function ($statut): array {
 
                         <?php
                         $alerteTitre =
-                            trim(
-                                $derniereAlerte['categorie_nom'] ?? ''
-                            ) !== ''
-                                ? 'Alerte ' .
-                                    $derniereAlerte['categorie_nom']
+                            trim($derniereAlerte['categorie_nom'] ?? '') !== ''
+                                ? 'Alerte ' . $derniereAlerte['categorie_nom']
                                 : 'Alerte immobilière';
 
                         $alerteDescription =
-                            trim(
-                                $derniereAlerte['ville_nom'] ?? ''
-                            ) !== ''
-                                ? 'Recherche enregistrée pour ' .
-                                    $derniereAlerte['ville_nom']
+                            trim($derniereAlerte['ville_nom'] ?? '') !== ''
+                                ? 'Recherche enregistrée pour ' . $derniereAlerte['ville_nom']
                                 : 'Votre alerte immobilière est active.';
 
-                        $alerteDate =
-                            $formatDate(
-                                $derniereAlerte['created_at'] ?? ''
-                            );
+                        $alerteDate = $formatDate(
+                            $derniereAlerte['created_at'] ?? ''
+                        );
                         ?>
 
-                        <div class="rounded-2xl bg-[#faf7f2] border border-[#eee6de] p-4">
+                        <div class="rounded-2xl border border-[#DDE6CF] bg-[#F5F7F0] p-4">
 
                             <div class="flex items-start gap-3">
 
-                                <div
-                                    class="
-                                        flex
-                                        h-10
-                                        w-10
-                                        shrink-0
-                                        items-center
-                                        justify-center
-                                        rounded-xl
-                                        bg-[#30221b]
-                                    "
-                                >
+                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#101D33]">
 
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        class="h-5 w-5 text-[#f7b500]"
+                                        class="h-5 w-5 text-[#A8C65B]"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -1252,32 +901,29 @@ $classesStatut = static function ($statut): array {
                                             stroke-linejoin="round"
                                             d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
                                         />
-
                                         <path
                                             stroke-linecap="round"
                                             stroke-linejoin="round"
                                             d="M10 21h4"
                                         />
-
                                     </svg>
 
                                 </div>
 
+                                <div class="min-w-0">
 
-                                <div>
-
-                                    <p class="text-sm font-bold text-[#30221b]">
-                                        <?= htmlspecialchars($alerteTitre) ?>
+                                    <p class="text-sm font-bold text-[#101D33]">
+                                        <?= $e($alerteTitre) ?>
                                     </p>
 
-                                    <p class="mt-1 text-xs leading-5 text-[#8b7b6f]">
-                                        <?= htmlspecialchars($alerteDescription) ?>
+                                    <p class="mt-1 text-xs leading-5 text-[#526477]">
+                                        <?= $e($alerteDescription) ?>
                                     </p>
 
                                     <?php if ($alerteDate !== ''): ?>
 
-                                        <p class="mt-3 text-[10px] font-medium text-[#a98260]">
-                                            <?= htmlspecialchars($alerteDate) ?>
+                                        <p class="mt-3 text-[10px] font-semibold text-[#7E9833]">
+                                            <?= $e($alerteDate) ?>
                                         </p>
 
                                     <?php endif; ?>
@@ -1290,26 +936,15 @@ $classesStatut = static function ($statut): array {
 
                     <?php else: ?>
 
-                        <div class="rounded-2xl bg-[#faf7f2] border border-[#eee6de] p-4">
+                        <div class="rounded-2xl border border-[#E1E6E8] bg-[#F5F3ED] p-4">
 
                             <div class="flex items-center gap-3">
 
-                                <div
-                                    class="
-                                        flex
-                                        h-10
-                                        w-10
-                                        shrink-0
-                                        items-center
-                                        justify-center
-                                        rounded-xl
-                                        bg-[#f2eadf]
-                                    "
-                                >
+                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#EDF0E5]">
 
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        class="h-5 w-5 text-[#725238]"
+                                        class="h-5 w-5 text-[#7E9833]"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -1320,18 +955,12 @@ $classesStatut = static function ($statut): array {
                                             stroke-linejoin="round"
                                             d="M12 8v4l2.5 2.5"
                                         />
-
-                                        <circle
-                                            cx="12"
-                                            cy="12"
-                                            r="8"
-                                        />
-
+                                        <circle cx="12" cy="12" r="8"/>
                                     </svg>
 
                                 </div>
 
-                                <p class="text-xs leading-5 text-[#8b7b6f]">
+                                <p class="text-xs leading-5 text-[#71869A]">
                                     Vous n'avez encore aucune alerte immobilière.
                                 </p>
 
@@ -1344,23 +973,13 @@ $classesStatut = static function ($statut): array {
 
                     <a
                         href="/immo-sn/member/alertes"
-                        class="
-                            mt-4
-                            inline-flex
-                            items-center
-                            gap-2
-                            text-xs
-                            font-semibold
-                            text-[#725238]
-                            hover:text-[#30221b]
-                        "
+                        class="mt-4 inline-flex items-center gap-2 text-xs font-bold text-[#61782B] transition hover:text-[#101D33]"
                     >
-
                         Voir mes alertes
 
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="w-3.5 h-3.5"
+                            class="h-3.5 w-3.5"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -1372,7 +991,6 @@ $classesStatut = static function ($statut): array {
                                 d="M5 12h14M13 6l6 6-6 6"
                             />
                         </svg>
-
                     </a>
 
                 </div>
@@ -1383,69 +1001,43 @@ $classesStatut = static function ($statut): array {
             <!-- =================================================
                  DERNIERS BIENS + ACTIONS RAPIDES
             ================================================== -->
-            <section class="grid grid-cols-1 xl:grid-cols-3 gap-5">
+
+            <section class="grid grid-cols-1 gap-5 xl:grid-cols-3">
 
 
                 <!-- =============================================
                      DERNIERS BIENS
                 ============================================== -->
-                <div
-                    class="
-                        xl:col-span-2
-                        rounded-[24px]
-                        border
-                        border-[#e8dfd5]
-                        bg-white
-                        shadow-sm
-                        overflow-hidden
-                    "
-                >
+
+                <div class="overflow-hidden rounded-[24px] border border-[#E1E6E8] bg-white shadow-sm xl:col-span-2">
 
                     <!-- En-tête -->
-      <div class="flex flex-col items-start justify-between gap-4 px-4 py-5 sm:flex-row sm:items-center sm:px-6 border-b border-[#eee6de]">
 
-      
+                    <div class="flex flex-col items-start justify-between gap-4 border-b border-[#E1E6E8] px-4 py-5 sm:flex-row sm:items-center sm:px-6">
+
                         <div>
-
-                            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#a98260]">
+                            <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#7E9833]">
                                 Mes annonces
                             </p>
 
-                            <h2 class="mt-1 text-lg font-bold text-[#30221b]">
+                            <h2 class="mt-1 text-lg font-bold text-[#101D33]">
                                 Derniers biens
                             </h2>
 
-                            <p class="mt-1 text-sm text-[#9a897b]">
+                            <p class="mt-1 text-sm text-[#71869A]">
                                 Vos dernières annonces immobilières
                             </p>
-
                         </div>
-
 
                         <a
                             href="/immo-sn/member/mes-biens"
-                            class="
-                                inline-flex
-                                items-center
-                                gap-1.5
-                                rounded-xl
-                                border
-                                border-[#e8dfd5]
-                                bg-[#faf7f2]
-                                px-3.5
-                                py-2
-                                text-xs
-                                font-semibold
-                                text-[#725238]
-                                hover:bg-[#f2eadf]
-                            "
+                            class="inline-flex items-center gap-1.5 rounded-xl border border-[#DDE6CF] bg-[#EDF0E5] px-3.5 py-2 text-xs font-bold text-[#61782B] transition hover:bg-[#E2E9D3]"
                         >
-
                             Voir tout
 
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="w-3.5 h-3.5"
+                                class="h-3.5 w-3.5"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -1457,34 +1049,34 @@ $classesStatut = static function ($statut): array {
                                     d="M5 12h14M13 6l6 6-6 6"
                                 />
                             </svg>
-
                         </a>
 
                     </div>
 
 
                     <!-- Tableau -->
+
                     <div class="overflow-x-auto">
 
                         <table class="w-full min-w-[680px] text-left">
 
-                            <thead class="bg-[#faf7f2]">
+                            <thead class="bg-[#F5F7F0]">
 
-                                <tr class="text-[10px] uppercase tracking-[0.12em] text-[#8b7b6f]">
+                                <tr class="text-[10px] uppercase tracking-[0.12em] text-[#71869A]">
 
-                                    <th class="px-6 py-4 font-semibold">
+                                    <th class="px-6 py-4 font-bold">
                                         Bien
                                     </th>
 
-                                    <th class="px-6 py-4 font-semibold">
+                                    <th class="px-6 py-4 font-bold">
                                         Localisation
                                     </th>
 
-                                    <th class="px-6 py-4 font-semibold">
+                                    <th class="px-6 py-4 font-bold">
                                         Publication
                                     </th>
 
-                                    <th class="px-6 py-4 text-right font-semibold">
+                                    <th class="px-6 py-4 text-right font-bold">
                                         État
                                     </th>
 
@@ -1493,7 +1085,7 @@ $classesStatut = static function ($statut): array {
                             </thead>
 
 
-                            <tbody class="divide-y divide-[#eee6de]">
+                            <tbody class="divide-y divide-[#E8ECEE]">
 
                                 <?php if (!empty($derniersBiens)): ?>
 
@@ -1502,70 +1094,58 @@ $classesStatut = static function ($statut): array {
                                         <?php
                                         $bienId = $bien['id'] ?? '';
 
-                                        $titre =
-                                            trim(
-                                                $bien['titre'] ?? ''
-                                            );
+                                        $titre = trim($bien['titre'] ?? '');
 
                                         if ($titre === '') {
                                             $titre = 'Bien immobilier';
                                         }
 
-                                        $categorie =
-                                            trim(
-                                                $bien['categorie_nom'] ?? ''
-                                            );
+                                        $categorie = trim(
+                                            $bien['categorie_nom'] ?? ''
+                                        );
 
                                         if ($categorie === '') {
                                             $categorie = 'Immobilier';
                                         }
 
-                                        $ville =
-                                            trim(
-                                                $bien['ville_nom'] ?? ''
-                                            );
+                                        $ville = trim(
+                                            $bien['ville_nom'] ?? ''
+                                        );
 
-                                        $quartier =
-                                            trim(
-                                                $bien['quartier_nom'] ?? ''
-                                            );
+                                        $quartier = trim(
+                                            $bien['quartier_nom'] ?? ''
+                                        );
 
-                                        $localisation =
-                                            trim(
-                                                $quartier .
-                                                (
-                                                    $quartier !== ''
-                                                    && $ville !== ''
-                                                        ? ' — '
-                                                        : ''
-                                                ) .
-                                                $ville
-                                            );
+                                        $localisation = trim(
+                                            $quartier .
+                                            (
+                                                $quartier !== '' && $ville !== ''
+                                                    ? ' — '
+                                                    : ''
+                                            ) .
+                                            $ville
+                                        );
 
                                         if ($localisation === '') {
                                             $localisation = 'Non renseignée';
                                         }
 
-                                        $datePublication =
-                                            $formatDate(
-                                                $bien['created_at'] ?? ''
-                                            );
+                                        $datePublication = $formatDate(
+                                            $bien['created_at'] ?? ''
+                                        );
 
-                                        $statut =
-                                            $bien['statut'] ?? '';
+                                        $statut = $bien['statut'] ?? '';
 
-                                        $statutTexte =
-                                            $libelleStatut(
-                                                $statut
-                                            );
+                                        $statutTexte = $libelleStatut(
+                                            $statut
+                                        );
 
-                                        $statutClasses =
-                                            $classesStatut(
-                                                $statut
-                                            );
+                                        $statutClasses = $classesStatut(
+                                            $statut
+                                        );
                                         ?>
 
-                                        <tr class="hover:bg-[#fffdfb] transition">
+                                        <tr class="transition hover:bg-[#F8F9F5]">
 
                                             <td class="px-6 py-4">
 
@@ -1583,48 +1163,37 @@ $classesStatut = static function ($statut): array {
                                                 <?php endif; ?>
 
 
-                                                    <div
-                                                        class="
-                                                            flex
-                                                            h-10
-                                                            w-10
-                                                            shrink-0
-                                                            items-center
-                                                            justify-center
-                                                            rounded-xl
-                                                            bg-[#f2eadf]
-                                                        "
+                                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#EDF0E5]">
+
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        class="h-5 w-5 text-[#7E9833]"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                        stroke-width="1.7"
                                                     >
+                                                        <path
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            d="M3 10.5L12 3l9 7.5M5.5 9v11h13V9M9 20v-6h6v6"
+                                                        />
+                                                    </svg>
 
-                                                        <svg
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                            class="h-5 w-5 text-[#725238]"
-                                                            fill="none"
-                                                            viewBox="0 0 24 24"
-                                                            stroke="currentColor"
-                                                            stroke-width="1.7"
-                                                        >
-                                                            <path
-                                                                stroke-linecap="round"
-                                                                stroke-linejoin="round"
-                                                                d="M3 10.5L12 3l9 7.5M5.5 9v11h13V9M9 20v-6h6v6"
-                                                            />
-                                                        </svg>
-
-                                                    </div>
+                                                </div>
 
 
-                                                    <div>
+                                                <div class="min-w-0">
 
-                                                        <p class="text-sm font-semibold text-[#30221b]">
-                                                            <?= htmlspecialchars($titre) ?>
-                                                        </p>
+                                                    <p class="text-sm font-bold text-[#101D33]">
+                                                        <?= $e($titre) ?>
+                                                    </p>
 
-                                                        <p class="text-xs text-[#9a897b] mt-0.5">
-                                                            <?= htmlspecialchars($categorie) ?>
-                                                        </p>
+                                                    <p class="mt-0.5 text-xs text-[#71869A]">
+                                                        <?= $e($categorie) ?>
+                                                    </p>
 
-                                                    </div>
+                                                </div>
 
 
                                                 <?php if ($bienId !== ''): ?>
@@ -1640,42 +1209,23 @@ $classesStatut = static function ($statut): array {
                                             </td>
 
 
-                                            <td class="px-6 py-4 text-sm text-[#725238]">
-                                                <?= htmlspecialchars($localisation) ?>
+                                            <td class="px-6 py-4 text-sm text-[#526477]">
+                                                <?= $e($localisation) ?>
                                             </td>
 
 
-                                            <td class="px-6 py-4 text-sm text-[#725238]">
-                                                <?= htmlspecialchars($datePublication ?: '—') ?>
+                                            <td class="px-6 py-4 text-sm text-[#526477]">
+                                                <?= $e($datePublication ?: '—') ?>
                                             </td>
 
 
                                             <td class="px-6 py-4 text-right">
 
-                                                <span
-                                                    class="
-                                                        inline-flex
-                                                        items-center
-                                                        gap-1.5
-                                                        rounded-full
-                                                        px-3
-                                                        py-1.5
-                                                        text-[10px]
-                                                        font-semibold
-                                                        <?= $statutClasses['container'] ?>
-                                                    "
-                                                >
+                                                <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[10px] font-bold <?= $statutClasses['container'] ?>">
 
-                                                    <span
-                                                        class="
-                                                            h-1.5
-                                                            w-1.5
-                                                            rounded-full
-                                                            <?= $statutClasses['dot'] ?>
-                                                        "
-                                                    ></span>
+                                                    <span class="h-1.5 w-1.5 rounded-full <?= $statutClasses['dot'] ?>"></span>
 
-                                                    <?= htmlspecialchars($statutTexte) ?>
+                                                    <?= $e($statutTexte) ?>
 
                                                 </span>
 
@@ -1689,28 +1239,15 @@ $classesStatut = static function ($statut): array {
 
                                     <tr>
 
-                                        <td
-                                            colspan="4"
-                                            class="px-6 py-10 text-center"
-                                        >
+                                        <td colspan="4" class="px-6 py-10 text-center">
 
                                             <div class="flex flex-col items-center">
 
-                                                <div
-                                                    class="
-                                                        flex
-                                                        h-12
-                                                        w-12
-                                                        items-center
-                                                        justify-center
-                                                        rounded-2xl
-                                                        bg-[#f2eadf]
-                                                    "
-                                                >
+                                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EDF0E5]">
 
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
-                                                        class="h-6 w-6 text-[#725238]"
+                                                        class="h-6 w-6 text-[#7E9833]"
                                                         fill="none"
                                                         viewBox="0 0 24 24"
                                                         stroke="currentColor"
@@ -1721,43 +1258,27 @@ $classesStatut = static function ($statut): array {
                                                             stroke-linejoin="round"
                                                             d="M3 10.5L12 3l9 7.5M5.5 9v11h13V9"
                                                         />
-
                                                         <path
                                                             stroke-linecap="round"
                                                             stroke-linejoin="round"
                                                             d="M9 20v-6h6v6"
                                                         />
-
                                                     </svg>
 
                                                 </div>
 
-                                                <p class="mt-3 text-sm font-semibold text-[#30221b]">
+                                                <p class="mt-3 text-sm font-bold text-[#101D33]">
                                                     Aucun bien publié
                                                 </p>
 
-                                                <p class="mt-1 text-xs text-[#9a897b]">
+                                                <p class="mt-1 text-xs text-[#71869A]">
                                                     Vous n'avez pas encore publié de bien.
                                                 </p>
 
                                                 <a
                                                     href="/immo-sn/member/publier"
-                                                    class="
-                                                        mt-4
-                                                        inline-flex
-                                                        items-center
-                                                        gap-2
-                                                        rounded-xl
-                                                        bg-[#30221b]
-                                                        px-4
-                                                        py-2.5
-                                                        text-xs
-                                                        font-semibold
-                                                        text-white
-                                                        hover:bg-[#4a3529]
-                                                    "
+                                                    class="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#7E9833] px-4 py-2.5 text-xs font-bold text-white transition hover:bg-[#8FAF35]"
                                                 >
-
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         class="h-4 w-4"
@@ -1774,7 +1295,6 @@ $classesStatut = static function ($statut): array {
                                                     </svg>
 
                                                     Publier un bien
-
                                                 </a>
 
                                             </div>
@@ -1797,28 +1317,20 @@ $classesStatut = static function ($statut): array {
                 <!-- =============================================
                      ACTIONS RAPIDES
                 ============================================== -->
-                <div
-                    class="
-                        rounded-[24px]
-                        border
-                        border-[#e8dfd5]
-                        bg-white
-                        p-6
-                        shadow-sm
-                    "
-                >
+
+                <div class="rounded-[24px] border border-[#E1E6E8] bg-white p-6 shadow-sm">
 
                     <div class="mb-5">
 
-                        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#a98260]">
+                        <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#7E9833]">
                             Raccourcis
                         </p>
 
-                        <h2 class="mt-1 text-lg font-bold text-[#30221b]">
+                        <h2 class="mt-1 text-lg font-bold text-[#101D33]">
                             Actions rapides
                         </h2>
 
-                        <p class="mt-1 text-sm text-[#9a897b]">
+                        <p class="mt-1 text-sm text-[#71869A]">
                             Accédez rapidement aux fonctions principales.
                         </p>
 
@@ -1829,39 +1341,17 @@ $classesStatut = static function ($statut): array {
 
 
                         <!-- Publier -->
+
                         <a
                             href="/immo-sn/member/publier"
-                            class="
-                                group
-                                flex
-                                items-center
-                                gap-4
-                                rounded-2xl
-                                border
-                                border-[#eadfd5]
-                                p-4
-                                hover:bg-[#faf7f2]
-                                hover:border-[#d8c6b6]
-                                transition
-                            "
+                            class="group flex items-center gap-4 rounded-2xl border border-[#E1E6E8] p-4 transition hover:border-[#B7C78E] hover:bg-[#F5F7F0]"
                         >
 
-                            <div
-                                class="
-                                    flex
-                                    h-11
-                                    w-11
-                                    shrink-0
-                                    items-center
-                                    justify-center
-                                    rounded-xl
-                                    bg-[#fff7df]
-                                "
-                            >
+                            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#EDF0E5]">
 
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="h-5 w-5 text-[#b98516]"
+                                    class="h-5 w-5 text-[#7E9833]"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -1876,23 +1366,21 @@ $classesStatut = static function ($statut): array {
 
                             </div>
 
-
                             <div class="min-w-0">
 
-                                <p class="text-sm font-semibold text-[#30221b]">
+                                <p class="text-sm font-bold text-[#101D33]">
                                     Publier un bien
                                 </p>
 
-                                <p class="mt-1 text-xs text-[#9a897b]">
+                                <p class="mt-1 text-xs text-[#71869A]">
                                     Ajouter une annonce
                                 </p>
 
                             </div>
 
-
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="ml-auto h-4 w-4 text-[#b9aa9d] group-hover:text-[#725238]"
+                                class="ml-auto h-4 w-4 shrink-0 text-[#A0ACB8] transition group-hover:text-[#7E9833]"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -1909,39 +1397,17 @@ $classesStatut = static function ($statut): array {
 
 
                         <!-- Mes biens -->
+
                         <a
                             href="/immo-sn/member/mes-biens"
-                            class="
-                                group
-                                flex
-                                items-center
-                                gap-4
-                                rounded-2xl
-                                border
-                                border-[#eadfd5]
-                                p-4
-                                hover:bg-[#faf7f2]
-                                hover:border-[#d8c6b6]
-                                transition
-                            "
+                            class="group flex items-center gap-4 rounded-2xl border border-[#E1E6E8] p-4 transition hover:border-[#B7C78E] hover:bg-[#F5F7F0]"
                         >
 
-                            <div
-                                class="
-                                    flex
-                                    h-11
-                                    w-11
-                                    shrink-0
-                                    items-center
-                                    justify-center
-                                    rounded-xl
-                                    bg-[#f2eadf]
-                                "
-                            >
+                            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#EDF0E5]">
 
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="h-5 w-5 text-[#725238]"
+                                    class="h-5 w-5 text-[#7E9833]"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -1952,34 +1418,30 @@ $classesStatut = static function ($statut): array {
                                         stroke-linejoin="round"
                                         d="M3 10.5L12 3l9 7.5M5.5 9v11h13V9"
                                     />
-
                                     <path
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
                                         d="M9 20v-6h6v6"
                                     />
-
                                 </svg>
 
                             </div>
 
-
                             <div class="min-w-0">
 
-                                <p class="text-sm font-semibold text-[#30221b]">
+                                <p class="text-sm font-bold text-[#101D33]">
                                     Mes biens
                                 </p>
 
-                                <p class="mt-1 text-xs text-[#9a897b]">
+                                <p class="mt-1 text-xs text-[#71869A]">
                                     Gérer mes annonces
                                 </p>
 
                             </div>
 
-
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="ml-auto h-4 w-4 text-[#b9aa9d] group-hover:text-[#725238]"
+                                class="ml-auto h-4 w-4 shrink-0 text-[#A0ACB8] transition group-hover:text-[#7E9833]"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -1996,39 +1458,17 @@ $classesStatut = static function ($statut): array {
 
 
                         <!-- Favoris -->
+
                         <a
                             href="/immo-sn/member/favoris"
-                            class="
-                                group
-                                flex
-                                items-center
-                                gap-4
-                                rounded-2xl
-                                border
-                                border-[#eadfd5]
-                                p-4
-                                hover:bg-[#faf7f2]
-                                hover:border-[#d8c6b6]
-                                transition
-                            "
+                            class="group flex items-center gap-4 rounded-2xl border border-[#E1E6E8] p-4 transition hover:border-[#B7C78E] hover:bg-[#F5F7F0]"
                         >
 
-                            <div
-                                class="
-                                    flex
-                                    h-11
-                                    w-11
-                                    shrink-0
-                                    items-center
-                                    justify-center
-                                    rounded-xl
-                                    bg-[#f8eeee]
-                                "
-                            >
+                            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F1F2F4]">
 
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="h-5 w-5 text-[#9b6666]"
+                                    class="h-5 w-5 text-[#71869A]"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -2043,23 +1483,21 @@ $classesStatut = static function ($statut): array {
 
                             </div>
 
-
                             <div class="min-w-0">
 
-                                <p class="text-sm font-semibold text-[#30221b]">
+                                <p class="text-sm font-bold text-[#101D33]">
                                     Mes favoris
                                 </p>
 
-                                <p class="mt-1 text-xs text-[#9a897b]">
+                                <p class="mt-1 text-xs text-[#71869A]">
                                     Biens sauvegardés
                                 </p>
 
                             </div>
 
-
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="ml-auto h-4 w-4 text-[#b9aa9d] group-hover:text-[#725238]"
+                                class="ml-auto h-4 w-4 shrink-0 text-[#A0ACB8] transition group-hover:text-[#7E9833]"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -2076,40 +1514,17 @@ $classesStatut = static function ($statut): array {
 
 
                         <!-- Messages -->
+
                         <a
                             href="/immo-sn/member/messages"
-                            class="
-                                group
-                                flex
-                                items-center
-                                gap-4
-                                rounded-2xl
-                                border
-                                border-[#eadfd5]
-                                p-4
-                                hover:bg-[#faf7f2]
-                                hover:border-[#d8c6b6]
-                                transition
-                            "
+                            class="group flex items-center gap-4 rounded-2xl border border-[#E1E6E8] p-4 transition hover:border-[#B7C78E] hover:bg-[#F5F7F0]"
                         >
 
-                            <div
-                                class="
-                                    relative
-                                    flex
-                                    h-11
-                                    w-11
-                                    shrink-0
-                                    items-center
-                                    justify-center
-                                    rounded-xl
-                                    bg-[#f2eadf]
-                                "
-                            >
+                            <div class="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#EDF0E5]">
 
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="h-5 w-5 text-[#725238]"
+                                    class="h-5 w-5 text-[#7E9833]"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -2120,29 +1535,11 @@ $classesStatut = static function ($statut): array {
                                         stroke-linejoin="round"
                                         d="M4 5h16v11H8l-4 4V5Z"
                                     />
-
                                 </svg>
 
                                 <?php if ($nombreMessagesNonLus > 0): ?>
 
-                                    <span
-                                        class="
-                                            absolute
-                                            -right-1
-                                            -top-1
-                                            flex
-                                            h-5
-                                            min-w-5
-                                            items-center
-                                            justify-center
-                                            rounded-full
-                                            bg-[#f7b500]
-                                            px-1
-                                            text-[9px]
-                                            font-bold
-                                            text-[#30221b]
-                                        "
-                                    >
+                                    <span class="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#7E9833] px-1 text-[9px] font-bold text-white">
                                         <?= $nombreMessagesNonLus ?>
                                     </span>
 
@@ -2150,23 +1547,21 @@ $classesStatut = static function ($statut): array {
 
                             </div>
 
-
                             <div class="min-w-0">
 
-                                <p class="text-sm font-semibold text-[#30221b]">
+                                <p class="text-sm font-bold text-[#101D33]">
                                     Mes messages
                                 </p>
 
-                                <p class="mt-1 text-xs text-[#9a897b]">
+                                <p class="mt-1 text-xs text-[#71869A]">
                                     Consulter ma messagerie
                                 </p>
 
                             </div>
 
-
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="ml-auto h-4 w-4 text-[#b9aa9d] group-hover:text-[#725238]"
+                                class="ml-auto h-4 w-4 shrink-0 text-[#A0ACB8] transition group-hover:text-[#7E9833]"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -2183,77 +1578,47 @@ $classesStatut = static function ($statut): array {
 
 
                         <!-- Profil -->
+
                         <a
                             href="/immo-sn/member/profil"
-                            class="
-                                group
-                                flex
-                                items-center
-                                gap-4
-                                rounded-2xl
-                                border
-                                border-[#eadfd5]
-                                p-4
-                                hover:bg-[#faf7f2]
-                                hover:border-[#d8c6b6]
-                                transition
-                            "
+                            class="group flex items-center gap-4 rounded-2xl border border-[#E1E6E8] p-4 transition hover:border-[#B7C78E] hover:bg-[#F5F7F0]"
                         >
 
-                            <div
-                                class="
-                                    flex
-                                    h-11
-                                    w-11
-                                    shrink-0
-                                    items-center
-                                    justify-center
-                                    rounded-xl
-                                    bg-[#f2eadf]
-                                "
-                            >
+                            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#EDF0E5]">
 
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="h-5 w-5 text-[#725238]"
+                                    class="h-5 w-5 text-[#7E9833]"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
                                     stroke-width="1.8"
                                 >
-                                    <circle
-                                        cx="12"
-                                        cy="8"
-                                        r="3"
-                                    />
-
+                                    <circle cx="12" cy="8" r="3"/>
                                     <path
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
                                         d="M5.5 20a6.5 6.5 0 0113 0"
                                     />
-
                                 </svg>
 
                             </div>
 
-
                             <div class="min-w-0">
 
-                                <p class="text-sm font-semibold text-[#30221b]">
+                                <p class="text-sm font-bold text-[#101D33]">
                                     Mon profil
                                 </p>
 
-                                <p class="mt-1 text-xs text-[#9a897b]">
+                                <p class="mt-1 text-xs text-[#71869A]">
                                     Gérer mon compte
                                 </p>
 
                             </div>
 
-
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="ml-auto h-4 w-4 text-[#b9aa9d] group-hover:text-[#725238]"
+                                class="ml-auto h-4 w-4 shrink-0 text-[#A0ACB8] transition group-hover:text-[#7E9833]"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -2273,7 +1638,6 @@ $classesStatut = static function ($statut): array {
                 </div>
 
             </section>
-
 
         </div>
 

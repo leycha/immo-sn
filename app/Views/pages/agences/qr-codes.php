@@ -45,21 +45,21 @@ $e = static function ($valeur): string {
 
 ?>
 
-<div class="min-h-screen bg-[#faf7f2]">
+<div class="min-h-screen bg-[#F5F3ED]">
 
     <?php require_once BASE_PATH . '/app/Views/components/agence-sidebare.php'; ?>
 
     <main class="min-h-screen lg:ml-[270px]">
 
         <!-- EN-TÊTE -->
-        <header class="sticky top-0 z-30 flex flex-col gap-4 border-b border-[#eee5dc] bg-white/95 px-5 py-4 backdrop-blur sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <header class="sticky top-0 z-30 flex flex-col gap-4 border-b border-[#E5E5DD] bg-white/95 px-5 py-4 backdrop-blur sm:flex-row sm:items-center sm:justify-between sm:px-8">
 
             <div>
-                <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#a98260]">
+                <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#7E9833]">
                     Espace professionnel
                 </p>
 
-                <h1 class="mt-1 text-xl font-extrabold text-[#30221b] sm:text-2xl">
+                <h1 class="mt-1 text-xl font-extrabold text-[#101D33] sm:text-2xl">
                     Mes QR Codes
                 </h1>
 
@@ -70,7 +70,7 @@ $e = static function ($valeur): string {
 
             <a
                 href="/immo-sn/agence/qr-codes/zip"
-                class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#30221b] px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#4a3930] hover:shadow-md"
+                class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#101D33] px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#1D304C] hover:shadow-md"
             >
                 <span class="text-lg">↓</span>
                 Télécharger tout
@@ -82,30 +82,31 @@ $e = static function ($valeur): string {
         <div class="mx-auto max-w-7xl space-y-8 px-5 py-8 sm:px-8">
 
             <!-- BANNIÈRE -->
-            <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#30221b] via-[#49372c] to-[#5a402d] p-7 text-white shadow-lg sm:p-9">
+            <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#101D33] via-[#1A304A] to-[#263D50] p-7 text-white shadow-lg sm:p-9">
 
-                <div class="pointer-events-none absolute -right-12 -top-16 h-64 w-64 rounded-full border-[35px] border-[#f7b500]/10"></div>
+                <div class="pointer-events-none absolute -right-12 -top-16 h-64 w-64 rounded-full border-[35px] border-[#7E9833]/20"></div>
 
-                <div class="pointer-events-none absolute -bottom-24 right-36 h-52 w-52 rounded-full bg-[#f7b500]/10 blur-2xl"></div>
+                <div class="pointer-events-none absolute -bottom-24 right-36 h-52 w-52 rounded-full bg-[#7E9833]/15 blur-2xl"></div>
 
                 <div class="relative z-10 max-w-2xl">
 
-                    <div class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-[#f7d98a]">
-                        <span class="h-2 w-2 rounded-full bg-[#f7b500]"></span>
+                    <div class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-[#D5E5A8]">
+                        <span class="h-2 w-2 rounded-full bg-[#8FAF35]"></span>
                         Bibliothèque numérique
                     </div>
 
-                   <h2 class="mt-5 break-words text-2xl font-extrabold leading-tight sm:text-3xl">
-                       Vos biens, accessibles en un scan.
+                    <h2 class="mt-5 break-words text-2xl font-extrabold leading-tight sm:text-3xl">
+                        Vos biens, accessibles en un scan.
                     </h2>
 
-                    <p class="mt-3 text-sm leading-7 text-[#e0d6ce] sm:text-base">
+                    <p class="mt-3 text-sm leading-7 text-[#D8E0E8] sm:text-base">
                         Retrouvez tous les QR Codes de vos annonces.
                         Facilitez l'accès à vos biens et suivez les consultations
                         enregistrées grâce aux scans.
                     </p>
 
-                    <div class="mt-6 flex flex-wrap items-center gap-3 text-xs font-medium text-[#e0d6ce]">
+                    <div class="mt-6 flex flex-wrap items-center gap-3 text-xs font-medium text-[#D8E0E8]">
+
                         <span class="rounded-lg border border-white/15 bg-white/10 px-3 py-2">
                             Téléchargement individuel
                         </span>
@@ -117,6 +118,7 @@ $e = static function ($valeur): string {
                         <span class="rounded-lg border border-white/15 bg-white/10 px-3 py-2">
                             Suivi des scans
                         </span>
+
                     </div>
 
                 </div>
@@ -127,7 +129,7 @@ $e = static function ($valeur): string {
             <section class="grid gap-5 sm:grid-cols-2">
 
                 <!-- TOTAL QR -->
-                <article class="group relative overflow-hidden rounded-2xl border border-[#eee5dc] bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                <article class="group relative overflow-hidden rounded-2xl border border-[#E5E5DD] bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
 
                     <div class="flex items-center justify-between">
 
@@ -136,7 +138,7 @@ $e = static function ($valeur): string {
                                 QR Codes disponibles
                             </p>
 
-                            <p class="mt-3 text-3xl font-extrabold tracking-tight text-[#30221b]">
+                            <p class="mt-3 text-3xl font-extrabold tracking-tight text-[#101D33]">
                                 <?= $nombreQrCodes ?>
                             </p>
 
@@ -145,18 +147,18 @@ $e = static function ($valeur): string {
                             </p>
                         </div>
 
-                        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#faf2e7] text-2xl text-[#a98260]">
+                        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EEF2E4] text-2xl text-[#7E9833]">
                             ▦
                         </div>
 
                     </div>
 
-                    <div class="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#a98260] to-[#f7b500]"></div>
+                    <div class="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#7E9833] to-[#A6BD63]"></div>
 
                 </article>
 
                 <!-- TOTAL SCANS -->
-                <article class="group relative overflow-hidden rounded-2xl border border-[#eee5dc] bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                <article class="group relative overflow-hidden rounded-2xl border border-[#E5E5DD] bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
 
                     <div class="flex items-center justify-between">
 
@@ -165,7 +167,7 @@ $e = static function ($valeur): string {
                                 Nombre total de scans
                             </p>
 
-                            <p class="mt-3 text-3xl font-extrabold tracking-tight text-[#30221b]">
+                            <p class="mt-3 text-3xl font-extrabold tracking-tight text-[#101D33]">
                                 <?= $totalScans ?>
                             </p>
 
@@ -174,13 +176,13 @@ $e = static function ($valeur): string {
                             </p>
                         </div>
 
-                        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f3eee8] text-2xl text-[#5a402d]">
+                        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EDF1F5] text-2xl text-[#71869A]">
                             ↗
                         </div>
 
                     </div>
 
-                    <div class="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#30221b] to-[#a98260]"></div>
+                    <div class="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#101D33] to-[#71869A]"></div>
 
                 </article>
 
@@ -192,11 +194,11 @@ $e = static function ($valeur): string {
                 <div class="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
 
                     <div>
-                        <p class="text-xs font-bold uppercase tracking-widest text-[#a98260]">
+                        <p class="text-xs font-bold uppercase tracking-widest text-[#7E9833]">
                             Gestion des annonces
                         </p>
 
-                        <h3 class="mt-1 text-xl font-extrabold text-[#30221b] sm:text-2xl">
+                        <h3 class="mt-1 text-xl font-extrabold text-[#101D33] sm:text-2xl">
                             Bibliothèque de mes QR Codes
                         </h3>
 
@@ -205,7 +207,7 @@ $e = static function ($valeur): string {
                         </p>
                     </div>
 
-                    <span class="inline-flex w-fit items-center rounded-full border border-[#eadfce] bg-white px-4 py-2 text-sm font-bold text-[#5a402d]">
+                    <span class="inline-flex w-fit items-center rounded-full border border-[#DCE4CC] bg-white px-4 py-2 text-sm font-bold text-[#526A25]">
                         <?= $nombreQrCodes ?> QR Code(s)
                     </span>
 
@@ -214,13 +216,13 @@ $e = static function ($valeur): string {
                 <?php if (empty($qrCodes)): ?>
 
                     <!-- ÉTAT VIDE -->
-                    <div class="rounded-3xl border border-[#eee5dc] bg-white px-6 py-16 text-center shadow-sm">
+                    <div class="rounded-3xl border border-[#E5E5DD] bg-white px-6 py-16 text-center shadow-sm">
 
-                        <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-[#faf2e7] text-4xl text-[#a98260]">
+                        <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-[#EEF2E4] text-4xl text-[#7E9833]">
                             ▦
                         </div>
 
-                        <h3 class="mt-6 text-xl font-extrabold text-[#30221b]">
+                        <h3 class="mt-6 text-xl font-extrabold text-[#101D33]">
                             Aucun QR Code disponible
                         </h3>
 
@@ -231,7 +233,7 @@ $e = static function ($valeur): string {
 
                         <a
                             href="/immo-sn/agence/biens"
-                            class="mt-7 inline-flex items-center justify-center gap-2 rounded-xl bg-[#30221b] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#4a3930]"
+                            class="mt-7 inline-flex items-center justify-center gap-2 rounded-xl bg-[#101D33] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1D304C]"
                         >
                             Consulter mes biens
                             <span>→</span>
@@ -273,7 +275,7 @@ $e = static function ($valeur): string {
 
                             ?>
 
-                            <article class="group flex flex-col overflow-hidden rounded-3xl border border-[#eee5dc] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+                            <article class="group flex flex-col overflow-hidden rounded-3xl border border-[#E5E5DD] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
 
                                 <!-- EN-TÊTE -->
                                 <div class="flex items-start justify-between gap-3 p-5">
@@ -281,14 +283,14 @@ $e = static function ($valeur): string {
                                     <div class="min-w-0">
 
                                         <div class="flex items-center gap-2">
-                                            <span class="h-2 w-2 rounded-full bg-[#f7b500]"></span>
+                                            <span class="h-2 w-2 rounded-full bg-[#8FAF35]"></span>
 
-                                            <p class="text-[11px] font-bold uppercase tracking-[0.16em] text-[#a98260]">
+                                            <p class="text-[11px] font-bold uppercase tracking-[0.16em] text-[#7E9833]">
                                                 Bien immobilier
                                             </p>
                                         </div>
 
-                                        <h4 class="mt-3 line-clamp-2 break-words text-base font-extrabold leading-6 text-[#30221b]">
+                                        <h4 class="mt-3 line-clamp-2 break-words text-base font-extrabold leading-6 text-[#101D33]">
                                             <?= $e($qr['titre'] ?? 'Bien sans titre') ?>
                                         </h4>
 
@@ -305,9 +307,9 @@ $e = static function ($valeur): string {
                                 </div>
 
                                 <!-- IMAGE QR CODE -->
-                                <div class="mx-5 flex flex-col items-center rounded-2xl border border-[#eee5dc] bg-[#faf7f2] px-4 py-6">
+                                <div class="mx-5 flex flex-col items-center rounded-2xl border border-[#E5E5DD] bg-[#F5F3ED] px-4 py-6">
 
-                                    <div class="flex h-44 w-44 items-center justify-center rounded-2xl border border-[#eee5dc] bg-white p-3 shadow-sm transition duration-300 group-hover:shadow-md">
+                                    <div class="flex h-44 w-44 items-center justify-center rounded-2xl border border-[#E5E5DD] bg-white p-3 shadow-sm transition duration-300 group-hover:shadow-md">
 
                                         <img
                                             src="<?= $e($cheminImage) ?>"
@@ -318,14 +320,14 @@ $e = static function ($valeur): string {
 
                                     </div>
 
-                                    <p class="mt-4 text-xs font-medium text-[#a98260]">
+                                    <p class="mt-4 text-xs font-medium text-[#71869A]">
                                         Scannez pour accéder à l'annonce
                                     </p>
 
                                 </div>
 
                                 <!-- STATISTIQUES -->
-                                <div class="mt-5 grid grid-cols-2 divide-x divide-[#eee5dc] border-y border-[#eee5dc]">
+                                <div class="mt-5 grid grid-cols-2 divide-x divide-[#E5E5DD] border-y border-[#E5E5DD]">
 
                                     <div class="px-4 py-4 text-center">
 
@@ -336,7 +338,7 @@ $e = static function ($valeur): string {
                                             </p>
                                         </div>
 
-                                        <p class="mt-2 text-xl font-extrabold text-[#30221b]">
+                                        <p class="mt-2 text-xl font-extrabold text-[#101D33]">
                                             <?= (int) ($qr['nb_scans'] ?? 0) ?>
                                         </p>
 
@@ -351,9 +353,9 @@ $e = static function ($valeur): string {
                                             </p>
                                         </div>
 
-                                        <p class="mt-2 break-words text-sm font-bold text-[#30221b]">
+                                        <p class="mt-2 break-words text-sm font-bold text-[#101D33]">
 
-                                          <?php if ($dernierScan): ?>
+                                            <?php if ($dernierScan): ?>
 
                                                 <?php
                                                 $timestampScan = strtotime((string) $dernierScan);
@@ -371,6 +373,7 @@ $e = static function ($valeur): string {
                                                 </span>
 
                                             <?php endif; ?>
+
                                         </p>
 
                                     </div>
@@ -383,7 +386,7 @@ $e = static function ($valeur): string {
                                     <a
                                         href="<?= $e($cheminImage) ?>"
                                         download="<?= $e($nomFichier) ?>"
-                                        class="flex w-full items-center justify-center gap-3 rounded-xl bg-[#30221b] px-4 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#4a3930] hover:shadow-md"
+                                        class="flex w-full items-center justify-center gap-3 rounded-xl bg-[#101D33] px-4 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#1D304C] hover:shadow-md"
                                     >
                                         <span class="text-lg">↓</span>
                                         Télécharger le QR Code
@@ -400,11 +403,11 @@ $e = static function ($valeur): string {
                     <!-- PAGINATION -->
                     <?php if ($totalPages > 1): ?>
 
-                        <div class="flex flex-col items-center justify-between gap-4 rounded-2xl border border-[#eee5dc] bg-white p-5 shadow-sm sm:flex-row">
+                        <div class="flex flex-col items-center justify-between gap-4 rounded-2xl border border-[#E5E5DD] bg-white p-5 shadow-sm sm:flex-row">
 
                             <div class="text-center sm:text-left">
 
-                                <p class="text-sm font-bold text-[#30221b]">
+                                <p class="text-sm font-bold text-[#101D33]">
                                     Page <?= $pageActuelle ?> sur <?= $totalPages ?>
                                 </p>
 
@@ -420,7 +423,7 @@ $e = static function ($valeur): string {
 
                                     <a
                                         href="?page=<?= $pageActuelle - 1 ?>"
-                                        class="inline-flex items-center gap-2 rounded-xl border border-[#eee5dc] px-4 py-2.5 text-sm font-semibold text-[#30221b] transition hover:bg-[#faf7f2]"
+                                        class="inline-flex items-center gap-2 rounded-xl border border-[#E5E5DD] px-4 py-2.5 text-sm font-semibold text-[#101D33] transition hover:bg-[#F5F3ED]"
                                     >
                                         ← Précédent
                                     </a>
@@ -434,8 +437,8 @@ $e = static function ($valeur): string {
                                         aria-current="<?= $i === $pageActuelle ? 'page' : 'false' ?>"
                                         class="flex h-10 w-10 items-center justify-center rounded-xl text-sm font-bold transition
                                         <?= $i === $pageActuelle
-                                            ? 'bg-[#30221b] text-white shadow-sm'
-                                            : 'border border-[#eee5dc] bg-white text-[#30221b] hover:bg-[#faf7f2]'
+                                            ? 'bg-[#101D33] text-white shadow-sm'
+                                            : 'border border-[#E5E5DD] bg-white text-[#101D33] hover:bg-[#F5F3ED]'
                                         ?>"
                                     >
                                         <?= $i ?>
@@ -447,7 +450,7 @@ $e = static function ($valeur): string {
 
                                     <a
                                         href="?page=<?= $pageActuelle + 1 ?>"
-                                        class="inline-flex items-center gap-2 rounded-xl border border-[#eee5dc] px-4 py-2.5 text-sm font-semibold text-[#30221b] transition hover:bg-[#faf7f2]"
+                                        class="inline-flex items-center gap-2 rounded-xl border border-[#E5E5DD] px-4 py-2.5 text-sm font-semibold text-[#101D33] transition hover:bg-[#F5F3ED]"
                                     >
                                         Suivant →
                                     </a>
@@ -467,7 +470,7 @@ $e = static function ($valeur): string {
         </div>
 
         <!-- PIED DE PAGE -->
-        <footer class="mt-10 border-t border-[#e9dfd5] bg-white px-5 py-6 sm:px-8">
+        <footer class="mt-10 border-t border-[#E5E5DD] bg-white px-5 py-6 sm:px-8">
 
             <div class="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
@@ -475,12 +478,12 @@ $e = static function ($valeur): string {
 
                     <a href="/immo-sn/" class="inline-flex items-center gap-2">
 
-                        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#30221b] text-sm font-extrabold text-[#f7b500]">
+                        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#101D33] text-sm font-extrabold text-[#8FAF35]">
                             IM
                         </span>
 
-                        <span class="text-base font-extrabold tracking-wide text-[#30221b]">
-                            IMMO<span class="text-[#a98260]">-SN</span>
+                        <span class="text-base font-extrabold tracking-wide text-[#101D33]">
+                            IMMO<span class="text-[#7E9833]">-SN</span>
                         </span>
 
                     </a>
@@ -497,7 +500,7 @@ $e = static function ($valeur): string {
                         © <?= date('Y') ?> IMMO-SN. Tous droits réservés.
                     </p>
 
-                    <p class="font-medium text-[#a98260]">
+                    <p class="font-medium text-[#7E9833]">
                         Espace professionnel · Gestion des QR Codes
                     </p>
 

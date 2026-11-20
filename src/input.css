@@ -1,3 +1,4 @@
+
 @import "tailwindcss";
 @import "./responsive.css";
 
@@ -5,65 +6,115 @@
 @source "../public";
 
 @theme {
-  --color-primary-50: #eef8f4;
-  --color-primary-100: #d8eee7;
-  --color-primary-500: #087f68;
-  --color-primary-600: #066c59;
-  --color-primary-700: #055847;
+  /* ==========================================
+     PRIMARY — BLEU NUIT IMMO-SN
+  ========================================== */
+  --color-primary-50: #EAF0F7;
+  --color-primary-100: #D5E0EC;
+  --color-primary-500: #101D33;
+  --color-primary-600: #1A2B45;
+  --color-primary-700: #091426;
 
-  --color-secondary-500: #dca94b;
-  --color-secondary-600: #c69232;
+  /* ==========================================
+     SECONDARY — VERT DITAKH
+  ========================================== */
+  --color-secondary-50: #F3F6E9;
+  --color-secondary-100: #EDF2E1;
+  --color-secondary-500: #7E9833;
+  --color-secondary-600: #6D852B;
+  --color-secondary-700: #5B7023;
 
-  --color-dark: #242424;
-  --color-light: #ffffff;
-  --color-cream: #fff9eb;
+  /* ==========================================
+     ACCENT — VERT CLAIR
+  ========================================== */
+  --color-accent: #A9C65B;
+  --color-accent-soft: #EDF2E1;
 
+  /* ==========================================
+     NEUTRES & SURFACES
+  ========================================== */
+  --color-dark: #101D33;
+  --color-light: #FFFFFF;
+  --color-cream: #F5F3ED;
+  --color-muted: #71869A;
+  --color-line: #E6E8DF;
+
+  /* ==========================================
+     STATUTS IMMOBILIERS
+  ========================================== */
+  --color-sale: #7E9833;
+  --color-rent: #5279B8;
+
+  /* ==========================================
+     TYPOGRAPHIE
+  ========================================== */
   --font-sans: Inter, system-ui, sans-serif;
 }
 
 @layer components {
 
+  /* ==========================================
+     BOUTON PRINCIPAL
+  ========================================== */
   .btn-primary {
     @apply inline-flex items-center justify-center
       bg-primary-500 hover:bg-primary-600
       text-white font-medium
-      px-5 py-2.5 rounded-lg
-      transition-colors;
+      px-5 py-2.5 rounded-xl
+      transition-colors duration-200;
   }
 
+  /* ==========================================
+     BOUTON SECONDAIRE — VERT
+  ========================================== */
   .btn-secondary {
     @apply inline-flex items-center justify-center
       bg-secondary-500 hover:bg-secondary-600
-      text-white font-medium
-      px-5 py-2.5 rounded-lg
-      transition-colors;
+      text-white font-semibold
+      px-5 py-2.5 rounded-xl
+      transition-colors duration-200;
   }
 
+  /* ==========================================
+     BOUTON OUTLINE
+  ========================================== */
   .btn-outline {
     @apply inline-flex items-center justify-center
-      border border-gray-300
-      hover:border-primary-500
-      text-gray-700 hover:text-primary-500
-      font-medium px-5 py-2.5 rounded-lg
-      transition-colors;
+      border border-line
+      hover:border-secondary-500
+      text-dark hover:text-secondary-600
+      font-medium px-5 py-2.5 rounded-xl
+      transition-colors duration-200;
   }
 
+  /* ==========================================
+     CARTES
+  ========================================== */
   .card {
-    @apply bg-white rounded-3xl overflow-hidden
-      shadow-sm hover:shadow-xl
+    @apply bg-light rounded-2xl overflow-hidden
+      border border-line
+      shadow-sm hover:shadow-lg
       transition-all duration-300;
   }
 
+  /* ==========================================
+     CHAMPS DE FORMULAIRE
+  ========================================== */
   .input-field {
-    @apply w-full border border-gray-200
-      rounded-lg px-4 py-2.5
+    @apply w-full border border-line
+      bg-light text-dark
+      rounded-xl px-4 py-3
       focus:outline-none
-      focus:ring-2 focus:ring-primary-500
-      focus:border-transparent;
+      focus:ring-2 focus:ring-secondary-500
+      focus:border-transparent
+      transition-all duration-200;
   }
 
+  /* ==========================================
+     LIENS DE NAVIGATION
+  ========================================== */
   .nav-link {
-    @apply text-gray-800 hover:text-primary-500
-      font-medium transition-colors;
+    @apply text-dark hover:text-secondary-500
+      font-medium transition-colors duration-200;
   }
 }

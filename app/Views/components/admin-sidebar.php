@@ -1,10 +1,9 @@
-
 <?php
 
 $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 
 /*
- * Nettoyage du chemin du projet
+- Nettoyage du chemin du projet
  */
 $currentPath = preg_replace(
     '#^/immo-sn/public#',
@@ -18,7 +17,7 @@ if ($currentPath === '') {
 
 
 /*
- * Vérifie si une route est active
+- Vérifie si une route est active
  */
 function isAdminActive(string $path): bool
 {
@@ -45,25 +44,25 @@ function isAdminActive(string $path): bool
         h-screen
         min-h-screen
         shrink-0
-        bg-[#30221b]
+        bg-[#071b36]
         text-white
         flex
         flex-col
         border-r
-        border-[#45362d]
+        border-[#0e2a4e]
         overflow-y-auto
         -translate-x-full
         transition-transform
         duration-300
         ease-in-out
-       lg:translate-x-0
+        lg:translate-x-0
     "
 >
     <button
         type="button"
         id="adminSidebarClose"
         aria-label="Fermer le menu"
-        class="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-lg text-white hover:bg-[#4a3930] lg:hidden"
+        class="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-lg text-white hover:bg-[#0e2a4e] lg:hidden"
     >
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -99,15 +98,15 @@ function isAdminActive(string $path): bool
                     w-11
                     h-11
                     rounded-xl
-                    bg-[#f7b500]
+                    bg-[#f5b800]
                     flex
                     items-center
                     justify-center
-                    text-[#30221b]
+                    text-[#0b1528]
                     font-bold
                     text-sm
                     shadow-lg
-                    shadow-black/10
+                    shadow-[#071b36]/20
                     group-hover:scale-105
                     transition-transform
                 "
@@ -126,13 +125,13 @@ function isAdminActive(string $path): bool
                         Immo
                     </span>
 
-                    <span class="text-[#f7b500]">
+                    <span class="text-[#f5b800]">
                         Sn
                     </span>
 
                 </div>
 
-                <p class="text-[11px] text-[#b8aaa0] mt-0.5">
+                <p class="text-[11px] text-slate-400 mt-0.5">
                     Administration
                 </p>
 
@@ -147,7 +146,7 @@ function isAdminActive(string $path): bool
          SEPARATEUR
     ========================================== -->
 
-    <div class="mx-6 border-t border-[#45362d]"></div>
+    <div class="mx-6 border-t border-[#0e2a4e]"></div>
 
 
     <!-- =========================================
@@ -167,7 +166,7 @@ function isAdminActive(string $path): bool
                 font-semibold
                 uppercase
                 tracking-[0.18em]
-                text-[#8f8178]
+                text-slate-400
             "
         >
             Navigation
@@ -193,8 +192,8 @@ function isAdminActive(string $path): bool
                 font-medium
 
                 <?= isAdminActive('/admin')
-                    ? 'bg-[#f7b500] text-[#30221b] shadow-lg shadow-[#f7b500]/10'
-                    : 'text-[#c8beb7] hover:bg-[#3c2d25] hover:text-white'
+                    ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-lg shadow-[#f5b800]/10'
+                    : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
                 ?>
             "
         >
@@ -209,8 +208,8 @@ function isAdminActive(string $path): bool
                     justify-center
 
                     <?= isAdminActive('/admin')
-                        ? 'bg-[#30221b]/10'
-                        : 'bg-[#3c2d25] group-hover:bg-[#4a3930]'
+                        ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                        : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
                     ?>
                 "
             >
@@ -258,8 +257,8 @@ function isAdminActive(string $path): bool
                 font-medium
 
                 <?= isAdminActive('/admin/biens')
-                    ? 'bg-[#f7b500] text-[#30221b] shadow-lg shadow-[#f7b500]/10'
-                    : 'text-[#c8beb7] hover:bg-[#3c2d25] hover:text-white'
+                    ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-lg shadow-[#f5b800]/10'
+                    : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
                 ?>
             "
         >
@@ -274,8 +273,8 @@ function isAdminActive(string $path): bool
                     justify-center
 
                     <?= isAdminActive('/admin/biens')
-                        ? 'bg-[#30221b]/10'
-                        : 'bg-[#3c2d25] group-hover:bg-[#4a3930]'
+                        ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                        : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
                     ?>
                 "
             >
@@ -299,11 +298,11 @@ function isAdminActive(string $path): bool
             </span>
 
             <span class="flex-1">
-                Gestion des biens 
+                Gestion des biens
             </span>
 
         </a>
-        
+
 <!-- =====================================
      DEMANDES DE RENOUVELLEMENT
 ====================================== -->
@@ -323,8 +322,8 @@ function isAdminActive(string $path): bool
         font-medium
 
         <?= isAdminActive('/admin/renouvellements')
-            ? 'bg-[#f7b500] text-[#30221b] shadow-lg shadow-[#f7b500]/10'
-            : 'text-[#c8beb7] hover:bg-[#3c2d25] hover:text-white'
+            ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-lg shadow-[#f5b800]/10'
+            : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
         ?>
     "
 >
@@ -338,8 +337,8 @@ function isAdminActive(string $path): bool
             justify-center
 
             <?= isAdminActive('/admin/renouvellements')
-                ? 'bg-[#30221b]/10'
-                : 'bg-[#3c2d25] group-hover:bg-[#4a3930]'
+                ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
             ?>
         "
     >
@@ -384,8 +383,8 @@ function isAdminActive(string $path): bool
                 font-medium
 
                 <?= isAdminActive('/admin/agences')
-                    ? 'bg-[#f7b500] text-[#30221b] shadow-lg shadow-[#f7b500]/10'
-                    : 'text-[#c8beb7] hover:bg-[#3c2d25] hover:text-white'
+                    ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-lg shadow-[#f5b800]/10'
+                    : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
                 ?>
             "
         >
@@ -400,8 +399,8 @@ function isAdminActive(string $path): bool
                     justify-center
 
                     <?= isAdminActive('/admin/agences')
-                        ? 'bg-[#30221b]/10'
-                        : 'bg-[#3c2d25] group-hover:bg-[#4a3930]'
+                        ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                        : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
                     ?>
                 "
             >
@@ -456,8 +455,8 @@ function isAdminActive(string $path): bool
         font-medium
 
         <?= isAdminActive('/admin/utilisateurs')
-            ? 'bg-[#f7b500] text-[#30221b] shadow-lg shadow-[#f7b500]/10'
-            : 'text-[#c8beb7] hover:bg-[#3c2d25] hover:text-white'
+            ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-lg shadow-[#f5b800]/10'
+            : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
         ?>
     "
 >
@@ -471,8 +470,8 @@ function isAdminActive(string $path): bool
             justify-center
 
             <?= isAdminActive('/admin/utilisateurs')
-                ? 'bg-[#30221b]/10'
-                : 'bg-[#3c2d25] group-hover:bg-[#4a3930]'
+                ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
             ?>
         "
     >
@@ -498,7 +497,7 @@ function isAdminActive(string $path): bool
         Gestion des utilisateurs
     </span>
 </a>
-       
+
 
         <!-- =====================================
              CRON MONITOR
@@ -519,8 +518,8 @@ function isAdminActive(string $path): bool
                 font-medium
 
                 <?= isAdminActive('/admin/cron-monitor')
-                    ? 'bg-[#f7b500] text-[#30221b] shadow-lg shadow-[#f7b500]/10'
-                    : 'text-[#c8beb7] hover:bg-[#3c2d25] hover:text-white'
+                    ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-lg shadow-[#f5b800]/10'
+                    : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
                 ?>
             "
         >
@@ -535,8 +534,8 @@ function isAdminActive(string $path): bool
                     justify-center
 
                     <?= isAdminActive('/admin/cron-monitor')
-                        ? 'bg-[#30221b]/10'
-                        : 'bg-[#3c2d25] group-hover:bg-[#4a3930]'
+                        ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                        : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
                     ?>
                 "
             >
@@ -584,8 +583,8 @@ function isAdminActive(string $path): bool
                 font-medium
 
                 <?= isAdminActive('/admin/mail-logs')
-                    ? 'bg-[#f7b500] text-[#30221b] shadow-lg shadow-[#f7b500]/10'
-                    : 'text-[#c8beb7] hover:bg-[#3c2d25] hover:text-white'
+                    ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-lg shadow-[#f5b800]/10'
+                    : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
                 ?>
             "
         >
@@ -600,8 +599,8 @@ function isAdminActive(string $path): bool
                     justify-center
 
                     <?= isAdminActive('/admin/mail-logs')
-                        ? 'bg-[#30221b]/10'
-                        : 'bg-[#3c2d25] group-hover:bg-[#4a3930]'
+                        ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                        : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
                     ?>
                 "
             >
@@ -634,8 +633,8 @@ function isAdminActive(string $path): bool
              SIGNALEMENTS
         ====================================== -->
 
-        <a href="/immo-sn/public/admin/signalements"
-   
+        <a
+            href="/immo-sn/public/admin/signalements"
             class="
                 group
                 flex
@@ -647,9 +646,11 @@ function isAdminActive(string $path): bool
                 rounded-xl
                 text-sm
                 font-medium
-                text-[#c8beb7]
-                hover:bg-[#3c2d25]
-                hover:text-white
+
+                <?= isAdminActive('/admin/signalements')
+                    ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-lg shadow-[#f5b800]/10'
+                    : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
+                ?>
             "
         >
 
@@ -658,11 +659,14 @@ function isAdminActive(string $path): bool
                     w-9
                     h-9
                     rounded-lg
-                    bg-[#3c2d25]
-                    group-hover:bg-[#4a3930]
                     flex
                     items-center
                     justify-center
+
+                    <?= isAdminActive('/admin/signalements')
+                        ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                        : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
+                    ?>
                 "
             >
 
@@ -701,7 +705,7 @@ function isAdminActive(string $path): bool
 
         <!-- Ligne -->
 
-        <div class="border-t border-[#45362d] mb-4"></div>
+        <div class="border-t border-[#0e2a4e] mb-4"></div>
 
 
         <!-- PROFIL ADMIN -->
@@ -713,9 +717,9 @@ function isAdminActive(string $path): bool
                 gap-3
                 p-3
                 rounded-xl
-                bg-[#3a2b23]
+                bg-[#0e2a4e]/70
                 border
-                border-[#4a3930]
+                border-[#163d6e]
             "
         >
 
@@ -727,8 +731,8 @@ function isAdminActive(string $path): bool
                     h-10
                     shrink-0
                     rounded-full
-                    bg-[#f7b500]
-                    text-[#30221b]
+                    bg-[#f5b800]
+                    text-[#0b1528]
                     flex
                     items-center
                     justify-center
@@ -748,7 +752,7 @@ function isAdminActive(string $path): bool
                     Administrateur
                 </p>
 
-                <p class="text-[11px] text-[#a99b91] truncate">
+                <p class="text-[11px] text-slate-400 truncate">
                     Gestion ImmoSn
                 </p>
 
@@ -767,9 +771,9 @@ function isAdminActive(string $path): bool
                     flex
                     items-center
                     justify-center
-                    text-[#a99b91]
-                    hover:text-[#f7b500]
-                    hover:bg-[#4a3930]
+                    text-slate-300
+                    hover:text-[#f5b800]
+                    hover:bg-[#163d6e]
                 "
             >
 
@@ -796,11 +800,10 @@ function isAdminActive(string $path): bool
 
         <!-- VERSION -->
 
-        <p class="text-center text-[10px] text-[#766960] mt-4">
+        <p class="text-center text-[10px] text-slate-500 mt-4">
             ImmoSn · Administration
         </p>
 
     </div>
 
 </aside>
-

@@ -1,4 +1,3 @@
-
 <?php
 
 $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
@@ -31,38 +30,36 @@ if (!function_exists('isModeratorActive')) {
 <aside
     id="moderatorSidebar"
     aria-label="Navigation modérateur"
-   
-class="
-    fixed
-    inset-y-0
-    left-0
-    z-50
-    w-[270px]
-    min-w-[270px]
-    max-w-[270px]
-    h-screen
-    box-border
-    shrink-0
-    bg-[#30221b]
-    text-white
-    flex
-    flex-col
-    border-r
-    border-[#45362d]
-    overflow-hidden
-    -translate-x-full
-    transition-transform
-    duration-300
-    ease-in-out
-    lg:translate-x-0
-"
-
+    class="
+        fixed
+        inset-y-0
+        left-0
+        z-50
+        w-[270px]
+        min-w-[270px]
+        max-w-[270px]
+        h-screen
+        box-border
+        shrink-0
+        bg-[#071b36]
+        text-white
+        flex
+        flex-col
+        border-r
+        border-[#0e2a4e]
+        overflow-hidden
+        -translate-x-full
+        transition-transform
+        duration-300
+        ease-in-out
+        lg:translate-x-0
+    "
 >
     <button
         type="button"
         id="moderatorSidebarClose"
         aria-label="Fermer le menu"
-        class="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-lg text-white hover:bg-[#4a3930] lg:hidden"
+        class="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-lg text-white hover:bg-[#0e2a4e] lg:hidden"
     >
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -75,23 +72,24 @@ class="
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
     </button>
-      <!-- LOGO -->
+
+    <!-- LOGO -->
 
     <div class="px-6 pt-7 pb-6">
 
         <a href="/immo-sn/moderateur" class="flex items-center gap-3 group">
 
-            <div class="w-11 h-11 rounded-xl bg-[#f7b500] flex items-center justify-center text-[#30221b] font-bold text-sm shadow-lg group-hover:scale-105 transition-transform">
+            <div class="w-11 h-11 rounded-xl bg-[#f5b800] flex items-center justify-center text-[#0b1528] font-bold text-sm shadow-lg group-hover:scale-105 transition-transform">
                 IS
             </div>
 
             <div class="leading-tight">
                 <div class="text-xl font-bold tracking-tight">
                     <span class="text-white">Immo</span>
-                    <span class="text-[#f7b500]">Sn</span>
+                    <span class="text-[#f5b800]">Sn</span>
                 </div>
 
-                <p class="text-[11px] text-[#b8aaa0] mt-0.5">
+                <p class="text-[11px] text-slate-400 mt-0.5">
                     Modération
                 </p>
             </div>
@@ -100,12 +98,12 @@ class="
 
     </div>
 
-    <div class="mx-6 border-t border-[#45362d]"></div>
+    <div class="mx-6 border-t border-[#0e2a4e]"></div>
 
     <!-- NAVIGATION -->
 
-    <nav class="flex-1 min-h-0 px-4 py-6 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        <p class="px-3 mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#8f8178]">
+    <nav class="flex-1 min-h-0 px-4 py-6 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <p class="px-3 mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
             Espace modérateur
         </p>
 
@@ -114,14 +112,14 @@ class="
         <a href="/immo-sn/moderateur"
            class="group flex items-center gap-3 px-3 py-3 mb-1 rounded-xl text-sm font-medium
            <?= isModeratorActive('/moderateur')
-                ? 'bg-[#f7b500] text-[#30221b]'
-                : 'text-[#c8beb7] hover:bg-[#3c2d25] hover:text-white'
+                ? 'bg-[#f5b800] text-[#0b1528] font-semibold'
+                : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
            ?>">
 
             <span class="w-9 h-9 rounded-lg flex items-center justify-center
                 <?= isModeratorActive('/moderateur')
-                    ? 'bg-[#30221b]/10'
-                    : 'bg-[#3c2d25] group-hover:bg-[#4a3930]'
+                    ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                    : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
                 ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -141,11 +139,15 @@ class="
         <a href="/immo-sn/moderateur/annonces"
            class="group flex items-center gap-3 px-3 py-3 mb-1 rounded-xl text-sm font-medium
            <?= isModeratorActive('/moderateur/annonces')
-                ? 'bg-[#f7b500] text-[#30221b]'
-                : 'text-[#c8beb7] hover:bg-[#3c2d25] hover:text-white'
+                ? 'bg-[#f5b800] text-[#0b1528] font-semibold'
+                : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
            ?>">
 
-            <span class="w-9 h-9 rounded-lg bg-[#3c2d25] group-hover:bg-[#4a3930] flex items-center justify-center">
+            <span class="w-9 h-9 rounded-lg flex items-center justify-center
+                <?= isModeratorActive('/moderateur/annonces')
+                    ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                    : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
+                ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -163,14 +165,14 @@ class="
         <a href="/immo-sn/moderateur/renouvellements"
            class="group flex items-center gap-3 px-3 py-3 mb-1 rounded-xl text-sm font-medium
            <?= isModeratorActive('/moderateur/renouvellements')
-                ? 'bg-[#f7b500] text-[#30221b]'
-                : 'text-[#c8beb7] hover:bg-[#3c2d25] hover:text-white'
+                ? 'bg-[#f5b800] text-[#0b1528] font-semibold'
+                : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
            ?>">
 
             <span class="w-9 h-9 rounded-lg flex items-center justify-center
                 <?= isModeratorActive('/moderateur/renouvellements')
-                    ? 'bg-[#30221b]/10'
-                    : 'bg-[#3c2d25] group-hover:bg-[#4a3930]'
+                    ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                    : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
                 ?>">
 
                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -191,17 +193,20 @@ class="
             <span class="flex-1">Demandes de renouvellement</span>
         </a>
 
-
         <!-- SIGNALEMENTS -->
 
         <a href="/immo-sn/moderateur/signalements"
            class="group flex items-center gap-3 px-3 py-3 mb-1 rounded-xl text-sm font-medium
            <?= isModeratorActive('/moderateur/signalements')
-                ? 'bg-[#f7b500] text-[#30221b]'
-                : 'text-[#c8beb7] hover:bg-[#3c2d25] hover:text-white'
+                ? 'bg-[#f5b800] text-[#0b1528] font-semibold'
+                : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
            ?>">
 
-            <span class="w-9 h-9 rounded-lg bg-[#3c2d25] group-hover:bg-[#4a3930] flex items-center justify-center">
+            <span class="w-9 h-9 rounded-lg flex items-center justify-center
+                <?= isModeratorActive('/moderateur/signalements')
+                    ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                    : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
+                ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -218,11 +223,15 @@ class="
         <a href="/immo-sn/moderateur/historique"
            class="group flex items-center gap-3 px-3 py-3 mb-1 rounded-xl text-sm font-medium
            <?= isModeratorActive('/moderateur/historique')
-                ? 'bg-[#f7b500] text-[#30221b]'
-                : 'text-[#c8beb7] hover:bg-[#3c2d25] hover:text-white'
+                ? 'bg-[#f5b800] text-[#0b1528] font-semibold'
+                : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
            ?>">
 
-            <span class="w-9 h-9 rounded-lg bg-[#3c2d25] group-hover:bg-[#4a3930] flex items-center justify-center">
+            <span class="w-9 h-9 rounded-lg flex items-center justify-center
+                <?= isModeratorActive('/moderateur/historique')
+                    ? 'bg-[#0b1528]/10 text-[#0b1528]'
+                    : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]'
+                ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -240,29 +249,29 @@ class="
 
     <div class="px-4 pb-5">
 
-        <div class="border-t border-[#45362d] mb-4"></div>
+        <div class="border-t border-[#0e2a4e] mb-4"></div>
 
         <a href="/immo-sn/moderateur/profil"
            class="flex items-center gap-3 p-3 mb-2 rounded-xl
            <?= isModeratorActive('/moderateur/profil')
-                ? 'bg-[#f7b500] text-[#30221b]'
-                : 'bg-[#3a2b23] border border-[#4a3930] text-white hover:bg-[#45362d]'
+                ? 'bg-[#f5b800] text-[#0b1528] font-semibold'
+                : 'bg-[#0e2a4e]/70 border border-[#163d6e] text-white hover:bg-[#0e2a4e]'
            ?>">
 
-            <div class="w-10 h-10 shrink-0 rounded-full bg-[#f7b500] text-[#30221b] flex items-center justify-center font-bold text-sm">
+            <div class="w-10 h-10 shrink-0 rounded-full bg-[#f5b800] text-[#0b1528] flex items-center justify-center font-bold text-sm">
                 M
             </div>
 
             <div class="min-w-0 flex-1">
                 <p class="text-sm font-semibold truncate">Modérateur</p>
-                <p class="text-[11px] opacity-70 truncate">Mon profil</p>
+                <p class="text-[11px] opacity-75 truncate">Mon profil</p>
             </div>
 
         </a>
 
         <a href="/immo-sn/public/logout"
            title="Déconnexion"
-           class="flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-[#c8beb7] hover:bg-[#3c2d25] hover:text-[#f7b500]">
+           class="flex items-center gap-3 px-3 py-3 rounded-xl text-sm text-slate-300 hover:bg-[#0e2a4e] hover:text-[#f5b800]">
 
             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                  viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -275,7 +284,7 @@ class="
             <span>Déconnexion</span>
         </a>
 
-        <p class="text-center text-[10px] text-[#766960] mt-4">
+        <p class="text-center text-[10px] text-slate-500 mt-4">
             ImmoSn · Modération
         </p>
 

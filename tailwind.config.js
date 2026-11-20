@@ -1,3 +1,4 @@
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -6,32 +7,71 @@ module.exports = {
     "./public/**/*.php",
     "./public/assets/js/**/*.js"
   ],
+
   theme: {
     extend: {
       colors: {
-        // Palette ImmoSn basée sur ta capture
+        // ==========================================
+        // BLEU NUIT — Couleur principale IMMO-SN
+        // ==========================================
         primary: {
-          50:  '#f0fdf4',
-          100: '#dcfce7',
-          500: '#22c55e',   // vert principal "Rechercher"
-          600: '#16a34a',   // vert foncé
-          700: '#15803d',
+          50:  '#EAF0F7',
+          100: '#D5E0EC',
+          500: '#101D33',
+          600: '#1A2B45',
+          700: '#091426',
         },
+
+        // ==========================================
+        // VERT DITAKH — Couleur secondaire
+        // ==========================================
         secondary: {
-          500: '#3b82f6',   // bleu "Scanner QR"
-          600: '#2563eb',
+          50:  '#F3F6E9',
+          100: '#EDF2E1',
+          500: '#7E9833',
+          600: '#6D852B',
+          700: '#5B7023',
         },
-        dark: '#1F2937',
-        light: '#F9FAFB',
-        cream: '#F5F1E8',   // fond beige de ta capture
+
+        // ==========================================
+        // ACCENT — VERT CLAIR
+        // ==========================================
+        accent: {
+          100: '#EDF2E1',
+          500: '#A9C65B',
+        },
+
+        // ==========================================
+        // NEUTRES
+        // ==========================================
+        dark: '#101D33',
+        light: '#FFFFFF',
+        cream: '#F5F3ED',
+        muted: '#71869A',
+        line: '#E6E8DF',
+
+        // ==========================================
+        // STATUTS IMMOBILIERS
+        // ==========================================
+        sale: '#7E9833',
+        rent: '#5279B8',
       },
+
+      // ==========================================
+      // TYPOGRAPHIE
+      // ==========================================
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
+
+      // ==========================================
+      // OMBRES
+      // ==========================================
       boxShadow: {
-        card: '0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03)',
+        card: '0 4px 6px -1px rgba(16,29,51,0.05), 0 2px 4px -1px rgba(16,29,51,0.03)',
       },
     },
   },
+
   plugins: [],
-}
+};

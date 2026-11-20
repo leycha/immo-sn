@@ -1,4 +1,3 @@
-
 <?php
 
 $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
@@ -21,6 +20,7 @@ $currentPath = preg_replace(
 if ($currentPath === '') {
     $currentPath = '/';
 }
+
 $isMemberArea     = str_starts_with($currentPath, '/member');
 $isAdminArea      = str_starts_with($currentPath, '/admin');
 $isAgencyArea     = str_starts_with($currentPath, '/agence');
@@ -41,14 +41,17 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
 
     <meta
         name="theme-color"
-        content="#30221b"
+        content="#101D33"
     >
 
     <title>
-        <?= htmlspecialchars($title ?? 'ImmoSn — Plateforme Immobilière') ?>
+        <?= htmlspecialchars($title ?? 'IMMO-SN — Plateforme Immobilière', ENT_QUOTES, 'UTF-8') ?>
     </title>
 
-    <!-- GOOGLE FONTS -->
+
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -59,24 +62,37 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
     >
 
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
         rel="stylesheet"
     >
 
-    <!-- TAILWIND CSS -->
+
+    <!-- =====================================================
+         TAILWIND CSS
+    ====================================================== -->
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- CSS PRINCIPAL -->
+
+    <!-- =====================================================
+         CSS PRINCIPAL
+    ====================================================== -->
 
     <link
         rel="stylesheet"
         href="/assets/css/app.css"
     >
 
-    <!-- AMÉLIORATIONS VISUELLES -->
+
+    <!-- =====================================================
+         IDENTITÉ VISUELLE IMMO-SN
+    ====================================================== -->
 
     <style>
+
+        /* -----------------------------------------------------
+           BASE
+        ------------------------------------------------------ */
 
         html {
             scroll-behavior: smooth;
@@ -95,7 +111,10 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
             letter-spacing: -0.02em;
         }
 
-        /* SCROLLBAR */
+
+        /* -----------------------------------------------------
+           SCROLLBAR
+        ------------------------------------------------------ */
 
         ::-webkit-scrollbar {
             width: 8px;
@@ -103,26 +122,32 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
         }
 
         ::-webkit-scrollbar-track {
-            background: #faf7f2;
+            background: #F5F3ED;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #c9b9aa;
+            background: #D5DDC5;
             border-radius: 999px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #a98260;
+            background: #7E9833;
         }
 
-        /* SÉLECTION DE TEXTE */
+
+        /* -----------------------------------------------------
+           SÉLECTION DE TEXTE
+        ------------------------------------------------------ */
 
         ::selection {
-            background: #f7b500;
-            color: #30221b;
+            background: #DCE8C6;
+            color: #101D33;
         }
 
-        /* TRANSITIONS GÉNÉRALES */
+
+        /* -----------------------------------------------------
+           TRANSITIONS GÉNÉRALES
+        ------------------------------------------------------ */
 
         a,
         button,
@@ -137,31 +162,39 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
                 transform 0.2s ease;
         }
 
-        /* FOND DES ESPACES ADMIN ET MEMBRE */
+
+        /* -----------------------------------------------------
+           FOND DES ESPACES ADMIN, MEMBRE ET MODÉRATEUR
+        ------------------------------------------------------ */
 
         .immo-dashboard {
             background:
                 radial-gradient(
                     circle at top right,
-                    rgba(247, 181, 0, 0.08),
-                    transparent 28%
+                    rgba(126, 152, 51, 0.09),
+                    transparent 30%
                 ),
                 linear-gradient(
                     135deg,
-                    #faf7f2 0%,
-                    #f8f4ee 50%,
-                    #f5efe8 100%
+                    #F5F3ED 0%,
+                    #F8F9F5 50%,
+                    #EDF2E5 100%
                 );
         }
 
-        /* ZONE PRINCIPALE */
+
+        /* -----------------------------------------------------
+           ZONE PRINCIPALE
+        ------------------------------------------------------ */
 
         .immo-main-content {
             min-height: 100vh;
-            
         }
 
-        /* ANIMATION D'APPARITION */
+
+        /* -----------------------------------------------------
+           ANIMATION D'APPARITION DES PAGES
+        ------------------------------------------------------ */
 
         .page-transition {
             animation: pageFade 0.35s ease-out;
@@ -181,56 +214,137 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
 
         }
 
-        /* FOCUS ACCESSIBLE */
+
+        /* -----------------------------------------------------
+           FOCUS ACCESSIBLE
+        ------------------------------------------------------ */
 
         :focus-visible {
-            outline: 3px solid rgba(247, 181, 0, 0.35);
+            outline: 3px solid rgba(126, 152, 51, 0.35);
             outline-offset: 2px;
         }
 
-        
+
+        /* -----------------------------------------------------
+           COULEURS DE LA MARQUE
+        ------------------------------------------------------ */
+
+        :root {
+            --immo-green: #7E9833;
+            --immo-green-dark: #6D852B;
+            --immo-green-light: #A9C65B;
+            --immo-green-soft: #EDF2E1;
+
+            --immo-navy: #101D33;
+            --immo-navy-soft: #1A2B45;
+
+            --immo-ivory: #F5F3ED;
+            --immo-white: #FFFFFF;
+
+            --immo-steel: #71869A;
+            --immo-border: #E6E8DF;
+        }
+
+
+        /* -----------------------------------------------------
+           LIENS
+        ------------------------------------------------------ */
+
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+        /* -----------------------------------------------------
+           BOUTONS
+        ------------------------------------------------------ */
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+        /* -----------------------------------------------------
+           IMAGES
+        ------------------------------------------------------ */
+
+        img {
+            max-width: 100%;
+        }
+
+
+        /* -----------------------------------------------------
+           MOBILE
+        ------------------------------------------------------ */
+
+        @media (max-width: 640px) {
+
+            .page-transition {
+                animation-duration: 0.25s;
+            }
+
+        }
 
     </style>
 
 </head>
 
+
 <body
     class="<?= $isMemberArea || $isAdminArea || $isAgencyArea || $isModeratorArea
-        ? 'immo-dashboard text-[#30221b] min-h-screen'
-        : 'bg-[#faf7f2] text-[#30221b] min-h-screen flex flex-col'
+        ? 'immo-dashboard text-[#101D33] min-h-screen'
+        : 'bg-[#F5F3ED] text-[#101D33] min-h-screen flex flex-col'
     ?>"
 >
 
+
 <?php if ($isAdminArea): ?>
 
-    <!-- =========================================
+    <!-- =====================================================
          ESPACE ADMINISTRATION
-    ========================================== -->
+    ====================================================== -->
 
     <div class="flex min-h-screen w-full">
+
 
         <!-- SIDEBAR ADMIN -->
 
         <?php
         require BASE_PATH . '/app/Views/components/admin-sidebar.php';
         ?>
+
+
+        <!-- OVERLAY MOBILE -->
+
         <button
             type="button"
             id="adminSidebarOverlay"
             aria-label="Fermer le menu"
-            class="fixed inset-0 z-40 hidden bg-black/50 lg:hidden"
+            class="fixed inset-0 z-40 hidden bg-[#101D33]/50 backdrop-blur-sm lg:hidden"
         ></button>
 
 
-        <!-- CONTENU ADMIN -->
+        <!-- =================================================
+             CONTENU ADMIN
+        ================================================== -->
 
-      <main class="immo-main-content min-w-0 flex-1 page-transition flex flex-col lg:ml-[270px] lg:w-[calc(100%-270px)] lg:flex-none">
+        <main class="immo-main-content min-w-0 flex-1 page-transition flex flex-col lg:ml-[270px] lg:w-[calc(100%-270px)] lg:flex-none">
 
-         <header class="sticky top-0 z-30 flex items-center justify-between border-b border-[#e8ded4] bg-white px-4 py-3 lg:hidden">
+
+            <!-- HEADER MOBILE ADMIN -->
+
+            <header class="sticky top-0 z-30 flex items-center justify-between border-b border-[#E6E8DF] bg-white/95 px-4 py-3 backdrop-blur-md lg:hidden">
+
                 <div>
-                    <p class="text-sm font-bold text-[#30221b]">IMMO-SN</p>
-                    <p class="text-xs text-[#8d7a6b]">Administration</p>
+                    <p class="text-sm font-extrabold text-[#101D33]">
+                        IMMO-SN
+                    </p>
+
+                    <p class="text-xs text-[#71869A]">
+                        Administration
+                    </p>
                 </div>
+
 
                 <button
                     type="button"
@@ -238,49 +352,67 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
                     aria-label="Ouvrir le menu"
                     aria-controls="adminSidebar"
                     aria-expanded="false"
-                    class="flex h-10 w-10 items-center justify-center rounded-lg border border-[#e8ded4] text-[#30221b]"
+                    class="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E6E8DF] bg-white text-[#101D33] hover:border-[#7E9833] hover:bg-[#EDF2E1]"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                         width="24" height="24" viewBox="0 0 24 24"
-                         fill="none" stroke="currentColor"
-                         stroke-width="2" stroke-linecap="round">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    >
                         <line x1="4" y1="6" x2="20" y2="6"/>
                         <line x1="4" y1="12" x2="20" y2="12"/>
                         <line x1="4" y1="18" x2="20" y2="18"/>
                     </svg>
                 </button>
+
             </header>
 
+
+            <!-- CONTENU DE LA PAGE -->
 
             <div class="flex-1">
                 <?= $content ?>
             </div>
 
-            <!-- FOOTER ADMIN -->
 
-            <footer class="mt-auto border-t border-[#e8ded4] bg-white">
+            <!-- =================================================
+                 FOOTER ADMIN
+            ================================================== -->
+
+            <footer class="mt-auto border-t border-[#E6E8DF] bg-white">
 
                 <div class="mx-auto flex max-w-[1600px] flex-col gap-3 px-5 py-6 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
 
+
+                    <!-- IDENTITÉ -->
+
                     <div class="flex items-center gap-3">
 
-                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#30221b] text-lg font-bold text-[#f7b500]">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#101D33] text-lg font-extrabold text-[#A9C65B]">
                             I
                         </div>
 
                         <div>
-                            <p class="text-sm font-bold tracking-wide text-[#30221b]">
+                            <p class="text-sm font-extrabold tracking-wide text-[#101D33]">
                                 IMMO-SN
                             </p>
 
-                            <p class="text-xs text-[#8d7a6b]">
+                            <p class="text-xs text-[#71869A]">
                                 Votre plateforme immobilière au Sénégal
                             </p>
                         </div>
 
                     </div>
 
-                    <div class="text-xs leading-6 text-[#8d7a6b] md:text-right">
+
+                    <!-- INFORMATIONS -->
+
+                    <div class="text-xs leading-6 text-[#71869A] md:text-right">
 
                         <p>
                             Espace d’administration — Gestion des utilisateurs
@@ -300,6 +432,11 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
         </main>
 
     </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT SIDEBAR ADMIN
+    ====================================================== -->
 
     <script>
     (function () {
@@ -341,27 +478,38 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
         });
     })();
     </script>
+
+
 <?php elseif ($isModeratorArea): ?>
 
-    <!-- =========================================
+
+    <!-- =====================================================
          ESPACE MODÉRATEUR
-    ========================================== -->
+    ====================================================== -->
 
     <div class="flex min-h-screen w-full">
+
 
         <!-- SIDEBAR MODÉRATEUR -->
 
         <?php
         require BASE_PATH . '/app/Views/components/moderateur-sidebar.php';
         ?>
-<button
-    type="button"
-    id="moderatorSidebarOverlay"
-    aria-label="Fermer le menu"
-    class="fixed inset-0 z-40 hidden bg-black/50 lg:hidden"
-></button>
-        <!-- CONTENU MODÉRATEUR -->
-                 <!-- CONTENU MODÉRATEUR -->
+
+
+        <!-- OVERLAY MOBILE -->
+
+        <button
+            type="button"
+            id="moderatorSidebarOverlay"
+            aria-label="Fermer le menu"
+            class="fixed inset-0 z-40 hidden bg-[#101D33]/50 backdrop-blur-sm lg:hidden"
+        ></button>
+
+
+        <!-- =================================================
+             CONTENU MODÉRATEUR
+        ================================================== -->
 
         <main class="
             immo-main-content
@@ -377,61 +525,86 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
             lg:w-[calc(100%-270px)]
             lg:flex-none
         ">
-  <header class="sticky top-0 z-30 flex items-center justify-between border-b border-[#e8ded4] bg-white px-4 py-3 lg:hidden">
-    <div>
-        <p class="text-sm font-bold text-[#30221b]">IMMO-SN</p>
-        <p class="text-xs text-[#8d7a6b]">Espace modérateur</p>
-    </div>
 
-    <button
-        type="button"
-        id="moderatorSidebarOpen"
-        aria-label="Ouvrir le menu"
-        aria-controls="moderatorSidebar"
-        aria-expanded="false"
-        class="flex h-10 w-10 items-center justify-center rounded-lg border border-[#e8ded4] text-[#30221b]"
-    >
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-        >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-    </button>
-</header>    
-<div class="flex-1">
+
+            <!-- HEADER MOBILE MODÉRATEUR -->
+
+            <header class="sticky top-0 z-30 flex items-center justify-between border-b border-[#E6E8DF] bg-white/95 px-4 py-3 backdrop-blur-md lg:hidden">
+
+                <div>
+                    <p class="text-sm font-extrabold text-[#101D33]">
+                        IMMO-SN
+                    </p>
+
+                    <p class="text-xs text-[#71869A]">
+                        Espace modérateur
+                    </p>
+                </div>
+
+
+                <button
+                    type="button"
+                    id="moderatorSidebarOpen"
+                    aria-label="Ouvrir le menu"
+                    aria-controls="moderatorSidebar"
+                    aria-expanded="false"
+                    class="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E6E8DF] bg-white text-[#101D33] hover:border-[#7E9833] hover:bg-[#EDF2E1]"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+
+            </header>
+
+
+            <!-- CONTENU -->
+
+            <div class="flex-1">
                 <?= $content ?>
             </div>
 
-            <!-- FOOTER MODÉRATEUR -->
 
-            <footer class="mt-auto border-t border-[#e8ded4] bg-white">
+            <!-- =================================================
+                 FOOTER MODÉRATEUR
+            ================================================== -->
+
+            <footer class="mt-auto border-t border-[#E6E8DF] bg-white">
 
                 <div class="mx-auto flex max-w-[1600px] flex-col gap-3 px-5 py-6 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
 
+
+                    <!-- IDENTITÉ -->
+
                     <div class="flex items-center gap-3">
 
-                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#30221b] text-lg font-bold text-[#f7b500]">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#101D33] text-lg font-extrabold text-[#A9C65B]">
                             I
                         </div>
 
                         <div>
-                            <p class="text-sm font-bold tracking-wide text-[#30221b]">
+                            <p class="text-sm font-extrabold tracking-wide text-[#101D33]">
                                 IMMO-SN
                             </p>
 
-                            <p class="text-xs text-[#8d7a6b]">
+                            <p class="text-xs text-[#71869A]">
                                 Votre plateforme immobilière au Sénégal
                             </p>
                         </div>
 
                     </div>
 
-                    <div class="text-xs leading-6 text-[#8d7a6b] md:text-right">
+
+                    <!-- INFORMATIONS -->
+
+                    <div class="text-xs leading-6 text-[#71869A] md:text-right">
 
                         <p>
                             Espace modérateur — Sécurité et qualité des annonces
@@ -448,9 +621,14 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
 
             </footer>
 
-              </main>
+        </main>
 
     </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT SIDEBAR MODÉRATEUR
+    ====================================================== -->
 
     <script>
     (function () {
@@ -493,84 +671,119 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
     })();
     </script>
 
+
 <?php elseif ($isMemberArea): ?>
 
-    <!-- =========================================
+
+    <!-- =====================================================
          ESPACE MEMBRE
-    ========================================== -->
+    ====================================================== -->
 
     <div class="flex min-h-screen w-full">
+
 
         <!-- SIDEBAR MEMBRE -->
 
         <?php
         require BASE_PATH . '/app/Views/components/member-sidebar.php';
         ?>
-<button
-    type="button"
-    id="memberSidebarOverlay"
-    aria-label="Fermer le menu"
-    class="fixed inset-0 z-40 hidden bg-black/50 lg:hidden"
-></button>
-        <!-- CONTENU MEMBRE -->
 
-<main class="immo-main-content min-w-0 flex-1 page-transition flex flex-col lg:ml-[270px] lg:w-[calc(100%-270px)] lg:flex-none">
 
-<header class="sticky top-0 z-30 flex items-center justify-between border-b border-[#e8ded4] bg-white px-4 py-3 lg:hidden">
-    <div>
-        <p class="text-sm font-bold text-[#30221b]">IMMO-SN</p>
-        <p class="text-xs text-[#8d7a6b]">Espace membre</p>
-    </div>
+        <!-- OVERLAY MOBILE -->
 
-    <button
-        type="button"
-        id="memberSidebarOpen"
-        aria-label="Ouvrir le menu"
-        aria-controls="memberSidebar"
-        aria-expanded="false"
-        class="flex h-10 w-10 items-center justify-center rounded-lg border border-[#e8ded4] text-[#30221b]"
-    >
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
-        >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-    </button>
-</header>
+        <button
+            type="button"
+            id="memberSidebarOverlay"
+            aria-label="Fermer le menu"
+            class="fixed inset-0 z-40 hidden bg-[#101D33]/50 backdrop-blur-sm lg:hidden"
+        ></button>
+
+
+        <!-- =================================================
+             CONTENU MEMBRE
+        ================================================== -->
+
+        <main class="immo-main-content min-w-0 flex-1 page-transition flex flex-col lg:ml-[270px] lg:w-[calc(100%-270px)] lg:flex-none">
+
+
+            <!-- HEADER MOBILE MEMBRE -->
+
+            <header class="sticky top-0 z-30 flex items-center justify-between border-b border-[#E6E8DF] bg-white/95 px-4 py-3 backdrop-blur-md lg:hidden">
+
+                <div>
+                    <p class="text-sm font-extrabold text-[#101D33]">
+                        IMMO-SN
+                    </p>
+
+                    <p class="text-xs text-[#71869A]">
+                        Espace membre
+                    </p>
+                </div>
+
+
+                <button
+                    type="button"
+                    id="memberSidebarOpen"
+                    aria-label="Ouvrir le menu"
+                    aria-controls="memberSidebar"
+                    aria-expanded="false"
+                    class="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E6E8DF] bg-white text-[#101D33] hover:border-[#7E9833] hover:bg-[#EDF2E1]"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+
+            </header>
+
+
+            <!-- CONTENU -->
+
             <div class="flex-1">
                 <?= $content ?>
             </div>
 
-            <!-- FOOTER COMMUN DE L'ESPACE MEMBRE -->
 
-            <footer class="mt-auto border-t border-[#e8ded4] bg-white">
+            <!-- =================================================
+                 FOOTER MEMBRE
+            ================================================== -->
+
+            <footer class="mt-auto border-t border-[#E6E8DF] bg-white">
 
                 <div class="mx-auto flex max-w-[1600px] flex-col gap-3 px-5 py-6 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
 
+
+                    <!-- IDENTITÉ -->
+
                     <div class="flex items-center gap-3">
 
-                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#30221b] text-lg font-bold text-[#f7b500]">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#101D33] text-lg font-extrabold text-[#A9C65B]">
                             I
                         </div>
 
                         <div>
-                            <p class="text-sm font-bold tracking-wide text-[#30221b]">
+                            <p class="text-sm font-extrabold tracking-wide text-[#101D33]">
                                 IMMO-SN
                             </p>
 
-                            <p class="text-xs text-[#8d7a6b]">
+                            <p class="text-xs text-[#71869A]">
                                 Votre plateforme immobilière au Sénégal
                             </p>
                         </div>
 
                     </div>
 
-                    <div class="text-xs leading-6 text-[#8d7a6b] md:text-right">
+
+                    <!-- INFORMATIONS -->
+
+                    <div class="text-xs leading-6 text-[#71869A] md:text-right">
 
                         <p>
                             Espace membre — Votre gestion immobilière
@@ -587,9 +800,14 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
 
             </footer>
 
-              </main>
+        </main>
 
     </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT SIDEBAR MEMBRE
+    ====================================================== -->
 
     <script>
     (function () {
@@ -632,36 +850,49 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
     })();
     </script>
 
+
 <?php elseif ($isAgencyArea): ?>
-    <!-- =========================================
+
+
+    <!-- =====================================================
          ESPACE AGENCE
-    ========================================== -->
+    ====================================================== -->
 
     <main class="min-h-screen w-full page-transition">
         <?= $content ?>
     </main>
+
+
 <?php else: ?>
 
-    <!-- =========================================
+
+    <!-- =====================================================
          SITE PUBLIC
-    ========================================== -->
+    ====================================================== -->
+
+
+    <!-- NAVBAR -->
 
     <?php
     require BASE_PATH . '/app/Views/components/navbar.php';
     ?>
 
+
+    <!-- CONTENU PRINCIPAL -->
+
     <main class="flex-1 page-transition">
-
         <?= $content ?>
-
     </main>
+
+
+    <!-- FOOTER PUBLIC -->
 
     <?php
     require BASE_PATH . '/app/Views/components/footer.php';
     ?>
 
-<?php endif; ?>
 
+<?php endif; ?>
 
 
 </body>
