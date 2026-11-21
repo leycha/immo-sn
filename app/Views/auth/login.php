@@ -1,3 +1,4 @@
+
 <?php
 
 use Core\Session;
@@ -18,65 +19,113 @@ $success = $success ?? null;
         content="width=device-width, initial-scale=1.0"
     >
 
+    <meta name="theme-color" content="#071B36">
+
     <title>
-        <?= htmlspecialchars($title ?? 'Connexion — ImmoSN', ENT_QUOTES, 'UTF-8') ?>
+        <?= htmlspecialchars($title ?? 'Connexion — IMMO-SN', ENT_QUOTES, 'UTF-8') ?>
     </title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: #F5B800;
+            color: #071B36;
+        }
+
+        :focus-visible {
+            outline: 3px solid rgba(245, 184, 0, 0.35);
+            outline-offset: 3px;
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #F5B800 0%, #D7A200 100%);
+        }
+
+        .login-shadow {
+            box-shadow: 0 25px 80px rgba(7, 27, 54, 0.10);
+        }
+
+        .hero-pattern {
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 45px 45px;
+        }
+    </style>
+
 </head>
 
-<body class="min-h-screen bg-[#F5F3ED] text-[#101D33]">
+<body class="min-h-screen bg-[#F5F3ED] text-[#071B36]">
 
 <div class="grid min-h-screen min-w-0 lg:grid-cols-2">
 
     <!-- =====================================================
-         PARTIE GAUCHE : PRESENTATION
+         PARTIE GAUCHE : PRÉSENTATION
     ====================================================== -->
 
-    <div class="relative hidden min-w-0 overflow-hidden bg-[#101D33] text-white lg:flex">
+    <section class="relative hidden min-w-0 overflow-hidden bg-[#071B36] text-white lg:flex">
 
-        <!-- DECORATION -->
+        <!-- Décoration -->
+        <div class="absolute inset-0 hero-pattern"></div>
+
         <div
             class="absolute inset-0"
             style="
                 background:
                     radial-gradient(
-                        circle at 15% 15%,
-                        rgba(126, 152, 51, 0.35),
+                        circle at 12% 15%,
+                        rgba(245, 184, 0, 0.16),
                         transparent 38%
                     ),
                     radial-gradient(
-                        circle at 85% 85%,
-                        rgba(113, 134, 154, 0.20),
-                        transparent 40%
+                        circle at 90% 85%,
+                        rgba(113, 134, 154, 0.17),
+                        transparent 42%
                     );
             "
         ></div>
 
-        <div class="absolute -right-32 -top-32 h-96 w-96 rounded-full border border-white/5"></div>
+        <div class="absolute -right-32 -top-32 h-96 w-96 rounded-full border border-[#F5B800]/10"></div>
         <div class="absolute -right-20 -top-20 h-80 w-80 rounded-full border border-white/5"></div>
         <div class="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full border border-white/5"></div>
 
-        <!-- CONTENU -->
+        <div class="absolute right-20 top-1/3 h-2 w-2 rounded-full bg-[#F5B800]/50"></div>
+        <div class="absolute right-36 top-1/2 h-1.5 w-1.5 rounded-full bg-white/20"></div>
+
+        <!-- Contenu -->
         <div class="relative z-10 flex w-full min-w-0 flex-col justify-between p-8 xl:p-14">
 
-            <!-- LOGO -->
+            <!-- Logo -->
             <div>
 
                 <a href="/immo-sn/" class="inline-flex items-center gap-3">
 
-                    <div
-                        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl
-                               bg-[#7E9833] text-xl font-black text-white shadow-lg"
-                    >
+                    <div class="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[#F5B800]/30 bg-white/10 text-xl font-black text-[#F5B800] shadow-lg">
+
                         I
+
+                        <span class="absolute -bottom-1 -right-1 h-3.5 w-3.5 rounded-full border-[3px] border-[#071B36] bg-[#F5B800]"></span>
+
                     </div>
 
                     <div>
 
                         <div class="text-2xl font-black tracking-tight">
-                            Immo<span class="text-[#A9C65B]">SN</span>
+                            Immo<span class="text-[#F5B800]">SN</span>
                         </div>
 
                         <div class="text-xs tracking-wide text-white/50">
@@ -89,16 +138,14 @@ $success = $success ?? null;
 
             </div>
 
-
-            <!-- TEXTE CENTRAL -->
+            <!-- Texte central -->
             <div class="max-w-xl min-w-0 py-12">
 
-                <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#A9C65B]/20
-                            bg-[#7E9833]/10 px-4 py-2">
+                <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#F5B800]/20 bg-[#F5B800]/10 px-4 py-2">
 
-                    <span class="h-2 w-2 rounded-full bg-[#A9C65B]"></span>
+                    <span class="h-2 w-2 rounded-full bg-[#F5B800] shadow-[0_0_10px_rgba(245,184,0,0.5)]"></span>
 
-                    <span class="text-xs font-bold uppercase tracking-[0.18em] text-[#A9C65B]">
+                    <span class="text-xs font-bold uppercase tracking-[0.18em] text-[#FFD45C]">
                         Bienvenue chez ImmoSN
                     </span>
 
@@ -108,7 +155,7 @@ $success = $success ?? null;
 
                     Votre projet immobilier,
 
-                    <span class="text-[#A9C65B]">
+                    <span class="text-[#F5B800]">
                         notre priorité.
                     </span>
 
@@ -122,24 +169,21 @@ $success = $success ?? null;
 
                 </p>
 
+                <!-- Séparateur -->
+                <div class="my-10 h-1 w-20 rounded-full gold-gradient"></div>
 
-                <!-- SEPARATEUR -->
-                <div class="my-10 h-px w-24 bg-[#7E9833]"></div>
+                <!-- Avantages -->
+                <div class="space-y-6">
 
-
-                <!-- POINTS -->
-                <div class="space-y-5">
-
+                    <!-- Espace immobilier -->
                     <div class="flex items-start gap-4">
 
-                        <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl
-                                   bg-white/5 text-[#A9C65B]"
-                        >
+                        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#F5B800]/15 bg-white/5 text-[#F5B800]">
+
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="20"
-                                height="20"
+                                width="21"
+                                height="21"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
@@ -151,6 +195,7 @@ $success = $success ?? null;
                                 <path d="M5 9v11h14V9"/>
                                 <path d="M9 20v-6h6v6"/>
                             </svg>
+
                         </div>
 
                         <div>
@@ -159,7 +204,7 @@ $success = $success ?? null;
                                 Votre espace immobilier
                             </p>
 
-                            <p class="mt-1 text-sm text-white/45">
+                            <p class="mt-1 text-sm leading-5 text-white/45">
                                 Retrouvez tous vos biens et vos activités.
                             </p>
 
@@ -167,17 +212,15 @@ $success = $success ?? null;
 
                     </div>
 
-
+                    <!-- Expérience simplifiée -->
                     <div class="flex items-start gap-4">
 
-                        <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl
-                                   bg-white/5 text-[#A9C65B]"
-                        >
+                        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#F5B800]/15 bg-white/5 text-[#F5B800]">
+
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="20"
-                                height="20"
+                                width="21"
+                                height="21"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
@@ -185,11 +228,12 @@ $success = $success ?? null;
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                             >
-                                <path d="M20 7v10"/>
-                                <path d="M4 7v10"/>
-                                <path d="M4 12h16"/>
-                                <path d="M8 7a4 4 0 0 1 8 0"/>
+                                <rect x="3" y="4" width="18" height="16" rx="2"/>
+                                <path d="M7 8h10"/>
+                                <path d="M7 12h6"/>
+                                <path d="M7 16h4"/>
                             </svg>
+
                         </div>
 
                         <div>
@@ -198,7 +242,7 @@ $success = $success ?? null;
                                 Une expérience simplifiée
                             </p>
 
-                            <p class="mt-1 text-sm text-white/45">
+                            <p class="mt-1 text-sm leading-5 text-white/45">
                                 Gérez vos annonces en toute simplicité.
                             </p>
 
@@ -206,17 +250,15 @@ $success = $success ?? null;
 
                     </div>
 
-
+                    <!-- Sécurité -->
                     <div class="flex items-start gap-4">
 
-                        <div
-                            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl
-                                   bg-white/5 text-[#A9C65B]"
-                        >
+                        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#F5B800]/15 bg-white/5 text-[#F5B800]">
+
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="20"
-                                height="20"
+                                width="21"
+                                height="21"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
@@ -227,6 +269,7 @@ $success = $success ?? null;
                                 <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/>
                                 <path d="m9 12 2 2 4-4"/>
                             </svg>
+
                         </div>
 
                         <div>
@@ -235,7 +278,7 @@ $success = $success ?? null;
                                 Un espace sécurisé
                             </p>
 
-                            <p class="mt-1 text-sm text-white/45">
+                            <p class="mt-1 text-sm leading-5 text-white/45">
                                 Accédez à votre compte en toute confiance.
                             </p>
 
@@ -247,17 +290,18 @@ $success = $success ?? null;
 
             </div>
 
-
-            <!-- FOOTER -->
+            <!-- Footer -->
             <div class="flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6">
 
                 <p class="text-xs text-white/35">
-                    © <?= date('Y') ?> ImmoSN — Immobilier au Sénégal
+                    © <?= date('Y') ?>
+                    <span class="font-bold text-white/60">ImmoSN</span>
+                    — Immobilier au Sénégal
                 </p>
 
-                <div class="flex items-center gap-2 text-xs text-white/40">
+                <div class="flex items-center gap-2 text-xs text-white/45">
 
-                    <span class="h-2 w-2 rounded-full bg-[#7E9833]"></span>
+                    <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
 
                     <span>Votre partenaire immobilier</span>
 
@@ -267,53 +311,56 @@ $success = $success ?? null;
 
         </div>
 
-    </div>
+    </section>
 
 
     <!-- =====================================================
          PARTIE DROITE : FORMULAIRE DE CONNEXION
     ====================================================== -->
 
-    <div class="flex min-w-0 items-center justify-center px-4 py-10 sm:px-8 sm:py-12">
+    <section class="flex min-w-0 items-center justify-center px-4 py-10 sm:px-8 sm:py-12">
 
         <div class="w-full min-w-0 max-w-md">
 
-
-            <!-- LOGO MOBILE -->
+            <!-- Logo mobile -->
             <div class="mb-10 text-center lg:hidden">
 
                 <a href="/immo-sn/" class="inline-flex items-center gap-3">
 
-                    <div
-                        class="flex h-12 w-12 items-center justify-center rounded-2xl
-                               bg-[#7E9833] text-xl font-black text-white"
-                    >
+                    <div class="relative flex h-12 w-12 items-center justify-center rounded-2xl border border-[#F5B800]/30 bg-[#071B36] text-xl font-black text-[#F5B800] shadow-lg">
+
                         I
+
+                        <span class="absolute -bottom-1 -right-1 h-3.5 w-3.5 rounded-full border-[3px] border-[#F5F3ED] bg-[#F5B800]"></span>
+
                     </div>
 
-                    <div class="text-2xl font-black text-[#101D33]">
-                        Immo<span class="text-[#7E9833]">SN</span>
+                    <div class="text-2xl font-black text-[#071B36]">
+                        Immo<span class="text-[#B88700]">SN</span>
                     </div>
 
                 </a>
 
+                <p class="mt-2 text-xs text-[#71869A]">
+                    Immobilier au Sénégal
+                </p>
+
             </div>
 
-
-            <!-- EN-TETE -->
+            <!-- En-tête -->
             <div class="mb-8 min-w-0">
 
-                <div class="mb-3 flex items-center gap-2">
+                <div class="mb-4 flex items-center gap-2">
 
-                    <span class="h-1.5 w-8 rounded-full bg-[#7E9833]"></span>
+                    <span class="h-1.5 w-8 rounded-full gold-gradient"></span>
 
-                    <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#7E9833]">
+                    <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#B88700]">
                         Espace membre
                     </span>
 
                 </div>
 
-                <h2 class="break-words text-3xl font-black tracking-tight text-[#101D33] sm:text-4xl">
+                <h2 class="break-words text-3xl font-black tracking-tight text-[#071B36] sm:text-4xl">
                     Heureux de vous revoir !
                 </h2>
 
@@ -323,21 +370,14 @@ $success = $success ?? null;
 
             </div>
 
-
-            <!-- ERREUR -->
+            <!-- Erreur -->
             <?php if (!empty($error)): ?>
 
-                <div
-                    class="mb-6 min-w-0 rounded-2xl border border-red-200
-                           bg-red-50 px-4 py-4 text-sm text-red-700"
-                >
+                <div class="mb-6 min-w-0 rounded-2xl border border-red-200 bg-red-50 px-4 py-4 text-sm text-red-700">
 
                     <div class="flex min-w-0 items-start gap-3">
 
-                        <div
-                            class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg
-                                   bg-red-100 font-bold text-red-600"
-                        >
+                        <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-red-100 font-bold text-red-600">
                             !
                         </div>
 
@@ -351,21 +391,14 @@ $success = $success ?? null;
 
             <?php endif; ?>
 
-
-            <!-- SUCCES -->
+            <!-- Succès -->
             <?php if (!empty($success)): ?>
 
-                <div
-                    class="mb-6 min-w-0 rounded-2xl border border-green-200
-                           bg-green-50 px-4 py-4 text-sm text-green-700"
-                >
+                <div class="mb-6 min-w-0 rounded-2xl border border-green-200 bg-green-50 px-4 py-4 text-sm text-green-700">
 
                     <div class="flex min-w-0 items-start gap-3">
 
-                        <div
-                            class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg
-                                   bg-green-100 font-bold text-green-600"
-                        >
+                        <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-green-100 font-bold text-green-600">
                             ✓
                         </div>
 
@@ -379,9 +412,19 @@ $success = $success ?? null;
 
             <?php endif; ?>
 
+            <!-- Carte formulaire -->
+            <div class="overflow-hidden rounded-[28px] border border-[#E8E2D4] bg-white p-5 login-shadow sm:p-7">
 
-            <!-- CARD FORMULAIRE -->
-            <div class="rounded-[28px] border border-[#E6E8DF] bg-white p-5 shadow-sm sm:p-7">
+                <!-- Petit accent -->
+                <div class="mb-6 flex items-center gap-2">
+
+                    <span class="h-1 w-8 rounded-full gold-gradient"></span>
+
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#71869A]">
+                        Accéder à mon compte
+                    </span>
+
+                </div>
 
                 <form
                     method="POST"
@@ -389,15 +432,14 @@ $success = $success ?? null;
                     class="min-w-0 space-y-6"
                 >
 
-
-                    <!-- EMAIL -->
+                    <!-- Email -->
                     <div class="min-w-0">
 
                         <label
                             for="email"
-                            class="mb-2.5 block text-sm font-bold text-[#101D33]"
+                            class="mb-2.5 block text-sm font-bold text-[#071B36]"
                         >
-                            Adresse email
+                            Adresse e-mail
                         </label>
 
                         <div class="relative">
@@ -429,25 +471,19 @@ $success = $success ?? null;
                                 placeholder="exemple@email.com"
                                 autocomplete="email"
                                 required
-                                class="w-full min-w-0 rounded-2xl border border-[#E6E8DF]
-                                       bg-[#F5F3ED]/50 py-3.5 pl-12 pr-4 text-sm text-[#101D33]
-                                       outline-none transition duration-200
-                                       placeholder:text-[#71869A]/60
-                                       focus:border-[#7E9833] focus:bg-white
-                                       focus:ring-4 focus:ring-[#7E9833]/10"
+                                class="w-full min-w-0 rounded-2xl border border-[#E8E2D4] bg-[#FAFAF8] py-3.5 pl-12 pr-4 text-sm text-[#071B36] outline-none transition duration-200 placeholder:text-[#A0ADBA] hover:border-[#D7A200]/50 focus:border-[#D7A200] focus:bg-white focus:ring-4 focus:ring-[#F5B800]/10"
                             >
 
                         </div>
 
                     </div>
 
-
-                    <!-- MOT DE PASSE -->
+                    <!-- Mot de passe -->
                     <div class="min-w-0">
 
                         <label
                             for="password"
-                            class="mb-2.5 block text-sm font-bold text-[#101D33]"
+                            class="mb-2.5 block text-sm font-bold text-[#071B36]"
                         >
                             Mot de passe
                         </label>
@@ -480,22 +516,14 @@ $success = $success ?? null;
                                 placeholder="Votre mot de passe"
                                 autocomplete="current-password"
                                 required
-                                class="w-full min-w-0 rounded-2xl border border-[#E6E8DF]
-                                       bg-[#F5F3ED]/50 py-3.5 pl-12 pr-14 text-sm text-[#101D33]
-                                       outline-none transition duration-200
-                                       placeholder:text-[#71869A]/60
-                                       focus:border-[#7E9833] focus:bg-white
-                                       focus:ring-4 focus:ring-[#7E9833]/10"
+                                class="w-full min-w-0 rounded-2xl border border-[#E8E2D4] bg-[#FAFAF8] py-3.5 pl-12 pr-14 text-sm text-[#071B36] outline-none transition duration-200 placeholder:text-[#A0ADBA] hover:border-[#D7A200]/50 focus:border-[#D7A200] focus:bg-white focus:ring-4 focus:ring-[#F5B800]/10"
                             >
 
-                            <!-- BOUTON AFFICHER -->
+                            <!-- Bouton afficher / masquer -->
                             <button
                                 type="button"
                                 id="togglePassword"
-                                class="absolute right-2 top-1/2 flex h-10 w-10
-                                       -translate-y-1/2 items-center justify-center rounded-xl
-                                       text-[#71869A] transition
-                                       hover:bg-[#EDF2E1] hover:text-[#6D852B]"
+                                class="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-xl text-[#71869A] transition hover:bg-[#FFF9E6] hover:text-[#B88700]"
                                 aria-label="Afficher le mot de passe"
                                 aria-pressed="false"
                             >
@@ -522,29 +550,22 @@ $success = $success ?? null;
 
                     </div>
 
-
-                    <!-- MOT DE PASSE OUBLIE -->
+                    <!-- Mot de passe oublié -->
                     <div class="flex justify-end">
 
                         <a
                             href="/immo-sn/mot-de-passe-oublie"
-                            class="text-sm font-semibold text-[#7E9833] transition
-                                   hover:text-[#6D852B] hover:underline"
+                            class="text-sm font-semibold text-[#B88700] transition hover:text-[#8A6500] hover:underline"
                         >
                             Mot de passe oublié ?
                         </a>
 
                     </div>
 
-
-                    <!-- BOUTON CONNEXION -->
+                    <!-- Bouton connexion -->
                     <button
                         type="submit"
-                        class="group flex w-full items-center justify-center gap-3
-                               rounded-2xl bg-[#7E9833] px-5 py-4
-                               font-bold text-white shadow-sm transition duration-200
-                               hover:-translate-y-0.5 hover:bg-[#6D852B] hover:shadow-md
-                               active:translate-y-0"
+                        class="group flex w-full items-center justify-center gap-3 rounded-2xl bg-[#071B36] px-5 py-4 font-bold text-white shadow-lg shadow-[#071B36]/15 transition duration-200 hover:-translate-y-0.5 hover:bg-[#102B4C] hover:shadow-xl active:translate-y-0"
                     >
 
                         <span>Se connecter</span>
@@ -555,7 +576,7 @@ $success = $success ?? null;
                             height="19"
                             viewBox="0 0 24 24"
                             fill="none"
-                            stroke="currentColor"
+                            stroke="#F5B800"
                             stroke-width="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
@@ -571,8 +592,7 @@ $success = $success ?? null;
 
             </div>
 
-
-            <!-- INSCRIPTION -->
+            <!-- Inscription -->
             <div class="mt-7 min-w-0 text-center">
 
                 <p class="break-words text-sm text-[#71869A]">
@@ -581,10 +601,9 @@ $success = $success ?? null;
 
                 <a
                     href="/immo-sn/inscription"
-                    class="mt-2 inline-flex max-w-full items-center justify-center gap-2
-                           break-words font-bold text-[#7E9833] transition
-                           hover:text-[#6D852B]"
+                    class="mt-2 inline-flex max-w-full items-center justify-center gap-2 break-words font-bold text-[#B88700] transition hover:text-[#8A6500]"
                 >
+
                     Créer un compte
 
                     <svg
@@ -606,14 +625,12 @@ $success = $success ?? null;
 
             </div>
 
-
-            <!-- RETOUR ACCUEIL -->
+            <!-- Retour accueil -->
             <div class="mt-8 text-center">
 
                 <a
                     href="/immo-sn/"
-                    class="inline-flex items-center gap-2 break-words text-sm font-semibold
-                           text-[#71869A] transition hover:text-[#101D33]"
+                    class="inline-flex items-center gap-2 break-words text-sm font-semibold text-[#71869A] transition hover:text-[#071B36]"
                 >
 
                     <svg
@@ -637,9 +654,10 @@ $success = $success ?? null;
 
             </div>
 
-
-            <!-- FOOTER MOBILE -->
+            <!-- Footer mobile -->
             <div class="mt-10 text-center lg:hidden">
+
+                <div class="mx-auto mb-3 h-px w-16 bg-[#E8E2D4]"></div>
 
                 <p class="text-xs text-[#71869A]/70">
                     © <?= date('Y') ?> ImmoSN — Immobilier au Sénégal
@@ -649,17 +667,15 @@ $success = $success ?? null;
 
         </div>
 
-    </div>
+    </section>
 
 </div>
-
 
 <!-- =====================================================
      SCRIPT : AFFICHER / MASQUER LE MOT DE PASSE
 ====================================================== -->
 
 <script>
-
 const passwordInput = document.getElementById('password');
 const togglePassword = document.getElementById('togglePassword');
 const eyeIcon = document.getElementById('eyeIcon');
@@ -701,9 +717,7 @@ if (passwordInput && togglePassword) {
     });
 
 }
-
 </script>
 
 </body>
-
 </html>

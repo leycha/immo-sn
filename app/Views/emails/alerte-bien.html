@@ -4,115 +4,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
     <title>Nouvelles annonces - IMMO-SN</title>
 </head>
 
-<body style="margin:0;padding:0;background-color:#F5F3ED;font-family:Arial,Helvetica,sans-serif;color:#101D33;">
+<body style="margin:0;padding:0;background-color:#F5F3ED;font-family:Arial,Helvetica,sans-serif;color:#071B36;">
 
     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
         style="background-color:#F5F3ED;padding:30px 12px;">
+
         <tr>
             <td align="center">
 
                 <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0"
-                    style="max-width:600px;width:100%;background-color:#FFFFFF;border-radius:14px;overflow:hidden;">
+                    style="max-width:600px;width:100%;background-color:#FFFFFF;border-radius:18px;overflow:hidden;border:1px solid #E8E2D4;">
 
-                    <!-- HEADER -->
+                    <!-- =================================================
+                         HEADER
+                    ================================================== -->
+
                     <tr>
                         <td align="center"
-                            style="background-color:#101D33;padding:32px 25px;">
+                            style="background-color:#071B36;padding:35px 25px;">
 
-                            <h1 style="margin:0;color:#A9C65B;font-size:30px;font-weight:bold;letter-spacing:1px;">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                                <tr>
+                                    <td align="center"
+                                        style="width:48px;height:48px;background-color:#F5B800;border-radius:13px;color:#071B36;font-size:25px;font-weight:bold;">
+                                        I
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <h1 style="margin:15px 0 0;color:#F5B800;font-size:30px;font-weight:bold;letter-spacing:1.5px;">
                                 IMMO-SN
                             </h1>
 
-                            <p style="margin:10px 0 0;color:#FFFFFF;font-size:14px;line-height:1.6;">
+                            <p style="margin:9px 0 0;color:#FFFFFF;font-size:14px;line-height:1.6;">
                                 Votre plateforme immobilière au Sénégal
                             </p>
 
-                            <div style="width:55px;height:3px;background-color:#7E9833;margin:20px auto 0;"></div>
+                            <table role="presentation" width="55" cellspacing="0" cellpadding="0" border="0"
+                                style="margin:20px auto 0;">
+                                <tr>
+                                    <td height="3" style="background-color:#F5B800;border-radius:5px;font-size:0;line-height:0;">
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <p style="margin:18px 0 0;color:#D5E0EC;font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;">
+                                Votre veille immobilière
+                            </p>
 
                         </td>
                     </tr>
 
-                    <!-- CONTENU -->
+
+                    <!-- =================================================
+                         CONTENU PRINCIPAL
+                    ================================================== -->
+
                     <tr>
                         <td style="padding:35px 30px;">
 
-                            <h2 style="margin:0 0 20px;color:#101D33;font-size:23px;line-height:1.4;">
+                            <!-- SALUTATION -->
+
+                            <p style="margin:0 0 8px;color:#B88700;font-size:12px;font-weight:bold;letter-spacing:1.2px;text-transform:uppercase;">
+                                Votre alerte immobilière
+                            </p>
+
+                            <h2 style="margin:0 0 20px;color:#071B36;font-size:25px;line-height:1.4;font-weight:bold;">
                                 Bonjour {{nom}} !
                             </h2>
 
-                            <p style="margin:0 0 20px;font-size:15px;line-height:1.8;color:#4B5563;">
+                            <p style="margin:0 0 20px;font-size:15px;line-height:1.8;color:#526174;">
                                 Bonne nouvelle ! De nouvelles annonces correspondent aux critères de votre alerte immobilière IMMO-SN.
                             </p>
 
-                            <!-- TITRE DES ANNONCES -->
+
+                            <!-- BANDEAU INFORMATION -->
+
                             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
-                                style="margin:25px 0 18px;">
+                                style="margin:25px 0;background-color:#FFF9E6;border:1px solid #FFF0BF;border-radius:12px;">
+
                                 <tr>
-                                    <td style="border-left:4px solid #7E9833;padding-left:12px;">
-                                        <h3 style="margin:0;color:#101D33;font-size:18px;">
+                                    <td style="padding:16px 18px;">
+
+                                        <p style="margin:0;color:#8A6500;font-size:13px;font-weight:bold;line-height:1.6;">
+                                            De nouvelles opportunités immobilières vous attendent.
+                                        </p>
+
+                                        <p style="margin:5px 0 0;color:#71869A;font-size:12px;line-height:1.6;">
+                                            Découvrez les biens sélectionnés selon vos critères de recherche.
+                                        </p>
+
+                                    </td>
+                                </tr>
+
+                            </table>
+
+
+                            <!-- TITRE DES ANNONCES -->
+
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+                                style="margin:28px 0 18px;">
+
+                                <tr>
+                                    <td style="border-left:4px solid #F5B800;padding:3px 0 3px 13px;">
+
+                                        <h3 style="margin:0;color:#071B36;font-size:18px;line-height:1.5;">
                                             Découvrez les nouvelles annonces
                                         </h3>
+
                                     </td>
                                 </tr>
+
                             </table>
+
 
                             <!-- LISTE DES BIENS -->
+
                             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
-                                style="background-color:#F5F3ED;border-radius:10px;">
+                                style="background-color:#FAFAF8;border:1px solid #E8E2D4;border-radius:12px;">
+
                                 <tr>
-                                    <td style="padding:18px 20px;">
-                                        <ul style="margin:0;padding-left:20px;font-size:15px;line-height:2;color:#34445A;">
+                                    <td style="padding:20px 22px;">
+
+                                        <ul style="margin:0;padding-left:20px;font-size:14px;line-height:2;color:#34445A;">
                                             {{liste_biens}}
                                         </ul>
+
                                     </td>
                                 </tr>
+
                             </table>
 
-                            <p style="margin:25px 0 0;font-size:15px;line-height:1.8;color:#4B5563;">
-                                Ces biens pourraient vous intéresser. Connectez-vous à IMMO-SN pour consulter tous les détails et contacter les annonceurs.
+
+                            <!-- TEXTE COMPLÉMENTAIRE -->
+
+                            <p style="margin:25px 0 0;font-size:14px;line-height:1.9;color:#526174;">
+                                Ces biens pourraient vous intéresser. Connectez-vous à IMMO-SN pour consulter leurs caractéristiques, découvrir les photos et contacter directement les annonceurs.
                             </p>
 
-                            <!-- BOUTON -->
+
+                            <!-- BOUTON PRINCIPAL -->
+
                             <table role="presentation" cellspacing="0" cellpadding="0" border="0"
-                                align="center" style="margin:30px auto;">
+                                align="center" style="margin:32px auto;">
+
                                 <tr>
-                                    <td align="center" style="background-color:#7E9833;border-radius:8px;">
+                                    <td align="center" style="background-color:#F5B800;border-radius:10px;">
+
                                         <a href="{{lien_plateforme}}"
-                                            style="display:inline-block;padding:15px 30px;color:#FFFFFF;text-decoration:none;font-size:15px;font-weight:bold;border-radius:8px;">
-                                            Découvrir les annonces
+                                            style="display:inline-block;padding:16px 32px;color:#071B36;text-decoration:none;font-size:14px;font-weight:bold;border-radius:10px;letter-spacing:0.2px;">
+                                            Découvrir les annonces &rarr;
                                         </a>
+
                                     </td>
                                 </tr>
+
                             </table>
 
-                            <!-- INFO ALERTES -->
+
+                            <!-- RAPPEL ALERTES -->
+
                             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
-                                style="margin-top:25px;border-top:1px solid #E6E8DF;">
+                                style="margin-top:28px;border-top:1px solid #E8E2D4;">
+
                                 <tr>
                                     <td style="padding-top:20px;">
-                                        <p style="margin:0;font-size:13px;line-height:1.8;color:#71869A;">
-                                            Vous recevez ce message parce que vous avez créé une alerte immobilière sur IMMO-SN.
+
+                                        <p style="margin:0;font-size:12px;line-height:1.8;color:#71869A;">
+                                            Vous recevez ce message parce que vous avez créé une alerte immobilière sur IMMO-SN. Cette alerte vous permet de rester informé des nouvelles annonces correspondant à vos critères.
                                         </p>
+
                                     </td>
                                 </tr>
+
                             </table>
 
                         </td>
                     </tr>
 
-                    <!-- FOOTER -->
-                    <tr>
-                        <td align="center" style="background-color:#101D33;padding:22px 20px;">
 
-                            <p style="margin:0;color:#A9C65B;font-size:13px;font-weight:bold;">
+                    <!-- =================================================
+                         FOOTER
+                    ================================================== -->
+
+                    <tr>
+                        <td align="center" style="background-color:#071B36;padding:25px 20px;">
+
+                            <p style="margin:0;color:#F5B800;font-size:17px;font-weight:bold;letter-spacing:1px;">
                                 IMMO-SN
                             </p>
 
-                            <p style="margin:8px 0 0;color:#FFFFFF;font-size:12px;line-height:1.6;">
-                                © IMMO-SN — Plateforme immobilière au Sénégal
+                            <p style="margin:9px 0 0;color:#FFFFFF;font-size:12px;line-height:1.7;">
+                                Votre plateforme immobilière au Sénégal
+                            </p>
+
+                            <table role="presentation" width="45" cellspacing="0" cellpadding="0" border="0"
+                                style="margin:16px auto;">
+                                <tr>
+                                    <td height="1" style="background-color:#B88700;font-size:0;line-height:0;">
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <p style="margin:0;color:#D5E0EC;font-size:11px;line-height:1.7;">
+                                &copy; IMMO-SN — Tous droits réservés.
+                            </p>
+
+                            <p style="margin:6px 0 0;color:#9AAABD;font-size:10px;line-height:1.6;">
+                                L'immobilier sénégalais, simplement.
                             </p>
 
                         </td>
@@ -122,6 +227,7 @@
 
             </td>
         </tr>
+
     </table>
 
 </body>

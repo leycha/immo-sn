@@ -1,3 +1,4 @@
+
 <?php
 use Core\Session;
 ?>
@@ -6,7 +7,6 @@ use Core\Session;
 <html lang="fr">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -19,20 +19,18 @@ use Core\Session;
     </title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-
 </head>
 
 <body class="min-h-screen bg-[#F5F3ED] text-[#101D33]">
 
 <div class="grid min-h-screen lg:grid-cols-2">
 
-
     <!-- =====================================================
-         PARTIE GAUCHE : IDENTITE VISUELLE
+         PARTIE GAUCHE : IDENTITÉ VISUELLE
     ====================================================== -->
 
     <aside
-        class="relative hidden overflow-hidden bg-[#101D33] p-10 text-white
+        class="relative hidden overflow-hidden bg-[#071B36] p-10 text-white
                lg:flex lg:flex-col lg:justify-between xl:p-14"
     >
 
@@ -44,7 +42,7 @@ use Core\Session;
                 background:
                     radial-gradient(
                         circle at 15% 15%,
-                        rgba(126, 152, 51, .28),
+                        rgba(245, 184, 0, .20),
                         transparent 38%
                     ),
                     radial-gradient(
@@ -55,10 +53,9 @@ use Core\Session;
             "
         ></div>
 
-        <div class="absolute -bottom-32 -right-32 h-[480px] w-[480px] rounded-full border border-[#A9C65B]/10"></div>
+        <div class="absolute -bottom-32 -right-32 h-[480px] w-[480px] rounded-full border border-[#F5B800]/10"></div>
 
-        <div class="absolute -bottom-20 -right-20 h-[360px] w-[360px] rounded-full border border-[#A9C65B]/10"></div>
-
+        <div class="absolute -bottom-20 -right-20 h-[360px] w-[360px] rounded-full border border-[#F5B800]/10"></div>
 
         <!-- LOGO -->
 
@@ -66,36 +63,36 @@ use Core\Session;
 
             <div
                 class="flex h-12 w-12 items-center justify-center rounded-2xl
-                       bg-[#7E9833] text-xl font-black text-white"
+                       bg-[#F5B800] text-xl font-black text-[#071B36]
+                       shadow-lg shadow-black/10"
             >
                 I
             </div>
 
             <div>
-
                 <div class="text-2xl font-black">
-                    Immo<span class="text-[#A9C65B]">SN</span>
+                    Immo<span class="text-[#F5B800]">SN</span>
                 </div>
 
                 <p class="text-xs text-white/45">
                     Immobilier au Sénégal
                 </p>
-
             </div>
 
         </a>
-
 
         <!-- TEXTE -->
 
         <div class="relative z-10 max-w-xl py-12">
 
-            <div class="mb-6 inline-flex items-center gap-2 rounded-full
-                        border border-[#A9C65B]/20 bg-[#7E9833]/10 px-4 py-2">
+            <div
+                class="mb-6 inline-flex items-center gap-2 rounded-full
+                       border border-[#F5B800]/20 bg-[#F5B800]/10 px-4 py-2"
+            >
 
-                <span class="h-2 w-2 rounded-full bg-[#A9C65B]"></span>
+                <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
 
-                <span class="text-xs font-bold uppercase tracking-[.18em] text-[#A9C65B]">
+                <span class="text-xs font-bold uppercase tracking-[.18em] text-[#FFD45A]">
                     Sécurité de votre compte
                 </span>
 
@@ -105,7 +102,7 @@ use Core\Session;
 
                 Un nouveau départ,
 
-                <span class="text-[#A9C65B]">
+                <span class="text-[#F5B800]">
                     en toute sécurité.
                 </span>
 
@@ -116,19 +113,18 @@ use Core\Session;
                 pour retrouver votre espace personnel et poursuivre vos projets immobiliers.
             </p>
 
-
             <!-- Séparateur -->
 
-            <div class="my-9 h-px w-20 bg-[#7E9833]"></div>
+            <div class="my-9 h-px w-20 bg-[#F5B800]"></div>
 
-
-            <!-- Info sécurité -->
+            <!-- Information sécurité -->
 
             <div class="flex items-start gap-4">
 
                 <div
                     class="flex h-11 w-11 shrink-0 items-center justify-center
-                           rounded-xl bg-white/5 text-[#A9C65B]"
+                           rounded-xl border border-[#F5B800]/15
+                           bg-[#F5B800]/10 text-[#F5B800]"
                 >
 
                     <svg
@@ -164,17 +160,13 @@ use Core\Session;
 
         </div>
 
-
         <!-- FOOTER -->
 
         <div class="relative z-10 border-t border-white/10 pt-6 text-xs text-white/35">
-
             © <?= date('Y') ?> ImmoSN — Immobilier au Sénégal
-
         </div>
 
     </aside>
-
 
     <!-- =====================================================
          PARTIE DROITE : FORMULAIRE
@@ -184,7 +176,6 @@ use Core\Session;
 
         <div class="w-full max-w-md">
 
-
             <!-- LOGO MOBILE -->
 
             <div class="mb-9 text-center lg:hidden">
@@ -193,19 +184,18 @@ use Core\Session;
 
                     <div
                         class="flex h-11 w-11 items-center justify-center rounded-xl
-                               bg-[#101D33] font-black text-[#A9C65B]"
+                               bg-[#071B36] font-black text-[#F5B800]"
                     >
                         I
                     </div>
 
-                    <div class="text-2xl font-black text-[#101D33]">
-                        Immo<span class="text-[#7E9833]">SN</span>
+                    <div class="text-2xl font-black text-[#071B36]">
+                        Immo<span class="text-[#B88700]">SN</span>
                     </div>
 
                 </a>
 
             </div>
-
 
             <!-- TITRE -->
 
@@ -213,15 +203,15 @@ use Core\Session;
 
                 <div class="mb-3 flex items-center gap-2">
 
-                    <span class="h-1.5 w-8 rounded-full bg-[#7E9833]"></span>
+                    <span class="h-1.5 w-8 rounded-full bg-[#F5B800]"></span>
 
-                    <p class="text-xs font-bold uppercase tracking-[.18em] text-[#7E9833]">
+                    <p class="text-xs font-bold uppercase tracking-[.18em] text-[#8A6500]">
                         Récupération du compte
                     </p>
 
                 </div>
 
-                <h2 class="text-3xl font-black tracking-tight text-[#101D33] sm:text-4xl">
+                <h2 class="text-3xl font-black tracking-tight text-[#071B36] sm:text-4xl">
                     Nouveau mot de passe
                 </h2>
 
@@ -231,7 +221,6 @@ use Core\Session;
 
             </div>
 
-
             <!-- ERREUR -->
 
             <?php if (!empty($error)): ?>
@@ -239,6 +228,7 @@ use Core\Session;
                 <div
                     class="mb-6 rounded-2xl border border-red-200
                            bg-red-50 px-4 py-4 text-sm text-red-700"
+                    role="alert"
                 >
 
                     <div class="flex items-start gap-3">
@@ -257,10 +247,13 @@ use Core\Session;
 
             <?php endif; ?>
 
-
             <!-- CARTE FORMULAIRE -->
 
-            <div class="rounded-[26px] border border-[#E6E8DF] bg-white p-5 shadow-sm sm:p-7">
+            <div
+                class="rounded-[26px] border border-[#E8E2D4]
+                       bg-white p-5 shadow-[0_12px_40px_rgba(7,27,54,0.06)]
+                       sm:p-7"
+            >
 
                 <form
                     action="/immo-sn/reinitialiser-mot-de-passe"
@@ -284,21 +277,23 @@ use Core\Session;
                         value="<?= htmlspecialchars($token ?? '', ENT_QUOTES, 'UTF-8') ?>"
                     >
 
-
                     <!-- NOUVEAU MOT DE PASSE -->
 
                     <div>
 
                         <label
                             for="password"
-                            class="mb-2 block text-sm font-bold text-[#101D33]"
+                            class="mb-2 block text-sm font-bold text-[#071B36]"
                         >
                             Nouveau mot de passe
                         </label>
 
                         <div class="relative">
 
-                            <div class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#71869A]">
+                            <div
+                                class="pointer-events-none absolute left-4 top-1/2
+                                       -translate-y-1/2 text-[#71869A]"
+                            >
 
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -325,12 +320,12 @@ use Core\Session;
                                 required
                                 autocomplete="new-password"
                                 placeholder="8 caractères minimum"
-                                class="w-full rounded-2xl border border-[#E6E8DF]
-                                       bg-[#F5F3ED]/50 py-3.5 pl-12 pr-14
+                                class="w-full rounded-2xl border border-[#E8E2D4]
+                                       bg-[#F5F3ED]/60 py-3.5 pl-12 pr-14
                                        text-sm text-[#101D33] outline-none transition
                                        placeholder:text-[#71869A]/60
-                                       focus:border-[#7E9833] focus:bg-white
-                                       focus:ring-4 focus:ring-[#7E9833]/10"
+                                       focus:border-[#D7A200] focus:bg-white
+                                       focus:ring-4 focus:ring-[#F5B800]/15"
                             >
 
                             <button
@@ -339,7 +334,9 @@ use Core\Session;
                                 class="absolute right-2 top-1/2 flex h-10 w-10
                                        -translate-y-1/2 items-center justify-center
                                        rounded-xl text-[#71869A] transition
-                                       hover:bg-[#EDF2E1] hover:text-[#6D852B]"
+                                       hover:bg-[#FFF4CC] hover:text-[#8A6500]
+                                       focus:outline-none focus:ring-2
+                                       focus:ring-[#F5B800]/40"
                                 aria-label="Afficher le mot de passe"
                                 aria-pressed="false"
                             >
@@ -370,21 +367,23 @@ use Core\Session;
 
                     </div>
 
-
                     <!-- CONFIRMATION -->
 
                     <div>
 
                         <label
                             for="password_confirmation"
-                            class="mb-2 block text-sm font-bold text-[#101D33]"
+                            class="mb-2 block text-sm font-bold text-[#071B36]"
                         >
                             Confirmer le mot de passe
                         </label>
 
                         <div class="relative">
 
-                            <div class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#71869A]">
+                            <div
+                                class="pointer-events-none absolute left-4 top-1/2
+                                       -translate-y-1/2 text-[#71869A]"
+                            >
 
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -411,28 +410,30 @@ use Core\Session;
                                 required
                                 autocomplete="new-password"
                                 placeholder="Retapez votre mot de passe"
-                                class="w-full rounded-2xl border border-[#E6E8DF]
-                                       bg-[#F5F3ED]/50 py-3.5 pl-12 pr-4
+                                class="w-full rounded-2xl border border-[#E8E2D4]
+                                       bg-[#F5F3ED]/60 py-3.5 pl-12 pr-4
                                        text-sm text-[#101D33] outline-none transition
                                        placeholder:text-[#71869A]/60
-                                       focus:border-[#7E9833] focus:bg-white
-                                       focus:ring-4 focus:ring-[#7E9833]/10"
+                                       focus:border-[#D7A200] focus:bg-white
+                                       focus:ring-4 focus:ring-[#F5B800]/15"
                             >
 
                         </div>
 
                     </div>
 
-
                     <!-- BOUTON -->
 
                     <button
                         type="submit"
                         class="group flex w-full items-center justify-center gap-3
-                               rounded-2xl bg-[#7E9833] px-5 py-4
-                               text-sm font-bold text-white shadow-sm transition
-                               hover:-translate-y-0.5 hover:bg-[#6D852B] hover:shadow-md
-                               active:translate-y-0"
+                               rounded-2xl bg-[#071B36] px-5 py-4
+                               text-sm font-bold text-white shadow-md
+                               shadow-[#071B36]/10 transition
+                               hover:-translate-y-0.5 hover:bg-[#101D33]
+                               hover:shadow-lg active:translate-y-0
+                               focus:outline-none focus:ring-4
+                               focus:ring-[#F5B800]/30"
                     >
 
                         <span>Enregistrer le nouveau mot de passe</span>
@@ -443,7 +444,7 @@ use Core\Session;
                             height="18"
                             viewBox="0 0 24 24"
                             fill="none"
-                            stroke="currentColor"
+                            stroke="#F5B800"
                             stroke-width="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
@@ -455,10 +456,30 @@ use Core\Session;
 
                     </button>
 
+                    <div class="flex items-center justify-center gap-2 text-xs text-[#71869A]">
+
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <rect x="3" y="11" width="18" height="10" rx="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+
+                        <span>Vos informations restent confidentielles.</span>
+
+                    </div>
+
                 </form>
 
             </div>
-
 
             <!-- RETOUR CONNEXION -->
 
@@ -467,8 +488,8 @@ use Core\Session;
                 <a
                     href="/immo-sn/login"
                     class="inline-flex items-center justify-center gap-2
-                           text-sm font-semibold text-[#7E9833] transition
-                           hover:text-[#6D852B] hover:underline"
+                           text-sm font-bold text-[#8A6500] transition
+                           hover:text-[#071B36] hover:underline"
                 >
 
                     <svg
@@ -492,10 +513,9 @@ use Core\Session;
 
             </div>
 
-
             <!-- FOOTER MOBILE -->
 
-            <div class="mt-9 border-t border-[#E6E8DF] pt-5 text-center lg:hidden">
+            <div class="mt-9 border-t border-[#E8E2D4] pt-5 text-center lg:hidden">
 
                 <p class="text-xs text-[#71869A]">
                     © <?= date('Y') ?> ImmoSN — Immobilier au Sénégal
@@ -509,13 +529,11 @@ use Core\Session;
 
 </div>
 
-
 <!-- =====================================================
      JAVASCRIPT : AFFICHER / MASQUER MOT DE PASSE
 ====================================================== -->
 
 <script>
-
 const passwordInput = document.getElementById('password');
 const togglePassword = document.getElementById('togglePassword');
 const eyeIcon = document.getElementById('eyeIcon');
@@ -557,9 +575,7 @@ if (passwordInput && togglePassword) {
     });
 
 }
-
 </script>
 
 </body>
-
 </html>
