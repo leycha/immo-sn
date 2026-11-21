@@ -1,3 +1,4 @@
+
 <?php
 
 $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
@@ -41,7 +42,12 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
 
     <meta
         name="theme-color"
-        content="#101D33"
+        content="#071B36"
+    >
+
+    <meta
+        name="description"
+        content="IMMO-SN, votre plateforme immobilière au Sénégal."
     >
 
     <title>
@@ -86,9 +92,38 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
 
     <!-- =====================================================
          IDENTITÉ VISUELLE IMMO-SN
+         BLEU NUIT • OR • IVOIRE
     ====================================================== -->
 
     <style>
+
+        /* -----------------------------------------------------
+           VARIABLES GLOBALES
+        ------------------------------------------------------ */
+
+        :root {
+            --immo-navy: #071B36;
+            --immo-navy-soft: #101D33;
+            --immo-navy-light: #1A2B45;
+
+            --immo-gold: #F5B800;
+            --immo-gold-dark: #D7A200;
+            --immo-gold-deep: #B88700;
+            --immo-gold-soft: #FFF4CC;
+            --immo-gold-pale: #FFF9E6;
+
+            --immo-ivory: #F5F3ED;
+            --immo-white: #FFFFFF;
+
+            --immo-steel: #71869A;
+            --immo-border: #E8E2D4;
+
+            --immo-success: #15803D;
+            --immo-danger: #DC2626;
+            --immo-warning: #B45309;
+            --immo-info: #5279B8;
+        }
+
 
         /* -----------------------------------------------------
            BASE
@@ -126,12 +161,12 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #D5DDC5;
+            background: #D7CDAF;
             border-radius: 999px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #7E9833;
+            background: #D7A200;
         }
 
 
@@ -140,8 +175,8 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
         ------------------------------------------------------ */
 
         ::selection {
-            background: #DCE8C6;
-            color: #101D33;
+            background: #FFF0BF;
+            color: #071B36;
         }
 
 
@@ -171,14 +206,14 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
             background:
                 radial-gradient(
                     circle at top right,
-                    rgba(126, 152, 51, 0.09),
+                    rgba(245, 184, 0, 0.09),
                     transparent 30%
                 ),
                 linear-gradient(
                     135deg,
                     #F5F3ED 0%,
-                    #F8F9F5 50%,
-                    #EDF2E5 100%
+                    #FAFAF8 50%,
+                    #F1EEE5 100%
                 );
         }
 
@@ -220,29 +255,8 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
         ------------------------------------------------------ */
 
         :focus-visible {
-            outline: 3px solid rgba(126, 152, 51, 0.35);
+            outline: 3px solid rgba(245, 184, 0, 0.45);
             outline-offset: 2px;
-        }
-
-
-        /* -----------------------------------------------------
-           COULEURS DE LA MARQUE
-        ------------------------------------------------------ */
-
-        :root {
-            --immo-green: #7E9833;
-            --immo-green-dark: #6D852B;
-            --immo-green-light: #A9C65B;
-            --immo-green-soft: #EDF2E1;
-
-            --immo-navy: #101D33;
-            --immo-navy-soft: #1A2B45;
-
-            --immo-ivory: #F5F3ED;
-            --immo-white: #FFFFFF;
-
-            --immo-steel: #71869A;
-            --immo-border: #E6E8DF;
         }
 
 
@@ -292,8 +306,8 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
 
 <body
     class="<?= $isMemberArea || $isAdminArea || $isAgencyArea || $isModeratorArea
-        ? 'immo-dashboard text-[#101D33] min-h-screen'
-        : 'bg-[#F5F3ED] text-[#101D33] min-h-screen flex flex-col'
+        ? 'immo-dashboard text-[#071B36] min-h-screen'
+        : 'bg-[#F5F3ED] text-[#071B36] min-h-screen flex flex-col'
     ?>"
 >
 
@@ -320,7 +334,7 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
             type="button"
             id="adminSidebarOverlay"
             aria-label="Fermer le menu"
-            class="fixed inset-0 z-40 hidden bg-[#101D33]/50 backdrop-blur-sm lg:hidden"
+            class="fixed inset-0 z-40 hidden bg-[#071B36]/60 backdrop-blur-sm lg:hidden"
         ></button>
 
 
@@ -333,10 +347,10 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
 
             <!-- HEADER MOBILE ADMIN -->
 
-            <header class="sticky top-0 z-30 flex items-center justify-between border-b border-[#E6E8DF] bg-white/95 px-4 py-3 backdrop-blur-md lg:hidden">
+            <header class="sticky top-0 z-30 flex items-center justify-between border-b border-[#E8E2D4] bg-white/95 px-4 py-3 backdrop-blur-md lg:hidden">
 
                 <div>
-                    <p class="text-sm font-extrabold text-[#101D33]">
+                    <p class="text-sm font-extrabold tracking-wide text-[#071B36]">
                         IMMO-SN
                     </p>
 
@@ -352,7 +366,7 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
                     aria-label="Ouvrir le menu"
                     aria-controls="adminSidebar"
                     aria-expanded="false"
-                    class="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E6E8DF] bg-white text-[#101D33] hover:border-[#7E9833] hover:bg-[#EDF2E1]"
+                    class="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E8E2D4] bg-white text-[#071B36] hover:border-[#D7A200] hover:bg-[#FFF9E6] hover:text-[#8A6500]"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -384,7 +398,7 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
                  FOOTER ADMIN
             ================================================== -->
 
-            <footer class="mt-auto border-t border-[#E6E8DF] bg-white">
+            <footer class="mt-auto border-t border-[#E8E2D4] bg-white">
 
                 <div class="mx-auto flex max-w-[1600px] flex-col gap-3 px-5 py-6 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
 
@@ -393,12 +407,12 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
 
                     <div class="flex items-center gap-3">
 
-                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#101D33] text-lg font-extrabold text-[#A9C65B]">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#071B36] text-lg font-extrabold text-[#F5B800] shadow-sm">
                             I
                         </div>
 
                         <div>
-                            <p class="text-sm font-extrabold tracking-wide text-[#101D33]">
+                            <p class="text-sm font-extrabold tracking-wide text-[#071B36]">
                                 IMMO-SN
                             </p>
 
@@ -503,7 +517,7 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
             type="button"
             id="moderatorSidebarOverlay"
             aria-label="Fermer le menu"
-            class="fixed inset-0 z-40 hidden bg-[#101D33]/50 backdrop-blur-sm lg:hidden"
+            class="fixed inset-0 z-40 hidden bg-[#071B36]/60 backdrop-blur-sm lg:hidden"
         ></button>
 
 
@@ -529,10 +543,10 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
 
             <!-- HEADER MOBILE MODÉRATEUR -->
 
-            <header class="sticky top-0 z-30 flex items-center justify-between border-b border-[#E6E8DF] bg-white/95 px-4 py-3 backdrop-blur-md lg:hidden">
+            <header class="sticky top-0 z-30 flex items-center justify-between border-b border-[#E8E2D4] bg-white/95 px-4 py-3 backdrop-blur-md lg:hidden">
 
                 <div>
-                    <p class="text-sm font-extrabold text-[#101D33]">
+                    <p class="text-sm font-extrabold tracking-wide text-[#071B36]">
                         IMMO-SN
                     </p>
 
@@ -548,7 +562,7 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
                     aria-label="Ouvrir le menu"
                     aria-controls="moderatorSidebar"
                     aria-expanded="false"
-                    class="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E6E8DF] bg-white text-[#101D33] hover:border-[#7E9833] hover:bg-[#EDF2E1]"
+                    class="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E8E2D4] bg-white text-[#071B36] hover:border-[#D7A200] hover:bg-[#FFF9E6] hover:text-[#8A6500]"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -576,7 +590,7 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
                  FOOTER MODÉRATEUR
             ================================================== -->
 
-            <footer class="mt-auto border-t border-[#E6E8DF] bg-white">
+            <footer class="mt-auto border-t border-[#E8E2D4] bg-white">
 
                 <div class="mx-auto flex max-w-[1600px] flex-col gap-3 px-5 py-6 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
 
@@ -585,12 +599,12 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
 
                     <div class="flex items-center gap-3">
 
-                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#101D33] text-lg font-extrabold text-[#A9C65B]">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#071B36] text-lg font-extrabold text-[#F5B800] shadow-sm">
                             I
                         </div>
 
                         <div>
-                            <p class="text-sm font-extrabold tracking-wide text-[#101D33]">
+                            <p class="text-sm font-extrabold tracking-wide text-[#071B36]">
                                 IMMO-SN
                             </p>
 
@@ -695,7 +709,7 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
             type="button"
             id="memberSidebarOverlay"
             aria-label="Fermer le menu"
-            class="fixed inset-0 z-40 hidden bg-[#101D33]/50 backdrop-blur-sm lg:hidden"
+            class="fixed inset-0 z-40 hidden bg-[#071B36]/60 backdrop-blur-sm lg:hidden"
         ></button>
 
 
@@ -708,10 +722,10 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
 
             <!-- HEADER MOBILE MEMBRE -->
 
-            <header class="sticky top-0 z-30 flex items-center justify-between border-b border-[#E6E8DF] bg-white/95 px-4 py-3 backdrop-blur-md lg:hidden">
+            <header class="sticky top-0 z-30 flex items-center justify-between border-b border-[#E8E2D4] bg-white/95 px-4 py-3 backdrop-blur-md lg:hidden">
 
                 <div>
-                    <p class="text-sm font-extrabold text-[#101D33]">
+                    <p class="text-sm font-extrabold tracking-wide text-[#071B36]">
                         IMMO-SN
                     </p>
 
@@ -727,7 +741,7 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
                     aria-label="Ouvrir le menu"
                     aria-controls="memberSidebar"
                     aria-expanded="false"
-                    class="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E6E8DF] bg-white text-[#101D33] hover:border-[#7E9833] hover:bg-[#EDF2E1]"
+                    class="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E8E2D4] bg-white text-[#071B36] hover:border-[#D7A200] hover:bg-[#FFF9E6] hover:text-[#8A6500]"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -755,7 +769,7 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
                  FOOTER MEMBRE
             ================================================== -->
 
-            <footer class="mt-auto border-t border-[#E6E8DF] bg-white">
+            <footer class="mt-auto border-t border-[#E8E2D4] bg-white">
 
                 <div class="mx-auto flex max-w-[1600px] flex-col gap-3 px-5 py-6 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
 
@@ -764,12 +778,12 @@ $isModeratorArea  = str_starts_with($currentPath, '/moderateur');
 
                     <div class="flex items-center gap-3">
 
-                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#101D33] text-lg font-extrabold text-[#A9C65B]">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#071B36] text-lg font-extrabold text-[#F5B800] shadow-sm">
                             I
                         </div>
 
                         <div>
-                            <p class="text-sm font-extrabold tracking-wide text-[#101D33]">
+                            <p class="text-sm font-extrabold tracking-wide text-[#071B36]">
                                 IMMO-SN
                             </p>
 
