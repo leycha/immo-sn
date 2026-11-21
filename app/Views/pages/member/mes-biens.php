@@ -3,6 +3,7 @@
 /**
  * Vue : Mes biens
  * Emplacement : app/Views/pages/member/mes-biens.php
+ * Design : IMMO-SN — Premium Navy & Gold
  */
 
 $biens = is_array($biens ?? null) ? $biens : [];
@@ -39,7 +40,7 @@ foreach ($biens as $bien) {
         $rejetes++;
     }
 
-    if (in_array($statutBien, ['en_attente'], true)) {
+    if ($statutBien === 'en_attente') {
         $attente++;
     }
 }
@@ -47,30 +48,32 @@ foreach ($biens as $bien) {
 
 <div class="min-h-screen bg-[#F5F3ED]">
 
-    <!-- HEADER -->
-    <header class="sticky top-0 z-20 border-b border-[#E5E8E1] bg-white/95 backdrop-blur">
-        <div class="flex min-h-[76px] flex-col justify-center gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5 md:px-8">
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+    <header class="sticky top-0 z-20 border-b border-[#E8E1D5] bg-white/95 backdrop-blur-xl">
+        <div class="flex min-h-[82px] flex-col justify-center gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
 
             <div class="min-w-0">
-                <div class="mb-1 flex items-center gap-2 text-xs font-medium text-[#7E9833]">
-                    <span>Espace membre</span>
+                <div class="mb-2 flex items-center gap-2 text-xs font-semibold">
+                    <span class="text-[#A98236]">Espace membre</span>
 
                     <svg xmlns="http://www.w3.org/2000/svg"
-                         class="h-3.5 w-3.5"
+                         class="h-3.5 w-3.5 text-[#A8A29A]"
                          fill="none" viewBox="0 0 24 24"
                          stroke="currentColor" stroke-width="1.8">
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="m9 18 6-6-6-6"/>
                     </svg>
 
-                    <span class="text-[#71869A]">Mes biens</span>
+                    <span class="text-[#718096]">Mes biens</span>
                 </div>
 
-                <h1 class="break-words text-xl font-bold tracking-tight text-[#101D33] sm:text-2xl md:text-3xl">
+                <h1 class="break-words text-2xl font-extrabold tracking-tight text-[#071B36] sm:text-3xl">
                     Mes biens
                 </h1>
 
-                <p class="mt-1 text-sm text-[#71869A]">
+                <p class="mt-1 text-sm text-[#718096]">
                     Gérez vos annonces immobilières depuis votre espace membre.
                 </p>
             </div>
@@ -81,10 +84,10 @@ foreach ($biens as $bien) {
                 <?php if (!empty($biens)): ?>
                     <a href="/immo-sn/member/qr-codes/zip"
                        title="Télécharger tous mes QR codes"
-                       class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#DCE3D3] bg-white px-3 py-3 text-sm font-bold text-[#101D33] shadow-sm transition hover:border-[#7E9833] hover:bg-[#F5F3ED] sm:w-auto sm:px-4">
+                       class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#DED5C5] bg-white px-4 py-3 text-sm font-bold text-[#071B36] shadow-sm transition duration-200 hover:border-[#C69A3A] hover:bg-[#FBF8F1] sm:w-auto">
 
                         <svg xmlns="http://www.w3.org/2000/svg"
-                             class="h-5 w-5 shrink-0"
+                             class="h-5 w-5 shrink-0 text-[#A98236]"
                              fill="none" viewBox="0 0 24 24"
                              stroke="currentColor" stroke-width="1.8">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -97,7 +100,7 @@ foreach ($biens as $bien) {
                 <?php endif; ?>
 
                 <a href="/immo-sn/member/publier"
-                   class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#7E9833] px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#687F29] sm:w-auto sm:px-5">
+                   class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#D7A72E] px-5 py-3 text-sm font-extrabold text-[#071B36] shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-[#E5B943] hover:shadow-md sm:w-auto">
 
                     <svg xmlns="http://www.w3.org/2000/svg"
                          class="h-5 w-5"
@@ -114,23 +117,27 @@ foreach ($biens as $bien) {
         </div>
     </header>
 
-    <!-- CONTENU -->
-    <main class="px-4 py-6 sm:px-5 md:px-8 md:py-8">
+    <!-- =====================================================
+         CONTENU PRINCIPAL
+    ====================================================== -->
+    <main class="px-4 py-6 sm:px-6 md:px-8 md:py-8">
 
         <!-- MESSAGES -->
         <?php if (!empty($success)): ?>
             <div class="mx-auto mb-6 max-w-7xl">
-                <div class="flex items-start gap-3 rounded-xl border border-green-200 bg-green-50 p-4 text-green-800">
-                    <svg class="mt-0.5 h-5 w-5 shrink-0"
-                         xmlns="http://www.w3.org/2000/svg"
-                         fill="none" viewBox="0 0 24 24"
-                         stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M5 13l4 4L19 7"/>
-                    </svg>
+                <div class="flex items-start gap-3 rounded-2xl border border-green-200 bg-green-50 p-4 text-green-800 shadow-sm">
+                    <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-green-100">
+                        <svg class="h-5 w-5"
+                             xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M5 13l4 4L19 7"/>
+                        </svg>
+                    </div>
 
-                    <div class="min-w-0">
-                        <p class="font-semibold">Opération réussie</p>
+                    <div class="min-w-0 pt-0.5">
+                        <p class="font-bold">Opération réussie</p>
                         <p class="mt-1 break-words text-sm"><?= $e($success) ?></p>
                     </div>
                 </div>
@@ -139,17 +146,19 @@ foreach ($biens as $bien) {
 
         <?php if (!empty($error)): ?>
             <div class="mx-auto mb-6 max-w-7xl">
-                <div class="flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-red-800">
-                    <svg class="mt-0.5 h-5 w-5 shrink-0"
-                         xmlns="http://www.w3.org/2000/svg"
-                         fill="none" viewBox="0 0 24 24"
-                         stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M12 9v4m0 4h.01M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.7 3.86a2 2 0 0 0-3.4 0Z"/>
-                    </svg>
+                <div class="flex items-start gap-3 rounded-2xl border border-red-200 bg-red-50 p-4 text-red-800 shadow-sm">
+                    <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-red-100">
+                        <svg class="h-5 w-5"
+                             xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M12 9v4m0 4h.01M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.7 3.86a2 2 0 0 0-3.4 0Z"/>
+                        </svg>
+                    </div>
 
-                    <div class="min-w-0">
-                        <p class="font-semibold">Une erreur est survenue</p>
+                    <div class="min-w-0 pt-0.5">
+                        <p class="font-bold">Une erreur est survenue</p>
                         <p class="mt-1 break-words text-sm"><?= $e($error) ?></p>
                     </div>
                 </div>
@@ -158,29 +167,33 @@ foreach ($biens as $bien) {
 
         <div class="mx-auto max-w-7xl">
 
-            <!-- STATISTIQUES -->
+            <!-- =================================================
+                 STATISTIQUES
+            ================================================== -->
             <div class="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
 
                 <!-- TOTAL -->
-                <div class="group rounded-2xl border border-[#E5E8E1] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md">
-                    <div class="flex items-center justify-between gap-4">
+                <div class="group relative overflow-hidden rounded-2xl border border-[#E8E1D5] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <div class="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-[#D7A72E]/10 transition group-hover:bg-[#D7A72E]/20"></div>
+
+                    <div class="relative flex items-center justify-between gap-4">
                         <div class="min-w-0">
-                            <p class="text-xs font-semibold uppercase tracking-wider text-[#71869A]">
+                            <p class="text-xs font-bold uppercase tracking-wider text-[#718096]">
                                 Total des biens
                             </p>
 
-                            <h2 class="mt-2 text-3xl font-bold tracking-tight text-[#101D33]">
+                            <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-[#071B36]">
                                 <?= $totalBiens ?>
                             </h2>
 
-                            <p class="mt-1 text-xs text-[#71869A]">
+                            <p class="mt-1 text-xs text-[#8993A2]">
                                 Annonces enregistrées
                             </p>
                         </div>
 
-                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#EEF2E6] transition group-hover:bg-[#E3EAD6]">
+                        <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#FBF3DE] text-[#A98236] transition group-hover:scale-105">
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="h-6 w-6 text-[#7E9833]"
+                                 class="h-7 w-7"
                                  fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" stroke-width="1.7">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -191,14 +204,16 @@ foreach ($biens as $bien) {
                 </div>
 
                 <!-- VALIDÉS -->
-                <div class="group rounded-2xl border border-[#E5E8E1] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md">
-                    <div class="flex items-center justify-between gap-4">
+                <div class="group relative overflow-hidden rounded-2xl border border-[#E8E1D5] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <div class="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-green-500/5"></div>
+
+                    <div class="relative flex items-center justify-between gap-4">
                         <div class="min-w-0">
-                            <p class="text-xs font-semibold uppercase tracking-wider text-[#71869A]">
+                            <p class="text-xs font-bold uppercase tracking-wider text-[#718096]">
                                 Biens validés
                             </p>
 
-                            <h2 class="mt-2 text-3xl font-bold tracking-tight text-[#101D33]">
+                            <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-[#071B36]">
                                 <?= $valides ?>
                             </h2>
 
@@ -207,9 +222,9 @@ foreach ($biens as $bien) {
                             </p>
                         </div>
 
-                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-green-50">
+                        <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-green-50 text-green-600">
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="h-6 w-6 text-green-600"
+                                 class="h-7 w-7"
                                  fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" stroke-width="1.7">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -220,14 +235,16 @@ foreach ($biens as $bien) {
                 </div>
 
                 <!-- REJETÉS -->
-                <div class="group rounded-2xl border border-[#E5E8E1] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md">
-                    <div class="flex items-center justify-between gap-4">
+                <div class="group relative overflow-hidden rounded-2xl border border-[#E8E1D5] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <div class="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-red-500/5"></div>
+
+                    <div class="relative flex items-center justify-between gap-4">
                         <div class="min-w-0">
-                            <p class="text-xs font-semibold uppercase tracking-wider text-[#71869A]">
+                            <p class="text-xs font-bold uppercase tracking-wider text-[#718096]">
                                 Biens rejetés
                             </p>
 
-                            <h2 class="mt-2 text-3xl font-bold tracking-tight text-[#101D33]">
+                            <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-[#071B36]">
                                 <?= $rejetes ?>
                             </h2>
 
@@ -236,9 +253,9 @@ foreach ($biens as $bien) {
                             </p>
                         </div>
 
-                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-red-50">
+                        <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-red-50 text-red-600">
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="h-6 w-6 text-red-600"
+                                 class="h-7 w-7"
                                  fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" stroke-width="1.7">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -249,25 +266,27 @@ foreach ($biens as $bien) {
                 </div>
 
                 <!-- EN ATTENTE -->
-                <div class="group rounded-2xl border border-[#E5E8E1] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md">
-                    <div class="flex items-center justify-between gap-4">
+                <div class="group relative overflow-hidden rounded-2xl border border-[#E8E1D5] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <div class="absolute right-0 top-0 h-24 w-24 rounded-bl-full bg-[#D7A72E]/10"></div>
+
+                    <div class="relative flex items-center justify-between gap-4">
                         <div class="min-w-0">
-                            <p class="text-xs font-semibold uppercase tracking-wider text-[#71869A]">
+                            <p class="text-xs font-bold uppercase tracking-wider text-[#718096]">
                                 En attente
                             </p>
 
-                            <h2 class="mt-2 text-3xl font-bold tracking-tight text-[#101D33]">
+                            <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-[#071B36]">
                                 <?= $attente ?>
                             </h2>
 
-                            <p class="mt-1 text-xs text-[#7E9833]">
+                            <p class="mt-1 text-xs text-[#A98236]">
                                 Annonces en cours de validation
                             </p>
                         </div>
 
-                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#F5F1E5]">
+                        <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#FBF3DE] text-[#A98236]">
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="h-6 w-6 text-amber-600"
+                                 class="h-7 w-7"
                                  fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" stroke-width="1.7">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -276,17 +295,20 @@ foreach ($biens as $bien) {
                         </div>
                     </div>
                 </div>
+
             </div>
 
-            <!-- SECTION MES ANNONCES -->
-            <section class="overflow-hidden rounded-2xl border border-[#E5E8E1] bg-white shadow-sm">
+            <!-- =================================================
+                 SECTION MES ANNONCES
+            ================================================== -->
+            <section class="overflow-hidden rounded-2xl border border-[#E8E1D5] bg-white shadow-sm">
 
                 <!-- EN-TÊTE -->
-                <div class="flex flex-col gap-4 border-b border-[#E8EBE4] px-5 py-5 sm:flex-row sm:items-center sm:justify-between md:px-6">
+                <div class="flex flex-col gap-4 border-b border-[#EEE9DF] bg-white px-5 py-5 sm:flex-row sm:items-center sm:justify-between md:px-7">
                     <div class="flex min-w-0 items-center gap-3">
-                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#EEF2E6]">
+                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#071B36] text-[#E2B94F] shadow-sm">
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="h-5 w-5 text-[#7E9833]"
+                                 class="h-6 w-6"
                                  fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" stroke-width="1.7">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -295,19 +317,20 @@ foreach ($biens as $bien) {
                         </div>
 
                         <div class="min-w-0">
-                            <h2 class="break-words text-lg font-bold text-[#101D33]">
+                            <h2 class="break-words text-lg font-extrabold text-[#071B36]">
                                 Mes annonces
                             </h2>
 
-                            <p class="mt-1 text-xs text-[#71869A]">
+                            <p class="mt-1 text-xs text-[#718096]">
                                 Consultez et gérez vos biens immobiliers.
                             </p>
                         </div>
                     </div>
 
-                    <div class="inline-flex w-fit items-center rounded-full bg-[#EEF2E6] px-3 py-1.5 text-xs font-semibold text-[#607528]">
+                    <div class="inline-flex w-fit items-center gap-2 rounded-full border border-[#E9D9B5] bg-[#FBF6E9] px-4 py-2 text-xs font-bold text-[#8A6824]">
+                        <span class="h-2 w-2 rounded-full bg-[#D7A72E]"></span>
                         <?= $totalBiens ?>
-                        <span class="ml-1">bien(s)</span>
+                        <span>bien(s)</span>
                     </div>
                 </div>
 
@@ -315,11 +338,11 @@ foreach ($biens as $bien) {
 
                     <!-- ÉTAT VIDE -->
                     <div class="px-6 py-20 text-center">
-                        <div class="relative mx-auto flex h-24 w-24 items-center justify-center rounded-3xl bg-[#EEF2E6]">
-                            <div class="absolute inset-2 rounded-2xl border border-[#DCE5CD]"></div>
+                        <div class="relative mx-auto flex h-28 w-28 items-center justify-center rounded-[2rem] bg-[#F8F2E4]">
+                            <div class="absolute inset-2 rounded-[1.5rem] border border-[#E8D8B5]"></div>
 
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="relative h-10 w-10 text-[#7E9833]"
+                                 class="relative h-12 w-12 text-[#A98236]"
                                  fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" stroke-width="1.5">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -327,17 +350,17 @@ foreach ($biens as $bien) {
                             </svg>
                         </div>
 
-                        <h3 class="mt-7 break-words text-xl font-bold text-[#101D33] sm:text-2xl">
+                        <h3 class="mt-7 break-words text-xl font-extrabold text-[#071B36] sm:text-2xl">
                             Vous n'avez pas encore de bien
                         </h3>
 
-                        <p class="mx-auto mt-3 max-w-md text-sm leading-6 text-[#71869A]">
+                        <p class="mx-auto mt-3 max-w-md text-sm leading-6 text-[#718096]">
                             Commencez à publier votre premier bien immobilier
                             pour le proposer aux visiteurs de ImmoSn.
                         </p>
 
                         <a href="/immo-sn/member/publier"
-                           class="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#7E9833] px-6 py-3 text-sm font-bold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-[#687F29] sm:w-auto">
+                           class="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#D7A72E] px-6 py-3.5 text-sm font-extrabold text-[#071B36] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#E5B943] hover:shadow-md sm:w-auto">
 
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  class="h-5 w-5"
@@ -354,7 +377,7 @@ foreach ($biens as $bien) {
                 <?php else: ?>
 
                     <!-- CARTES DES BIENS -->
-                    <div class="p-5 md:p-6">
+                    <div class="p-5 md:p-7">
                         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
 
                             <?php foreach ($biens as $bien): ?>
@@ -368,8 +391,8 @@ foreach ($biens as $bien) {
                                     $statutDot = 'bg-green-500';
                                 } elseif ($statut === 'en_attente') {
                                     $statutLabel = 'En attente';
-                                    $statutClass = 'bg-amber-50 text-amber-700 ring-amber-200';
-                                    $statutDot = 'bg-amber-500';
+                                    $statutClass = 'bg-[#FBF5E8] text-[#967027] ring-[#EAD9B4]';
+                                    $statutDot = 'bg-[#D7A72E]';
                                 } elseif (in_array($statut, ['rejete', 'rejeté'], true)) {
                                     $statutLabel = 'Rejeté';
                                     $statutClass = 'bg-red-50 text-red-700 ring-red-200';
@@ -407,17 +430,18 @@ foreach ($biens as $bien) {
                                 );
                                 ?>
 
-                                <article class="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#E5E8E1] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                                <article class="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#E8E1D5] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#D7BC7C] hover:shadow-xl">
 
                                     <!-- PHOTO -->
-                                    <div class="relative h-52 overflow-hidden bg-[#EEF2E6]">
+                                    <div class="relative h-52 overflow-hidden bg-[#F7F2E7]">
+
                                         <?php if (!empty($photo)): ?>
                                             <img src="<?= $e($photo) ?>"
                                                  alt="<?= $e($titre) ?>"
-                                                 class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                                                 class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                                                  loading="lazy">
                                         <?php else: ?>
-                                            <div class="flex h-full w-full flex-col items-center justify-center text-[#7E9833]">
+                                            <div class="flex h-full w-full flex-col items-center justify-center text-[#A98236]">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                      class="mb-2 h-14 w-14"
                                                      fill="none" viewBox="0 0 24 24"
@@ -426,15 +450,18 @@ foreach ($biens as $bien) {
                                                           d="M3 10.5L12 3l9 7.5M5 9.5V21h14V9.5M9 21v-6h6v6"/>
                                                 </svg>
 
-                                                <span class="text-xs font-medium">
+                                                <span class="text-xs font-semibold">
                                                     Aucune photo disponible
                                                 </span>
                                             </div>
                                         <?php endif; ?>
 
+                                        <!-- VOILE DISCRET -->
+                                        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#071B36]/20 via-transparent to-transparent"></div>
+
                                         <!-- STATUT -->
                                         <div class="absolute left-3 top-3">
-                                            <span class="inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-xs font-bold shadow-sm ring-1 <?= $statutClass ?>">
+                                            <span class="inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-xs font-extrabold shadow-md ring-1 <?= $statutClass ?>">
                                                 <span class="h-2 w-2 rounded-full <?= $statutDot ?>"></span>
                                                 <?= $e($statutLabel) ?>
                                             </span>
@@ -444,18 +471,18 @@ foreach ($biens as $bien) {
                                     <!-- INFORMATIONS -->
                                     <div class="flex min-w-0 flex-1 flex-col p-5">
 
-                                        <p class="mb-2 break-words text-xs font-semibold uppercase tracking-wider text-[#7E9833]">
+                                        <p class="mb-2 break-words text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#A98236]">
                                             <?= $e($categorie) ?>
                                         </p>
 
-                                        <h3 class="min-w-0 break-words line-clamp-2 text-lg font-bold leading-snug text-[#101D33]">
+                                        <h3 class="min-w-0 break-words text-lg font-extrabold leading-snug text-[#071B36] line-clamp-2">
                                             <?= $e($titre) ?>
                                         </h3>
 
                                         <!-- LOCALISATION -->
-                                        <div class="mt-3 flex items-start gap-2 text-sm text-[#71869A]">
+                                        <div class="mt-3 flex items-start gap-2 text-sm text-[#718096]">
                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                 class="mt-0.5 h-4 w-4 shrink-0 text-[#7E9833]"
+                                                 class="mt-0.5 h-4 w-4 shrink-0 text-[#B28A3E]"
                                                  fill="none" viewBox="0 0 24 24"
                                                  stroke="currentColor" stroke-width="1.7">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -465,12 +492,12 @@ foreach ($biens as $bien) {
                                             </svg>
 
                                             <div class="min-w-0">
-                                                <p class="break-words font-medium text-[#101D33]">
+                                                <p class="break-words font-semibold text-[#26364B]">
                                                     <?= $e($ville) ?>
                                                 </p>
 
                                                 <?php if (!empty($quartier)): ?>
-                                                    <p class="mt-0.5 break-words text-xs text-[#71869A]">
+                                                    <p class="mt-0.5 break-words text-xs text-[#8993A2]">
                                                         <?= $e($quartier) ?>
                                                     </p>
                                                 <?php endif; ?>
@@ -478,14 +505,14 @@ foreach ($biens as $bien) {
                                         </div>
 
                                         <!-- PRIX -->
-                                        <div class="mt-5 border-t border-[#E8EBE4] pt-4">
+                                        <div class="mt-5 border-t border-[#EEE9DF] pt-4">
                                             <?php if (isset($bien['prix']) && $bien['prix'] !== ''): ?>
-                                                <p class="text-xl font-extrabold text-[#101D33]">
+                                                <p class="text-xl font-extrabold text-[#071B36]">
                                                     <?= number_format((float) $bien['prix'], 0, ',', ' ') ?>
-                                                    <span class="text-xs font-bold text-[#7E9833]">FCFA</span>
+                                                    <span class="text-xs font-extrabold text-[#A98236]">FCFA</span>
                                                 </p>
                                             <?php else: ?>
-                                                <p class="text-sm text-[#71869A]">
+                                                <p class="text-sm font-medium text-[#8993A2]">
                                                     Prix non renseigné
                                                 </p>
                                             <?php endif; ?>
@@ -498,26 +525,38 @@ foreach ($biens as $bien) {
 
                                                 <?php if ($renouvellementEnAttente): ?>
 
-                                                    <div class="mb-3 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">
-                                                        <p class="font-bold">
-                                                            Demande de renouvellement en attente
-                                                        </p>
+                                                    <div class="mb-3 rounded-xl border border-[#EAD9B4] bg-[#FBF6E9] p-3 text-sm text-[#8A6824]">
+                                                        <div class="flex items-start gap-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                 class="mt-0.5 h-5 w-5 shrink-0"
+                                                                 fill="none" viewBox="0 0 24 24"
+                                                                 stroke="currentColor" stroke-width="1.8">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                      d="M12 8v4l3 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                                            </svg>
 
-                                                        <p class="mt-1">
-                                                            Votre demande est en cours d'examen par notre équipe.
-                                                        </p>
+                                                            <div>
+                                                                <p class="font-extrabold">
+                                                                    Demande de renouvellement en attente
+                                                                </p>
+
+                                                                <p class="mt-1 text-xs leading-5">
+                                                                    Votre demande est en cours d'examen par notre équipe.
+                                                                </p>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                 <?php else: ?>
 
                                                     <?php if ($statutRenouvellement === 'refusee'): ?>
                                                         <div class="mb-3 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-800">
-                                                            <p class="font-bold">
+                                                            <p class="font-extrabold">
                                                                 Votre précédente demande a été refusée.
                                                             </p>
 
                                                             <?php if (!empty($motifRefus)): ?>
-                                                                <p class="mt-1">
+                                                                <p class="mt-1 text-xs leading-5">
                                                                     Motif : <?= $e($motifRefus) ?>
                                                                 </p>
                                                             <?php endif; ?>
@@ -534,7 +573,16 @@ foreach ($biens as $bien) {
                                                                value="<?= $e(\Core\Session::csrfToken()) ?>">
 
                                                         <button type="submit"
-                                                                class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#7E9833] bg-[#EEF2E6] px-4 py-3 text-sm font-bold text-[#526923] transition hover:bg-[#E3EAD6]">
+                                                                class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#D7B45E] bg-[#FBF5E6] px-4 py-3 text-sm font-extrabold text-[#80601F] transition hover:border-[#C69A3A] hover:bg-[#F5EBD2]">
+
+                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                 class="h-4 w-4"
+                                                                 fill="none" viewBox="0 0 24 24"
+                                                                 stroke="currentColor" stroke-width="1.8">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                      d="M4 4v6h6M20 20v-6h-6M5.5 15a7 7 0 0 0 12.2 2M18.5 9A7 7 0 0 0 6.3 7"/>
+                                                            </svg>
+
                                                             Demander le renouvellement
                                                         </button>
                                                     </form>
@@ -543,10 +591,10 @@ foreach ($biens as $bien) {
                                             <?php endif; ?>
 
                                             <a href="/immo-sn/member/biens/modifier/<?= urlencode((string) $idBien) ?>"
-                                               class="mb-3 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#DCE3D3] bg-white px-4 py-3 text-sm font-bold text-[#101D33] transition hover:border-[#7E9833] hover:bg-[#F5F3ED]">
+                                               class="mb-3 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#DED5C5] bg-white px-4 py-3 text-sm font-bold text-[#071B36] transition hover:border-[#C69A3A] hover:bg-[#FBF8F1]">
 
                                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                                     class="h-4 w-4"
+                                                     class="h-4 w-4 text-[#A98236]"
                                                      fill="none" viewBox="0 0 24 24"
                                                      stroke="currentColor" stroke-width="1.8">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -557,12 +605,12 @@ foreach ($biens as $bien) {
                                             </a>
 
                                             <a href="/immo-sn/biens/<?= urlencode((string) $idBien) ?>"
-                                               class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#101D33] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#203653]">
+                                               class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#071B36] px-4 py-3 text-sm font-extrabold text-white shadow-sm transition hover:bg-[#142D4D] hover:shadow-md">
 
                                                 Voir le bien
 
                                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                                     class="h-4 w-4 transition group-hover:translate-x-1"
+                                                     class="h-4 w-4 text-[#E2B94F] transition group-hover:translate-x-1"
                                                      fill="none" viewBox="0 0 24 24"
                                                      stroke="currentColor" stroke-width="1.8">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -582,15 +630,21 @@ foreach ($biens as $bien) {
 
             </section>
 
-            <!-- ACCÈS RAPIDES -->
-            <section class="mt-8">
+            <!-- =================================================
+                 ACCÈS RAPIDES
+            ================================================== -->
+            <section class="mt-9">
 
-                <div class="mb-4">
-                    <h2 class="text-lg font-bold text-[#101D33]">
-                        Accès rapides
-                    </h2>
+                <div class="mb-5">
+                    <div class="flex items-center gap-2">
+                        <span class="h-6 w-1 rounded-full bg-[#D7A72E]"></span>
 
-                    <p class="mt-1 text-xs text-[#71869A]">
+                        <h2 class="text-xl font-extrabold text-[#071B36]">
+                            Accès rapides
+                        </h2>
+                    </div>
+
+                    <p class="mt-2 text-sm text-[#718096]">
                         Retrouvez rapidement les principales fonctionnalités de votre espace membre.
                     </p>
                 </div>
@@ -599,13 +653,13 @@ foreach ($biens as $bien) {
 
                     <!-- PUBLIER -->
                     <a href="/immo-sn/member/publier"
-                       class="group rounded-2xl border border-[#E5E8E1] bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                       class="group rounded-2xl border border-[#E8E1D5] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#D7BC7C] hover:shadow-lg">
 
                         <div class="flex items-start justify-between gap-4">
                             <div class="min-w-0">
-                                <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#EEF2E6] text-[#7E9833]">
+                                <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#071B36] text-[#E2B94F] transition group-hover:scale-105">
                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                         class="h-5 w-5"
+                                         class="h-6 w-6"
                                          fill="none" viewBox="0 0 24 24"
                                          stroke="currentColor" stroke-width="1.8">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -613,17 +667,17 @@ foreach ($biens as $bien) {
                                     </svg>
                                 </div>
 
-                                <h3 class="break-words font-bold text-[#101D33]">
+                                <h3 class="break-words font-extrabold text-[#071B36]">
                                     Publier un bien
                                 </h3>
 
-                                <p class="mt-1 break-words text-xs leading-5 text-[#71869A]">
+                                <p class="mt-1 break-words text-xs leading-5 text-[#718096]">
                                     Ajoutez une nouvelle annonce à votre espace.
                                 </p>
                             </div>
 
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="mt-1 h-5 w-5 shrink-0 text-[#AAB5A0] transition group-hover:translate-x-1 group-hover:text-[#7E9833]"
+                                 class="mt-1 h-5 w-5 shrink-0 text-[#B5A98F] transition group-hover:translate-x-1 group-hover:text-[#A98236]"
                                  fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" stroke-width="1.8">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -634,13 +688,13 @@ foreach ($biens as $bien) {
 
                     <!-- MES BIENS -->
                     <a href="/immo-sn/member/mes-biens"
-                       class="group rounded-2xl border border-[#E5E8E1] bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                       class="group rounded-2xl border border-[#E8E1D5] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#D7BC7C] hover:shadow-lg">
 
                         <div class="flex items-start justify-between gap-4">
                             <div class="min-w-0">
-                                <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#EEF2E6] text-[#7E9833]">
+                                <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#FBF3DE] text-[#A98236] transition group-hover:scale-105">
                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                         class="h-5 w-5"
+                                         class="h-6 w-6"
                                          fill="none" viewBox="0 0 24 24"
                                          stroke="currentColor" stroke-width="1.8">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -650,17 +704,17 @@ foreach ($biens as $bien) {
                                     </svg>
                                 </div>
 
-                                <h3 class="break-words font-bold text-[#101D33]">
+                                <h3 class="break-words font-extrabold text-[#071B36]">
                                     Mes biens
                                 </h3>
 
-                                <p class="mt-1 break-words text-xs leading-5 text-[#71869A]">
+                                <p class="mt-1 break-words text-xs leading-5 text-[#718096]">
                                     Gérez vos annonces et consultez leur statut.
                                 </p>
                             </div>
 
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="mt-1 h-5 w-5 shrink-0 text-[#AAB5A0] transition group-hover:translate-x-1 group-hover:text-[#7E9833]"
+                                 class="mt-1 h-5 w-5 shrink-0 text-[#B5A98F] transition group-hover:translate-x-1 group-hover:text-[#A98236]"
                                  fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" stroke-width="1.8">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -671,13 +725,13 @@ foreach ($biens as $bien) {
 
                     <!-- ALERTES -->
                     <a href="/immo-sn/member/alertes"
-                       class="group rounded-2xl border border-[#E5E8E1] bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                       class="group rounded-2xl border border-[#E8E1D5] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#D7BC7C] hover:shadow-lg">
 
                         <div class="flex items-start justify-between gap-4">
                             <div class="min-w-0">
-                                <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#F1F3E9] text-[#7E9833]">
+                                <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#FBF3DE] text-[#A98236] transition group-hover:scale-105">
                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                         class="h-5 w-5"
+                                         class="h-6 w-6"
                                          fill="none" viewBox="0 0 24 24"
                                          stroke="currentColor" stroke-width="1.8">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -687,17 +741,17 @@ foreach ($biens as $bien) {
                                     </svg>
                                 </div>
 
-                                <h3 class="break-words font-bold text-[#101D33]">
+                                <h3 class="break-words font-extrabold text-[#071B36]">
                                     Mes alertes
                                 </h3>
 
-                                <p class="mt-1 break-words text-xs leading-5 text-[#71869A]">
+                                <p class="mt-1 break-words text-xs leading-5 text-[#718096]">
                                     Recevez des annonces correspondant à vos critères.
                                 </p>
                             </div>
 
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="mt-1 h-5 w-5 shrink-0 text-[#AAB5A0] transition group-hover:translate-x-1 group-hover:text-[#7E9833]"
+                                 class="mt-1 h-5 w-5 shrink-0 text-[#B5A98F] transition group-hover:translate-x-1 group-hover:text-[#A98236]"
                                  fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" stroke-width="1.8">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -708,6 +762,19 @@ foreach ($biens as $bien) {
 
                 </div>
             </section>
+
+            <!-- SIGNATURE -->
+            <div class="mt-9 flex flex-col items-center justify-center gap-2 border-t border-[#E6DFD3] pt-6 text-center sm:flex-row sm:justify-between">
+                <p class="text-xs text-[#8993A2]">
+                    Votre espace immobilier, simplement.
+                </p>
+
+                <p class="text-xs font-extrabold tracking-wider text-[#A98236]">
+                    IMMO-SN
+                    <span class="mx-1 text-[#D7A72E]">•</span>
+                    L'immobilier en toute confiance
+                </p>
+            </div>
 
         </div>
     </main>

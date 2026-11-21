@@ -5,7 +5,7 @@ use Core\Session;
 $statut = $agence['statut'] ?? 'en_attente';
 
 $statuts = [
-    'active' => ['Validée', 'bg-[#7E9833]/10 text-[#5E7826] border-[#C9D8A7'],
+    'active' => ['Validée', 'bg-[#F5B800]/15 text-[#806000] border-[#F5B800]/40'],
     'en_attente' => ['En attente de validation', 'bg-amber-50 text-amber-700 border-amber-200'],
     'suspendue' => ['Suspendue', 'bg-red-50 text-red-700 border-red-200'],
     'refusee' => ['Refusée', 'bg-red-50 text-red-700 border-red-200'],
@@ -17,7 +17,7 @@ $statuts = [
 ];
 
 $nomAgence = $agence['nom_agence'] ?? 'Mon agence';
-$initiale = strtoupper(substr($nomAgence, 0, 1));
+$initiale = mb_strtoupper(mb_substr($nomAgence, 0, 1, 'UTF-8'), 'UTF-8');
 
 $e = static function ($valeur): string {
     return htmlspecialchars((string) ($valeur ?? ''), ENT_QUOTES, 'UTF-8');
@@ -29,16 +29,16 @@ $cartes = [
         'valeur' => (int) ($statistiques['total'] ?? 0),
         'icone' => '🏘️',
         'description' => 'Toutes vos annonces',
-        'fond' => 'bg-[#71869A]/10',
-        'couleur' => 'text-[#71869A]',
+        'fond' => 'bg-slate-100',
+        'couleur' => 'text-slate-600',
     ],
     [
         'titre' => 'Biens actifs',
         'valeur' => (int) ($statistiques['actifs'] ?? 0),
         'icone' => '🏠',
         'description' => 'Annonces en ligne',
-        'fond' => 'bg-[#7E9833]/10',
-        'couleur' => 'text-[#7E9833]',
+        'fond' => 'bg-[#F5B800]/15',
+        'couleur' => 'text-[#9A7200]',
     ],
     [
         'titre' => 'En attente',
@@ -59,7 +59,7 @@ $cartes = [
 ];
 
 $statutsAffichage = [
-    'actif' => ['Actif', 'bg-[#7E9833]/10 text-[#5E7826]'],
+    'actif' => ['Actif', 'bg-[#F5B800]/15 text-[#806000]'],
     'en_attente' => ['En attente', 'bg-amber-50 text-amber-700'],
     'rejete' => ['Refusé', 'bg-red-50 text-red-700'],
     'refuse' => ['Refusé', 'bg-red-50 text-red-700'],
@@ -71,26 +71,26 @@ $statutsAffichage = [
 $derniersBiens = array_slice($biens ?? [], 0, 3);
 ?>
 
-<div class="min-h-screen bg-[#F5F3ED] text-[#101D33]">
+<div class="min-h-screen bg-[#F4F6F9] text-[#071B36]">
 
     <?php require_once BASE_PATH . '/app/Views/components/agence-sidebare.php'; ?>
 
     <main class="min-h-screen lg:ml-[270px]">
 
         <!-- HEADER -->
-        <header class="sticky top-0 z-30 border-b border-[#E2E5DA] bg-[#F5F3ED]/95 px-4 py-4 backdrop-blur-xl sm:px-8 sm:py-5">
+        <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/95 px-4 py-4 backdrop-blur-xl sm:px-8 sm:py-5">
             <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 
                 <div>
-                    <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#7E9833]">
+                    <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#A17B00]">
                         Espace professionnel
                     </p>
 
-                    <h1 class="mt-1 text-xl font-bold text-[#101D33] sm:text-2xl">
+                    <h1 class="mt-1 text-xl font-bold text-[#071B36] sm:text-2xl">
                         Tableau de bord
                     </h1>
 
-                    <p class="mt-1 text-sm text-[#71869A]">
+                    <p class="mt-1 text-sm text-slate-500">
                         Suivez et gérez les activités de votre agence.
                     </p>
                 </div>
@@ -106,11 +106,11 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
         <div class="mx-auto max-w-7xl space-y-8 px-5 py-8 sm:px-8">
 
             <!-- BANNIÈRE DE BIENVENUE -->
-            <section class="relative overflow-hidden rounded-[28px] bg-[#101D33] p-6 text-white shadow-[0_18px_50px_rgba(16,29,51,0.15)] sm:p-9">
+            <section class="relative overflow-hidden rounded-[28px] bg-[#071B36] p-6 text-white shadow-[0_20px_55px_rgba(7,27,54,0.16)] sm:p-9">
 
-                <div class="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full border-[35px] border-[#7E9833]/10"></div>
-                <div class="pointer-events-none absolute -bottom-24 right-1/4 h-52 w-52 rounded-full bg-[#71869A]/15 blur-2xl"></div>
-                <div class="pointer-events-none absolute -left-20 top-1/2 h-48 w-48 rounded-full bg-[#7E9833]/10 blur-3xl"></div>
+                <div class="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full border-[35px] border-[#F5B800]/10"></div>
+                <div class="pointer-events-none absolute -bottom-24 right-1/4 h-52 w-52 rounded-full bg-white/5 blur-2xl"></div>
+                <div class="pointer-events-none absolute -left-20 top-1/2 h-48 w-48 rounded-full bg-[#F5B800]/10 blur-3xl"></div>
 
                 <div class="relative flex flex-col gap-6 sm:flex-row sm:items-center">
 
@@ -124,7 +124,7 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
 
                     <?php else: ?>
 
-                        <div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-[#7E9833] text-3xl font-black text-white shadow-lg">
+                        <div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl border border-[#F5B800]/30 bg-[#F5B800] text-3xl font-black text-[#071B36] shadow-lg">
                             <?= $e($initiale) ?>
                         </div>
 
@@ -132,7 +132,7 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
 
                     <div class="min-w-0">
 
-                        <p class="text-sm font-medium text-[#B8C7D6]">
+                        <p class="text-sm font-medium text-slate-300">
                             Bienvenue dans votre espace professionnel
                         </p>
 
@@ -140,7 +140,7 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
                             <?= $e($nomAgence) ?>
                         </h2>
 
-                        <p class="mt-2 max-w-xl text-sm leading-6 text-[#C3CEDB]">
+                        <p class="mt-2 max-w-xl text-sm leading-6 text-slate-300">
                             Retrouvez en un seul endroit les performances, les annonces et les informations de votre agence.
                         </p>
 
@@ -150,7 +150,7 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
                                 Espace agence
                             </span>
 
-                            <span class="rounded-lg bg-[#7E9833]/15 px-3 py-2 text-xs font-semibold text-[#A8C65D]">
+                            <span class="rounded-lg bg-[#F5B800]/15 px-3 py-2 text-xs font-semibold text-[#F5B800]">
                                 IMMO-SN
                             </span>
 
@@ -163,15 +163,15 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
             <section class="space-y-4">
 
                 <div>
-                    <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#7E9833]">
+                    <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#A17B00]">
                         Vue d'ensemble
                     </p>
 
-                    <h2 class="mt-1 text-xl font-extrabold text-[#101D33]">
+                    <h2 class="mt-1 text-xl font-extrabold text-[#071B36]">
                         Activité de votre agence
                     </h2>
 
-                    <p class="mt-1 text-sm text-[#71869A]">
+                    <p class="mt-1 text-sm text-slate-500">
                         Un aperçu rapide de vos annonces immobilières.
                     </p>
                 </div>
@@ -180,27 +180,27 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
 
                     <?php foreach ($cartes as $carte): ?>
 
-                        <article class="group rounded-2xl border border-[#E2E5DA] bg-white p-5 shadow-[0_4px_18px_rgba(16,29,51,0.03)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(16,29,51,0.08)]">
+                        <article class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_4px_18px_rgba(7,27,54,0.03)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(7,27,54,0.08)]">
 
                             <div class="flex items-center justify-between gap-3">
 
                                 <div>
-                                    <p class="text-sm font-semibold text-[#71869A]">
+                                    <p class="text-sm font-semibold text-slate-500">
                                         <?= $e($carte['titre']) ?>
                                     </p>
 
-                                    <p class="mt-3 text-3xl font-extrabold tracking-tight text-[#101D33]">
+                                    <p class="mt-3 text-3xl font-extrabold tracking-tight text-[#071B36]">
                                         <?= $carte['valeur'] ?>
                                     </p>
                                 </div>
 
-                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-2xl <?= $carte['fond'] ?>">
+                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl <?= $carte['fond'] ?> <?= $carte['couleur'] ?>">
                                     <?= $carte['icone'] ?>
                                 </div>
                             </div>
 
-                            <div class="mt-4 border-t border-[#EDF0E8] pt-3">
-                                <p class="text-xs font-medium text-[#91A0AE]">
+                            <div class="mt-4 border-t border-slate-100 pt-3">
+                                <p class="text-xs font-medium text-slate-400">
                                     <?= $e($carte['description']) ?>
                                 </p>
                             </div>
@@ -218,22 +218,22 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
                 <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
 
                     <div>
-                        <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#7E9833]">
+                        <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#A17B00]">
                             Votre portefeuille
                         </p>
 
-                        <h2 class="mt-1 text-xl font-extrabold text-[#101D33]">
+                        <h2 class="mt-1 text-xl font-extrabold text-[#071B36]">
                             Derniers biens publiés
                         </h2>
 
-                        <p class="mt-1 text-sm text-[#71869A]">
+                        <p class="mt-1 text-sm text-slate-500">
                             Retrouvez les dernières annonces de votre agence.
                         </p>
                     </div>
 
                     <a
                         href="/immo-sn/agence/biens"
-                        class="inline-flex w-fit items-center gap-2 rounded-xl bg-[#101D33] px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#1C304E]"
+                        class="inline-flex w-fit items-center gap-2 rounded-xl bg-[#071B36] px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#102C4D]"
                     >
                         Voir tous les biens
                         <span aria-hidden="true">→</span>
@@ -243,17 +243,17 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
 
                 <?php if (empty($derniersBiens)): ?>
 
-                    <div class="rounded-2xl border border-dashed border-[#CAD3BA] bg-white px-6 py-14 text-center">
+                    <div class="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-14 text-center">
 
-                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#7E9833]/10 text-3xl">
+                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F5B800]/10 text-3xl">
                             🏘️
                         </div>
 
-                        <h3 class="mt-4 text-lg font-bold text-[#101D33]">
+                        <h3 class="mt-4 text-lg font-bold text-[#071B36]">
                             Aucun bien publié pour le moment
                         </h3>
 
-                        <p class="mx-auto mt-2 max-w-md text-sm leading-6 text-[#71869A]">
+                        <p class="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500">
                             Vos annonces apparaîtront ici dès leur publication.
                         </p>
 
@@ -275,10 +275,10 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
                                 ];
                             ?>
 
-                            <article class="group overflow-hidden rounded-2xl border border-[#E2E5DA] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_14px_35px_rgba(16,29,51,0.10)]">
+                            <article class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_14px_35px_rgba(7,27,54,0.10)]">
 
                                 <!-- IMAGE -->
-                                <div class="relative h-48 overflow-hidden bg-[#E9ECE4]">
+                                <div class="relative h-48 overflow-hidden bg-slate-100">
 
                                     <?php if (!empty($bien['photo'])): ?>
 
@@ -305,17 +305,17 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
                                 <div class="space-y-4 p-5">
 
                                     <div>
-                                        <h3 class="line-clamp-2 break-words text-base font-extrabold text-[#101D33]">
+                                        <h3 class="line-clamp-2 break-words text-base font-extrabold text-[#071B36]">
                                             <?= $e($bien['titre'] ?? 'Sans titre') ?>
                                         </h3>
 
-                                        <p class="mt-2 text-lg font-extrabold text-[#7E9833]">
+                                        <p class="mt-2 text-lg font-extrabold text-[#A17B00]">
                                             <?= number_format((float) ($bien['prix'] ?? 0), 0, ',', ' ') ?>
                                             <span class="text-xs font-bold">FCFA</span>
                                         </p>
                                     </div>
 
-                                    <div class="flex flex-wrap gap-x-4 gap-y-2 border-t border-[#EDF0E8] pt-4 text-xs font-medium text-[#71869A]">
+                                    <div class="flex flex-wrap gap-x-4 gap-y-2 border-t border-slate-100 pt-4 text-xs font-medium text-slate-500">
 
                                         <?php if (!empty($bien['ville_nom'])): ?>
                                             <span class="min-w-0 break-words">📍 <?= $e($bien['ville_nom']) ?></span>
@@ -344,15 +344,15 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
             </section>
 
             <!-- ÉTAT DE L'AGENCE -->
-            <section class="overflow-hidden rounded-2xl border border-[#E2E5DA] bg-white shadow-sm">
+            <section class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
 
-                <div class="border-b border-[#E2E5DA] px-6 py-5">
+                <div class="border-b border-slate-200 px-6 py-5">
 
-                    <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#7E9833]">
+                    <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#A17B00]">
                         Suivi administratif
                     </p>
 
-                    <h2 class="mt-1 text-lg font-extrabold text-[#101D33]">
+                    <h2 class="mt-1 text-lg font-extrabold text-[#071B36]">
                         État de votre agence
                     </h2>
 
@@ -362,16 +362,16 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
 
                     <div class="flex items-start gap-4">
 
-                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#7E9833]/10 text-xl">
+                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F5B800]/15 text-xl">
                             🏢
                         </div>
 
                         <div>
-                            <h3 class="font-bold text-[#101D33]">
+                            <h3 class="font-bold text-[#071B36]">
                                 <?= $e($statutLabel) ?>
                             </h3>
 
-                            <p class="mt-2 max-w-2xl text-sm leading-6 text-[#71869A]">
+                            <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-500">
 
                                 <?php if ($statut === 'en_attente'): ?>
 
@@ -410,20 +410,20 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
             </section>
 
             <!-- INFORMATIONS AGENCE -->
-            <section class="overflow-hidden rounded-2xl border border-[#E2E5DA] bg-white shadow-sm">
+            <section class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
 
-                <div class="flex flex-col gap-4 border-b border-[#E2E5DA] px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
+                <div class="flex flex-col gap-4 border-b border-slate-200 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
 
                     <div>
-                        <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#7E9833]">
+                        <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#A17B00]">
                             Profil professionnel
                         </p>
 
-                        <h2 class="mt-1 text-lg font-extrabold text-[#101D33]">
+                        <h2 class="mt-1 text-lg font-extrabold text-[#071B36]">
                             Informations de mon agence
                         </h2>
 
-                        <p class="mt-1 text-sm text-[#71869A]">
+                        <p class="mt-1 text-sm text-slate-500">
                             Consultez et mettez à jour les informations enregistrées.
                         </p>
                     </div>
@@ -431,7 +431,7 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
                     <button
                         type="button"
                         onclick="ouvrirPopupAgence()"
-                        class="inline-flex w-fit items-center justify-center gap-2 rounded-xl bg-[#7E9833] px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#91AD42]"
+                        class="inline-flex w-fit items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-5 py-3 text-sm font-bold text-[#071B36] shadow-sm transition hover:bg-[#DCA500]"
                     >
                         <span>✎</span>
                         Modifier mes informations
@@ -454,13 +454,13 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
 
                     <?php foreach ($informations as $label => $valeur): ?>
 
-                        <div class="rounded-xl border border-[#E2E5DA] bg-[#F5F3ED] p-4 transition hover:border-[#C1D19B]">
+                        <div class="rounded-xl border border-slate-200 bg-[#F4F6F9] p-4 transition hover:border-[#F5B800]/60">
 
-                            <p class="text-[11px] font-bold uppercase tracking-wider text-[#71869A]">
+                            <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">
                                 <?= $e($label) ?>
                             </p>
 
-                            <p class="mt-2 break-words text-sm font-bold text-[#101D33]">
+                            <p class="mt-2 break-words text-sm font-bold text-[#071B36]">
                                 <?= $e($valeur !== '' ? $valeur : 'Non renseigné') ?>
                             </p>
 
@@ -468,13 +468,13 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
 
                     <?php endforeach; ?>
 
-                    <div class="rounded-xl border border-[#E2E5DA] bg-[#F5F3ED] p-4 sm:col-span-2 lg:col-span-3">
+                    <div class="rounded-xl border border-slate-200 bg-[#F4F6F9] p-4 sm:col-span-2 lg:col-span-3">
 
-                        <p class="text-[11px] font-bold uppercase tracking-wider text-[#71869A]">
+                        <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">
                             Description
                         </p>
 
-                        <p class="mt-2 break-words whitespace-pre-line text-sm leading-7 text-[#33445A]">
+                        <p class="mt-2 break-words whitespace-pre-line text-sm leading-7 text-slate-700">
                             <?= $e($agence['description'] ?? 'Aucune description renseignée.') ?>
                         </p>
 
@@ -487,7 +487,7 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
         </div>
 
         <!-- FOOTER -->
-        <footer class="mt-10 border-t border-[#E2E5DA] bg-white px-5 py-6 sm:px-8">
+        <footer class="mt-10 border-t border-slate-200 bg-white px-5 py-6 sm:px-8">
 
             <div class="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
@@ -495,29 +495,29 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
 
                     <a href="/immo-sn/" class="inline-flex items-center gap-2">
 
-                        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#101D33] text-sm font-extrabold text-[#9DBA4C]">
+                        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#071B36] text-sm font-extrabold text-[#F5B800]">
                             IM
                         </span>
 
-                        <span class="text-base font-extrabold tracking-wide text-[#101D33]">
-                            IMMO<span class="text-[#7E9833]">-SN</span>
+                        <span class="text-base font-extrabold tracking-wide text-[#071B36]">
+                            IMMO<span class="text-[#A17B00]">-SN</span>
                         </span>
 
                     </a>
 
-                    <p class="mt-2 text-xs text-[#71869A]">
+                    <p class="mt-2 text-xs text-slate-500">
                         Votre partenaire immobilier au Sénégal.
                     </p>
 
                 </div>
 
-                <div class="flex flex-col gap-2 text-xs text-[#71869A] sm:items-end">
+                <div class="flex flex-col gap-2 text-xs text-slate-500 sm:items-end">
 
                     <p>
                         © <?= date('Y') ?> IMMO-SN. Tous droits réservés.
                     </p>
 
-                    <p class="font-medium text-[#7E9833]">
+                    <p class="font-medium text-[#A17B00]">
                         Espace professionnel · Tableau de bord agence
                     </p>
 
@@ -533,21 +533,21 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
 <!-- POPUP MODIFICATION AGENCE -->
 <div
     id="popupAgence"
-    class="fixed inset-0 z-[100] hidden items-center justify-center bg-[#101D33]/75 px-4 py-6 backdrop-blur-sm"
+    class="fixed inset-0 z-[100] hidden items-center justify-center bg-[#071B36]/75 px-4 py-6 backdrop-blur-sm"
     onclick="fermerPopupAgence(event)"
 >
 
     <div class="flex max-h-[90vh] w-full min-w-0 max-w-2xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl">
 
         <!-- HEADER POPUP -->
-        <div class="relative overflow-hidden border-b border-[#E2E5DA] bg-[#101D33] px-6 py-5 text-white">
+        <div class="relative overflow-hidden border-b border-slate-200 bg-[#071B36] px-6 py-5 text-white">
 
-            <div class="pointer-events-none absolute -right-10 -top-16 h-40 w-40 rounded-full bg-[#7E9833]/20 blur-2xl"></div>
+            <div class="pointer-events-none absolute -right-10 -top-16 h-40 w-40 rounded-full bg-[#F5B800]/15 blur-2xl"></div>
 
             <div class="relative flex items-center justify-between gap-4">
 
                 <div>
-                    <p class="text-xs font-bold uppercase tracking-widest text-[#9DBA4C]">
+                    <p class="text-xs font-bold uppercase tracking-widest text-[#F5B800]">
                         Profil professionnel
                     </p>
 
@@ -555,7 +555,7 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
                         Modifier mon agence
                     </h2>
 
-                    <p class="mt-1 text-sm text-[#C3CEDB]">
+                    <p class="mt-1 text-sm text-slate-300">
                         Mettez à jour les informations de votre agence.
                     </p>
                 </div>
@@ -588,7 +588,7 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
 
             <div>
 
-                <label class="mb-2 block text-sm font-bold text-[#101D33]">
+                <label class="mb-2 block text-sm font-bold text-[#071B36]">
                     Nom de l'agence
                 </label>
 
@@ -597,14 +597,14 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
                     name="nom_agence"
                     value="<?= $e($agence['nom_agence'] ?? '') ?>"
                     required
-                    class="w-full rounded-xl border border-[#E2E5DA] bg-[#F5F3ED] px-4 py-3 text-sm text-[#101D33] outline-none transition focus:border-[#7E9833] focus:bg-white focus:ring-2 focus:ring-[#7E9833]/15"
+                    class="w-full rounded-xl border border-slate-200 bg-[#F4F6F9] px-4 py-3 text-sm text-[#071B36] outline-none transition focus:border-[#F5B800] focus:bg-white focus:ring-2 focus:ring-[#F5B800]/15"
                 >
 
             </div>
 
             <div>
 
-                <label class="mb-2 block text-sm font-bold text-[#101D33]">
+                <label class="mb-2 block text-sm font-bold text-[#071B36]">
                     Adresse
                 </label>
 
@@ -613,7 +613,7 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
                     name="adresse"
                     value="<?= $e($agence['adresse'] ?? '') ?>"
                     required
-                    class="w-full rounded-xl border border-[#E2E5DA] bg-[#F5F3ED] px-4 py-3 text-sm text-[#101D33] outline-none transition focus:border-[#7E9833] focus:bg-white focus:ring-2 focus:ring-[#7E9833]/15"
+                    class="w-full rounded-xl border border-slate-200 bg-[#F4F6F9] px-4 py-3 text-sm text-[#071B36] outline-none transition focus:border-[#F5B800] focus:bg-white focus:ring-2 focus:ring-[#F5B800]/15"
                 >
 
             </div>
@@ -622,7 +622,7 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
 
                 <div>
 
-                    <label class="mb-2 block text-sm font-bold text-[#101D33]">
+                    <label class="mb-2 block text-sm font-bold text-[#071B36]">
                         Téléphone
                     </label>
 
@@ -630,14 +630,14 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
                         type="text"
                         name="telephone"
                         value="<?= $e($agence['telephone'] ?? '') ?>"
-                        class="w-full rounded-xl border border-[#E2E5DA] bg-[#F5F3ED] px-4 py-3 text-sm text-[#101D33] outline-none transition focus:border-[#7E9833] focus:bg-white focus:ring-2 focus:ring-[#7E9833]/15"
+                        class="w-full rounded-xl border border-slate-200 bg-[#F4F6F9] px-4 py-3 text-sm text-[#071B36] outline-none transition focus:border-[#F5B800] focus:bg-white focus:ring-2 focus:ring-[#F5B800]/15"
                     >
 
                 </div>
 
                 <div>
 
-                    <label class="mb-2 block text-sm font-bold text-[#101D33]">
+                    <label class="mb-2 block text-sm font-bold text-[#071B36]">
                         Adresse e-mail
                     </label>
 
@@ -645,7 +645,7 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
                         type="email"
                         name="email"
                         value="<?= $e($agence['email'] ?? '') ?>"
-                        class="w-full rounded-xl border border-[#E2E5DA] bg-[#F5F3ED] px-4 py-3 text-sm text-[#101D33] outline-none transition focus:border-[#7E9833] focus:bg-white focus:ring-2 focus:ring-[#7E9833]/15"
+                        class="w-full rounded-xl border border-slate-200 bg-[#F4F6F9] px-4 py-3 text-sm text-[#071B36] outline-none transition focus:border-[#F5B800] focus:bg-white focus:ring-2 focus:ring-[#F5B800]/15"
                     >
 
                 </div>
@@ -654,7 +654,7 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
 
             <div>
 
-                <label class="mb-2 block text-sm font-bold text-[#101D33]">
+                <label class="mb-2 block text-sm font-bold text-[#071B36]">
                     NINEA
                 </label>
 
@@ -663,39 +663,39 @@ $derniersBiens = array_slice($biens ?? [], 0, 3);
                     name="ninea"
                     value="<?= $e($agence['ninea'] ?? '') ?>"
                     required
-                    class="w-full rounded-xl border border-[#E2E5DA] bg-[#F5F3ED] px-4 py-3 text-sm text-[#101D33] outline-none transition focus:border-[#7E9833] focus:bg-white focus:ring-2 focus:ring-[#7E9833]/15"
+                    class="w-full rounded-xl border border-slate-200 bg-[#F4F6F9] px-4 py-3 text-sm text-[#071B36] outline-none transition focus:border-[#F5B800] focus:bg-white focus:ring-2 focus:ring-[#F5B800]/15"
                 >
 
             </div>
 
             <div>
 
-                <label class="mb-2 block text-sm font-bold text-[#101D33]">
+                <label class="mb-2 block text-sm font-bold text-[#071B36]">
                     Description
                 </label>
 
                 <textarea
                     name="description"
                     rows="4"
-                    class="w-full resize-y rounded-xl border border-[#E2E5DA] bg-[#F5F3ED] px-4 py-3 text-sm text-[#101D33] outline-none transition focus:border-[#7E9833] focus:bg-white focus:ring-2 focus:ring-[#7E9833]/15"
+                    class="w-full resize-y rounded-xl border border-slate-200 bg-[#F4F6F9] px-4 py-3 text-sm text-[#071B36] outline-none transition focus:border-[#F5B800] focus:bg-white focus:ring-2 focus:ring-[#F5B800]/15"
                 ><?= $e($agence['description'] ?? '') ?></textarea>
 
             </div>
 
             <!-- BOUTONS -->
-            <div class="flex flex-col-reverse gap-3 border-t border-[#E2E5DA] pt-5 sm:flex-row sm:justify-end">
+            <div class="flex flex-col-reverse gap-3 border-t border-slate-200 pt-5 sm:flex-row sm:justify-end">
 
                 <button
                     type="button"
                     onclick="fermerPopupAgence()"
-                    class="rounded-xl border border-[#E2E5DA] px-5 py-3 text-sm font-bold text-[#71869A] transition hover:bg-[#F5F3ED]"
+                    class="rounded-xl border border-slate-200 px-5 py-3 text-sm font-bold text-slate-500 transition hover:bg-[#F4F6F9]"
                 >
                     Annuler
                 </button>
 
                 <button
                     type="submit"
-                    class="rounded-xl bg-[#7E9833] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#91AD42]"
+                    class="rounded-xl bg-[#F5B800] px-6 py-3 text-sm font-bold text-[#071B36] shadow-sm transition hover:bg-[#DCA500]"
                 >
                     Enregistrer les modifications
                 </button>

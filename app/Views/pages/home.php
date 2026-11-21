@@ -103,9 +103,9 @@ $categoriesDesign = [
      HERO
 ========================================================= -->
 
-<section class="relative overflow-hidden bg-[#101D33]">
+<section class="relative overflow-hidden bg-[#071B36]">
 
-    <div class="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-[#7E9833]/20 blur-3xl"></div>
+    <div class="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-[#F5B800]/15 blur-3xl"></div>
 
     <div class="absolute -bottom-40 left-1/3 h-96 w-96 rounded-full bg-[#71869A]/15 blur-3xl"></div>
 
@@ -119,19 +119,19 @@ $categoriesDesign = [
                 class="absolute inset-0 h-full w-full object-cover"
             >
 
-            <div class="absolute inset-0 bg-gradient-to-r from-[#101D33]/95 via-[#101D33]/75 to-[#101D33]/25"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-[#071B36]/95 via-[#071B36]/75 to-[#071B36]/25"></div>
 
-            <div class="absolute inset-0 bg-gradient-to-t from-[#101D33]/40 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#071B36]/50 via-transparent to-transparent"></div>
 
             <div class="relative z-10 flex min-h-[620px] items-center sm:min-h-[650px]">
 
                 <div class="max-w-3xl px-6 py-16 sm:px-12 lg:px-16">
 
-                    <div class="mb-7 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2.5 backdrop-blur-md">
+                    <div class="mb-7 inline-flex items-center gap-3 rounded-full border border-[#F5B800]/30 bg-[#071B36]/45 px-4 py-2.5 backdrop-blur-md">
 
-                        <span class="h-2.5 w-2.5 rounded-full bg-[#8FAF35]"></span>
+                        <span class="h-2.5 w-2.5 rounded-full bg-[#F5B800]"></span>
 
-                        <span class="text-[10px] font-bold uppercase tracking-[0.18em] text-white sm:text-xs">
+                        <span class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#F5D66B] sm:text-xs">
                             La référence immobilière au Sénégal
                         </span>
 
@@ -141,7 +141,7 @@ $categoriesDesign = [
 
                         Trouvez un lieu
 
-                        <span class="text-[#A9C65B]">
+                        <span class="text-[#F5B800]">
                             à votre image.
                         </span>
 
@@ -165,7 +165,7 @@ $categoriesDesign = [
 
                             <div class="flex flex-1 items-center rounded-[16px] bg-[#F5F3ED] px-4 py-3.5">
 
-                                <span class="mr-3 text-[#7E9833]">
+                                <span class="mr-3 text-[#8A6500]">
                                     <?= icon('search', 'w-5 h-5') ?>
                                 </span>
 
@@ -173,14 +173,14 @@ $categoriesDesign = [
                                     type="text"
                                     name="q"
                                     placeholder="Ville, quartier, type de bien..."
-                                    class="w-full bg-transparent text-sm font-medium text-[#101D33] outline-none placeholder:text-[#71869A]"
+                                    class="w-full bg-transparent text-sm font-medium text-[#071B36] outline-none placeholder:text-[#71869A]"
                                 >
 
                             </div>
 
                             <button
                                 type="submit"
-                                class="flex items-center justify-center gap-2 rounded-[16px] bg-[#7E9833] px-7 py-4 text-sm font-bold text-white transition hover:bg-[#6D852B]"
+                                class="flex items-center justify-center gap-2 rounded-[16px] bg-[#F5B800] px-7 py-4 text-sm font-extrabold text-[#071B36] transition hover:bg-[#D7A200]"
                             >
 
                                 <?= icon('search', 'w-4 h-4') ?>
@@ -199,21 +199,21 @@ $categoriesDesign = [
 
                         <a
                             href="/biens"
-                            class="rounded-full border border-white/25 bg-white/10 px-4 py-2.5 text-xs font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
+                            class="rounded-full border border-white/25 bg-white/10 px-4 py-2.5 text-xs font-semibold text-white backdrop-blur-sm transition hover:border-[#F5B800]/50 hover:bg-white/20"
                         >
                             Voir tous les biens
                         </a>
 
                         <a
                             href="/biens/carte"
-                            class="rounded-full border border-white/25 bg-white/10 px-4 py-2.5 text-xs font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
+                            class="rounded-full border border-white/25 bg-white/10 px-4 py-2.5 text-xs font-semibold text-white backdrop-blur-sm transition hover:border-[#F5B800]/50 hover:bg-white/20"
                         >
                             Explorer la carte
                         </a>
 
                         <a
                             href="/scanner"
-                            class="rounded-full border border-[#A9C65B]/50 bg-[#7E9833]/20 px-4 py-2.5 text-xs font-semibold text-[#D2E69A] transition hover:bg-[#7E9833]/35"
+                            class="rounded-full border border-[#F5B800]/50 bg-[#F5B800]/10 px-4 py-2.5 text-xs font-semibold text-[#F5D66B] transition hover:bg-[#F5B800]/20"
                         >
                             Scanner un QR
                         </a>
@@ -230,7 +230,7 @@ $categoriesDesign = [
 
                 <div class="flex items-center gap-3">
 
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#101D33] text-[#A9C65B]">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#071B36] text-[#F5B800]">
 
                         <?= icon('shield-check', 'w-5 h-5') ?>
 
@@ -238,7 +238,7 @@ $categoriesDesign = [
 
                     <div>
 
-                        <p class="text-sm font-extrabold text-[#101D33]">
+                        <p class="text-sm font-extrabold text-[#071B36]">
                             Une plateforme pensée
                         </p>
 
@@ -267,15 +267,15 @@ $categoriesDesign = [
 
     <div class="mx-auto max-w-6xl">
 
-        <div class="grid grid-cols-2 overflow-hidden rounded-[24px] border border-[#E6E8DF] bg-white shadow-xl md:grid-cols-4">
+        <div class="grid grid-cols-2 overflow-hidden rounded-[24px] border border-[#E8E2D4] bg-white shadow-xl md:grid-cols-4">
 
-            <div class="border-b border-[#E6E8DF] p-5 text-center md:border-b-0 md:border-r md:p-6">
+            <div class="border-b border-[#E8E2D4] p-5 text-center md:border-b-0 md:border-r md:p-6">
 
-                <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#EDF2E1] text-[#7E9833]">
+                <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFF4CC] text-[#8A6500]">
                     <?= icon('house', 'w-5 h-5') ?>
                 </div>
 
-                <p class="text-2xl font-extrabold text-[#101D33]">
+                <p class="text-2xl font-extrabold text-[#071B36]">
                     <?= number_format($totalBiens, 0, ',', ' ') ?>
                 </p>
 
@@ -286,13 +286,13 @@ $categoriesDesign = [
             </div>
 
 
-            <div class="border-b border-[#E6E8DF] p-5 text-center md:border-b-0 md:border-r md:p-6">
+            <div class="border-b border-[#E8E2D4] p-5 text-center md:border-b-0 md:border-r md:p-6">
 
-                <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#EDF2E1] text-[#7E9833]">
+                <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFF4CC] text-[#8A6500]">
                     <?= icon('map-pin', 'w-5 h-5') ?>
                 </div>
 
-                <p class="text-2xl font-extrabold text-[#101D33]">
+                <p class="text-2xl font-extrabold text-[#071B36]">
                     <?= number_format($totalQuartiers, 0, ',', ' ') ?>
                 </p>
 
@@ -303,13 +303,13 @@ $categoriesDesign = [
             </div>
 
 
-            <div class="p-5 text-center md:border-r md:border-[#E6E8DF] md:p-6">
+            <div class="p-5 text-center md:border-r md:border-[#E8E2D4] md:p-6">
 
-                <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#EDF2E1] text-[#7E9833]">
+                <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFF4CC] text-[#8A6500]">
                     <?= icon('building-2', 'w-5 h-5') ?>
                 </div>
 
-                <p class="text-2xl font-extrabold text-[#101D33]">
+                <p class="text-2xl font-extrabold text-[#071B36]">
                     <?= number_format($totalAgences, 0, ',', ' ') ?>
                 </p>
 
@@ -322,11 +322,11 @@ $categoriesDesign = [
 
             <div class="p-5 text-center md:p-6">
 
-                <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#EDF2E1] text-[#7E9833]">
+                <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFF4CC] text-[#8A6500]">
                     <?= icon('clock', 'w-5 h-5') ?>
                 </div>
 
-                <p class="text-2xl font-extrabold text-[#101D33]">
+                <p class="text-2xl font-extrabold text-[#071B36]">
                     24/7
                 </p>
 
@@ -355,11 +355,11 @@ $categoriesDesign = [
 
             <div>
 
-                <p class="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#7E9833]">
+                <p class="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#8A6500]">
                     Explorer
                 </p>
 
-                <h2 class="font-['Playfair_Display'] text-3xl font-bold text-[#101D33] sm:text-4xl">
+                <h2 class="font-['Playfair_Display'] text-3xl font-bold text-[#071B36] sm:text-4xl">
                     Quel bien recherchez-vous ?
                 </h2>
 
@@ -372,7 +372,7 @@ $categoriesDesign = [
 
             <a
                 href="/biens"
-                class="inline-flex items-center gap-2 text-sm font-bold text-[#7E9833] transition hover:text-[#101D33]"
+                class="inline-flex items-center gap-2 text-sm font-bold text-[#8A6500] transition hover:text-[#071B36]"
             >
                 Voir toutes les annonces
                 <?= icon('arrow-right', 'w-4 h-4') ?>
@@ -383,9 +383,9 @@ $categoriesDesign = [
 
         <?php if (empty($categoriesAccueil)): ?>
 
-            <div class="rounded-[24px] border border-[#E6E8DF] bg-white p-10 text-center">
+            <div class="rounded-[24px] border border-[#E8E2D4] bg-white p-10 text-center">
 
-                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EDF2E1] text-[#7E9833]">
+                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#FFF4CC] text-[#8A6500]">
                     <?= icon('layers', 'w-6 h-6') ?>
                 </div>
 
@@ -423,16 +423,16 @@ $categoriesDesign = [
 
                     <a
                         href="/biens?category_id=<?= urlencode((string) ($categorie['id'] ?? '')) ?>"
-                        class="group relative overflow-hidden rounded-[24px] border border-[#E6E8DF] bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-[#7E9833] hover:shadow-xl sm:p-6"
+                        class="group relative overflow-hidden rounded-[24px] border border-[#E8E2D4] bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-[#D7A200] hover:shadow-xl sm:p-6"
                     >
 
-                        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EDF2E1] text-[#7E9833] transition group-hover:bg-[#7E9833] group-hover:text-white">
+                        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#FFF4CC] text-[#8A6500] transition group-hover:bg-[#F5B800] group-hover:text-[#071B36]">
 
                             <?= icon($designCategorie['icon'], 'w-6 h-6') ?>
 
                         </div>
 
-                        <h3 class="mt-6 text-base font-extrabold text-[#101D33] sm:text-lg">
+                        <h3 class="mt-6 text-base font-extrabold text-[#071B36] sm:text-lg">
 
                             <?= htmlspecialchars(
                                 $nomCategorie,
@@ -454,7 +454,7 @@ $categoriesDesign = [
 
                         <div class="mt-5 flex items-center justify-between gap-2">
 
-                            <span class="text-xs font-bold text-[#7E9833]">
+                            <span class="text-xs font-bold text-[#8A6500]">
 
                                 <?= number_format(
                                     $totalCategorie,
@@ -467,7 +467,7 @@ $categoriesDesign = [
 
                             </span>
 
-                            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#F5F3ED] text-[#101D33] transition group-hover:translate-x-1 group-hover:bg-[#7E9833] group-hover:text-white">
+                            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#F5F3ED] text-[#071B36] transition group-hover:translate-x-1 group-hover:bg-[#F5B800] group-hover:text-[#071B36]">
 
                                 <?= icon('arrow-right', 'w-4 h-4') ?>
 
@@ -500,11 +500,11 @@ $categoriesDesign = [
 
             <div>
 
-                <p class="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#7E9833]">
+                <p class="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#8A6500]">
                     Sélection IMMO-SN
                 </p>
 
-                <h2 class="font-['Playfair_Display'] text-3xl font-bold text-[#101D33] sm:text-4xl">
+                <h2 class="font-['Playfair_Display'] text-3xl font-bold text-[#071B36] sm:text-4xl">
                     Les biens à découvrir
                 </h2>
 
@@ -519,13 +519,13 @@ $categoriesDesign = [
 
         <?php if (empty($biensAccueil)): ?>
 
-            <div class="rounded-[28px] border border-[#E6E8DF] bg-[#F5F3ED] p-10 text-center sm:p-14">
+            <div class="rounded-[28px] border border-[#E8E2D4] bg-[#F5F3ED] p-10 text-center sm:p-14">
 
-                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-[#7E9833] shadow-sm">
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-[#8A6500] shadow-sm">
                     <?= icon('house', 'w-7 h-7') ?>
                 </div>
 
-                <h3 class="mt-5 text-lg font-extrabold text-[#101D33]">
+                <h3 class="mt-5 text-lg font-extrabold text-[#071B36]">
                     Aucun bien disponible
                 </h3>
 
@@ -571,7 +571,7 @@ $categoriesDesign = [
 
                     ?>
 
-                    <article class="group overflow-hidden rounded-[26px] border border-[#E6E8DF] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+                    <article class="group overflow-hidden rounded-[26px] border border-[#E8E2D4] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#D7A200] hover:shadow-xl">
 
                         <!-- Photo -->
 
@@ -586,7 +586,7 @@ $categoriesDesign = [
 
                             <div class="absolute inset-x-0 top-0 flex items-center justify-between gap-2 p-4">
 
-                                <span class="rounded-full bg-white/95 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-wide text-[#101D33] shadow-sm">
+                                <span class="rounded-full bg-white/95 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-wide text-[#071B36] shadow-sm">
 
                                     <?= htmlspecialchars(
                                         $categorie,
@@ -598,13 +598,13 @@ $categoriesDesign = [
 
                                 <?php if ($typeOffre === 'location'): ?>
 
-                                    <span class="rounded-full bg-[#7E9833] px-3 py-1.5 text-[10px] font-extrabold text-white shadow-sm">
+                                    <span class="rounded-full bg-[#F5B800] px-3 py-1.5 text-[10px] font-extrabold text-[#071B36] shadow-sm">
                                         LOCATION
                                     </span>
 
                                 <?php else: ?>
 
-                                    <span class="rounded-full bg-[#101D33] px-3 py-1.5 text-[10px] font-extrabold text-white shadow-sm">
+                                    <span class="rounded-full bg-[#071B36] px-3 py-1.5 text-[10px] font-extrabold text-white shadow-sm">
                                         VENTE
                                     </span>
 
@@ -621,7 +621,7 @@ $categoriesDesign = [
 
                             <p class="flex items-center gap-1.5 text-xs font-medium text-[#71869A]">
 
-                                <?= icon('map-pin', 'w-3.5 h-3.5 text-[#7E9833]') ?>
+                                <?= icon('map-pin', 'w-3.5 h-3.5 text-[#B88700]') ?>
 
                                 <?= htmlspecialchars(
                                     $ville,
@@ -643,7 +643,7 @@ $categoriesDesign = [
 
                             </p>
 
-                            <h3 class="mt-3 line-clamp-1 text-lg font-extrabold text-[#101D33]">
+                            <h3 class="mt-3 line-clamp-1 text-lg font-extrabold text-[#071B36]">
 
                                 <?= htmlspecialchars(
                                     $titre,
@@ -656,13 +656,13 @@ $categoriesDesign = [
 
                             <!-- Caractéristiques -->
 
-                            <div class="mt-5 flex min-h-8 items-center gap-4 border-b border-[#E6E8DF] pb-5 text-xs text-[#71869A]">
+                            <div class="mt-5 flex min-h-8 items-center gap-4 border-b border-[#E8E2D4] pb-5 text-xs text-[#71869A]">
 
                                 <?php if (!empty($bien['chambres'])): ?>
 
                                     <span class="flex items-center gap-1.5">
 
-                                        <?= icon('bed-double', 'w-4 h-4 text-[#7E9833]') ?>
+                                        <?= icon('bed-double', 'w-4 h-4 text-[#B88700]') ?>
 
                                         <?= (int) $bien['chambres'] ?>
                                         chambres
@@ -676,7 +676,7 @@ $categoriesDesign = [
 
                                     <span class="flex items-center gap-1.5">
 
-                                        <?= icon('maximize', 'w-4 h-4 text-[#7E9833]') ?>
+                                        <?= icon('maximize', 'w-4 h-4 text-[#B88700]') ?>
 
                                         <?= (int) $bien['surface'] ?>
                                         m²
@@ -694,7 +694,7 @@ $categoriesDesign = [
 
                                 <div>
 
-                                    <p class="text-xl font-extrabold text-[#101D33]">
+                                    <p class="text-xl font-extrabold text-[#071B36]">
 
                                         <?= number_format(
                                             $prix,
@@ -722,7 +722,7 @@ $categoriesDesign = [
 
                                 <a
                                     href="/biens/<?= rawurlencode((string) $id) ?>"
-                                    class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#EDF2E1] text-[#7E9833] transition group-hover:bg-[#7E9833] group-hover:text-white"
+                                    class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#FFF4CC] text-[#8A6500] transition group-hover:bg-[#F5B800] group-hover:text-[#071B36]"
                                     aria-label="Voir le bien"
                                 >
 
@@ -749,7 +749,7 @@ $categoriesDesign = [
 
                 <a
                     href="/biens"
-                    class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#7E9833] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#6D852B]"
+                    class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-6 py-3.5 text-sm font-extrabold text-[#071B36] transition hover:bg-[#D7A200]"
                 >
                     Explorer tous les biens
                     <?= icon('arrow-right', 'w-4 h-4') ?>
@@ -772,11 +772,11 @@ $categoriesDesign = [
 
     <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
-        <div class="grid overflow-hidden rounded-[30px] bg-[#101D33] lg:grid-cols-2">
+        <div class="grid overflow-hidden rounded-[30px] bg-[#071B36] lg:grid-cols-2">
 
             <div class="flex flex-col justify-center p-8 sm:p-12 lg:p-16">
 
-                <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#A9C65B]">
+                <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#F5B800]">
                     Localisez votre futur bien
                 </p>
 
@@ -793,7 +793,7 @@ $categoriesDesign = [
 
                 <a
                     href="/biens/carte"
-                    class="mt-8 inline-flex w-fit items-center gap-2 rounded-xl bg-[#7E9833] px-6 py-3.5 text-sm font-extrabold text-white transition hover:bg-[#6D852B]"
+                    class="mt-8 inline-flex w-fit items-center gap-2 rounded-xl bg-[#F5B800] px-6 py-3.5 text-sm font-extrabold text-[#071B36] transition hover:bg-[#D7A200]"
                 >
 
                     <?= icon('map', 'w-4 h-4') ?>
@@ -815,25 +815,25 @@ $categoriesDesign = [
                     class="absolute inset-0 h-full w-full object-cover"
                 >
 
-                <div class="absolute inset-0 bg-[#101D33]/35"></div>
+                <div class="absolute inset-0 bg-[#071B36]/35"></div>
 
-                <div class="absolute left-[25%] top-[32%] flex h-11 w-11 items-center justify-center rounded-full border-4 border-white bg-[#7E9833] text-white shadow-xl">
+                <div class="absolute left-[25%] top-[32%] flex h-11 w-11 items-center justify-center rounded-full border-4 border-white bg-[#F5B800] text-[#071B36] shadow-xl">
                     <?= icon('map-pin', 'w-4 h-4') ?>
                 </div>
 
-                <div class="absolute right-[28%] top-[48%] flex h-11 w-11 items-center justify-center rounded-full border-4 border-white bg-[#101D33] text-white shadow-xl">
+                <div class="absolute right-[28%] top-[48%] flex h-11 w-11 items-center justify-center rounded-full border-4 border-white bg-[#071B36] text-[#F5B800] shadow-xl">
                     <?= icon('map-pin', 'w-4 h-4') ?>
                 </div>
 
-                <div class="absolute bottom-[20%] left-[48%] flex h-11 w-11 items-center justify-center rounded-full border-4 border-white bg-[#7E9833] text-white shadow-xl">
+                <div class="absolute bottom-[20%] left-[48%] flex h-11 w-11 items-center justify-center rounded-full border-4 border-white bg-[#F5B800] text-[#071B36] shadow-xl">
                     <?= icon('map-pin', 'w-4 h-4') ?>
                 </div>
 
                 <div class="absolute bottom-6 left-6 rounded-xl border border-white/30 bg-white/95 px-4 py-3 shadow-lg">
 
-                    <p class="flex items-center gap-2 text-xs font-bold text-[#101D33]">
+                    <p class="flex items-center gap-2 text-xs font-bold text-[#071B36]">
 
-                        <span class="h-2.5 w-2.5 rounded-full bg-[#7E9833]"></span>
+                        <span class="h-2.5 w-2.5 rounded-full bg-[#F5B800]"></span>
 
                         Découvrez les biens autour de vous
 
@@ -860,11 +860,11 @@ $categoriesDesign = [
 
         <div class="mx-auto max-w-2xl text-center">
 
-            <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#7E9833]">
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#8A6500]">
                 Pourquoi IMMO-SN ?
             </p>
 
-            <h2 class="mt-3 font-['Playfair_Display'] text-3xl font-bold text-[#101D33] sm:text-4xl">
+            <h2 class="mt-3 font-['Playfair_Display'] text-3xl font-bold text-[#071B36] sm:text-4xl">
                 Une expérience immobilière plus simple.
             </h2>
 
@@ -880,13 +880,13 @@ $categoriesDesign = [
 
             <!-- Avantage 1 -->
 
-            <div class="rounded-[26px] border border-[#E6E8DF] bg-[#F5F3ED] p-7 transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div class="rounded-[26px] border border-[#E8E2D4] bg-[#F5F3ED] p-7 transition duration-300 hover:-translate-y-1 hover:border-[#D7A200] hover:shadow-lg">
 
-                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#101D33] text-[#A9C65B]">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#071B36] text-[#F5B800]">
                     <?= icon('search-check', 'w-6 h-6') ?>
                 </div>
 
-                <h3 class="mt-6 text-lg font-extrabold text-[#101D33]">
+                <h3 class="mt-6 text-lg font-extrabold text-[#071B36]">
                     Recherche simplifiée
                 </h3>
 
@@ -900,13 +900,13 @@ $categoriesDesign = [
 
             <!-- Avantage 2 -->
 
-            <div class="rounded-[26px] border border-[#E6E8DF] bg-[#F5F3ED] p-7 transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div class="rounded-[26px] border border-[#E8E2D4] bg-[#F5F3ED] p-7 transition duration-300 hover:-translate-y-1 hover:border-[#D7A200] hover:shadow-lg">
 
-                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#101D33] text-[#A9C65B]">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#071B36] text-[#F5B800]">
                     <?= icon('map-pin', 'w-6 h-6') ?>
                 </div>
 
-                <h3 class="mt-6 text-lg font-extrabold text-[#101D33]">
+                <h3 class="mt-6 text-lg font-extrabold text-[#071B36]">
                     Localisation précise
                 </h3>
 
@@ -920,13 +920,13 @@ $categoriesDesign = [
 
             <!-- Avantage 3 -->
 
-            <div class="rounded-[26px] border border-[#E6E8DF] bg-[#F5F3ED] p-7 transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div class="rounded-[26px] border border-[#E8E2D4] bg-[#F5F3ED] p-7 transition duration-300 hover:-translate-y-1 hover:border-[#D7A200] hover:shadow-lg">
 
-                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#101D33] text-[#A9C65B]">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#071B36] text-[#F5B800]">
                     <?= icon('qr-code', 'w-6 h-6') ?>
                 </div>
 
-                <h3 class="mt-6 text-lg font-extrabold text-[#101D33]">
+                <h3 class="mt-6 text-lg font-extrabold text-[#071B36]">
                     Technologie QR
                 </h3>
 
@@ -954,11 +954,11 @@ $categoriesDesign = [
 
         <div class="mb-10">
 
-            <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#7E9833]">
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#8A6500]">
                 Réseau professionnel
             </p>
 
-            <h2 class="mt-3 font-['Playfair_Display'] text-3xl font-bold text-[#101D33] sm:text-4xl">
+            <h2 class="mt-3 font-['Playfair_Display'] text-3xl font-bold text-[#071B36] sm:text-4xl">
                 Nos agences partenaires
             </h2>
 
@@ -993,12 +993,12 @@ $categoriesDesign = [
 
                     <a
                         href="/agences/<?= rawurlencode((string) ($agence['id'] ?? '')) ?>"
-                        class="group rounded-[24px] border border-[#E6E8DF] bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-[#7E9833] hover:shadow-xl"
+                        class="group rounded-[24px] border border-[#E8E2D4] bg-white p-5 transition duration-300 hover:-translate-y-1 hover:border-[#D7A200] hover:shadow-xl"
                     >
 
                         <div class="flex items-center gap-4">
 
-                            <div class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-[#101D33] text-xl font-extrabold text-[#A9C65B]">
+                            <div class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-[#071B36] text-xl font-extrabold text-[#F5B800]">
 
                                 <?php if (!empty($agence['logo'])): ?>
 
@@ -1031,7 +1031,7 @@ $categoriesDesign = [
 
                             <div class="min-w-0 flex-1">
 
-                                <h3 class="truncate font-extrabold text-[#101D33]">
+                                <h3 class="truncate font-extrabold text-[#071B36]">
                                     <?= htmlspecialchars(
                                         $nomAgence,
                                         ENT_QUOTES,
@@ -1041,9 +1041,9 @@ $categoriesDesign = [
 
                                 <?php if (!empty($agence['badge_verifie'])): ?>
 
-                                    <p class="mt-1 flex items-center gap-1.5 text-xs font-bold text-[#7E9833]">
+                                    <p class="mt-1 flex items-center gap-1.5 text-xs font-bold text-[#287A4B]">
 
-                                        <span class="flex h-4 w-4 items-center justify-center rounded-full bg-[#EDF2E1] text-[10px] text-[#7E9833]">
+                                        <span class="flex h-4 w-4 items-center justify-center rounded-full bg-[#E8F5EC] text-[10px] text-[#287A4B]">
                                             ✓
                                         </span>
 
@@ -1056,18 +1056,18 @@ $categoriesDesign = [
                             </div>
 
 
-                            <span class="text-lg text-[#7E9833] transition group-hover:translate-x-1">
+                            <span class="text-lg text-[#B88700] transition group-hover:translate-x-1">
                                 →
                             </span>
 
                         </div>
 
 
-                        <div class="mt-5 flex items-center justify-between gap-3 border-t border-[#E6E8DF] pt-4">
+                        <div class="mt-5 flex items-center justify-between gap-3 border-t border-[#E8E2D4] pt-4">
 
                             <p class="flex min-w-0 items-center gap-2 text-xs text-[#71869A]">
 
-                                <?= icon('map-pin', 'w-3.5 h-3.5 shrink-0 text-[#7E9833]') ?>
+                                <?= icon('map-pin', 'w-3.5 h-3.5 shrink-0 text-[#B88700]') ?>
 
                                 <span class="truncate">
                                     <?= htmlspecialchars(
@@ -1079,7 +1079,7 @@ $categoriesDesign = [
 
                             </p>
 
-                            <span class="shrink-0 text-xs font-bold text-[#101D33]">
+                            <span class="shrink-0 text-xs font-bold text-[#071B36]">
 
                                 <?= (int) ($agence['nombre_biens'] ?? 0) ?>
 
@@ -1100,7 +1100,7 @@ $categoriesDesign = [
 
                 <a
                     href="/agences"
-                    class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#7E9833] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#6D852B]"
+                    class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-6 py-3.5 text-sm font-extrabold text-[#071B36] transition hover:bg-[#D7A200]"
                 >
                     Découvrir toutes les agences
                     <?= icon('arrow-right', 'w-4 h-4') ?>
@@ -1110,9 +1110,9 @@ $categoriesDesign = [
 
         <?php else: ?>
 
-            <div class="rounded-[24px] border border-[#E6E8DF] bg-white p-10 text-center sm:p-12">
+            <div class="rounded-[24px] border border-[#E8E2D4] bg-white p-10 text-center sm:p-12">
 
-                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EDF2E1] text-[#7E9833]">
+                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#FFF4CC] text-[#8A6500]">
                     <?= icon('building-2', 'w-6 h-6') ?>
                 </div>
 
@@ -1137,19 +1137,19 @@ $categoriesDesign = [
 
     <div class="mx-auto max-w-7xl">
 
-        <div class="relative overflow-hidden rounded-[30px] bg-[#101D33] px-7 py-14 text-center sm:px-12 lg:px-20">
+        <div class="relative overflow-hidden rounded-[30px] bg-[#071B36] px-7 py-14 text-center sm:px-12 lg:px-20">
 
-            <div class="absolute -left-24 -top-24 h-64 w-64 rounded-full bg-[#7E9833]/20 blur-3xl"></div>
+            <div class="absolute -left-24 -top-24 h-64 w-64 rounded-full bg-[#F5B800]/15 blur-3xl"></div>
 
             <div class="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-[#71869A]/20 blur-3xl"></div>
 
             <div class="relative">
 
-                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-[#A9C65B]">
+                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-[#F5B800]/30 bg-white/10 text-[#F5B800]">
                     <?= icon('house', 'w-6 h-6') ?>
                 </div>
 
-                <p class="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-[#A9C65B]">
+                <p class="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-[#F5B800]">
                     Votre prochain projet commence ici
                 </p>
 
@@ -1166,7 +1166,7 @@ $categoriesDesign = [
 
                     <a
                         href="/biens"
-                        class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#7E9833] px-7 py-4 text-sm font-extrabold text-white transition hover:bg-[#6D852B]"
+                        class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-7 py-4 text-sm font-extrabold text-[#071B36] transition hover:bg-[#D7A200]"
                     >
 
                         <?= icon('search', 'w-4 h-4') ?>
@@ -1177,7 +1177,7 @@ $categoriesDesign = [
 
                     <a
                         href="/biens/carte"
-                        class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/10 px-7 py-4 text-sm font-bold text-white transition hover:bg-white/20"
+                        class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/10 px-7 py-4 text-sm font-bold text-white transition hover:border-[#F5B800]/50 hover:bg-white/20"
                     >
 
                         <?= icon('map', 'w-4 h-4') ?>

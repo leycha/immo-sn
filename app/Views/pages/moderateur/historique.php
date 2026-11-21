@@ -1,3 +1,4 @@
+
 <?php
 
 use Core\Session;
@@ -94,25 +95,25 @@ $parametres = [
         <!-- =====================================================
              EN-TÊTE
         ====================================================== -->
-        <header class="flex flex-col gap-4 rounded-2xl border border-[#E5E7DE] bg-white px-5 py-4 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+        <header class="flex flex-col gap-4 rounded-2xl border border-[#E8E2D8] bg-white px-5 py-4 shadow-sm sm:flex-row sm:items-center sm:justify-between">
 
             <div>
                 <div class="flex flex-wrap items-center gap-2 text-xs font-semibold text-[#71869A]">
-                    <span class="text-[#7E9833]">IMMO-SN</span>
+                    <span class="font-extrabold tracking-wide text-[#D7A200]">IMMO-SN</span>
                     <span>/</span>
                     <span>Administration</span>
                     <span>/</span>
                     <span class="text-[#101D33]">Historique des décisions</span>
                 </div>
 
-                <p class="mt-1 text-sm text-[#71869A]">
+                <p class="mt-1 text-sm font-medium text-[#71869A]">
                     Espace de modération
                 </p>
             </div>
 
             <a
                 href="/immo-sn/moderateur"
-                class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#101D33] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1B2D4A] sm:w-auto"
+                class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#101D33] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#1B2D4A] sm:w-auto"
             >
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="m15 18-6-6 6-6"/>
@@ -127,20 +128,22 @@ $parametres = [
         <!-- =====================================================
              BANNIÈRE PRINCIPALE
         ====================================================== -->
-        <section class="relative isolate overflow-hidden rounded-[28px] bg-[#101D33] px-5 py-8 text-white shadow-xl shadow-[#101D33]/10 sm:px-9 sm:py-10 lg:px-12 lg:py-12">
+        <section class="relative isolate overflow-hidden rounded-[28px] bg-[#071B36] px-5 py-8 text-white shadow-xl shadow-[#071B36]/15 sm:px-9 sm:py-10 lg:px-12 lg:py-12">
 
             <!-- Décorations -->
             <div class="pointer-events-none absolute -right-16 -top-20 h-72 w-72 rounded-full border-[35px] border-white/5"></div>
 
-            <div class="pointer-events-none absolute -bottom-28 right-40 h-64 w-64 rounded-full bg-[#7E9833]/20 blur-3xl"></div>
+            <div class="pointer-events-none absolute -bottom-28 right-40 h-64 w-64 rounded-full bg-[#F5B800]/15 blur-3xl"></div>
+
+            <div class="pointer-events-none absolute -left-20 bottom-0 h-48 w-48 rounded-full bg-blue-400/10 blur-3xl"></div>
 
             <div class="relative z-10 flex flex-col items-center justify-between gap-8 lg:flex-row">
 
                 <div class="w-full min-w-0 max-w-2xl">
 
-                    <span class="inline-flex items-center gap-2 rounded-full border border-[#7E9833]/30 bg-[#7E9833]/15 px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#B8D47B]">
+                    <span class="inline-flex items-center gap-2 rounded-full border border-[#F5B800]/30 bg-[#F5B800]/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#F5D66D]">
 
-                        <span class="h-2 w-2 rounded-full bg-[#8FAF35]"></span>
+                        <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
 
                         Suivi de la modération
 
@@ -148,7 +151,7 @@ $parametres = [
 
                     <h1 class="mt-6 break-words text-2xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
 
-                        Historique des décisions<span class="text-[#A9C76A]">.</span>
+                        Historique des décisions<span class="text-[#F5B800]">.</span>
 
                     </h1>
 
@@ -162,7 +165,7 @@ $parametres = [
 
                         <a
                             href="#journal-decisions"
-                            class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#7E9833] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#8FAF35] sm:w-auto"
+                            class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-5 py-3 text-sm font-extrabold text-[#071B36] shadow-lg shadow-black/10 transition hover:bg-[#FFD34D] sm:w-auto"
                         >
                             Consulter l'historique
 
@@ -185,12 +188,12 @@ $parametres = [
 
 
                 <!-- Illustration -->
-                <div class="hidden h-56 w-56 shrink-0 items-center justify-center rounded-[32px] border border-white/10 bg-white/5 lg:flex">
+                <div class="hidden h-56 w-56 shrink-0 items-center justify-center rounded-[32px] border border-[#F5B800]/20 bg-white/5 lg:flex">
 
-                    <svg class="h-32 w-32 text-[#A9C76A]" viewBox="0 0 120 120" fill="none">
+                    <svg class="h-32 w-32 text-[#F5B800]" viewBox="0 0 120 120" fill="none">
                         <rect x="24" y="17" width="72" height="88" rx="8" stroke="currentColor" stroke-width="4"/>
                         <path d="M42 39h36M42 54h36M42 69h20" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-                        <circle cx="78" cy="83" r="17" fill="#101D33" stroke="currentColor" stroke-width="4"/>
+                        <circle cx="78" cy="83" r="17" fill="#071B36" stroke="currentColor" stroke-width="4"/>
                         <path d="m70 83 5 5 11-11" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
 
@@ -209,7 +212,7 @@ $parametres = [
             <div class="mb-4 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
 
                 <div>
-                    <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#7E9833]">
+                    <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#A98200]">
                         Vue d'ensemble
                     </p>
 
@@ -228,11 +231,11 @@ $parametres = [
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 
                 <!-- TOTAL -->
-                <div class="rounded-2xl border border-[#E5E7DE] bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                <div class="group rounded-2xl border border-[#E8E2D8] bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#E6C65A] hover:shadow-lg">
 
                     <div class="flex items-center justify-between">
 
-                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#EEF3E3] text-[#607A27]">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-[#F5B800]/20 bg-[#FFF8DF] text-[#8A6500]">
 
                             <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                                 <path d="M8 6h13M8 12h13M8 18h13"/>
@@ -241,7 +244,7 @@ $parametres = [
 
                         </div>
 
-                        <span class="rounded-full bg-[#EEF3E3] px-3 py-1 text-xs font-semibold text-[#607A27]">
+                        <span class="rounded-full border border-[#F5B800]/25 bg-[#FFF8DF] px-3 py-1 text-xs font-bold text-[#8A6500]">
                             Global
                         </span>
 
@@ -259,17 +262,19 @@ $parametres = [
                         Résultats correspondant aux filtres
                     </p>
 
-                    <div class="mt-5 h-1.5 rounded-full bg-[#7E9833]"></div>
+                    <div class="mt-5 h-1.5 overflow-hidden rounded-full bg-[#F3EACB]">
+                        <div class="h-full w-full rounded-full bg-[#F5B800]"></div>
+                    </div>
 
                 </div>
 
 
                 <!-- AFFICHÉES -->
-                <div class="rounded-2xl border border-[#E5E7DE] bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                <div class="group rounded-2xl border border-[#E8E2D8] bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg">
 
                     <div class="flex items-center justify-between">
 
-                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-700">
 
                             <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                                 <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/>
@@ -278,7 +283,7 @@ $parametres = [
 
                         </div>
 
-                        <span class="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
+                        <span class="rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700">
                             Cette page
                         </span>
 
@@ -296,7 +301,9 @@ $parametres = [
                         Nombre de décisions sur cette page
                     </p>
 
-                    <div class="mt-5 h-1.5 rounded-full bg-blue-500"></div>
+                    <div class="mt-5 h-1.5 overflow-hidden rounded-full bg-blue-100">
+                        <div class="h-full w-full rounded-full bg-blue-500"></div>
+                    </div>
 
                 </div>
 
@@ -308,11 +315,11 @@ $parametres = [
         <!-- =====================================================
              FILTRES
         ====================================================== -->
-        <section class="rounded-[24px] border border-[#E5E7DE] bg-white p-5 shadow-sm sm:p-7">
+        <section class="rounded-[24px] border border-[#E8E2D8] bg-white p-5 shadow-sm sm:p-7">
 
             <div class="mb-6">
 
-                <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#7E9833]">
+                <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#A98200]">
                     Recherche avancée
                 </p>
 
@@ -353,7 +360,7 @@ $parametres = [
                             name="recherche"
                             value="<?= $e($filtres['recherche'] ?? '') ?>"
                             placeholder="Modérateur, e-mail, détails..."
-                            class="w-full rounded-xl border border-[#E5E7DE] bg-[#FAFBF8] py-3.5 pl-12 pr-4 text-sm text-[#101D33] outline-none transition placeholder:text-[#8A98A6] focus:border-[#7E9833] focus:ring-2 focus:ring-[#7E9833]/15"
+                            class="w-full rounded-xl border border-[#E8E2D8] bg-[#FAFAF8] py-3.5 pl-12 pr-4 text-sm text-[#101D33] outline-none transition placeholder:text-[#8A98A6] focus:border-[#D7A200] focus:ring-2 focus:ring-[#F5B800]/15"
                         >
 
                     </div>
@@ -371,7 +378,7 @@ $parametres = [
                     <select
                         id="action"
                         name="action"
-                        class="w-full rounded-xl border border-[#E5E7DE] bg-[#FAFBF8] px-4 py-3.5 text-sm text-[#101D33] outline-none transition focus:border-[#7E9833] focus:ring-2 focus:ring-[#7E9833]/15"
+                        class="w-full rounded-xl border border-[#E8E2D8] bg-[#FAFAF8] px-4 py-3.5 text-sm text-[#101D33] outline-none transition focus:border-[#D7A200] focus:ring-2 focus:ring-[#F5B800]/15"
                     >
 
                         <option value="">Toutes les décisions</option>
@@ -404,7 +411,7 @@ $parametres = [
                         id="date_debut"
                         name="date_debut"
                         value="<?= $e($filtres['date_debut'] ?? '') ?>"
-                        class="w-full rounded-xl border border-[#E5E7DE] bg-[#FAFBF8] px-4 py-3.5 text-sm text-[#101D33] outline-none transition focus:border-[#7E9833] focus:ring-2 focus:ring-[#7E9833]/15"
+                        class="w-full rounded-xl border border-[#E8E2D8] bg-[#FAFAF8] px-4 py-3.5 text-sm text-[#101D33] outline-none transition focus:border-[#D7A200] focus:ring-2 focus:ring-[#F5B800]/15"
                     >
 
                 </div>
@@ -422,7 +429,7 @@ $parametres = [
                         id="date_fin"
                         name="date_fin"
                         value="<?= $e($filtres['date_fin'] ?? '') ?>"
-                        class="w-full rounded-xl border border-[#E5E7DE] bg-[#FAFBF8] px-4 py-3.5 text-sm text-[#101D33] outline-none transition focus:border-[#7E9833] focus:ring-2 focus:ring-[#7E9833]/15"
+                        class="w-full rounded-xl border border-[#E8E2D8] bg-[#FAFAF8] px-4 py-3.5 text-sm text-[#101D33] outline-none transition focus:border-[#D7A200] focus:ring-2 focus:ring-[#F5B800]/15"
                     >
 
                 </div>
@@ -433,7 +440,7 @@ $parametres = [
 
                     <button
                         type="submit"
-                        class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#101D33] px-5 py-3.5 text-sm font-bold text-white transition hover:bg-[#1B2D4A] sm:w-auto"
+                        class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#101D33] px-5 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#1B2D4A] sm:w-auto"
                     >
 
                         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -448,7 +455,7 @@ $parametres = [
 
                     <a
                         href="/immo-sn/moderateur/historique"
-                        class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#E5E7DE] bg-[#F5F3ED] px-5 py-3.5 text-sm font-semibold text-[#101D33] transition hover:bg-[#EEF0E9] sm:w-auto"
+                        class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#E8E2D8] bg-[#F5F3ED] px-5 py-3.5 text-sm font-semibold text-[#101D33] transition hover:border-[#D7A200] hover:bg-[#FFF8DF] sm:w-auto"
                     >
 
                         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -476,7 +483,7 @@ $parametres = [
 
                 <div>
 
-                    <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#7E9833]">
+                    <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#A98200]">
                         Traçabilité
                     </p>
 
@@ -491,9 +498,9 @@ $parametres = [
                 </div>
 
 
-                <div class="inline-flex w-fit items-center gap-2 rounded-xl border border-[#E5E7DE] bg-white px-4 py-2.5 text-sm font-semibold text-[#607A27] shadow-sm">
+                <div class="inline-flex w-fit items-center gap-2 rounded-xl border border-[#F0D98A] bg-[#FFF8DF] px-4 py-2.5 text-sm font-bold text-[#8A6500] shadow-sm">
 
-                    <span class="h-2 w-2 rounded-full bg-[#7E9833]"></span>
+                    <span class="h-2 w-2 rounded-full bg-[#D7A200]"></span>
 
                     <?= number_format($total, 0, ',', ' ') ?>
 
@@ -505,14 +512,14 @@ $parametres = [
 
 
             <!-- Conteneur du tableau -->
-            <div class="overflow-hidden rounded-[24px] border border-[#E5E7DE] bg-white shadow-sm">
+            <div class="overflow-hidden rounded-[24px] border border-[#E8E2D8] bg-white shadow-sm">
 
                 <?php if (empty($decisions)): ?>
 
                     <!-- Aucun résultat -->
                     <div class="px-6 py-16 text-center">
 
-                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#EEF3E3] text-[#7E9833]">
+                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-[#F5B800]/20 bg-[#FFF8DF] text-[#A98200]">
 
                             <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
                                 <path d="M8 6h13M8 12h13M8 18h13"/>
@@ -547,7 +554,7 @@ $parametres = [
 
                             <thead class="bg-[#F5F3ED]">
 
-                                <tr class="border-b border-[#E5E7DE]">
+                                <tr class="border-b border-[#E8E2D8]">
 
                                     <th class="px-5 py-4 text-xs font-bold uppercase tracking-wider text-[#71869A]">
                                         Date
@@ -574,7 +581,7 @@ $parametres = [
                             </thead>
 
 
-                            <tbody class="divide-y divide-[#EEF0E9]">
+                            <tbody class="divide-y divide-[#F0ECE5]">
 
                                 <?php foreach ($decisions as $decision): ?>
 
@@ -614,7 +621,7 @@ $parametres = [
 
                                     ?>
 
-                                    <tr class="align-top transition hover:bg-[#FAFBF8]">
+                                    <tr class="align-top transition duration-200 hover:bg-[#FFFCF3]">
 
                                         <!-- DATE -->
                                         <td class="whitespace-nowrap px-5 py-5">
@@ -637,7 +644,7 @@ $parametres = [
                                                 <?= $e($decision['moderateur_email'] ?? '') ?>
                                             </p>
 
-                                            <span class="mt-2 inline-flex rounded-full border border-[#E5E7DE] bg-[#F5F3ED] px-2.5 py-1 text-[11px] font-semibold text-[#607A27]">
+                                            <span class="mt-2 inline-flex rounded-full border border-[#E8E2D8] bg-[#F5F3ED] px-2.5 py-1 text-[11px] font-bold text-[#8A6500]">
                                                 <?= $e($decision['moderateur_role'] ?? 'moderateur') ?>
                                             </span>
 
@@ -685,7 +692,7 @@ $parametres = [
                                         <!-- ADRESSE IP -->
                                         <td class="whitespace-nowrap px-5 py-5">
 
-                                            <span class="inline-flex rounded-lg border border-[#E5E7DE] bg-[#F5F3ED] px-3 py-2 font-mono text-xs text-[#71869A]">
+                                            <span class="inline-flex rounded-lg border border-[#E8E2D8] bg-[#F5F3ED] px-3 py-2 font-mono text-xs text-[#71869A]">
                                                 <?= $e($decision['ip_address'] ?? 'Non disponible') ?>
                                             </span>
 
@@ -711,7 +718,7 @@ $parametres = [
             ================================================== -->
             <?php if ($totalPages > 1): ?>
 
-                <div class="flex flex-col gap-3 rounded-2xl border border-[#E5E7DE] bg-white px-5 py-4 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+                <div class="flex flex-col gap-3 rounded-2xl border border-[#E8E2D8] bg-white px-5 py-4 shadow-sm sm:flex-row sm:items-center sm:justify-between">
 
                     <p class="text-sm text-[#71869A]">
 
@@ -738,7 +745,7 @@ $parametres = [
 
                             <a
                                 href="?<?= $e(http_build_query($parametres + ['page' => $page - 1])) ?>"
-                                class="inline-flex items-center gap-2 rounded-xl border border-[#E5E7DE] bg-white px-4 py-2.5 text-sm font-semibold text-[#101D33] transition hover:bg-[#EEF3E3]"
+                                class="inline-flex items-center gap-2 rounded-xl border border-[#E8E2D8] bg-white px-4 py-2.5 text-sm font-semibold text-[#101D33] transition hover:border-[#D7A200] hover:bg-[#FFF8DF]"
                             >
                                 &larr; Précédent
                             </a>
@@ -786,7 +793,7 @@ $parametres = [
         <!-- =====================================================
              PIED DE PAGE
         ====================================================== -->
-        <footer class="border-t border-[#E5E7DE] py-6 text-center">
+        <footer class="border-t border-[#E8E2D8] py-6 text-center">
 
             <p class="text-xs font-medium text-[#71869A]">
                 IMMO-SN — Espace de modération

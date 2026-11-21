@@ -1,3 +1,4 @@
+
 <?php
 
 use Core\Session;
@@ -5,6 +6,7 @@ use Core\Session;
 /*
  * =========================================================
  * PROFIL MODÉRATEUR — IMMO-SN
+ * Design : Bleu nuit / Or / Ivoire
  * =========================================================
  * Données transmises par ModerateurController.
  */
@@ -47,7 +49,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
 ?>
 
-<div class="min-h-screen bg-[#F5F3ED] px-3 py-6 text-[#101D33] sm:px-6 sm:py-8 lg:px-8">
+<div class="min-h-screen bg-[#F5F3ED] px-3 py-6 text-[#071B36] sm:px-6 sm:py-8 lg:px-8">
 
     <div class="mx-auto max-w-7xl space-y-8">
 
@@ -64,10 +66,10 @@ $statutActif = strtolower((string) $status) === 'actif';
                     <span>/</span>
                     <span>Modération</span>
                     <span>/</span>
-                    <span class="text-[#7E9833]">Mon profil</span>
+                    <span class="font-bold text-[#A98200]">Mon profil</span>
                 </div>
 
-                <h1 class="mt-2 break-words text-2xl font-black tracking-tight text-[#101D33] sm:text-3xl">
+                <h1 class="mt-2 break-words text-2xl font-black tracking-tight text-[#071B36] sm:text-3xl">
                     Mon profil
                 </h1>
 
@@ -79,10 +81,24 @@ $statutActif = strtolower((string) $status) === 'actif';
 
             <a
                 href="/immo-sn/logout"
-                class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#E5E7DE] bg-white px-5 py-3 text-sm font-semibold text-[#101D33] shadow-sm transition hover:border-red-200 hover:bg-red-50 hover:text-red-700 sm:w-auto"
+                class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#E8E1D3] bg-white px-5 py-3 text-sm font-semibold text-[#071B36] shadow-sm transition duration-200 hover:border-red-200 hover:bg-red-50 hover:text-red-700 sm:w-auto"
             >
-                <span>↪</span>
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="h-4 w-4"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+
+                    <path stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 12H3m0 0 4-4m-4 4 4 4m5-12h6a2 2 0 012 2v12a2 2 0 01-2 2h-6"/>
+
+                </svg>
+
                 Déconnexion
+
             </a>
 
         </header>
@@ -92,19 +108,24 @@ $statutActif = strtolower((string) $status) === 'actif';
              CARTE IDENTITÉ
         ====================================================== -->
 
-        <section class="relative overflow-hidden rounded-[28px] bg-[#101D33] p-5 text-white shadow-[0_18px_50px_rgba(16,29,51,0.12)] sm:p-8">
+        <section class="relative isolate overflow-hidden rounded-[28px] bg-[#071B36] p-5 text-white shadow-[0_20px_55px_rgba(7,27,54,0.16)] sm:p-8">
 
-            <!-- Décoration -->
+            <!-- Décorations -->
 
-            <div class="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#7E9833]/20 blur-3xl"></div>
+            <div class="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#F5B800]/15 blur-3xl"></div>
 
             <div class="pointer-events-none absolute -bottom-24 left-1/3 h-64 w-64 rounded-full bg-[#71869A]/15 blur-3xl"></div>
+
+            <div class="pointer-events-none absolute bottom-0 left-0 h-1 w-40 bg-gradient-to-r from-[#F5B800] to-transparent"></div>
+
+            <div class="pointer-events-none absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-white/[0.035] to-transparent"></div>
+
 
             <div class="relative flex flex-col gap-6 sm:flex-row sm:items-center">
 
                 <!-- Avatar -->
 
-                <div class="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-full border-4 border-white/20 bg-[#7E9833] text-3xl font-black text-white shadow-xl">
+                <div class="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-full border-4 border-[#F5B800]/40 bg-[#F5B800] text-3xl font-black text-[#071B36] shadow-xl">
 
                     <?php if ($photoProfil !== ''): ?>
 
@@ -135,8 +156,11 @@ $statutActif = strtolower((string) $status) === 'actif';
                         <?php if ($statutActif): ?>
 
                             <span class="rounded-full border border-emerald-300/30 bg-emerald-400/15 px-3 py-1 text-xs font-semibold text-emerald-200">
+
                                 <span class="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+
                                 Compte actif
+
                             </span>
 
                         <?php else: ?>
@@ -155,11 +179,11 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                     <div class="mt-4 flex flex-wrap gap-2">
 
-                        <span class="rounded-lg border border-[#7E9833]/30 bg-[#7E9833]/20 px-3 py-2 text-xs font-semibold text-[#C4DB8A]">
+                        <span class="rounded-lg border border-[#F5B800]/25 bg-[#F5B800]/10 px-3 py-2 text-xs font-semibold text-[#F8D76A]">
                             Modérateur
                         </span>
 
-                        <span class="rounded-lg bg-white/10 px-3 py-2 text-xs text-white/75">
+                        <span class="rounded-lg border border-white/10 bg-white/[0.07] px-3 py-2 text-xs text-white/75">
                             Membre depuis <?= $e($dateCreation) ?>
                         </span>
 
@@ -240,13 +264,13 @@ $statutActif = strtolower((string) $status) === 'actif';
              INFORMATIONS PERSONNELLES
         ====================================================== -->
 
-        <section class="overflow-hidden rounded-[24px] border border-[#E5E7DE] bg-white p-5 shadow-[0_5px_24px_rgba(16,29,51,0.035)] sm:p-8">
+        <section class="overflow-hidden rounded-[24px] border border-[#E8E1D3] bg-white p-5 shadow-[0_5px_24px_rgba(7,27,54,0.035)] sm:p-8">
 
             <!-- Titre -->
 
             <div class="mb-7">
 
-                <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#F1F6E8] text-[#7E9833]">
+                <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#FFF7DF] text-[#8A6500]">
 
                     <svg xmlns="http://www.w3.org/2000/svg"
                          class="h-6 w-6"
@@ -263,7 +287,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                 </div>
 
-                <h3 class="break-words text-xl font-black text-[#101D33]">
+                <h3 class="break-words text-xl font-black text-[#071B36]">
                     Informations personnelles
                 </h3>
 
@@ -290,9 +314,9 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                 <!-- PHOTO DE PROFIL -->
 
-                <div class="flex flex-col gap-5 border-b border-[#E5E7DE] pb-7 sm:flex-row sm:items-center">
+                <div class="flex flex-col gap-5 border-b border-[#EEE9DE] pb-7 sm:flex-row sm:items-center">
 
-                    <div class="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-full border-4 border-[#F1F6E8] bg-[#101D33] text-2xl font-black text-white">
+                    <div class="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-full border-4 border-[#FFF7DF] bg-[#071B36] text-2xl font-black text-[#F5B800]">
 
                         <?php if ($photoProfil !== ''): ?>
 
@@ -313,7 +337,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                     <div class="min-w-0 flex-1">
 
-                        <label for="photo_profil" class="mb-2 block text-sm font-bold text-[#101D33]">
+                        <label for="photo_profil" class="mb-2 block text-sm font-bold text-[#071B36]">
                             Photo de profil
                         </label>
 
@@ -322,7 +346,7 @@ $statutActif = strtolower((string) $status) === 'actif';
                             id="photo_profil"
                             name="photo_profil"
                             accept=".jpg,.jpeg,.png,image/jpeg,image/png"
-                            class="block w-full cursor-pointer rounded-xl border border-[#DDE3D7] bg-[#F8F8F3] text-sm text-[#101D33] file:mr-4 file:border-0 file:bg-[#101D33] file:px-4 file:py-3 file:text-sm file:font-semibold file:text-white hover:file:bg-[#263B5C]"
+                            class="block w-full cursor-pointer rounded-xl border border-[#E5DED0] bg-[#FAFAF8] text-sm text-[#071B36] file:mr-4 file:border-0 file:bg-[#071B36] file:px-4 file:py-3 file:text-sm file:font-semibold file:text-[#F5B800] hover:file:bg-[#263B5C]"
                         >
 
                         <p class="mt-2 text-xs text-[#71869A]">
@@ -338,7 +362,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                 <div>
 
-                    <h4 class="mb-4 text-sm font-bold text-[#101D33]">
+                    <h4 class="mb-4 text-sm font-bold text-[#071B36]">
                         Identité
                     </h4>
 
@@ -346,7 +370,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                         <div>
 
-                            <label for="prenom" class="mb-2 block text-sm font-semibold text-[#101D33]">
+                            <label for="prenom" class="mb-2 block text-sm font-semibold text-[#071B36]">
                                 Prénom <span class="text-red-500">*</span>
                             </label>
 
@@ -357,7 +381,7 @@ $statutActif = strtolower((string) $status) === 'actif';
                                 value="<?= $e($prenom) ?>"
                                 maxlength="100"
                                 required
-                                class="w-full rounded-xl border border-[#DDE3D7] bg-[#F8F8F3] px-4 py-3 text-sm text-[#101D33] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#7E9833] focus:ring-2 focus:ring-[#7E9833]/15"
+                                class="w-full rounded-xl border border-[#E5DED0] bg-[#FAFAF8] px-4 py-3 text-sm text-[#071B36] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#D7A200] focus:ring-2 focus:ring-[#F5B800]/20"
                             >
 
                         </div>
@@ -365,7 +389,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                         <div>
 
-                            <label for="nom" class="mb-2 block text-sm font-semibold text-[#101D33]">
+                            <label for="nom" class="mb-2 block text-sm font-semibold text-[#071B36]">
                                 Nom <span class="text-red-500">*</span>
                             </label>
 
@@ -376,7 +400,7 @@ $statutActif = strtolower((string) $status) === 'actif';
                                 value="<?= $e($nom) ?>"
                                 maxlength="100"
                                 required
-                                class="w-full rounded-xl border border-[#DDE3D7] bg-[#F8F8F3] px-4 py-3 text-sm text-[#101D33] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#7E9833] focus:ring-2 focus:ring-[#7E9833]/15"
+                                class="w-full rounded-xl border border-[#E5DED0] bg-[#FAFAF8] px-4 py-3 text-sm text-[#071B36] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#D7A200] focus:ring-2 focus:ring-[#F5B800]/20"
                             >
 
                         </div>
@@ -390,7 +414,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                 <div>
 
-                    <h4 class="mb-4 text-sm font-bold text-[#101D33]">
+                    <h4 class="mb-4 text-sm font-bold text-[#071B36]">
                         Coordonnées
                     </h4>
 
@@ -398,7 +422,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                         <div>
 
-                            <label for="email" class="mb-2 block text-sm font-semibold text-[#101D33]">
+                            <label for="email" class="mb-2 block text-sm font-semibold text-[#071B36]">
                                 Adresse e-mail <span class="text-red-500">*</span>
                             </label>
 
@@ -409,7 +433,7 @@ $statutActif = strtolower((string) $status) === 'actif';
                                 value="<?= $e($email) ?>"
                                 maxlength="254"
                                 required
-                                class="w-full rounded-xl border border-[#DDE3D7] bg-[#F8F8F3] px-4 py-3 text-sm text-[#101D33] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#7E9833] focus:ring-2 focus:ring-[#7E9833]/15"
+                                class="w-full rounded-xl border border-[#E5DED0] bg-[#FAFAF8] px-4 py-3 text-sm text-[#071B36] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#D7A200] focus:ring-2 focus:ring-[#F5B800]/20"
                             >
 
                         </div>
@@ -417,7 +441,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                         <div>
 
-                            <label for="telephone" class="mb-2 block text-sm font-semibold text-[#101D33]">
+                            <label for="telephone" class="mb-2 block text-sm font-semibold text-[#071B36]">
                                 Téléphone
                             </label>
 
@@ -427,7 +451,7 @@ $statutActif = strtolower((string) $status) === 'actif';
                                 name="telephone"
                                 value="<?= $e($telephone) ?>"
                                 maxlength="30"
-                                class="w-full rounded-xl border border-[#DDE3D7] bg-[#F8F8F3] px-4 py-3 text-sm text-[#101D33] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#7E9833] focus:ring-2 focus:ring-[#7E9833]/15"
+                                class="w-full rounded-xl border border-[#E5DED0] bg-[#FAFAF8] px-4 py-3 text-sm text-[#071B36] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#D7A200] focus:ring-2 focus:ring-[#F5B800]/20"
                                 placeholder="Ex. : 77 000 00 00"
                             >
 
@@ -442,7 +466,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                 <div>
 
-                    <h4 class="mb-4 text-sm font-bold text-[#101D33]">
+                    <h4 class="mb-4 text-sm font-bold text-[#071B36]">
                         Localisation
                     </h4>
 
@@ -450,7 +474,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                         <div>
 
-                            <label for="ville" class="mb-2 block text-sm font-semibold text-[#101D33]">
+                            <label for="ville" class="mb-2 block text-sm font-semibold text-[#071B36]">
                                 Ville
                             </label>
 
@@ -460,7 +484,7 @@ $statutActif = strtolower((string) $status) === 'actif';
                                 name="ville"
                                 value="<?= $e($ville) ?>"
                                 maxlength="100"
-                                class="w-full rounded-xl border border-[#DDE3D7] bg-[#F8F8F3] px-4 py-3 text-sm text-[#101D33] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#7E9833] focus:ring-2 focus:ring-[#7E9833]/15"
+                                class="w-full rounded-xl border border-[#E5DED0] bg-[#FAFAF8] px-4 py-3 text-sm text-[#071B36] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#D7A200] focus:ring-2 focus:ring-[#F5B800]/20"
                                 placeholder="Votre ville"
                             >
 
@@ -469,7 +493,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                         <div>
 
-                            <label for="quartier" class="mb-2 block text-sm font-semibold text-[#101D33]">
+                            <label for="quartier" class="mb-2 block text-sm font-semibold text-[#071B36]">
                                 Quartier
                             </label>
 
@@ -479,7 +503,7 @@ $statutActif = strtolower((string) $status) === 'actif';
                                 name="quartier"
                                 value="<?= $e($quartier) ?>"
                                 maxlength="100"
-                                class="w-full rounded-xl border border-[#DDE3D7] bg-[#F8F8F3] px-4 py-3 text-sm text-[#101D33] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#7E9833] focus:ring-2 focus:ring-[#7E9833]/15"
+                                class="w-full rounded-xl border border-[#E5DED0] bg-[#FAFAF8] px-4 py-3 text-sm text-[#071B36] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#D7A200] focus:ring-2 focus:ring-[#F5B800]/20"
                                 placeholder="Votre quartier"
                             >
 
@@ -494,7 +518,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                 <div>
 
-                    <label for="bio" class="mb-2 block text-sm font-semibold text-[#101D33]">
+                    <label for="bio" class="mb-2 block text-sm font-semibold text-[#071B36]">
                         À propos de moi
                     </label>
 
@@ -503,7 +527,7 @@ $statutActif = strtolower((string) $status) === 'actif';
                         name="bio"
                         rows="4"
                         maxlength="1000"
-                        class="w-full resize-y rounded-xl border border-[#DDE3D7] bg-[#F8F8F3] px-4 py-3 text-sm leading-6 text-[#101D33] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#7E9833] focus:ring-2 focus:ring-[#7E9833]/15"
+                        class="w-full resize-y rounded-xl border border-[#E5DED0] bg-[#FAFAF8] px-4 py-3 text-sm leading-6 text-[#071B36] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#D7A200] focus:ring-2 focus:ring-[#F5B800]/20"
                         placeholder="Présentez-vous en quelques lignes..."
                     ><?= $e($bio) ?></textarea>
 
@@ -516,7 +540,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                 <!-- ACTIONS -->
 
-                <div class="flex flex-col gap-3 border-t border-[#E5E7DE] pt-6 sm:flex-row sm:items-center sm:justify-between">
+                <div class="flex flex-col gap-3 border-t border-[#EEE9DE] pt-6 sm:flex-row sm:items-center sm:justify-between">
 
                     <p class="text-xs text-[#71869A]">
                         Les champs marqués d'un astérisque sont obligatoires.
@@ -524,7 +548,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                     <button
                         type="submit"
-                        class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#7E9833] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-[#7E9833]/15 transition hover:-translate-y-0.5 hover:bg-[#6B822B] sm:w-auto"
+                        class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-6 py-3 text-sm font-extrabold text-[#071B36] shadow-lg shadow-[#F5B800]/15 transition duration-200 hover:-translate-y-0.5 hover:bg-[#FFD044] sm:w-auto"
                     >
 
                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -555,11 +579,11 @@ $statutActif = strtolower((string) $status) === 'actif';
              INFORMATIONS DU COMPTE
         ====================================================== -->
 
-        <section class="rounded-[24px] border border-[#E5E7DE] bg-white p-5 shadow-[0_5px_24px_rgba(16,29,51,0.035)] sm:p-8">
+        <section class="rounded-[24px] border border-[#E8E1D3] bg-white p-5 shadow-[0_5px_24px_rgba(7,27,54,0.035)] sm:p-8">
 
             <div class="mb-7">
 
-                <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#EEF1F5] text-[#71869A]">
+                <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#EEF1F5] text-[#071B36]">
 
                     <svg xmlns="http://www.w3.org/2000/svg"
                          class="h-6 w-6"
@@ -576,7 +600,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                 </div>
 
-                <h3 class="break-words text-xl font-black text-[#101D33]">
+                <h3 class="break-words text-xl font-black text-[#071B36]">
                     Informations du compte
                 </h3>
 
@@ -591,13 +615,13 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                 <!-- Fonction -->
 
-                <div class="rounded-xl border border-[#E5E7DE] bg-[#FAFBF8] p-5">
+                <div class="rounded-xl border border-[#E8E1D3] bg-[#FAFAF8] p-5">
 
                     <p class="text-xs font-bold uppercase tracking-wider text-[#71869A]">
                         Fonction
                     </p>
 
-                    <p class="mt-3 font-bold text-[#101D33]">
+                    <p class="mt-3 font-bold text-[#071B36]">
                         <?= $e(ucfirst($role)) ?>
                     </p>
 
@@ -606,7 +630,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                 <!-- Statut -->
 
-                <div class="rounded-xl border border-[#E5E7DE] bg-[#FAFBF8] p-5">
+                <div class="rounded-xl border border-[#E8E1D3] bg-[#FAFAF8] p-5">
 
                     <p class="text-xs font-bold uppercase tracking-wider text-[#71869A]">
                         Statut
@@ -643,13 +667,13 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                 <!-- Vérification -->
 
-                <div class="rounded-xl border border-[#E5E7DE] bg-[#FAFBF8] p-5">
+                <div class="rounded-xl border border-[#E8E1D3] bg-[#FAFAF8] p-5">
 
                     <p class="text-xs font-bold uppercase tracking-wider text-[#71869A]">
                         Adresse vérifiée
                     </p>
 
-                    <p class="mt-3 font-bold text-[#101D33]">
+                    <p class="mt-3 font-bold text-[#071B36]">
 
                         <?= !empty($profil['is_verified']) ? 'Oui' : 'Non' ?>
 
@@ -660,13 +684,13 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                 <!-- Date création -->
 
-                <div class="rounded-xl border border-[#E5E7DE] bg-[#FAFBF8] p-5">
+                <div class="rounded-xl border border-[#E8E1D3] bg-[#FAFAF8] p-5">
 
                     <p class="text-xs font-bold uppercase tracking-wider text-[#71869A]">
                         Date de création
                     </p>
 
-                    <p class="mt-3 font-bold text-[#101D33]">
+                    <p class="mt-3 font-bold text-[#071B36]">
                         <?= $e($dateCreation) ?>
                     </p>
 
@@ -675,13 +699,13 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                 <!-- Dernière connexion -->
 
-                <div class="rounded-xl border border-[#E5E7DE] bg-[#FAFBF8] p-5 sm:col-span-2">
+                <div class="rounded-xl border border-[#E8E1D3] bg-[#FAFAF8] p-5 sm:col-span-2">
 
                     <p class="text-xs font-bold uppercase tracking-wider text-[#71869A]">
                         Dernière connexion
                     </p>
 
-                    <p class="mt-3 font-bold text-[#101D33]">
+                    <p class="mt-3 font-bold text-[#071B36]">
                         <?= $e($derniereConnexion) ?>
                     </p>
 
@@ -696,11 +720,11 @@ $statutActif = strtolower((string) $status) === 'actif';
              SÉCURITÉ DU COMPTE
         ====================================================== -->
 
-        <section class="rounded-[24px] border border-[#E5E7DE] bg-white p-5 shadow-[0_5px_24px_rgba(16,29,51,0.035)] sm:p-8">
+        <section class="rounded-[24px] border border-[#E8E1D3] bg-white p-5 shadow-[0_5px_24px_rgba(7,27,54,0.035)] sm:p-8">
 
             <div class="mb-7">
 
-                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F1F6E8] text-[#7E9833]">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#FFF7DF] text-[#8A6500]">
 
                     <svg xmlns="http://www.w3.org/2000/svg"
                          class="h-6 w-6"
@@ -717,7 +741,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                 </div>
 
-                <h3 class="mt-4 break-words text-xl font-black text-[#101D33]">
+                <h3 class="mt-4 break-words text-xl font-black text-[#071B36]">
                     Sécurité du compte
                 </h3>
 
@@ -745,7 +769,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                 <div>
 
-                    <label for="ancien_mot_de_passe" class="mb-2 block text-sm font-semibold text-[#101D33]">
+                    <label for="ancien_mot_de_passe" class="mb-2 block text-sm font-semibold text-[#071B36]">
                         Ancien mot de passe
                     </label>
 
@@ -755,7 +779,7 @@ $statutActif = strtolower((string) $status) === 'actif';
                         name="ancien_mot_de_passe"
                         required
                         autocomplete="current-password"
-                        class="w-full rounded-xl border border-[#DDE3D7] bg-[#F8F8F3] px-4 py-3 text-sm text-[#101D33] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#7E9833] focus:ring-2 focus:ring-[#7E9833]/15"
+                        class="w-full rounded-xl border border-[#E5DED0] bg-[#FAFAF8] px-4 py-3 text-sm text-[#071B36] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#D7A200] focus:ring-2 focus:ring-[#F5B800]/20"
                         placeholder="Saisissez votre ancien mot de passe"
                     >
 
@@ -768,7 +792,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                     <div>
 
-                        <label for="nouveau_mot_de_passe" class="mb-2 block text-sm font-semibold text-[#101D33]">
+                        <label for="nouveau_mot_de_passe" class="mb-2 block text-sm font-semibold text-[#071B36]">
                             Nouveau mot de passe
                         </label>
 
@@ -779,7 +803,7 @@ $statutActif = strtolower((string) $status) === 'actif';
                             required
                             minlength="8"
                             autocomplete="new-password"
-                            class="w-full rounded-xl border border-[#DDE3D7] bg-[#F8F8F3] px-4 py-3 text-sm text-[#101D33] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#7E9833] focus:ring-2 focus:ring-[#7E9833]/15"
+                            class="w-full rounded-xl border border-[#E5DED0] bg-[#FAFAF8] px-4 py-3 text-sm text-[#071B36] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#D7A200] focus:ring-2 focus:ring-[#F5B800]/20"
                             placeholder="8 caractères minimum"
                         >
 
@@ -788,7 +812,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                     <div>
 
-                        <label for="confirmation_mot_de_passe" class="mb-2 block text-sm font-semibold text-[#101D33]">
+                        <label for="confirmation_mot_de_passe" class="mb-2 block text-sm font-semibold text-[#071B36]">
                             Confirmer le nouveau mot de passe
                         </label>
 
@@ -799,7 +823,7 @@ $statutActif = strtolower((string) $status) === 'actif';
                             required
                             minlength="8"
                             autocomplete="new-password"
-                            class="w-full rounded-xl border border-[#DDE3D7] bg-[#F8F8F3] px-4 py-3 text-sm text-[#101D33] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#7E9833] focus:ring-2 focus:ring-[#7E9833]/15"
+                            class="w-full rounded-xl border border-[#E5DED0] bg-[#FAFAF8] px-4 py-3 text-sm text-[#071B36] outline-none transition placeholder:text-[#A5B0B8] focus:border-[#D7A200] focus:ring-2 focus:ring-[#F5B800]/20"
                             placeholder="Confirmez le mot de passe"
                         >
 
@@ -810,7 +834,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                 <!-- ACTIONS -->
 
-                <div class="flex flex-col gap-3 border-t border-[#E5E7DE] pt-6 sm:flex-row sm:items-center sm:justify-between">
+                <div class="flex flex-col gap-3 border-t border-[#EEE9DE] pt-6 sm:flex-row sm:items-center sm:justify-between">
 
                     <p class="text-xs text-[#71869A]">
                         Utilisez au moins 8 caractères.
@@ -818,7 +842,7 @@ $statutActif = strtolower((string) $status) === 'actif';
 
                     <button
                         type="submit"
-                        class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#101D33] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-[#101D33]/10 transition hover:-translate-y-0.5 hover:bg-[#263B5C] sm:w-auto"
+                        class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#071B36] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-[#071B36]/10 transition duration-200 hover:-translate-y-0.5 hover:bg-[#263B5C] sm:w-auto"
                     >
 
                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -843,6 +867,29 @@ $statutActif = strtolower((string) $status) === 'actif';
             </form>
 
         </section>
+
+
+        <!-- =====================================================
+             PIED DE PAGE
+        ====================================================== -->
+
+        <footer class="border-t border-[#E8E1D3] pt-5">
+
+            <div class="flex flex-col items-center justify-between gap-2 text-center text-xs text-[#71869A] sm:flex-row sm:text-left">
+
+                <p>
+                    <span class="font-black tracking-wide text-[#071B36]">IMMO-SN</span>
+                    <span class="mx-1">·</span>
+                    Profil modérateur
+                </p>
+
+                <p>
+                    Gestion du compte et sécurité
+                </p>
+
+            </div>
+
+        </footer>
 
     </div>
 

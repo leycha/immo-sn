@@ -55,7 +55,7 @@ $parametres = [
                     <span class="text-[#B8C2C8]">/</span>
                     <span>Administration</span>
                     <span class="text-[#B8C2C8]">/</span>
-                    <span class="break-words font-semibold text-[#101D33]">
+                    <span class="break-words font-semibold text-[#A98200]">
                         Gestion des signalements
                     </span>
 
@@ -87,19 +87,21 @@ $parametres = [
         <!-- =====================================================
              BANNIÈRE PRINCIPALE
         ====================================================== -->
-        <section class="relative isolate overflow-hidden rounded-[28px] bg-[#101D33] px-4 py-7 text-white shadow-xl shadow-[#101D33]/10 sm:px-9 sm:py-10 lg:px-12 lg:py-12">
+        <section class="relative isolate overflow-hidden rounded-[28px] bg-[#071B36] px-4 py-7 text-white shadow-xl shadow-[#071B36]/15 sm:px-9 sm:py-10 lg:px-12 lg:py-12">
 
             <div class="pointer-events-none absolute -right-16 -top-20 h-72 w-72 rounded-full border-[35px] border-white/5"></div>
 
-            <div class="pointer-events-none absolute -bottom-28 right-40 h-64 w-64 rounded-full bg-[#7E9833]/20 blur-3xl"></div>
+            <div class="pointer-events-none absolute -bottom-28 right-40 h-64 w-64 rounded-full bg-[#F5B800]/15 blur-3xl"></div>
+
+            <div class="pointer-events-none absolute -left-20 -top-20 h-48 w-48 rounded-full bg-[#D7A200]/10 blur-3xl"></div>
 
             <div class="relative z-10 flex min-w-0 flex-col justify-between gap-8 lg:flex-row lg:items-center">
 
                 <div class="w-full min-w-0 max-w-2xl">
 
-                    <span class="inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-[#8FAF35]/30 bg-[#8FAF35]/15 px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#B6D16C]">
+                    <span class="inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-[#F5B800]/30 bg-[#F5B800]/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#F5D66F]">
 
-                        <span class="h-2 w-2 shrink-0 rounded-full bg-[#8FAF35]"></span>
+                        <span class="h-2 w-2 shrink-0 rounded-full bg-[#F5B800]"></span>
 
                         Modération IMMO-SN
 
@@ -107,7 +109,7 @@ $parametres = [
 
                     <h1 class="mt-6 break-words text-2xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
 
-                        Gestion des signalements<span class="text-[#A5C94B]">.</span>
+                        Gestion des signalements<span class="text-[#F5B800]">.</span>
 
                     </h1>
 
@@ -123,7 +125,7 @@ $parametres = [
 
                         <a
                             href="#liste-signalements"
-                            class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#8FAF35] px-5 py-3 text-sm font-bold text-[#101D33] transition hover:bg-[#A5C94B] sm:w-auto"
+                            class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-5 py-3 text-sm font-bold text-[#071B36] shadow-lg shadow-[#F5B800]/10 transition hover:bg-[#D7A200] sm:w-auto"
                         >
 
                             Consulter les signalements
@@ -147,9 +149,9 @@ $parametres = [
                 </div>
 
 
-                <div class="hidden h-56 w-56 shrink-0 items-center justify-center rounded-[32px] border border-white/10 bg-white/5 lg:flex">
+                <div class="hidden h-56 w-56 shrink-0 items-center justify-center rounded-[32px] border border-[#F5B800]/20 bg-white/5 lg:flex">
 
-                    <svg class="h-32 w-32 text-[#A5C94B]" viewBox="0 0 120 120" fill="none">
+                    <svg class="h-32 w-32 text-[#F5B800]" viewBox="0 0 120 120" fill="none">
 
                         <path d="M35 17h36l19 19v64a5 5 0 0 1-5 5H35a5 5 0 0 1-5-5V22a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="4"/>
 
@@ -157,7 +159,7 @@ $parametres = [
 
                         <path d="M43 52h34M43 64h34" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
 
-                        <circle cx="76" cy="83" r="20" fill="#101D33" stroke="currentColor" stroke-width="4"/>
+                        <circle cx="76" cy="83" r="20" fill="#071B36" stroke="currentColor" stroke-width="4"/>
 
                         <path d="M76 72v13M76 91v1" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
 
@@ -217,7 +219,7 @@ $parametres = [
 
                 <div class="min-w-0">
 
-                    <p class="break-words text-xs font-bold uppercase tracking-[0.18em] text-[#7E9833]">
+                    <p class="break-words text-xs font-bold uppercase tracking-[0.18em] text-[#A98200]">
                         Vue d'ensemble
                     </p>
 
@@ -242,7 +244,7 @@ $parametres = [
 
                     <div class="flex min-w-0 items-center justify-between gap-3">
 
-                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#EEF3E3] text-[#7E9833]">
+                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#F5E8BF] bg-[#FFF4CC] text-[#8A6500]">
 
                             <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                                 <path d="M8 6h13M8 12h13M8 18h13"/>
@@ -251,7 +253,7 @@ $parametres = [
 
                         </div>
 
-                        <span class="shrink-0 rounded-full bg-[#EEF3E3] px-3 py-1 text-xs font-semibold text-[#617A2B]">
+                        <span class="shrink-0 rounded-full border border-[#F5E8BF] bg-[#FFF7DF] px-3 py-1 text-xs font-semibold text-[#8A6500]">
                             Global
                         </span>
 
@@ -269,7 +271,7 @@ $parametres = [
                         Tous les signalements reçus
                     </p>
 
-                    <div class="mt-5 h-1.5 rounded-full bg-[#8FAF35]"></div>
+                    <div class="mt-5 h-1.5 rounded-full bg-[#F5B800]"></div>
 
                 </div>
 
@@ -396,7 +398,7 @@ $parametres = [
 
             <div class="mb-6 min-w-0">
 
-                <p class="break-words text-xs font-bold uppercase tracking-[0.18em] text-[#7E9833]">
+                <p class="break-words text-xs font-bold uppercase tracking-[0.18em] text-[#A98200]">
                     Recherche avancée
                 </p>
 
@@ -437,7 +439,7 @@ $parametres = [
                             name="q"
                             value="<?= $e($recherche) ?>"
                             placeholder="Titre d'annonce, motif..."
-                            class="w-full min-w-0 rounded-xl border border-[#DCE1E4] bg-[#F8F9F6] py-3.5 pl-12 pr-4 text-sm text-[#101D33] outline-none transition placeholder:text-[#9AA8B1] focus:border-[#7E9833] focus:ring-2 focus:ring-[#7E9833]/15"
+                            class="w-full min-w-0 rounded-xl border border-[#DCE1E4] bg-[#F8F9F6] py-3.5 pl-12 pr-4 text-sm text-[#101D33] outline-none transition placeholder:text-[#9AA8B1] focus:border-[#D7A200] focus:ring-2 focus:ring-[#F5B800]/20"
                         >
 
                     </div>
@@ -455,7 +457,7 @@ $parametres = [
                     <select
                         id="statut"
                         name="statut"
-                        class="w-full min-w-0 rounded-xl border border-[#DCE1E4] bg-[#F8F9F6] px-4 py-3.5 text-sm text-[#101D33] outline-none transition focus:border-[#7E9833] focus:ring-2 focus:ring-[#7E9833]/15"
+                        class="w-full min-w-0 rounded-xl border border-[#DCE1E4] bg-[#F8F9F6] px-4 py-3.5 text-sm text-[#101D33] outline-none transition focus:border-[#D7A200] focus:ring-2 focus:ring-[#F5B800]/20"
                     >
 
                         <option value="">Tous les statuts</option>
@@ -480,7 +482,7 @@ $parametres = [
                 <!-- RECHERCHER -->
                 <button
                     type="submit"
-                    class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#7E9833] px-5 py-3.5 text-sm font-bold text-white transition hover:bg-[#667D29] focus:outline-none focus:ring-2 focus:ring-[#7E9833]/30 xl:w-auto"
+                    class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-5 py-3.5 text-sm font-bold text-[#071B36] shadow-sm transition hover:bg-[#D7A200] focus:outline-none focus:ring-2 focus:ring-[#F5B800]/40 xl:w-auto"
                 >
 
                     <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -496,7 +498,7 @@ $parametres = [
                 <!-- RÉINITIALISER -->
                 <a
                     href="/immo-sn/moderateur/signalements"
-                    class="inline-flex w-full items-center justify-center rounded-xl border border-[#DCE1E4] bg-[#F8F9F6] px-4 py-3.5 text-sm font-semibold text-[#526477] transition hover:bg-[#EEF1EB] xl:w-auto"
+                    class="inline-flex w-full items-center justify-center rounded-xl border border-[#DCE1E4] bg-[#F8F9F6] px-4 py-3.5 text-sm font-semibold text-[#526477] transition hover:border-[#D7A200] hover:bg-[#FFF7DF] xl:w-auto"
                     title="Réinitialiser les filtres"
                 >
 
@@ -525,7 +527,7 @@ $parametres = [
 
                 <div class="min-w-0">
 
-                    <p class="break-words text-xs font-bold uppercase tracking-[0.18em] text-[#7E9833]">
+                    <p class="break-words text-xs font-bold uppercase tracking-[0.18em] text-[#A98200]">
                         Gestion des dossiers
                     </p>
 
@@ -540,9 +542,9 @@ $parametres = [
                 </div>
 
 
-                <div class="inline-flex w-fit max-w-full shrink-0 items-center gap-2 rounded-xl border border-[#E5E8DF] bg-white px-4 py-2.5 text-sm font-semibold text-[#526477] shadow-sm">
+                <div class="inline-flex w-fit max-w-full shrink-0 items-center gap-2 rounded-xl border border-[#E5D8B1] bg-[#FFFBEE] px-4 py-2.5 text-sm font-semibold text-[#7A5A00] shadow-sm">
 
-                    <span class="h-2 w-2 shrink-0 rounded-full bg-[#8FAF35]"></span>
+                    <span class="h-2 w-2 shrink-0 rounded-full bg-[#D7A200]"></span>
 
                     <?= number_format($totalSignalements, 0, ',', ' ') ?>
 
@@ -561,7 +563,7 @@ $parametres = [
                     <!-- AUCUN SIGNALEMENT -->
                     <div class="px-4 py-12 text-center sm:px-6 sm:py-16">
 
-                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#EEF3E3] text-[#7E9833]">
+                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-[#F5E8BF] bg-[#FFF4CC] text-[#8A6500]">
 
                             <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
                                 <path d="M8 6h13M8 12h13M8 18h13"/>
@@ -663,7 +665,7 @@ $parametres = [
                                     ?>
 
 
-                                    <tr class="transition hover:bg-[#F7F8F4]">
+                                    <tr class="transition hover:bg-[#FFFCF2]">
 
 
                                         <!-- ANNONCE -->
@@ -682,7 +684,7 @@ $parametres = [
 
                                                 <a
                                                     href="/immo-sn/biens/<?= rawurlencode($bienId) ?>"
-                                                    class="mt-2 inline-flex items-center gap-1 text-xs font-bold text-[#6F892D] transition hover:text-[#101D33]"
+                                                    class="mt-2 inline-flex items-center gap-1 text-xs font-bold text-[#8A6500] transition hover:text-[#101D33]"
                                                 >
 
                                                     Voir l'annonce
@@ -762,7 +764,7 @@ $parametres = [
 
                                                         <button
                                                             type="submit"
-                                                            class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#7E9833] px-3 py-2 text-xs font-bold text-white transition hover:bg-[#667D29] focus:outline-none focus:ring-2 focus:ring-[#7E9833]/30"
+                                                            class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#F5B800] px-3 py-2 text-xs font-bold text-[#071B36] transition hover:bg-[#D7A200] focus:outline-none focus:ring-2 focus:ring-[#F5B800]/30"
                                                         >
 
                                                             <span>✓</span>
@@ -821,7 +823,7 @@ $parametres = [
 
                                                         <button
                                                             type="submit"
-                                                            class="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[#DCE1E4] bg-[#F3F5EF] px-3 py-2 text-xs font-bold text-[#526477] transition hover:bg-[#E9EDE3]"
+                                                            class="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[#E5D8B1] bg-[#FFFBEE] px-3 py-2 text-xs font-bold text-[#7A5A00] transition hover:border-[#D7A200] hover:bg-[#FFF4CC] focus:outline-none focus:ring-2 focus:ring-[#F5B800]/30"
                                                         >
 
                                                             <svg class="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -893,7 +895,7 @@ $parametres = [
 
                             <a
                                 href="?<?= $e(http_build_query($parametres + ['page' => $page - 1])) ?>"
-                                class="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-[#DCE1E4] bg-white px-4 py-2.5 text-sm font-semibold text-[#526477] transition hover:bg-[#F3F5EF] sm:flex-none"
+                                class="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-[#DCE1E4] bg-white px-4 py-2.5 text-sm font-semibold text-[#526477] transition hover:border-[#D7A200] hover:bg-[#FFFBEE] sm:flex-none"
                             >
 
                                 <span>←</span>

@@ -1,3 +1,4 @@
+
 <?php
 
 /**
@@ -40,12 +41,12 @@ $e = static function ($value): string {
     <!-- =====================================================
          EN-TÊTE
     ====================================================== -->
-    <header class="sticky top-0 z-20 border-b border-[#E5E7DE] bg-white/95 backdrop-blur">
+    <header class="sticky top-0 z-20 border-b border-[#E8E1D5] bg-white/95 backdrop-blur">
 
         <div class="flex min-h-[76px] flex-col items-start justify-center gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5 md:px-8">
 
             <div>
-                <div class="mb-1 flex items-center gap-2 text-xs font-medium text-[#7E9833]">
+                <div class="mb-1 flex items-center gap-2 text-xs font-semibold text-[#A98200]">
 
                     <span>Espace membre</span>
 
@@ -66,7 +67,7 @@ $e = static function ($value): string {
 
                 </div>
 
-                <h1 class="text-2xl font-bold tracking-tight text-[#101D33] md:text-3xl">
+                <h1 class="text-2xl font-bold tracking-tight text-[#071B36] md:text-3xl">
                     <?= $modeModification ? 'Corriger mon annonce' : 'Publier un bien' ?>
                 </h1>
 
@@ -78,7 +79,7 @@ $e = static function ($value): string {
             </div>
 
             <a href="/immo-sn/member/mes-biens"
-               class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#E5E7DE] bg-white px-4 py-3 text-sm font-bold text-[#101D33] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#F5F3ED] sm:w-auto sm:px-5">
+               class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#E8E1D5] bg-white px-4 py-3 text-sm font-bold text-[#071B36] shadow-sm transition hover:-translate-y-0.5 hover:border-[#D7A200] hover:bg-[#FBF8EF] sm:w-auto sm:px-5">
 
                 <svg xmlns="http://www.w3.org/2000/svg"
                      class="h-4 w-4"
@@ -205,10 +206,10 @@ $e = static function ($value): string {
             <!-- =================================================
                  CARTE PRINCIPALE DU FORMULAIRE
             ================================================== -->
-            <div class="overflow-hidden rounded-3xl border border-[#E5E7DE] bg-white shadow-sm">
+            <div class="overflow-hidden rounded-3xl border border-[#E8E1D5] bg-white shadow-[0_12px_45px_rgba(7,27,54,0.07)]">
 
                 <!-- BARRE DE PROGRESSION -->
-                <div class="border-b border-[#E5E7DE] px-5 py-6 sm:px-8">
+                <div class="border-b border-[#E8E1D5] bg-white px-5 py-6 sm:px-8">
 
                     <div class="mb-5 flex items-center justify-between gap-3">
 
@@ -219,23 +220,23 @@ $e = static function ($value): string {
                             </p>
 
                             <h2 id="titre-etape"
-                                class="mt-1 break-words text-xl font-bold text-[#101D33]">
+                                class="mt-1 break-words text-xl font-bold text-[#071B36]">
                                 Informations générales
                             </h2>
 
                         </div>
 
                         <span id="pourcentage-etape"
-                              class="shrink-0 rounded-full bg-[#EEF3E3] px-3 py-2 text-sm font-bold text-[#607A27]">
+                              class="shrink-0 rounded-full border border-[#E8DCA9] bg-[#FBF7E9] px-3 py-2 text-sm font-bold text-[#8A6500]">
                             20 %
                         </span>
 
                     </div>
 
-                    <div class="h-2 overflow-hidden rounded-full bg-[#EDF0E8]">
+                    <div class="h-2 overflow-hidden rounded-full bg-[#ECEAE3]">
 
                         <div id="barre-progression"
-                             class="h-full rounded-full bg-[#7E9833] transition-all duration-300"
+                             class="h-full rounded-full bg-gradient-to-r from-[#D7A200] to-[#F5C400] transition-all duration-300"
                              style="width: 20%">
                         </div>
 
@@ -260,7 +261,7 @@ $e = static function ($value): string {
                             <div class="indicateur-etape text-center"
                                  data-indicateur="<?= $etape['numero'] ?>">
 
-                                <div class="numero-indicateur mx-auto flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#E5E7DE] bg-white text-sm font-bold text-[#71869A]">
+                                <div class="numero-indicateur mx-auto flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#E8E1D5] bg-white text-sm font-bold text-[#71869A]">
                                     <?= $etape['numero'] ?>
                                 </div>
 
@@ -298,11 +299,11 @@ $e = static function ($value): string {
 
                         <div class="mb-6">
 
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#7E9833]">
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#A98200]">
                                 Étape 01
                             </span>
 
-                            <h3 class="mt-2 text-lg font-bold text-[#101D33]">
+                            <h3 class="mt-2 text-lg font-bold text-[#071B36]">
                                 Présentez votre bien
                             </h3>
 
@@ -319,7 +320,7 @@ $e = static function ($value): string {
                             <div>
 
                                 <label for="titre"
-                                       class="mb-2 block text-sm font-semibold text-[#101D33]">
+                                       class="mb-2 block text-sm font-semibold text-[#071B36]">
                                     Titre de l'annonce
                                     <span class="text-red-500">*</span>
                                 </label>
@@ -344,7 +345,7 @@ $e = static function ($value): string {
                             <div>
 
                                 <label for="type_offre"
-                                       class="mb-2 block text-sm font-semibold text-[#101D33]">
+                                       class="mb-2 block text-sm font-semibold text-[#071B36]">
                                     Type d'offre
                                     <span class="text-red-500">*</span>
                                 </label>
@@ -371,7 +372,7 @@ $e = static function ($value): string {
                             <div>
 
                                 <label for="category_id"
-                                       class="mb-2 block text-sm font-semibold text-[#101D33]">
+                                       class="mb-2 block text-sm font-semibold text-[#071B36]">
                                     Catégorie du bien
                                     <span class="text-red-500">*</span>
                                 </label>
@@ -403,7 +404,7 @@ $e = static function ($value): string {
                             <div>
 
                                 <label for="prix"
-                                       class="mb-2 block text-sm font-semibold text-[#101D33]">
+                                       class="mb-2 block text-sm font-semibold text-[#071B36]">
                                     Prix en FCFA
                                     <span class="text-red-500">*</span>
                                 </label>
@@ -420,7 +421,7 @@ $e = static function ($value): string {
                                            class="champ-publication pr-20"
                                            value="<?= $valeur('prix') ?>">
 
-                                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-[#71869A]">
+                                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-[#A98200]">
                                         FCFA
                                     </span>
 
@@ -446,11 +447,11 @@ $e = static function ($value): string {
 
                         <div class="mb-6">
 
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#7E9833]">
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#A98200]">
                                 Étape 02
                             </span>
 
-                            <h3 class="mt-2 text-lg font-bold text-[#101D33]">
+                            <h3 class="mt-2 text-lg font-bold text-[#071B36]">
                                 Où se trouve votre bien ?
                             </h3>
 
@@ -467,7 +468,7 @@ $e = static function ($value): string {
                             <div>
 
                                 <label for="ville_id"
-                                       class="mb-2 block text-sm font-semibold text-[#101D33]">
+                                       class="mb-2 block text-sm font-semibold text-[#071B36]">
                                     Ville / Localité
                                     <span class="text-red-500">*</span>
                                 </label>
@@ -524,7 +525,7 @@ $e = static function ($value): string {
                             <div>
 
                                 <label for="quartier"
-                                       class="mb-2 block text-sm font-semibold text-[#101D33]">
+                                       class="mb-2 block text-sm font-semibold text-[#071B36]">
                                     Quartier
                                 </label>
 
@@ -543,7 +544,7 @@ $e = static function ($value): string {
                             <div>
 
                                 <label for="adresse"
-                                       class="mb-2 block text-sm font-semibold text-[#101D33]">
+                                       class="mb-2 block text-sm font-semibold text-[#071B36]">
                                     Adresse précise
                                 </label>
 
@@ -559,12 +560,12 @@ $e = static function ($value): string {
 
 
                             <!-- GPS -->
-                            <div class="rounded-2xl border border-[#DCE6C7] bg-[#F7F8F3] p-5">
+                            <div class="rounded-2xl border border-[#E8DCA9] bg-[#FBF9F1] p-5">
 
                                 <div class="mb-4">
 
                                     <div class="flex items-center gap-2">
-                                        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#EEF3E3] text-[#607A27]">
+                                        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#F5EDCF] text-[#8A6500]">
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                  class="h-5 w-5"
                                                  fill="none"
@@ -578,7 +579,7 @@ $e = static function ($value): string {
                                             </svg>
                                         </span>
 
-                                        <h4 class="font-bold text-[#101D33]">
+                                        <h4 class="font-bold text-[#071B36]">
                                             Position GPS
                                         </h4>
                                     </div>
@@ -592,7 +593,7 @@ $e = static function ($value): string {
 
                                 <button type="button"
                                         id="detecter-position"
-                                        class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#101D33] px-5 py-3 font-semibold text-white transition hover:bg-[#1B2D4A] sm:w-auto">
+                                        class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#071B36] px-5 py-3 font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#122B4C] sm:w-auto">
 
                                     <span aria-hidden="true">◎</span>
 
@@ -615,7 +616,7 @@ $e = static function ($value): string {
                                     <div>
 
                                         <label for="latitude"
-                                               class="mb-2 block text-sm font-semibold text-[#101D33]">
+                                               class="mb-2 block text-sm font-semibold text-[#071B36]">
                                             Latitude
                                         </label>
 
@@ -635,7 +636,7 @@ $e = static function ($value): string {
                                     <div>
 
                                         <label for="longitude"
-                                               class="mb-2 block text-sm font-semibold text-[#101D33]">
+                                               class="mb-2 block text-sm font-semibold text-[#071B36]">
                                             Longitude
                                         </label>
 
@@ -673,11 +674,11 @@ $e = static function ($value): string {
 
                         <div class="mb-6">
 
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#7E9833]">
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#A98200]">
                                 Étape 03
                             </span>
 
-                            <h3 class="mt-2 text-lg font-bold text-[#101D33]">
+                            <h3 class="mt-2 text-lg font-bold text-[#071B36]">
                                 Décrivez votre bien
                             </h3>
 
@@ -694,7 +695,7 @@ $e = static function ($value): string {
                             <div>
 
                                 <label for="surface"
-                                       class="mb-2 block text-sm font-semibold text-[#101D33]">
+                                       class="mb-2 block text-sm font-semibold text-[#071B36]">
                                     Surface en m²
                                     <span class="text-red-500">*</span>
                                 </label>
@@ -716,7 +717,7 @@ $e = static function ($value): string {
                             <div>
 
                                 <label for="pieces"
-                                       class="mb-2 block text-sm font-semibold text-[#101D33]">
+                                       class="mb-2 block text-sm font-semibold text-[#071B36]">
                                     Nombre total de pièces
                                 </label>
 
@@ -738,7 +739,7 @@ $e = static function ($value): string {
                                 <div>
 
                                     <label for="chambres"
-                                           class="mb-2 block text-sm font-semibold text-[#101D33]">
+                                           class="mb-2 block text-sm font-semibold text-[#071B36]">
                                         Nombre de chambres
                                     </label>
 
@@ -757,7 +758,7 @@ $e = static function ($value): string {
                                 <div>
 
                                     <label for="salles_bain"
-                                           class="mb-2 block text-sm font-semibold text-[#101D33]">
+                                           class="mb-2 block text-sm font-semibold text-[#071B36]">
                                         Salles de bain
                                     </label>
 
@@ -779,7 +780,7 @@ $e = static function ($value): string {
                             <div>
 
                                 <label for="etages"
-                                       class="mb-2 block text-sm font-semibold text-[#101D33]">
+                                       class="mb-2 block text-sm font-semibold text-[#071B36]">
                                     Nombre d'étages
                                 </label>
 
@@ -803,7 +804,7 @@ $e = static function ($value): string {
                             <div>
 
                                 <label for="description"
-                                       class="mb-2 block text-sm font-semibold text-[#101D33]">
+                                       class="mb-2 block text-sm font-semibold text-[#071B36]">
                                     Description du bien
                                     <span class="text-red-500">*</span>
                                 </label>
@@ -844,11 +845,11 @@ $e = static function ($value): string {
 
                         <div class="mb-6">
 
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#7E9833]">
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#A98200]">
                                 Étape 04
                             </span>
 
-                            <h3 class="mt-2 text-lg font-bold text-[#101D33]">
+                            <h3 class="mt-2 text-lg font-bold text-[#071B36]">
                                 Ajoutez des photos
                             </h3>
 
@@ -859,9 +860,9 @@ $e = static function ($value): string {
                         </div>
 
 
-                        <div class="rounded-2xl border-2 border-dashed border-[#C9D5B0] bg-[#F7F8F3] p-6 text-center sm:p-10">
+                        <div class="rounded-2xl border-2 border-dashed border-[#D8C783] bg-[#FBF9F1] p-6 text-center transition hover:border-[#D7A200] sm:p-10">
 
-                            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-[#7E9833] shadow-sm">
+                            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-[#E8DCA9] bg-white text-[#A98200] shadow-sm">
 
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                      class="h-8 w-8"
@@ -880,7 +881,7 @@ $e = static function ($value): string {
 
 
                             <label for="photos"
-                                   class="block cursor-pointer text-lg font-bold text-[#101D33]">
+                                   class="block cursor-pointer text-lg font-bold text-[#071B36]">
                                 Sélectionner les photos du bien
                             </label>
 
@@ -894,11 +895,11 @@ $e = static function ($value): string {
                                    name="photos[]"
                                    multiple
                                    accept="image/png,image/jpeg"
-                                   class="mt-5 block w-full cursor-pointer rounded-xl border border-[#E5E7DE] bg-white p-3 text-sm text-[#71869A] file:mr-4 file:rounded-lg file:border-0 file:bg-[#101D33] file:px-4 file:py-2 file:font-semibold file:text-white hover:file:bg-[#1B2D4A]">
+                                   class="mt-5 block w-full cursor-pointer rounded-xl border border-[#E8E1D5] bg-white p-3 text-sm text-[#71869A] file:mr-4 file:rounded-lg file:border-0 file:bg-[#071B36] file:px-4 file:py-2 file:font-semibold file:text-white hover:file:bg-[#122B4C]">
 
 
                             <p id="nombre-photos"
-                               class="mt-4 text-sm font-semibold text-[#607A27]"
+                               class="mt-4 text-sm font-semibold text-[#8A6500]"
                                aria-live="polite">
                                 Aucune photo sélectionnée.
                             </p>
@@ -936,11 +937,11 @@ $e = static function ($value): string {
 
                         <div class="mb-6">
 
-                            <span class="text-xs font-bold uppercase tracking-wider text-[#7E9833]">
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#A98200]">
                                 Étape 05
                             </span>
 
-                            <h3 class="mt-2 text-lg font-bold text-[#101D33]">
+                            <h3 class="mt-2 text-lg font-bold text-[#071B36]">
                                 Vérifiez votre annonce
                             </h3>
 
@@ -952,9 +953,16 @@ $e = static function ($value): string {
 
 
                         <!-- CARTE RÉCAPITULATIVE -->
-                        <div class="overflow-hidden rounded-2xl border border-[#E5E7DE]">
+                        <div class="overflow-hidden rounded-2xl border border-[#E8E1D5] shadow-sm">
 
-                            <div class="bg-[#101D33] px-5 py-5 text-white">
+                            <div class="bg-gradient-to-r from-[#071B36] to-[#142E50] px-5 py-5 text-white">
+
+                                <div class="mb-3 flex items-center gap-2 text-[#F5C400]">
+                                    <span class="h-1 w-7 rounded-full bg-[#F5C400]"></span>
+                                    <p class="text-xs font-bold uppercase tracking-wider">
+                                        Aperçu de votre annonce
+                                    </p>
+                                </div>
 
                                 <p class="text-sm text-white/60">
                                     Votre annonce
@@ -980,12 +988,12 @@ $e = static function ($value): string {
 
                                     <div class="mb-3 flex items-center justify-between gap-3">
 
-                                        <h5 class="font-bold text-[#101D33]">
+                                        <h5 class="font-bold text-[#071B36]">
                                             Informations générales
                                         </h5>
 
                                         <button type="button"
-                                                class="text-sm font-bold text-[#7E9833] underline"
+                                                class="text-sm font-bold text-[#A98200] underline decoration-[#D7A200] underline-offset-4 hover:text-[#071B36]"
                                                 data-aller-etape="1">
                                             Modifier
                                         </button>
@@ -1001,7 +1009,7 @@ $e = static function ($value): string {
                                             </dt>
 
                                             <dd id="recap-categorie"
-                                                class="mt-1 min-w-0 break-words font-semibold text-[#101D33]">
+                                                class="mt-1 min-w-0 break-words font-semibold text-[#071B36]">
                                                 —
                                             </dd>
                                         </div>
@@ -1013,7 +1021,7 @@ $e = static function ($value): string {
                                             </dt>
 
                                             <dd id="recap-prix"
-                                                class="mt-1 font-semibold text-[#101D33]">
+                                                class="mt-1 font-semibold text-[#8A6500]">
                                                 —
                                             </dd>
                                         </div>
@@ -1023,7 +1031,7 @@ $e = static function ($value): string {
                                 </div>
 
 
-                                <div class="border-t border-[#E5E7DE]"></div>
+                                <div class="border-t border-[#E8E1D5]"></div>
 
 
                                 <!-- LOCALISATION -->
@@ -1031,12 +1039,12 @@ $e = static function ($value): string {
 
                                     <div class="mb-3 flex items-center justify-between gap-3">
 
-                                        <h5 class="font-bold text-[#101D33]">
+                                        <h5 class="font-bold text-[#071B36]">
                                             Localisation
                                         </h5>
 
                                         <button type="button"
-                                                class="text-sm font-bold text-[#7E9833] underline"
+                                                class="text-sm font-bold text-[#A98200] underline decoration-[#D7A200] underline-offset-4 hover:text-[#071B36]"
                                                 data-aller-etape="2">
                                             Modifier
                                         </button>
@@ -1052,7 +1060,7 @@ $e = static function ($value): string {
                                             </dt>
 
                                             <dd id="recap-ville"
-                                                class="mt-1 font-semibold text-[#101D33]">
+                                                class="mt-1 font-semibold text-[#071B36]">
                                                 —
                                             </dd>
                                         </div>
@@ -1064,7 +1072,7 @@ $e = static function ($value): string {
                                             </dt>
 
                                             <dd id="recap-quartier"
-                                                class="mt-1 font-semibold text-[#101D33]">
+                                                class="mt-1 font-semibold text-[#071B36]">
                                                 —
                                             </dd>
                                         </div>
@@ -1076,7 +1084,7 @@ $e = static function ($value): string {
                                             </dt>
 
                                             <dd id="recap-adresse"
-                                                class="mt-1 font-semibold text-[#101D33]">
+                                                class="mt-1 font-semibold text-[#071B36]">
                                                 —
                                             </dd>
                                         </div>
@@ -1088,7 +1096,7 @@ $e = static function ($value): string {
                                             </dt>
 
                                             <dd id="recap-latitude"
-                                                class="mt-1 font-semibold text-[#101D33]">
+                                                class="mt-1 font-semibold text-[#071B36]">
                                                 —
                                             </dd>
                                         </div>
@@ -1100,7 +1108,7 @@ $e = static function ($value): string {
                                             </dt>
 
                                             <dd id="recap-longitude"
-                                                class="mt-1 font-semibold text-[#101D33]">
+                                                class="mt-1 font-semibold text-[#071B36]">
                                                 —
                                             </dd>
                                         </div>
@@ -1110,7 +1118,7 @@ $e = static function ($value): string {
                                 </div>
 
 
-                                <div class="border-t border-[#E5E7DE]"></div>
+                                <div class="border-t border-[#E8E1D5]"></div>
 
 
                                 <!-- CARACTÉRISTIQUES -->
@@ -1118,12 +1126,12 @@ $e = static function ($value): string {
 
                                     <div class="mb-3 flex items-center justify-between gap-3">
 
-                                        <h5 class="font-bold text-[#101D33]">
+                                        <h5 class="font-bold text-[#071B36]">
                                             Caractéristiques
                                         </h5>
 
                                         <button type="button"
-                                                class="text-sm font-bold text-[#7E9833] underline"
+                                                class="text-sm font-bold text-[#A98200] underline decoration-[#D7A200] underline-offset-4 hover:text-[#071B36]"
                                                 data-aller-etape="3">
                                             Modifier
                                         </button>
@@ -1139,7 +1147,7 @@ $e = static function ($value): string {
                                             </dt>
 
                                             <dd id="recap-surface"
-                                                class="mt-1 font-semibold text-[#101D33]">
+                                                class="mt-1 font-semibold text-[#071B36]">
                                                 —
                                             </dd>
                                         </div>
@@ -1151,7 +1159,7 @@ $e = static function ($value): string {
                                             </dt>
 
                                             <dd id="recap-pieces"
-                                                class="mt-1 font-semibold text-[#101D33]">
+                                                class="mt-1 font-semibold text-[#071B36]">
                                                 —
                                             </dd>
                                         </div>
@@ -1163,7 +1171,7 @@ $e = static function ($value): string {
                                             </dt>
 
                                             <dd id="recap-chambres"
-                                                class="mt-1 font-semibold text-[#101D33]">
+                                                class="mt-1 font-semibold text-[#071B36]">
                                                 —
                                             </dd>
                                         </div>
@@ -1175,7 +1183,7 @@ $e = static function ($value): string {
                                             </dt>
 
                                             <dd id="recap-salles-bain"
-                                                class="mt-1 font-semibold text-[#101D33]">
+                                                class="mt-1 font-semibold text-[#071B36]">
                                                 —
                                             </dd>
                                         </div>
@@ -1187,7 +1195,7 @@ $e = static function ($value): string {
                                             </dt>
 
                                             <dd id="recap-etages"
-                                                class="mt-1 font-semibold text-[#101D33]">
+                                                class="mt-1 font-semibold text-[#071B36]">
                                                 —
                                             </dd>
                                         </div>
@@ -1202,7 +1210,7 @@ $e = static function ($value): string {
                                         </dt>
 
                                         <dd id="recap-description"
-                                            class="mt-2 whitespace-pre-wrap break-words rounded-xl bg-[#F5F3ED] p-4 text-sm leading-6 text-[#101D33]">
+                                            class="mt-2 whitespace-pre-wrap break-words rounded-xl border border-[#E8E1D5] bg-[#F8F7F3] p-4 text-sm leading-6 text-[#071B36]">
                                             —
                                         </dd>
 
@@ -1211,7 +1219,7 @@ $e = static function ($value): string {
                                 </div>
 
 
-                                <div class="border-t border-[#E5E7DE]"></div>
+                                <div class="border-t border-[#E8E1D5]"></div>
 
 
                                 <!-- PHOTOS -->
@@ -1219,12 +1227,12 @@ $e = static function ($value): string {
 
                                     <div class="mb-3 flex items-center justify-between gap-3">
 
-                                        <h5 class="font-bold text-[#101D33]">
+                                        <h5 class="font-bold text-[#071B36]">
                                             Photos
                                         </h5>
 
                                         <button type="button"
-                                                class="text-sm font-bold text-[#7E9833] underline"
+                                                class="text-sm font-bold text-[#A98200] underline decoration-[#D7A200] underline-offset-4 hover:text-[#071B36]"
                                                 data-aller-etape="4">
                                             Modifier
                                         </button>
@@ -1256,11 +1264,11 @@ $e = static function ($value): string {
                     <!-- =========================================
                          NAVIGATION ENTRE LES ÉTAPES
                     ========================================== -->
-                    <div class="mt-8 flex flex-col-reverse gap-3 border-t border-[#E5E7DE] pt-6 sm:flex-row sm:items-center sm:justify-between">
+                    <div class="mt-8 flex flex-col-reverse gap-3 border-t border-[#E8E1D5] pt-6 sm:flex-row sm:items-center sm:justify-between">
 
                         <button type="button"
                                 id="bouton-precedent"
-                                class="hidden w-full items-center justify-center gap-2 rounded-xl border border-[#DCE6C7] px-5 py-3 font-semibold text-[#101D33] transition hover:bg-[#F7F8F3] sm:w-auto">
+                                class="hidden w-full items-center justify-center gap-2 rounded-xl border border-[#D9D2C4] px-5 py-3 font-semibold text-[#071B36] transition hover:border-[#D7A200] hover:bg-[#FBF8EF] sm:w-auto">
 
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  class="h-4 w-4"
@@ -1281,14 +1289,14 @@ $e = static function ($value): string {
                         <div class="flex flex-col gap-3 sm:ml-auto sm:flex-row">
 
                             <a href="/immo-sn/member/mes-biens"
-                               class="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold text-[#71869A] transition hover:bg-[#F5F3ED] sm:w-auto">
+                               class="inline-flex w-full items-center justify-center rounded-xl px-5 py-3 font-semibold text-[#71869A] transition hover:bg-[#F5F3ED] hover:text-[#071B36] sm:w-auto">
                                 Annuler
                             </a>
 
 
                             <button type="button"
                                     id="bouton-suivant"
-                                    class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#101D33] px-6 py-3 font-semibold text-white transition hover:bg-[#1B2D4A] sm:w-auto">
+                                    class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#071B36] px-6 py-3 font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#142E50] sm:w-auto">
 
                                 Étape suivante
 
@@ -1308,7 +1316,7 @@ $e = static function ($value): string {
 
                             <button type="submit"
                                     id="bouton-publier"
-                                    class="hidden w-full items-center justify-center gap-2 rounded-xl bg-[#7E9833] px-6 py-3 font-bold text-white transition hover:bg-[#687F2B] sm:w-auto">
+                                    class="hidden w-full items-center justify-center gap-2 rounded-xl bg-[#D7A200] px-6 py-3 font-bold text-[#071B36] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#F5C400] sm:w-auto">
 
                                 <span aria-hidden="true">✓</span>
 
@@ -1343,20 +1351,24 @@ $e = static function ($value): string {
 .champ-publication {
     display: block;
     width: 100%;
-    border: 1px solid #E5E7DE;
+    border: 1px solid #E8E1D5;
     border-radius: 0.85rem;
     background: #FFFFFF;
     padding: 0.9rem 1rem;
-    color: #101D33;
+    color: #071B36;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
     font-size: 0.95rem;
 }
 
+.champ-publication:hover {
+    border-color: #D5C99F;
+}
+
 .champ-publication:focus {
-    border-color: #7E9833;
+    border-color: #D7A200;
     background: #FFFFFF;
-    box-shadow: 0 0 0 3px rgba(126, 152, 51, 0.15);
+    box-shadow: 0 0 0 3px rgba(215, 162, 0, 0.15);
 }
 
 .champ-publication:disabled {
@@ -1369,23 +1381,24 @@ $e = static function ($value): string {
 }
 
 .champ-publication:invalid:not(:placeholder-shown) {
-    border-color: #E5E7DE;
+    border-color: #E8E1D5;
 }
 
 .numero-indicateur.actif {
-    border-color: #7E9833;
-    background: #101D33;
-    color: #FFFFFF;
+    border-color: #D7A200;
+    background: #071B36;
+    color: #F5C400;
+    box-shadow: 0 0 0 3px rgba(215, 162, 0, 0.12);
 }
 
 .numero-indicateur.termine {
-    border-color: #7E9833;
-    background: #EEF3E3;
-    color: #607A27;
+    border-color: #D7A200;
+    background: #FBF7E9;
+    color: #8A6500;
 }
 
 .indicateur-etape.actif p {
-    color: #101D33;
+    color: #071B36;
     font-weight: 700;
 }
 
@@ -1394,7 +1407,7 @@ $e = static function ($value): string {
     width: 100%;
     overflow: hidden;
     border-radius: 0.85rem;
-    border: 1px solid #E5E7DE;
+    border: 1px solid #E8E1D5;
     object-fit: cover;
     background: #F5F3ED;
 }

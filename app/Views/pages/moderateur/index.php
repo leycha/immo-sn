@@ -1,9 +1,10 @@
+
 <?php
 
 /**
  * =========================================================
  * DASHBOARD MODÉRATEUR — IMMO-SN
- * Design : Vert Ditakh / Bleu nuit / Ivoire
+ * Design : Bleu nuit / Or / Ivoire
  * =========================================================
  */
 
@@ -73,13 +74,13 @@ $cartes = [
 
 <div class="min-h-screen bg-[#F5F3ED] text-[#101D33]">
 
-    <main class="mx-auto max-w-[1600px] space-y-8 px-4 py-6 sm:px-8 sm:py-8 lg:py-10">
+    <main class="mx-auto max-w-[1600px] space-y-9 px-4 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
 
         <!-- =====================================================
              BARRE SUPÉRIEURE
         ====================================================== -->
 
-        <header class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <header class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
 
             <div class="min-w-0">
 
@@ -88,10 +89,10 @@ $cartes = [
                     <span>/</span>
                     <span>Administration</span>
                     <span>/</span>
-                    <span class="text-[#7E9833]">Modération</span>
+                    <span class="font-bold text-[#A98200]">Modération</span>
                 </div>
 
-                <h2 class="mt-2 text-xl font-black tracking-tight text-[#101D33]">
+                <h2 class="mt-2 text-xl font-black tracking-tight text-[#071B36] sm:text-2xl">
                     Espace de modération
                 </h2>
 
@@ -110,7 +111,7 @@ $cartes = [
                 <!-- Notifications -->
 
                 <a href="/immo-sn/moderateur/signalements"
-                   class="relative flex h-11 w-11 items-center justify-center rounded-xl border border-[#E5E7DE] bg-white text-[#101D33] shadow-sm transition hover:border-[#7E9833] hover:bg-[#F5F8EF]"
+                   class="relative flex h-11 w-11 items-center justify-center rounded-xl border border-[#E8E1D3] bg-white text-[#071B36] shadow-sm transition duration-200 hover:border-[#D7A200] hover:bg-[#FFFAEB] hover:text-[#A98200]"
                    aria-label="Consulter les signalements"
                    title="Signalements">
 
@@ -129,7 +130,7 @@ $cartes = [
 
                     <?php if ($signalementsEnAttente > 0): ?>
 
-                        <span class="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-black text-white">
+                        <span class="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-black text-white shadow-sm">
                             <?= $signalementsEnAttente > 99 ? '99+' : $signalementsEnAttente ?>
                         </span>
 
@@ -139,15 +140,15 @@ $cartes = [
 
                 <!-- Profil modérateur -->
 
-                <div class="flex items-center gap-2 rounded-xl border border-[#E5E7DE] bg-white px-3 py-2 shadow-sm">
+                <div class="flex items-center gap-3 rounded-xl border border-[#E8E1D3] bg-white px-3 py-2 shadow-sm">
 
-                    <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#101D33] text-sm font-black text-white">
+                    <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#071B36] text-sm font-black text-[#F5B800]">
                         M
                     </span>
 
                     <span class="hidden sm:block">
 
-                        <span class="block text-sm font-bold text-[#101D33]">
+                        <span class="block text-sm font-bold text-[#071B36]">
                             Modérateur
                         </span>
 
@@ -168,26 +169,28 @@ $cartes = [
              BANNIÈRE D'ACCUEIL
         ====================================================== -->
 
-        <section class="relative isolate overflow-hidden rounded-[28px] bg-[#101D33] shadow-[0_18px_50px_rgba(16,29,51,0.12)]">
+        <section class="relative isolate overflow-hidden rounded-[28px] bg-[#071B36] shadow-[0_20px_55px_rgba(7,27,54,0.16)]">
 
-            <!-- Décoration -->
+            <!-- Décorations -->
 
-            <div class="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full bg-[#7E9833]/20 blur-3xl"></div>
+            <div class="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full bg-[#F5B800]/15 blur-3xl"></div>
 
-            <div class="pointer-events-none absolute -bottom-32 right-1/3 h-64 w-64 rounded-full bg-[#71869A]/20 blur-3xl"></div>
+            <div class="pointer-events-none absolute -bottom-32 right-1/3 h-64 w-64 rounded-full bg-[#71869A]/15 blur-3xl"></div>
 
-            <div class="pointer-events-none absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-white/[0.035] to-transparent"></div>
+            <div class="pointer-events-none absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-white/[0.04] to-transparent"></div>
+
+            <div class="pointer-events-none absolute bottom-0 left-0 h-1 w-40 bg-gradient-to-r from-[#F5B800] to-transparent"></div>
 
 
-            <div class="relative grid min-w-0 gap-6 p-5 sm:gap-8 sm:p-9 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-center lg:p-11">
+            <div class="relative grid min-w-0 gap-7 p-5 sm:gap-8 sm:p-9 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-center lg:p-11">
 
                 <!-- Présentation -->
 
                 <div class="min-w-0">
 
-                    <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-2 text-xs font-bold text-[#DCE5D4]">
+                    <div class="inline-flex items-center gap-2 rounded-full border border-[#F5B800]/20 bg-[#F5B800]/10 px-3 py-2 text-xs font-bold tracking-wide text-[#F8D76A]">
 
-                        <span class="h-2 w-2 rounded-full bg-[#8FAF35]"></span>
+                        <span class="h-2 w-2 rounded-full bg-[#F5B800] shadow-[0_0_10px_rgba(245,184,0,0.6)]"></span>
 
                         CENTRE DE MODÉRATION IMMO-SN
 
@@ -196,7 +199,7 @@ $cartes = [
                     <h1 class="mt-5 max-w-3xl break-words text-2xl font-black leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
 
                         Votre espace,
-                        <span class="text-[#A8C65A]">en un coup d’œil.</span>
+                        <span class="text-[#F5B800]">en un coup d’œil.</span>
 
                     </h1>
 
@@ -213,7 +216,7 @@ $cartes = [
                     <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
 
                         <a href="/immo-sn/moderateur/annonces"
-                           class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#7E9833] px-5 py-3 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#6B822B] sm:w-auto">
+                           class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-5 py-3.5 text-sm font-extrabold text-[#071B36] shadow-[0_8px_20px_rgba(245,184,0,0.16)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#FFD044] hover:shadow-[0_12px_25px_rgba(245,184,0,0.24)] sm:w-auto">
 
                             Examiner les annonces
 
@@ -233,7 +236,7 @@ $cartes = [
                         </a>
 
                         <a href="/immo-sn/moderateur/signalements"
-                           class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10 sm:w-auto">
+                           class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-5 py-3.5 text-sm font-bold text-white transition duration-200 hover:border-[#F5B800]/40 hover:bg-white/10 sm:w-auto">
 
                             Consulter les signalements
 
@@ -248,11 +251,19 @@ $cartes = [
 
                 <!-- PRIORITÉS -->
 
-                <div class="rounded-2xl border border-white/10 bg-white/[0.06] p-5 backdrop-blur-sm sm:p-6">
+                <div class="rounded-2xl border border-white/10 bg-white/[0.06] p-5 shadow-xl backdrop-blur-sm sm:p-6">
 
-                    <p class="text-xs font-bold uppercase tracking-[0.15em] text-[#C3CED9]">
-                        Vos priorités
-                    </p>
+                    <div class="flex items-center justify-between gap-3">
+
+                        <p class="text-xs font-bold uppercase tracking-[0.15em] text-[#C3CED9]">
+                            Vos priorités
+                        </p>
+
+                        <span class="rounded-lg border border-[#F5B800]/20 bg-[#F5B800]/10 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-[#F8D76A]">
+                            À traiter
+                        </span>
+
+                    </div>
 
                     <p class="mt-4 text-5xl font-black tracking-tight text-white tabular-nums">
                         <?= number_format($totalPriorites, 0, ',', ' ') ?>
@@ -265,23 +276,31 @@ $cartes = [
                     <div class="mt-5 space-y-3">
 
                         <a href="/immo-sn/moderateur/annonces"
-                           class="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.05] px-3 py-3 transition hover:bg-white/10">
+                           class="flex items-center justify-between gap-3 rounded-xl border border-white/[0.07] bg-white/[0.05] px-3 py-3 transition hover:border-[#F5B800]/30 hover:bg-white/10">
 
-                            <span class="text-sm text-white">
+                            <span class="flex items-center gap-2 text-sm text-white">
+
+                                <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
+
                                 Annonces à examiner
+
                             </span>
 
-                            <span class="font-black text-[#A8C65A]">
+                            <span class="font-black text-[#F5B800]">
                                 <?= number_format($annoncesEnAttente, 0, ',', ' ') ?>
                             </span>
 
                         </a>
 
                         <a href="/immo-sn/moderateur/signalements"
-                           class="flex items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-white/[0.05] px-3 py-3 transition hover:bg-white/10">
+                           class="flex items-center justify-between gap-3 rounded-xl border border-white/[0.07] bg-white/[0.05] px-3 py-3 transition hover:border-red-300/30 hover:bg-white/10">
 
-                            <span class="text-sm text-white">
+                            <span class="flex items-center gap-2 text-sm text-white">
+
+                                <span class="h-2 w-2 rounded-full bg-red-400"></span>
+
                                 Signalements à vérifier
+
                             </span>
 
                             <span class="font-black text-[#FCA5A5]">
@@ -305,15 +324,15 @@ $cartes = [
 
         <section>
 
-            <div class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
 
                 <div>
 
-                    <p class="text-xs font-black uppercase tracking-[0.18em] text-[#7E9833]">
+                    <p class="text-xs font-black uppercase tracking-[0.18em] text-[#A98200]">
                         Vue d'ensemble
                     </p>
 
-                    <h2 class="mt-1 text-2xl font-black tracking-tight text-[#101D33] sm:text-3xl">
+                    <h2 class="mt-1 text-2xl font-black tracking-tight text-[#071B36] sm:text-3xl">
                         Les chiffres essentiels
                     </h2>
 
@@ -323,9 +342,12 @@ $cartes = [
 
                 </div>
 
-                <span class="w-fit rounded-full border border-[#E5E7DE] bg-white px-3 py-2 text-xs font-semibold text-[#71869A] shadow-sm">
-                    <span class="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-[#7E9833]"></span>
+                <span class="w-fit rounded-full border border-[#E8E1D3] bg-white px-3 py-2 text-xs font-semibold text-[#71869A] shadow-sm">
+
+                    <span class="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-[#D7A200]"></span>
+
                     Mise à jour au chargement
+
                 </span>
 
             </div>
@@ -341,9 +363,9 @@ $cartes = [
 
                     $couleurs = [
                         'gold' => [
-                            'fond' => 'bg-[#F1F6E8]',
-                            'texte' => 'text-[#6B822B]',
-                            'barre' => 'bg-[#7E9833]',
+                            'fond' => 'bg-[#FFF7DF]',
+                            'texte' => 'text-[#8A6500]',
+                            'barre' => 'bg-[#F5B800]',
                         ],
                         'red' => [
                             'fond' => 'bg-red-50',
@@ -366,7 +388,7 @@ $cartes = [
 
                     ?>
 
-                    <article class="group relative overflow-hidden rounded-[22px] border border-[#E5E7DE] bg-white p-5 shadow-[0_5px_24px_rgba(16,29,51,0.035)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(16,29,51,0.08)] sm:p-6">
+                    <article class="group relative overflow-hidden rounded-[22px] border border-[#E8E1D3] bg-white p-5 shadow-[0_5px_24px_rgba(7,27,54,0.035)] transition duration-300 hover:-translate-y-1 hover:border-[#D7A200]/40 hover:shadow-[0_16px_38px_rgba(7,27,54,0.09)] sm:p-6">
 
                         <!-- Décoration -->
 
@@ -382,7 +404,7 @@ $cartes = [
                                         <?= $e($carte['titre']) ?>
                                     </p>
 
-                                    <p class="mt-5 text-4xl font-black tracking-tight text-[#101D33] tabular-nums">
+                                    <p class="mt-5 text-4xl font-black tracking-tight text-[#071B36] tabular-nums">
                                         <?= number_format($carte['valeur'], 0, ',', ' ') ?>
                                     </p>
 
@@ -467,14 +489,14 @@ $cartes = [
 
                             <!-- Description et action -->
 
-                            <div class="mt-5 flex flex-col items-start justify-between gap-3 border-t border-[#EAEDE5] pt-4 sm:flex-row sm:items-center">
+                            <div class="mt-5 flex flex-col items-start justify-between gap-3 border-t border-[#EEE9DE] pt-4 sm:flex-row sm:items-center">
 
                                 <p class="text-xs text-[#71869A]">
                                     <?= $e($carte['description']) ?>
                                 </p>
 
                                 <a href="<?= $e($carte['lien']) ?>"
-                                   class="inline-flex shrink-0 items-center gap-1 text-xs font-bold text-[#7E9833] transition hover:text-[#101D33]">
+                                   class="inline-flex shrink-0 items-center gap-1 text-xs font-bold text-[#A98200] transition hover:text-[#071B36]">
 
                                     <?= $e($carte['action']) ?>
 
@@ -499,7 +521,7 @@ $cartes = [
 
                         <!-- Barre inférieure -->
 
-                        <div class="absolute bottom-0 left-0 h-1 w-full <?= $style['barre'] ?> opacity-0 transition group-hover:opacity-100"></div>
+                        <div class="absolute bottom-0 left-0 h-1 w-full <?= $style['barre'] ?> opacity-0 transition duration-300 group-hover:opacity-100"></div>
 
                     </article>
 
@@ -518,11 +540,11 @@ $cartes = [
 
             <div class="mb-5">
 
-                <p class="text-xs font-black uppercase tracking-[0.18em] text-[#7E9833]">
+                <p class="text-xs font-black uppercase tracking-[0.18em] text-[#A98200]">
                     Navigation rapide
                 </p>
 
-                <h2 class="mt-1 text-2xl font-black tracking-tight text-[#101D33]">
+                <h2 class="mt-1 text-2xl font-black tracking-tight text-[#071B36]">
                     Vos espaces de travail
                 </h2>
 
@@ -538,9 +560,9 @@ $cartes = [
                 <!-- ANNONCES -->
 
                 <a href="/immo-sn/moderateur/annonces"
-                   class="group flex items-center gap-4 rounded-[22px] border border-[#E5E7DE] bg-white p-5 shadow-[0_5px_24px_rgba(16,29,51,0.035)] transition hover:-translate-y-1 hover:border-[#7E9833]/40 hover:shadow-lg">
+                   class="group flex items-center gap-4 rounded-[22px] border border-[#E8E1D3] bg-white p-5 shadow-[0_5px_24px_rgba(7,27,54,0.035)] transition duration-300 hover:-translate-y-1 hover:border-[#D7A200]/50 hover:shadow-[0_14px_30px_rgba(7,27,54,0.08)]">
 
-                    <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F1F6E8] text-[#6B822B] transition group-hover:bg-[#7E9833] group-hover:text-white">
+                    <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#FFF7DF] text-[#8A6500] transition duration-200 group-hover:bg-[#F5B800] group-hover:text-[#071B36]">
 
                         <svg xmlns="http://www.w3.org/2000/svg"
                              class="h-6 w-6"
@@ -559,7 +581,7 @@ $cartes = [
 
                     <span class="min-w-0 flex-1">
 
-                        <span class="block font-extrabold text-[#101D33]">
+                        <span class="block font-extrabold text-[#071B36]">
                             Annonces
                         </span>
 
@@ -569,7 +591,7 @@ $cartes = [
 
                     </span>
 
-                    <span class="text-lg text-[#A5B0B8] transition group-hover:translate-x-1 group-hover:text-[#7E9833]">
+                    <span class="text-lg text-[#A5B0B8] transition group-hover:translate-x-1 group-hover:text-[#A98200]">
                         →
                     </span>
 
@@ -579,9 +601,9 @@ $cartes = [
                 <!-- SIGNALEMENTS -->
 
                 <a href="/immo-sn/moderateur/signalements"
-                   class="group flex items-center gap-4 rounded-[22px] border border-[#E5E7DE] bg-white p-5 shadow-[0_5px_24px_rgba(16,29,51,0.035)] transition hover:-translate-y-1 hover:border-red-200 hover:shadow-lg">
+                   class="group flex items-center gap-4 rounded-[22px] border border-[#E8E1D3] bg-white p-5 shadow-[0_5px_24px_rgba(7,27,54,0.035)] transition duration-300 hover:-translate-y-1 hover:border-red-200 hover:shadow-[0_14px_30px_rgba(7,27,54,0.08)]">
 
-                    <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-700 transition group-hover:bg-red-600 group-hover:text-white">
+                    <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-700 transition duration-200 group-hover:bg-red-600 group-hover:text-white">
 
                         <svg xmlns="http://www.w3.org/2000/svg"
                              class="h-6 w-6"
@@ -600,7 +622,7 @@ $cartes = [
 
                     <span class="min-w-0 flex-1">
 
-                        <span class="block font-extrabold text-[#101D33]">
+                        <span class="block font-extrabold text-[#071B36]">
                             Signalements
                         </span>
 
@@ -620,9 +642,9 @@ $cartes = [
                 <!-- RENOUVELLEMENTS -->
 
                 <a href="/immo-sn/moderateur/renouvellements"
-                   class="group flex items-center gap-4 rounded-[22px] border border-[#E5E7DE] bg-white p-5 shadow-[0_5px_24px_rgba(16,29,51,0.035)] transition hover:-translate-y-1 hover:border-[#7E9833]/40 hover:shadow-lg">
+                   class="group flex items-center gap-4 rounded-[22px] border border-[#E8E1D3] bg-white p-5 shadow-[0_5px_24px_rgba(7,27,54,0.035)] transition duration-300 hover:-translate-y-1 hover:border-[#D7A200]/50 hover:shadow-[0_14px_30px_rgba(7,27,54,0.08)]">
 
-                    <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#EEF1F5] text-[#71869A] transition group-hover:bg-[#101D33] group-hover:text-white">
+                    <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#EEF1F5] text-[#71869A] transition duration-200 group-hover:bg-[#071B36] group-hover:text-[#F5B800]">
 
                         <svg xmlns="http://www.w3.org/2000/svg"
                              class="h-6 w-6"
@@ -643,7 +665,7 @@ $cartes = [
 
                     <span class="min-w-0 flex-1">
 
-                        <span class="block font-extrabold text-[#101D33]">
+                        <span class="block font-extrabold text-[#071B36]">
                             Renouvellements
                         </span>
 
@@ -653,7 +675,7 @@ $cartes = [
 
                     </span>
 
-                    <span class="text-lg text-[#A5B0B8] transition group-hover:translate-x-1 group-hover:text-[#7E9833]">
+                    <span class="text-lg text-[#A5B0B8] transition group-hover:translate-x-1 group-hover:text-[#A98200]">
                         →
                     </span>
 
@@ -663,9 +685,9 @@ $cartes = [
                 <!-- HISTORIQUE -->
 
                 <a href="/immo-sn/moderateur/historique"
-                   class="group flex items-center gap-4 rounded-[22px] border border-[#E5E7DE] bg-white p-5 shadow-[0_5px_24px_rgba(16,29,51,0.035)] transition hover:-translate-y-1 hover:border-emerald-200 hover:shadow-lg">
+                   class="group flex items-center gap-4 rounded-[22px] border border-[#E8E1D3] bg-white p-5 shadow-[0_5px_24px_rgba(7,27,54,0.035)] transition duration-300 hover:-translate-y-1 hover:border-[#D7A200]/50 hover:shadow-[0_14px_30px_rgba(7,27,54,0.08)]">
 
-                    <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 transition group-hover:bg-emerald-600 group-hover:text-white">
+                    <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#FFF7DF] text-[#8A6500] transition duration-200 group-hover:bg-[#F5B800] group-hover:text-[#071B36]">
 
                         <svg xmlns="http://www.w3.org/2000/svg"
                              class="h-6 w-6"
@@ -686,7 +708,7 @@ $cartes = [
 
                     <span class="min-w-0 flex-1">
 
-                        <span class="block font-extrabold text-[#101D33]">
+                        <span class="block font-extrabold text-[#071B36]">
                             Historique
                         </span>
 
@@ -696,7 +718,7 @@ $cartes = [
 
                     </span>
 
-                    <span class="text-lg text-[#A5B0B8] transition group-hover:translate-x-1 group-hover:text-emerald-600">
+                    <span class="text-lg text-[#A5B0B8] transition group-hover:translate-x-1 group-hover:text-[#A98200]">
                         →
                     </span>
 
@@ -705,6 +727,29 @@ $cartes = [
             </div>
 
         </section>
+
+
+        <!-- =====================================================
+             PIED DE PAGE
+        ====================================================== -->
+
+        <footer class="border-t border-[#E8E1D3] pt-5">
+
+            <div class="flex flex-col items-center justify-between gap-2 text-center text-xs text-[#71869A] sm:flex-row sm:text-left">
+
+                <p>
+                    <span class="font-black tracking-wide text-[#071B36]">IMMO-SN</span>
+                    <span class="mx-1">·</span>
+                    Espace de modération
+                </p>
+
+                <p>
+                    Administration et contrôle des contenus immobiliers
+                </p>
+
+            </div>
+
+        </footer>
 
     </main>
 

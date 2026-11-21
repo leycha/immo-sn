@@ -1,3 +1,4 @@
+
 <?php
 use Core\Session;
 
@@ -6,148 +7,626 @@ $biens = is_array($biens ?? null) ? $biens : [];
 $renouvellements = is_array($renouvellements ?? null) ? $renouvellements : [];
 $success = $success ?? null;
 $error = $error ?? null;
-$e = static fn($value): string => htmlspecialchars((string)($value ?? ''), ENT_QUOTES, 'UTF-8');
+
+$e = static fn($value): string => htmlspecialchars(
+    (string)($value ?? ''),
+    ENT_QUOTES,
+    'UTF-8'
+);
 
 $statuts = [
-    'actif' => ['Actif', 'bg-[#7E9833]/10 text-[#58701d] border-[#7E9833]/25'],
-    'en_attente' => ['En attente', 'bg-amber-50 text-amber-800 border-amber-200'],
-    'pending' => ['En attente', 'bg-amber-50 text-amber-800 border-amber-200'],
+    'actif' => ['Actif', 'bg-emerald-50 text-emerald-700 border-emerald-200'],
+    'en_attente' => ['En attente', 'bg-amber-50 text-amber-700 border-amber-200'],
+    'pending' => ['En attente', 'bg-amber-50 text-amber-700 border-amber-200'],
     'rejete' => ['Rejeté', 'bg-red-50 text-red-700 border-red-200'],
     'refuse' => ['Refusé', 'bg-red-50 text-red-700 border-red-200'],
     'refusee' => ['Refusé', 'bg-red-50 text-red-700 border-red-200'],
     'expire' => ['Expiré', 'bg-slate-100 text-slate-700 border-slate-200'],
     'brouillon' => ['Brouillon', 'bg-blue-50 text-blue-700 border-blue-200'],
 ];
+
 $nombreBiens = count($biens);
 $nombreActifs = $nombreEnAttente = $nombreExpires = 0;
+
 foreach ($biens as $bienStatistique) {
     $statut = strtolower(trim((string)($bienStatistique['statut'] ?? '')));
     $expiration = $bienStatistique['expire_at'] ?? null;
     $expirationTs = !empty($expiration) ? strtotime((string)$expiration) : false;
-    $estExpire = $statut === 'expire' || ($expirationTs !== false && $expirationTs <= time());
-    if ($estExpire) $nombreExpires++;
-    elseif (in_array($statut, ['en_attente', 'pending'], true)) $nombreEnAttente++;
-    elseif ($statut === 'actif') $nombreActifs++;
+
+    $estExpire = $statut === 'expire'
+        || ($expirationTs !== false && $expirationTs <= time());
+
+    if ($estExpire) {
+        $nombreExpires++;
+    } elseif (in_array($statut, ['en_attente', 'pending'], true)) {
+        $nombreEnAttente++;
+    } elseif ($statut === 'actif') {
+        $nombreActifs++;
+    }
 }
-$formatDate = static function($date): string {
+
+$formatDate = static function ($date): string {
     if (empty($date)) return 'Date inconnue';
+
     $timestamp = strtotime((string)$date);
-    return $timestamp !== false ? date('d/m/Y', $timestamp) : 'Date inconnue';
+
+    return $timestamp !== false
+        ? date('d/m/Y', $timestamp)
+        : 'Date inconnue';
 };
 ?>
-<div class="min-h-screen bg-[#F5F3ED] text-[#101D33]">
+
+<div class="min-h-screen bg-[#F4F6F9] text-[#071B36]">
+
     <?php require_once BASE_PATH . '/app/Views/components/agence-sidebare.php'; ?>
+
     <main class="min-h-screen flex flex-col lg:ml-[270px]">
-        <!-- En-tête -->
-        <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur-xl">
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+        <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/95 backdrop-blur-xl">
             <div class="flex min-h-[82px] items-center justify-between gap-4 px-5 py-4 sm:px-8">
+
                 <div>
-                    <p class="text-[11px] font-extrabold uppercase tracking-[.18em] text-[#7E9833]">Espace professionnel</p>
-                    <h1 class="mt-1 text-xl font-black tracking-tight text-[#101D33] sm:text-2xl">Mes biens immobiliers</h1>
-                    <p class="mt-0.5 text-xs text-slate-500"><?= $e($nomAgence) ?></p>
+                    <p class="text-[10px] font-black uppercase tracking-[.20em] text-[#B88A00]">
+                        ESPACE PROFESSIONNEL
+                    </p>
+
+                    <h1 class="mt-1 text-xl font-black tracking-tight text-[#071B36] sm:text-2xl">
+                        Mes biens immobiliers
+                    </h1>
+
+                    <p class="mt-1 text-xs text-slate-500">
+                        <?= $e($nomAgence) ?>
+                    </p>
                 </div>
-                <a href="/immo-sn/agence/publier" class="inline-flex shrink-0 items-center gap-2 rounded-xl bg-[#7E9833] px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#668026] hover:-translate-y-0.5">
-                    <span class="text-lg leading-none">+</span><span class="hidden sm:inline">Publier un bien</span><span class="sm:hidden">Publier</span>
+
+                <a href="/immo-sn/agence/publier"
+                   class="inline-flex shrink-0 items-center gap-2 rounded-xl bg-[#F5B800] px-4 py-3 text-sm font-extrabold text-[#071B36] shadow-sm transition hover:bg-[#e4aa00] hover:-translate-y-0.5">
+
+                    <span class="text-xl leading-none">+</span>
+                    <span class="hidden sm:inline">Publier un bien</span>
+                    <span class="sm:hidden">Publier</span>
                 </a>
+
             </div>
         </header>
 
         <div class="mx-auto w-full max-w-[1450px] flex-1 space-y-7 px-4 py-6 sm:px-7 sm:py-8 lg:px-9">
-            <!-- Bannière -->
-            <section class="relative isolate overflow-hidden rounded-[26px] bg-[#101D33] px-6 py-8 text-white shadow-[0_18px_45px_rgba(16,29,51,.15)] sm:px-9 sm:py-10">
-                <div class="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full border-[34px] border-[#7E9833]/15"></div>
-                <div class="pointer-events-none absolute -bottom-28 right-1/3 h-60 w-60 rounded-full bg-[#71869A]/15 blur-3xl"></div>
+
+            <!-- =====================================================
+                 BANNIÈRE PRINCIPALE
+            ====================================================== -->
+            <section class="relative isolate overflow-hidden rounded-[26px] bg-[#071B36] px-6 py-8 text-white shadow-[0_18px_45px_rgba(7,27,54,.14)] sm:px-9 sm:py-10">
+
+                <div class="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full border-[34px] border-[#F5B800]/10"></div>
+
+                <div class="pointer-events-none absolute -bottom-28 right-1/3 h-60 w-60 rounded-full bg-[#365477]/30 blur-3xl"></div>
+
+                <div class="pointer-events-none absolute right-10 top-10 h-2 w-2 rounded-full bg-[#F5B800]"></div>
+
                 <div class="relative flex flex-col justify-between gap-7 lg:flex-row lg:items-center">
+
                     <div class="max-w-2xl">
-                        <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-bold tracking-wide text-slate-200"><span class="h-2 w-2 rounded-full bg-[#7E9833]"></span> GESTION IMMOBILIÈRE</span>
-                        <h2 class="mt-5 text-2xl font-black leading-tight tracking-tight sm:text-3xl lg:text-[34px]">Gérez votre portefeuille immobilier <span class="text-[#9fbd4d]">en toute simplicité.</span></h2>
-                        <p class="mt-3 max-w-xl text-sm leading-7 text-slate-300">Retrouvez toutes vos annonces, consultez leur état de publication et gérez facilement leur renouvellement depuis votre espace agence.</p>
+
+                        <span class="inline-flex items-center gap-2 rounded-full border border-[#F5B800]/20 bg-[#F5B800]/10 px-3 py-1.5 text-[11px] font-bold tracking-wide text-[#F5B800]">
+                            <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
+                            GESTION IMMOBILIÈRE
+                        </span>
+
+                        <h2 class="mt-5 text-2xl font-black leading-tight tracking-tight sm:text-3xl lg:text-[34px]">
+                            Gérez votre portefeuille immobilier
+                            <span class="text-[#F5B800]">en toute simplicité.</span>
+                        </h2>
+
+                        <p class="mt-3 max-w-xl text-sm leading-7 text-slate-300">
+                            Retrouvez toutes vos annonces, consultez leur état de publication
+                            et gérez facilement leur renouvellement depuis votre espace agence.
+                        </p>
+
                         <div class="mt-7 flex flex-wrap gap-3">
-                            <a href="/immo-sn/agence/publier" class="inline-flex items-center gap-2 rounded-xl bg-[#7E9833] px-5 py-3 text-sm font-extrabold text-white transition hover:bg-[#91aa45] hover:-translate-y-0.5">＋ Publier un bien</a>
-                            <a href="#liste-biens" class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10">Voir mes annonces <span>→</span></a>
+
+                            <a href="/immo-sn/agence/publier"
+                               class="inline-flex items-center gap-2 rounded-xl bg-[#F5B800] px-5 py-3 text-sm font-extrabold text-[#071B36] transition hover:bg-[#e4aa00] hover:-translate-y-0.5">
+                                + Publier un bien
+                            </a>
+
+                            <a href="#liste-biens"
+                               class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10">
+                                Voir mes annonces
+                                <span class="text-[#F5B800]">→</span>
+                            </a>
+
                         </div>
                     </div>
-                    <div class="flex shrink-0 items-center gap-3 rounded-2xl border border-white/10 bg-white/[.07] p-4 backdrop-blur-sm sm:p-5">
-                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#7E9833]/20 text-2xl text-[#a9c75b]">⌂</div>
-                        <div><p class="text-xs text-slate-300">Votre portefeuille</p><p class="mt-1 text-2xl font-black text-white"><?= number_format($nombreBiens, 0, ',', ' ') ?> <span class="text-sm font-medium text-slate-300">bien<?= $nombreBiens > 1 ? 's' : '' ?></span></p></div>
+
+                    <!-- Portfolio -->
+                    <div class="flex shrink-0 items-center gap-4 rounded-2xl border border-white/10 bg-white/[.06] p-5 backdrop-blur-sm sm:p-6">
+
+                        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#F5B800]/10 text-2xl text-[#F5B800]">
+                            ⌂
+                        </div>
+
+                        <div>
+                            <p class="text-xs font-medium text-slate-300">
+                                Votre portefeuille
+                            </p>
+
+                            <p class="mt-1 text-3xl font-black text-white">
+                                <?= number_format($nombreBiens, 0, ',', ' ') ?>
+
+                                <span class="text-sm font-semibold text-slate-300">
+                                    bien<?= $nombreBiens > 1 ? 's' : '' ?>
+                                </span>
+                            </p>
+                        </div>
+
                     </div>
+
                 </div>
             </section>
-            <!-- Statistiques -->
+
+            <!-- =====================================================
+                 STATISTIQUES
+            ====================================================== -->
             <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-                <?php $statCards = [
-                    ['label'=>'Total des biens','value'=>$nombreBiens,'hint'=>'Toutes vos annonces','icon'=>'⌂','iconBg'=>'bg-[#101D33]','iconFg'=>'text-white','num'=>'text-[#101D33]'],
-                    ['label'=>'Biens actifs','value'=>$nombreActifs,'hint'=>'Annonces actuellement actives','icon'=>'✓','iconBg'=>'bg-[#7E9833]/10','iconFg'=>'text-[#638027]','num'=>'text-[#638027]'],
-                    ['label'=>'En attente','value'=>$nombreEnAttente,'hint'=>'En attente de validation','icon'=>'◷','iconBg'=>'bg-amber-50','iconFg'=>'text-amber-700','num'=>'text-amber-700'],
-                    ['label'=>'Biens expirés','value'=>$nombreExpires,'hint'=>'Annonces à renouveler','icon'=>'!','iconBg'=>'bg-red-50','iconFg'=>'text-red-600','num'=>'text-red-600'],
-                ]; ?>
+
+                <?php
+                $statCards = [
+                    [
+                        'label' => 'Total des biens',
+                        'value' => $nombreBiens,
+                        'hint' => 'Toutes vos annonces',
+                        'icon' => '⌂',
+                        'iconBg' => 'bg-[#071B36]',
+                        'iconFg' => 'text-[#F5B800]',
+                        'num' => 'text-[#071B36]',
+                    ],
+                    [
+                        'label' => 'Biens actifs',
+                        'value' => $nombreActifs,
+                        'hint' => 'Annonces actuellement actives',
+                        'icon' => '✓',
+                        'iconBg' => 'bg-emerald-50',
+                        'iconFg' => 'text-emerald-600',
+                        'num' => 'text-emerald-600',
+                    ],
+                    [
+                        'label' => 'En attente',
+                        'value' => $nombreEnAttente,
+                        'hint' => 'En attente de validation',
+                        'icon' => '◷',
+                        'iconBg' => 'bg-amber-50',
+                        'iconFg' => 'text-amber-600',
+                        'num' => 'text-amber-600',
+                    ],
+                    [
+                        'label' => 'Biens expirés',
+                        'value' => $nombreExpires,
+                        'hint' => 'Annonces à renouveler',
+                        'icon' => '!',
+                        'iconBg' => 'bg-red-50',
+                        'iconFg' => 'text-red-600',
+                        'num' => 'text-red-600',
+                    ],
+                ];
+                ?>
+
                 <?php foreach ($statCards as $card): ?>
-                    <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_5px_22px_rgba(16,29,51,.04)] transition hover:-translate-y-0.5 hover:shadow-md">
-                        <div class="flex items-center justify-between"><p class="text-sm font-semibold text-slate-500"><?= $e($card['label']) ?></p><span class="flex h-10 w-10 items-center justify-center rounded-xl <?= $card['iconBg'] ?> <?= $card['iconFg'] ?> text-xl font-bold"><?= $e($card['icon']) ?></span></div>
-                        <p class="mt-4 text-3xl font-black tracking-tight <?= $card['num'] ?>"><?= number_format($card['value'], 0, ',', ' ') ?></p><p class="mt-1 text-xs text-slate-400"><?= $e($card['hint']) ?></p>
+
+                    <div class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+
+                        <div class="flex items-center justify-between gap-3">
+
+                            <p class="text-sm font-semibold text-slate-500">
+                                <?= $e($card['label']) ?>
+                            </p>
+
+                            <span class="flex h-11 w-11 items-center justify-center rounded-xl <?= $card['iconBg'] ?> <?= $card['iconFg'] ?> text-xl font-bold">
+                                <?= $e($card['icon']) ?>
+                            </span>
+
+                        </div>
+
+                        <p class="mt-4 text-3xl font-black tracking-tight <?= $card['num'] ?>">
+                            <?= number_format($card['value'], 0, ',', ' ') ?>
+                        </p>
+
+                        <p class="mt-1 text-xs text-slate-400">
+                            <?= $e($card['hint']) ?>
+                        </p>
+
                     </div>
+
                 <?php endforeach; ?>
+
             </section>
-            <!-- Liste des annonces -->
-            <section id="liste-biens" class="overflow-hidden rounded-[24px] border border-slate-200 bg-white shadow-[0_5px_24px_rgba(16,29,51,.04)]">
+
+            <!-- =====================================================
+                 LISTE DES BIENS
+            ====================================================== -->
+            <section id="liste-biens"
+                     class="overflow-hidden rounded-[24px] border border-slate-200 bg-white shadow-sm">
+
+                <!-- En-tête de la liste -->
                 <div class="flex flex-col justify-between gap-4 border-b border-slate-200 px-5 py-5 sm:flex-row sm:items-center sm:px-7">
-                    <div><div class="flex items-center gap-2"><span class="h-5 w-1 rounded-full bg-[#7E9833]"></span><h3 class="text-lg font-black text-[#101D33]">Liste de mes biens</h3></div><p class="mt-2 text-xs leading-5 text-slate-500 sm:text-sm">Consultez et gérez l'ensemble de vos annonces immobilières.</p></div>
-                    <span class="inline-flex w-fit items-center gap-2 rounded-full border border-[#7E9833]/20 bg-[#7E9833]/10 px-4 py-2 text-xs font-bold text-[#58701d]"><span class="h-2 w-2 rounded-full bg-[#7E9833]"></span><?= number_format($nombreBiens, 0, ',', ' ') ?> annonce<?= $nombreBiens > 1 ? 's' : '' ?></span>
+
+                    <div>
+                        <div class="flex items-center gap-3">
+                            <span class="h-6 w-1 rounded-full bg-[#F5B800]"></span>
+
+                            <h3 class="text-lg font-black text-[#071B36]">
+                                Liste de mes biens
+                            </h3>
+                        </div>
+
+                        <p class="mt-2 text-xs leading-5 text-slate-500 sm:text-sm">
+                            Consultez et gérez l'ensemble de vos annonces immobilières.
+                        </p>
+                    </div>
+
+                    <span class="inline-flex w-fit items-center gap-2 rounded-full border border-[#F5B800]/30 bg-[#F5B800]/10 px-4 py-2 text-xs font-bold text-[#8A6500]">
+                        <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
+
+                        <?= number_format($nombreBiens, 0, ',', ' ') ?>
+                        annonce<?= $nombreBiens > 1 ? 's' : '' ?>
+                    </span>
+
                 </div>
-                <?php if (!empty($success)): ?><div class="mx-5 mt-5 flex gap-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800 sm:mx-7"><span class="font-bold">✓</span><p><?= $e($success) ?></p></div><?php endif; ?>
-                <?php if (!empty($error)): ?><div class="mx-5 mt-5 flex gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 sm:mx-7"><span class="font-bold">!</span><p><?= $e($error) ?></p></div><?php endif; ?>
+
+                <!-- Messages -->
+                <?php if (!empty($success)): ?>
+                    <div class="mx-5 mt-5 flex gap-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800 sm:mx-7">
+                        <span class="font-bold">✓</span>
+                        <p><?= $e($success) ?></p>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (!empty($error)): ?>
+                    <div class="mx-5 mt-5 flex gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 sm:mx-7">
+                        <span class="font-bold">!</span>
+                        <p><?= $e($error) ?></p>
+                    </div>
+                <?php endif; ?>
+
+                <!-- État vide -->
                 <?php if (empty($biens)): ?>
-                    <div class="px-5 py-16 text-center sm:py-20"><div class="mx-auto flex h-20 w-20 items-center justify-center rounded-[24px] border border-slate-200 bg-[#F5F3ED] text-4xl text-[#71869A]">⌂</div><h3 class="mt-6 text-xl font-black text-[#101D33]">Votre portefeuille est encore vide</h3><p class="mx-auto mt-3 max-w-md text-sm leading-7 text-slate-500">Vous n'avez pas encore publié de bien immobilier. Ajoutez votre première annonce pour commencer à développer votre visibilité sur IMMO-SN.</p><a href="/immo-sn/agence/publier" class="mt-7 inline-flex items-center gap-2 rounded-xl bg-[#7E9833] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#668026]">＋ Publier mon premier bien</a></div>
+
+                    <div class="px-5 py-16 text-center sm:py-20">
+
+                        <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-[24px] border border-slate-200 bg-[#F4F6F9] text-4xl text-slate-400">
+                            ⌂
+                        </div>
+
+                        <h3 class="mt-6 text-xl font-black text-[#071B36]">
+                            Votre portefeuille est encore vide
+                        </h3>
+
+                        <p class="mx-auto mt-3 max-w-md text-sm leading-7 text-slate-500">
+                            Vous n'avez pas encore publié de bien immobilier.
+                            Ajoutez votre première annonce pour commencer à développer
+                            votre visibilité sur IMMO-SN.
+                        </p>
+
+                        <a href="/immo-sn/agence/publier"
+                           class="mt-7 inline-flex items-center gap-2 rounded-xl bg-[#F5B800] px-6 py-3.5 text-sm font-extrabold text-[#071B36] transition hover:bg-[#e4aa00]">
+                            + Publier mon premier bien
+                        </a>
+
+                    </div>
+
                 <?php else: ?>
+
+                    <!-- Grille des annonces -->
                     <div class="grid grid-cols-1 gap-5 p-4 sm:grid-cols-2 sm:p-5 xl:grid-cols-3">
+
                         <?php foreach ($biens as $bien): ?>
+
                             <?php
                             $statutBien = strtolower(trim((string)($bien['statut'] ?? 'inconnu')));
                             $idBien = $bien['id'] ?? '';
+
                             $demandeRenouvellement = $renouvellements[$idBien] ?? null;
                             $statutRenouvellement = $demandeRenouvellement['statut'] ?? null;
+
                             $renouvellementEnAttente = $statutRenouvellement === 'en_attente';
                             $motifRefus = $demandeRenouvellement['motif_refus'] ?? null;
+
                             $dateExpiration = $bien['expire_at'] ?? null;
-                            $timestampExpiration = !empty($dateExpiration) ? strtotime((string)$dateExpiration) : false;
-                            $bienExpire = $statutBien === 'expire' || ($timestampExpiration !== false && $timestampExpiration <= time());
-                            if ($bienExpire) { $labelBien = 'Expiré'; $styleBien = 'bg-red-50 text-red-700 border-red-200'; }
-                            else { [$labelBien, $styleBien] = $statuts[$statutBien] ?? [ucfirst(str_replace('_',' ',$statutBien)), 'bg-slate-100 text-slate-700 border-slate-200']; }
+                            $timestampExpiration = !empty($dateExpiration)
+                                ? strtotime((string)$dateExpiration)
+                                : false;
+
+                            $bienExpire = $statutBien === 'expire'
+                                || ($timestampExpiration !== false && $timestampExpiration <= time());
+
+                            if ($bienExpire) {
+                                $labelBien = 'Expiré';
+                                $styleBien = 'bg-red-50 text-red-700 border-red-200';
+                            } else {
+                                [$labelBien, $styleBien] = $statuts[$statutBien] ?? [
+                                    ucfirst(str_replace('_', ' ', $statutBien)),
+                                    'bg-slate-100 text-slate-700 border-slate-200'
+                                ];
+                            }
+
                             $titre = $bien['titre'] ?? 'Bien sans titre';
-                            $ville = $bien['ville_nom'] ?? ''; $quartier = $bien['quartier_nom'] ?? '';
-                            $localisation = trim($quartier . ($quartier && $ville ? ', ' : '') . $ville);
+                            $ville = $bien['ville_nom'] ?? '';
+                            $quartier = $bien['quartier_nom'] ?? '';
+
+                            $localisation = trim(
+                                $quartier . ($quartier && $ville ? ', ' : '') . $ville
+                            );
+
                             $photo = $bien['photo'] ?? null;
                             ?>
-                            <article class="group flex min-w-0 flex-col overflow-hidden rounded-[20px] border border-slate-200 bg-white transition duration-300 hover:-translate-y-1 hover:border-[#7E9833]/50 hover:shadow-xl">
-                                <div class="relative h-52 overflow-hidden bg-[#F5F3ED]">
-                                    <?php if (!empty($photo)): ?><img src="<?= $e($photo) ?>" alt="<?= $e($titre) ?>" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-105"><?php else: ?><div class="flex h-full w-full flex-col items-center justify-center gap-2 text-[#71869A]"><span class="text-5xl">⌂</span><span class="text-xs font-medium">Aucune photo disponible</span></div><?php endif; ?>
-                                    <div class="absolute left-3 top-3"><span class="inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-bold shadow-sm <?= $styleBien ?>"><span class="h-1.5 w-1.5 rounded-full bg-current"></span><?= $e($labelBien) ?></span></div>
-                                    <?php if ($bienExpire): ?><div class="absolute right-3 top-3"><span class="rounded-full bg-white/95 px-3 py-1.5 text-[10px] font-bold text-red-700 shadow-sm">Expiration dépassée</span></div><?php endif; ?>
+
+                            <!-- Carte bien -->
+                            <article class="group flex min-w-0 flex-col overflow-hidden rounded-[20px] border border-slate-200 bg-white transition duration-300 hover:-translate-y-1 hover:border-[#F5B800]/60 hover:shadow-xl">
+
+                                <!-- Image -->
+                                <div class="relative h-52 overflow-hidden bg-[#F4F6F9]">
+
+                                    <?php if (!empty($photo)): ?>
+
+                                        <img src="<?= $e($photo) ?>"
+                                             alt="<?= $e($titre) ?>"
+                                             loading="lazy"
+                                             class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+
+                                    <?php else: ?>
+
+                                        <div class="flex h-full w-full flex-col items-center justify-center gap-2 text-slate-400">
+                                            <span class="text-5xl">⌂</span>
+                                            <span class="text-xs font-medium">Aucune photo disponible</span>
+                                        </div>
+
+                                    <?php endif; ?>
+
+                                    <!-- Badge statut -->
+                                    <div class="absolute left-3 top-3">
+
+                                        <span class="inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-bold shadow-sm <?= $styleBien ?>">
+                                            <span class="h-1.5 w-1.5 rounded-full bg-current"></span>
+                                            <?= $e($labelBien) ?>
+                                        </span>
+
+                                    </div>
+
+                                    <?php if ($bienExpire): ?>
+
+                                        <div class="absolute right-3 top-3">
+                                            <span class="rounded-full bg-white/95 px-3 py-1.5 text-[10px] font-bold text-red-700 shadow-sm">
+                                                Expiration dépassée
+                                            </span>
+                                        </div>
+
+                                    <?php endif; ?>
+
                                 </div>
+
+                                <!-- Contenu -->
                                 <div class="flex flex-1 flex-col p-5">
-                                    <h4 class="truncate text-base font-black text-[#101D33] sm:text-lg"><?= $e($titre) ?></h4>
-                                    <?php if (!empty($bien['prix'])): ?><p class="mt-2 text-lg font-black tracking-tight text-[#7E9833]"><?= $e($bien['prix']) ?></p><?php else: ?><p class="mt-2 text-sm italic text-slate-400">Prix non renseigné</p><?php endif; ?>
+
+                                    <!-- Titre -->
+                                    <h4 class="truncate text-base font-black text-[#071B36] sm:text-lg">
+                                        <?= $e($titre) ?>
+                                    </h4>
+
+                                    <!-- Prix -->
+                                    <?php if (!empty($bien['prix'])): ?>
+
+                                        <p class="mt-2 text-lg font-black tracking-tight text-[#B88A00]">
+                                            <?= $e($bien['prix']) ?>
+                                        </p>
+
+                                    <?php else: ?>
+
+                                        <p class="mt-2 text-sm italic text-slate-400">
+                                            Prix non renseigné
+                                        </p>
+
+                                    <?php endif; ?>
+
+                                    <!-- Informations -->
                                     <div class="mt-5 space-y-3 border-t border-slate-100 pt-4">
-                                        <div class="flex items-start gap-3 text-sm text-slate-600"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#F5F3ED] text-[#71869A]">⌂</span><span class="pt-1 leading-5"><?= $e($bien['categorie_nom'] ?? 'Catégorie non renseignée') ?></span></div>
-                                        <div class="flex items-start gap-3 text-sm text-slate-600"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#F5F3ED] text-[#71869A]">⌖</span><span class="min-w-0 break-words pt-1 leading-5"><?= $e($localisation !== '' ? $localisation : 'Localisation non renseignée') ?></span></div>
-                                        <div class="flex items-start gap-3 text-xs text-slate-500"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-slate-50 text-[#71869A]">◷</span><span class="pt-1 leading-5">Publié le : <?= $e($formatDate($bien['created_at'] ?? null)) ?></span></div>
-                                        <?php if (!empty($dateExpiration)): ?><div class="flex items-start gap-3 text-xs <?= $bienExpire ? 'font-semibold text-red-600' : 'text-slate-500' ?>"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-slate-50 text-[#71869A]">◴</span><span class="pt-1 leading-5">Expire le : <?= $e($formatDate($dateExpiration)) ?></span></div><?php endif; ?>
+
+                                        <!-- Catégorie -->
+                                        <div class="flex items-start gap-3 text-sm text-slate-600">
+                                            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#071B36]/5 text-[#071B36]">
+                                                ⌂
+                                            </span>
+
+                                            <span class="pt-1 leading-5">
+                                                <?= $e($bien['categorie_nom'] ?? 'Catégorie non renseignée') ?>
+                                            </span>
+                                        </div>
+
+                                        <!-- Localisation -->
+                                        <div class="flex items-start gap-3 text-sm text-slate-600">
+                                            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#071B36]/5 text-[#071B36]">
+                                                ⌖
+                                            </span>
+
+                                            <span class="min-w-0 break-words pt-1 leading-5">
+                                                <?= $e($localisation !== '' ? $localisation : 'Localisation non renseignée') ?>
+                                            </span>
+                                        </div>
+
+                                        <!-- Date de publication -->
+                                        <div class="flex items-start gap-3 text-xs text-slate-500">
+                                            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-50 text-slate-500">
+                                                ◷
+                                            </span>
+
+                                            <span class="pt-1 leading-5">
+                                                Publié le :
+                                                <?= $e($formatDate($bien['created_at'] ?? null)) ?>
+                                            </span>
+                                        </div>
+
+                                        <!-- Date expiration -->
+                                        <?php if (!empty($dateExpiration)): ?>
+
+                                            <div class="flex items-start gap-3 text-xs <?= $bienExpire ? 'font-semibold text-red-600' : 'text-slate-500' ?>">
+
+                                                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-50">
+                                                    ◴
+                                                </span>
+
+                                                <span class="pt-1 leading-5">
+                                                    Expire le :
+                                                    <?= $e($formatDate($dateExpiration)) ?>
+                                                </span>
+
+                                            </div>
+
+                                        <?php endif; ?>
+
                                     </div>
-                                    <?php if ($bienExpire && $renouvellementEnAttente): ?><div class="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3"><div class="flex items-center gap-2 text-sm font-bold text-amber-800">◷ Renouvellement en attente</div><p class="mt-1 text-xs leading-5 text-amber-700">Votre demande est en cours d'examen par notre équipe.</p></div><?php endif; ?>
-                                    <?php if ($bienExpire && !$renouvellementEnAttente && $statutRenouvellement === 'refusee'): ?><div class="mt-4 rounded-xl border border-red-200 bg-red-50 p-3"><p class="text-sm font-bold text-red-800">Demande précédente refusée</p><?php if (!empty($motifRefus)): ?><p class="mt-1 text-xs leading-5 text-red-700">Motif : <?= $e($motifRefus) ?></p><?php endif; ?></div><?php endif; ?>
+
+                                    <!-- Renouvellement en attente -->
+                                    <?php if ($bienExpire && $renouvellementEnAttente): ?>
+
+                                        <div class="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3">
+
+                                            <div class="flex items-center gap-2 text-sm font-bold text-amber-800">
+                                                ◷ Renouvellement en attente
+                                            </div>
+
+                                            <p class="mt-1 text-xs leading-5 text-amber-700">
+                                                Votre demande est en cours d'examen par notre équipe.
+                                            </p>
+
+                                        </div>
+
+                                    <?php endif; ?>
+
+                                    <!-- Renouvellement refusé -->
+                                    <?php if ($bienExpire && !$renouvellementEnAttente && $statutRenouvellement === 'refusee'): ?>
+
+                                        <div class="mt-4 rounded-xl border border-red-200 bg-red-50 p-3">
+
+                                            <p class="text-sm font-bold text-red-800">
+                                                Demande précédente refusée
+                                            </p>
+
+                                            <?php if (!empty($motifRefus)): ?>
+
+                                                <p class="mt-1 text-xs leading-5 text-red-700">
+                                                    Motif : <?= $e($motifRefus) ?>
+                                                </p>
+
+                                            <?php endif; ?>
+
+                                        </div>
+
+                                    <?php endif; ?>
+
+                                    <!-- Actions -->
                                     <div class="mt-auto flex flex-col gap-2.5 pt-5">
-                                        <?php if ($bienExpire && !$renouvellementEnAttente): ?><form method="POST" action="/immo-sn/agence/biens/renouveler/<?= rawurlencode((string)$idBien) ?>" onsubmit="return confirm('Confirmez-vous votre demande de renouvellement pour cette annonce ?');"><input type="hidden" name="_csrf_token" value="<?= $e(Session::csrfToken()) ?>"><button type="submit" class="flex w-full items-center justify-center gap-2 rounded-xl bg-[#7E9833] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#668026]">↻ Demander le renouvellement</button></form><?php endif; ?>
-                                        <a href="/immo-sn/agence/biens/<?= rawurlencode((string)$idBien) ?>" class="flex w-full items-center justify-center gap-2 rounded-xl bg-[#101D33] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#1c3152]">Voir le bien <span class="text-[#9fbd4d]">→</span></a>
-                                        <form method="POST" action="/immo-sn/agence/biens/<?= rawurlencode((string)$idBien) ?>/supprimer" onsubmit="return confirm('Voulez-vous vraiment supprimer cette annonce ? Cette action est définitive.');"><input type="hidden" name="_csrf_token" value="<?= $e(Session::csrfToken()) ?>"><button type="submit" class="flex w-full items-center justify-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700 transition hover:bg-red-100">🗑 Supprimer cette annonce</button></form>
+
+                                        <!-- Renouvellement -->
+                                        <?php if ($bienExpire && !$renouvellementEnAttente): ?>
+
+                                            <form method="POST"
+                                                  action="/immo-sn/agence/biens/renouveler/<?= rawurlencode((string)$idBien) ?>"
+                                                  onsubmit="return confirm('Confirmez-vous votre demande de renouvellement pour cette annonce ?');">
+
+                                                <input type="hidden"
+                                                       name="_csrf_token"
+                                                       value="<?= $e(Session::csrfToken()) ?>">
+
+                                                <button type="submit"
+                                                        class="flex w-full items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-4 py-3 text-sm font-extrabold text-[#071B36] transition hover:bg-[#e4aa00]">
+                                                    ↻ Demander le renouvellement
+                                                </button>
+
+                                            </form>
+
+                                        <?php endif; ?>
+
+                                        <!-- Voir -->
+                                        <a href="/immo-sn/agence/biens/<?= rawurlencode((string)$idBien) ?>"
+                                           class="flex w-full items-center justify-center gap-2 rounded-xl bg-[#071B36] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#102B4D]">
+                                            Voir le bien
+                                            <span class="text-[#F5B800]">→</span>
+                                        </a>
+
+                                        <!-- Supprimer -->
+                                        <form method="POST"
+                                              action="/immo-sn/agence/biens/<?= rawurlencode((string)$idBien) ?>/supprimer"
+                                              onsubmit="return confirm('Voulez-vous vraiment supprimer cette annonce ? Cette action est définitive.');">
+
+                                            <input type="hidden"
+                                                   name="_csrf_token"
+                                                   value="<?= $e(Session::csrfToken()) ?>">
+
+                                            <button type="submit"
+                                                    class="flex w-full items-center justify-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-700 transition hover:bg-red-100">
+                                                🗑 Supprimer cette annonce
+                                            </button>
+
+                                        </form>
+
                                     </div>
+
                                 </div>
+
                             </article>
+
                         <?php endforeach; ?>
+
                     </div>
+
                 <?php endif; ?>
+
             </section>
+
         </div>
-        <!-- Footer -->
-        <footer class="mt-auto border-t border-slate-200 bg-white"><div class="mx-auto flex max-w-[1450px] flex-col gap-4 px-5 py-6 sm:px-7 md:flex-row md:items-center md:justify-between lg:px-9"><div class="flex items-center gap-3"><div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#101D33] text-lg font-black text-[#9fbd4d]">I</div><div><p class="text-sm font-black tracking-wide text-[#101D33]">IMMO-SN</p><p class="mt-0.5 text-[11px] text-slate-500">Votre partenaire immobilier au Sénégal.</p></div></div><div class="text-left md:text-right"><p class="text-xs font-medium text-slate-500">© <?= date('Y') ?> IMMO-SN. Tous droits réservés.</p><p class="mt-1 text-[11px] text-[#7E9833]">Espace professionnel · Gestion des biens immobiliers</p></div></div></footer>
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+        <footer class="mt-auto border-t border-slate-200 bg-white">
+
+            <div class="mx-auto flex max-w-[1450px] flex-col gap-4 px-5 py-6 sm:px-7 md:flex-row md:items-center md:justify-between lg:px-9">
+
+                <div class="flex items-center gap-3">
+
+                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#071B36] text-lg font-black text-[#F5B800]">
+                        I
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-black tracking-wide text-[#071B36]">
+                            IMMO-SN
+                        </p>
+
+                        <p class="mt-0.5 text-[11px] text-slate-500">
+                            Votre partenaire immobilier au Sénégal.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="text-left md:text-right">
+
+                    <p class="text-xs font-medium text-slate-500">
+                        © <?= date('Y') ?> IMMO-SN. Tous droits réservés.
+                    </p>
+
+                    <p class="mt-1 text-[11px] font-semibold text-[#B88A00]">
+                        Espace professionnel · Gestion des biens immobiliers
+                    </p>
+
+                </div>
+
+            </div>
+
+        </footer>
+
     </main>
+
 </div>

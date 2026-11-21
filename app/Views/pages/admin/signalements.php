@@ -1,17 +1,17 @@
+
 <?php
 /**
  * =========================================================
  * IMMO-SN — ADMINISTRATION
  * Page : Gestion des signalements
- * Palette bleu nuit (#071b36, #0e2a4e) et dorée (#f5b800)
+ * Design : Bleu nuit / Or
+ * Fichier : app/Views/pages/admin/signalements.php
  * =========================================================
  */
 
 $signalements = is_array($signalements ?? null) ? $signalements : [];
 $filtres = is_array($filtres ?? null) ? $filtres : [];
-$statsSignalements = is_array($statsSignalements ?? null)
-    ? $statsSignalements
-    : [];
+$statsSignalements = is_array($statsSignalements ?? null) ? $statsSignalements : [];
 
 $recherche = trim((string) ($filtres['q'] ?? $_GET['q'] ?? ''));
 $filtreStatut = trim((string) ($filtres['statut'] ?? $_GET['statut'] ?? ''));
@@ -25,11 +25,7 @@ $messageAdmin = trim((string) ($_GET['message'] ?? ''));
 $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
 
 $e = static function ($value): string {
-    return htmlspecialchars(
-        (string) ($value ?? ''),
-        ENT_QUOTES,
-        'UTF-8'
-    );
+    return htmlspecialchars((string) ($value ?? ''), ENT_QUOTES, 'UTF-8');
 };
 
 $normaliserStatut = static function (string $statut): string {
@@ -78,10 +74,6 @@ $formatDate = static function ($date): string {
     }
 };
 
-/*
- * Statistiques globales, fournies par AdminController.
- * Le total filtré reste distinct du total global.
- */
 $totalGlobal = max(
     0,
     (int) ($statsSignalements['total'] ?? $totalSignalements)
@@ -115,20 +107,20 @@ $premierResultat = $totalSignalements > 0
 $dernierResultat = min($page * $parPage, $totalSignalements);
 ?>
 
-<div class="min-h-screen bg-[#f8fafc] text-[#0b1528]">
+<div class="min-h-screen bg-[#f3f6fb] text-[#0b1528]">
 
     <!-- =====================================================
-         EN-TÊTE
+         HEADER
     ====================================================== -->
 
-    <header class="sticky top-0 z-20 border-b border-[#e2e8f0] bg-white/95 backdrop-blur-xl">
+    <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/95 backdrop-blur-xl">
         <div class="px-5 py-4 sm:px-8 lg:px-10">
             <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
                 <div>
-                    <div class="flex items-center gap-2 text-xs font-medium text-[#64748b]">
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
                         <span>Administration</span>
-                        <span class="text-slate-300">/</span>
+                        <span>/</span>
                         <span class="text-[#0e2a4e]">Modération</span>
                     </div>
 
@@ -138,28 +130,25 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                 </div>
 
                 <a href="/immo-sn/admin"
-                   class="inline-flex w-fit items-center gap-3 rounded-2xl border border-[#e2e8f0] bg-white px-4 py-3 transition hover:bg-[#f8fafc]">
+                   class="inline-flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 transition hover:border-[#f5b800] hover:bg-slate-50">
 
                     <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#071b36] text-[#f5b800]">
                         <svg xmlns="http://www.w3.org/2000/svg"
                              class="h-5 w-5"
-                             fill="none" viewBox="0 0 24 24"
-                             stroke="currentColor" stroke-width="1.8">
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor"
+                             stroke-width="1.8">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                   d="M3 10.5 12 3l9 7.5M5.25 9v11.25h13.5V9M9 20.25v-7.5h6v7.5"/>
                         </svg>
                     </span>
 
                     <span>
-                        <span class="block text-sm font-bold text-[#071b36]">
-                            Administrateur
-                        </span>
-                        <span class="mt-0.5 block text-xs text-[#64748b]">
-                            Tableau de bord
-                        </span>
+                        <span class="block text-sm font-bold text-[#071b36]">Administrateur</span>
+                        <span class="mt-0.5 block text-xs text-slate-500">Tableau de bord</span>
                     </span>
                 </a>
-
             </div>
         </div>
     </header>
@@ -168,7 +157,7 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
         <div class="mx-auto max-w-[1600px]">
 
             <!-- =====================================================
-                 MESSAGE
+                 MESSAGE FLASH
             ====================================================== -->
 
             <?php if ($messageAdmin !== ''): ?>
@@ -179,11 +168,12 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                         ? 'border-red-200 bg-red-50 text-red-800'
                         : 'border-emerald-200 bg-emerald-50 text-emerald-800' ?>">
 
-                    <span class="text-lg">
+                    <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl
+                        <?= $typeMessageAdmin === 'erreur' ? 'bg-red-100' : 'bg-emerald-100' ?>">
                         <?= $typeMessageAdmin === 'erreur' ? '⚠' : '✓' ?>
                     </span>
 
-                    <p class="flex-1"><?= $e($messageAdmin) ?></p>
+                    <p class="flex-1 pt-1"><?= $e($messageAdmin) ?></p>
 
                     <button type="button"
                             onclick="document.getElementById('message-admin')?.remove()"
@@ -195,47 +185,55 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
             <?php endif; ?>
 
             <!-- =====================================================
-                 BANDEAU PRINCIPAL
+                 HERO
             ====================================================== -->
 
-            <section class="relative overflow-hidden rounded-[26px] bg-[#071b36] shadow-[0_18px_50px_rgba(7,27,54,0.16)]">
+            <section class="relative overflow-hidden rounded-[28px] bg-[#071b36] shadow-xl shadow-[#071b36]/10">
 
                 <div class="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#f5b800]/10 blur-3xl"></div>
-                <div class="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-[#0e2a4e]/60 blur-3xl"></div>
+                <div class="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-[#0e2a4e]/70 blur-3xl"></div>
 
-                <div class="relative flex flex-col gap-7 px-6 py-8 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
+                <div class="relative flex flex-col gap-8 px-6 py-8 sm:px-9 lg:flex-row lg:items-center lg:justify-between lg:py-10">
 
                     <div class="max-w-2xl">
 
                         <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
                             <span class="h-2 w-2 rounded-full bg-[#f5b800]"></span>
-                            <span class="text-xs font-medium text-slate-200">
-                                Centre de modération
-                            </span>
+                            <span class="text-xs font-medium text-slate-300">Centre de modération</span>
                         </div>
 
-                        <h2 class="font-['Playfair_Display'] text-3xl font-semibold leading-tight text-white sm:text-4xl">
-                            Gestion des
-                            <span class="text-[#f5b800]">signalements</span>
+                        <h2 class="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
+                            Gardez la plateforme
+                            <span class="text-[#f5b800]">fiable et sécurisée</span>
                         </h2>
 
                         <p class="mt-4 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
-                            Examinez les motifs signalés, identifiez les utilisateurs
-                            concernés et assurez la qualité des annonces publiées sur IMMO-SN.
+                            Examinez les motifs signalés, identifiez les utilisateurs concernés
+                            et assurez la qualité des annonces publiées sur IMMO-SN.
                         </p>
 
+                        <div class="mt-6 flex flex-wrap gap-3">
+                            <div class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-300">
+                                <span class="h-2 w-2 rounded-full bg-amber-400"></span>
+                                <?= number_format($enAttente, 0, ',', ' ') ?> à examiner
+                            </div>
+
+                            <div class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-300">
+                                <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                                <?= number_format($traites, 0, ',', ' ') ?> traités
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="shrink-0 rounded-2xl border border-white/10 bg-[#0e2a4e]/70 p-5 backdrop-blur-sm lg:min-w-[270px]">
+                    <div class="shrink-0 rounded-2xl border border-white/10 bg-[#0e2a4e]/80 p-5 backdrop-blur-sm lg:min-w-[280px]">
 
                         <div class="flex items-center justify-between gap-5">
-
                             <div>
-                                <p class="text-xs uppercase tracking-[0.15em] text-slate-400">
+                                <p class="text-xs uppercase tracking-[0.16em] text-slate-400">
                                     Total enregistré
                                 </p>
 
-                                <p class="mt-2 text-3xl font-bold tabular-nums text-white">
+                                <p class="mt-2 text-4xl font-bold tabular-nums text-white">
                                     <?= number_format($totalGlobal, 0, ',', ' ') ?>
                                 </p>
 
@@ -244,17 +242,18 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                                 </p>
                             </div>
 
-                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#f5b800]/15 text-[#f5b800]">
+                            <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#f5b800]/15 text-[#f5b800]">
                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                     class="h-6 w-6"
-                                     fill="none" viewBox="0 0 24 24"
-                                     stroke="currentColor" stroke-width="1.8">
+                                     class="h-7 w-7"
+                                     fill="none"
+                                     viewBox="0 0 24 24"
+                                     stroke="currentColor"
+                                     stroke-width="1.8">
+                                    <circle cx="12" cy="12" r="9"/>
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                           d="M12 8v4l3 2"/>
-                                    <circle cx="12" cy="12" r="9"/>
                                 </svg>
                             </div>
-
                         </div>
 
                         <div class="mt-5 h-1.5 overflow-hidden rounded-full bg-white/10">
@@ -262,75 +261,73 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                         </div>
 
                         <p class="mt-2 text-right text-[11px] text-slate-400">
-                            <?= number_format($nombreFiltres, 0, ',', ' ') ?> résultat(s) selon les filtres
+                            <?= number_format($nombreFiltres, 0, ',', ' ') ?> résultat(s) filtré(s)
                         </p>
-
                     </div>
                 </div>
             </section>
 
             <!-- =====================================================
-                 NAVIGATION ADMINISTRATION
+                 NAVIGATION ADMIN
             ====================================================== -->
 
             <section class="mt-7">
-                <div class="overflow-hidden rounded-[20px] border border-[#e2e8f0] bg-white shadow-[0_8px_25px_rgba(7,27,54,0.04)]">
+                <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
 
-                    <nav class="flex overflow-x-auto px-2 pt-2"
+                    <nav class="flex overflow-x-auto"
                          aria-label="Navigation administration">
 
                         <a href="/immo-sn/admin/biens"
-                           class="flex shrink-0 items-center gap-2 px-5 py-4 text-sm font-medium text-[#64748b] transition hover:bg-[#f8fafc] hover:text-[#071b36]">
+                           class="flex shrink-0 items-center gap-2 px-5 py-4 text-sm font-semibold text-slate-500 transition hover:bg-slate-50 hover:text-[#071b36]">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  class="h-4 w-4"
                                  fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" stroke-width="1.8">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M3 12l9-8 9 8M5 10v9a1 1 0 001 1h12a1 1 0 001-1v-9"/>
+                                          d="M3 12l9-8 9 8M5 10v9a1 1 0 001 1h12a1 1 0 001-1v-9"/>
                             </svg>
                             Biens
                         </a>
 
                         <a href="/immo-sn/admin/signalements"
                            aria-current="page"
-                           class="relative flex shrink-0 items-center gap-2 px-5 py-4 text-sm font-bold text-[#071b36]">
+                           class="relative flex shrink-0 items-center gap-2 bg-[#071b36]/[0.03] px-5 py-4 text-sm font-bold text-[#071b36]">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  class="h-4 w-4 text-[#f5b800]"
                                  fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" stroke-width="1.8">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M12 9v4m0 4h.01M10.3 3.9 2.7 17a2 2 0 001.7 3h15.2a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/>
+                                          d="M12 9v4m0 4h.01M10.3 3.9 2.7 17a2 2 0 001.7 3h15.2a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/>
                             </svg>
                             Signalements
                             <span class="absolute bottom-0 left-4 right-4 h-0.5 rounded-full bg-[#f5b800]"></span>
                         </a>
 
                         <a href="/immo-sn/admin/cron-monitor"
-                           class="flex shrink-0 items-center gap-2 px-5 py-4 text-sm font-medium text-[#64748b] transition hover:bg-[#f8fafc] hover:text-[#071b36]">
+                           class="flex shrink-0 items-center gap-2 px-5 py-4 text-sm font-semibold text-slate-500 transition hover:bg-slate-50 hover:text-[#071b36]">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  class="h-4 w-4"
                                  fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" stroke-width="1.8">
                                 <circle cx="12" cy="12" r="9"/>
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M12 7v5l3 2"/>
+                                          d="M12 7v5l3 2"/>
                             </svg>
                             Cron Monitor
                         </a>
 
                         <a href="/immo-sn/admin/mail-logs"
-                           class="flex shrink-0 items-center gap-2 px-5 py-4 text-sm font-medium text-[#64748b] transition hover:bg-[#f8fafc] hover:text-[#071b36]">
+                           class="flex shrink-0 items-center gap-2 px-5 py-4 text-sm font-semibold text-slate-500 transition hover:bg-slate-50 hover:text-[#071b36]">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  class="h-4 w-4"
                                  fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" stroke-width="1.8">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M3 7l9 6 9-6"/>
                                 <rect x="3" y="5" width="18" height="14" rx="2"/>
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="m3 7 9 6 9-6"/>
                             </svg>
                             Mail Logs
                         </a>
-
                     </nav>
                 </div>
             </section>
@@ -339,18 +336,18 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                  STATISTIQUES
             ====================================================== -->
 
-            <section class="mt-7">
+            <section class="mt-8">
 
                 <div class="mb-5">
                     <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#0e2a4e]">
-                        Modération
+                        Indicateurs de modération
                     </p>
 
-                    <h2 class="mt-1 text-xl font-bold text-[#071b36] sm:text-2xl">
+                    <h2 class="mt-1 text-xl font-bold tracking-tight text-[#071b36] sm:text-2xl">
                         Vue d'ensemble
                     </h2>
 
-                    <p class="mt-1 text-sm text-[#64748b]">
+                    <p class="mt-1 text-sm text-slate-500">
                         Suivez les signalements et leur état de traitement.
                     </p>
                 </div>
@@ -358,24 +355,21 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                 <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
 
                     <!-- TOTAL -->
-                    <article class="group relative overflow-hidden rounded-[22px] border border-[#e2e8f0] bg-white p-6 shadow-[0_8px_30px_rgba(7,27,54,0.05)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(7,27,54,0.10)]">
 
-                        <div class="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#071b36]/10 transition-transform duration-500 group-hover:scale-150"></div>
+                    <article class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
+
+                        <div class="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#071b36]/5 transition-transform duration-500 group-hover:scale-150"></div>
 
                         <div class="relative flex items-center justify-between gap-3">
                             <div>
-                                <p class="text-sm font-medium text-[#64748b]">
-                                    Total enregistré
-                                </p>
+                                <p class="text-sm font-medium text-slate-500">Total enregistré</p>
                                 <p class="mt-2 text-3xl font-bold tracking-tight text-[#071b36]">
                                     <?= number_format($totalGlobal, 0, ',', ' ') ?>
                                 </p>
-                                <p class="mt-1 text-xs text-[#64748b]">
-                                    tous statuts confondus
-                                </p>
+                                <p class="mt-1 text-xs text-slate-500">Tous statuts confondus</p>
                             </div>
 
-                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#071b36]/10 text-[#071b36]">
+                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#071b36]/10 text-[#071b36]">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                      class="h-6 w-6"
                                      fill="none" viewBox="0 0 24 24"
@@ -388,24 +382,21 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                     </article>
 
                     <!-- EN ATTENTE -->
-                    <article class="group relative overflow-hidden rounded-[22px] border border-[#e2e8f0] bg-white p-6 shadow-[0_8px_30px_rgba(7,27,54,0.05)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(7,27,54,0.10)]">
 
-                        <div class="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#f5b800]/15 transition-transform duration-500 group-hover:scale-150"></div>
+                    <article class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
+
+                        <div class="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#f5b800]/10 transition-transform duration-500 group-hover:scale-150"></div>
 
                         <div class="relative flex items-center justify-between gap-3">
                             <div>
-                                <p class="text-sm font-medium text-[#64748b]">
-                                    En attente
-                                </p>
+                                <p class="text-sm font-medium text-slate-500">En attente</p>
                                 <p class="mt-2 text-3xl font-bold tracking-tight text-[#071b36]">
                                     <?= number_format($enAttente, 0, ',', ' ') ?>
                                 </p>
-                                <p class="mt-1 text-xs text-[#64748b]">
-                                    à examiner
-                                </p>
+                                <p class="mt-1 text-xs text-amber-700">À examiner</p>
                             </div>
 
-                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-50 text-amber-800">
+                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-50 text-amber-700">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                      class="h-6 w-6"
                                      fill="none" viewBox="0 0 24 24"
@@ -419,24 +410,21 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                     </article>
 
                     <!-- TRAITES -->
-                    <article class="group relative overflow-hidden rounded-[22px] border border-[#e2e8f0] bg-white p-6 shadow-[0_8px_30px_rgba(7,27,54,0.05)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(7,27,54,0.10)]">
+
+                    <article class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
 
                         <div class="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-emerald-500/10 transition-transform duration-500 group-hover:scale-150"></div>
 
                         <div class="relative flex items-center justify-between gap-3">
                             <div>
-                                <p class="text-sm font-medium text-[#64748b]">
-                                    Traités
-                                </p>
+                                <p class="text-sm font-medium text-slate-500">Traités</p>
                                 <p class="mt-2 text-3xl font-bold tracking-tight text-[#071b36]">
                                     <?= number_format($traites, 0, ',', ' ') ?>
                                 </p>
-                                <p class="mt-1 text-xs text-emerald-700">
-                                    traitement effectué
-                                </p>
+                                <p class="mt-1 text-xs text-emerald-700">Traitement effectué</p>
                             </div>
 
-                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700">
+                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                      class="h-6 w-6"
                                      fill="none" viewBox="0 0 24 24"
@@ -449,24 +437,21 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                     </article>
 
                     <!-- REJETES -->
-                    <article class="group relative overflow-hidden rounded-[22px] border border-[#e2e8f0] bg-white p-6 shadow-[0_8px_30px_rgba(7,27,54,0.05)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(7,27,54,0.10)]">
+
+                    <article class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
 
                         <div class="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-red-500/10 transition-transform duration-500 group-hover:scale-150"></div>
 
                         <div class="relative flex items-center justify-between gap-3">
                             <div>
-                                <p class="text-sm font-medium text-[#64748b]">
-                                    Rejetés
-                                </p>
+                                <p class="text-sm font-medium text-slate-500">Rejetés</p>
                                 <p class="mt-2 text-3xl font-bold tracking-tight text-[#071b36]">
                                     <?= number_format($rejetes, 0, ',', ' ') ?>
                                 </p>
-                                <p class="mt-1 text-xs text-red-700">
-                                    signalements rejetés
-                                </p>
+                                <p class="mt-1 text-xs text-red-700">Signalements rejetés</p>
                             </div>
 
-                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-red-50 text-red-700">
+                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-700">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                      class="h-6 w-6"
                                      fill="none" viewBox="0 0 24 24"
@@ -482,21 +467,34 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
             </section>
 
             <!-- =====================================================
-                 RECHERCHE ET FILTRES
+                 FILTRES
             ====================================================== -->
 
-            <section class="mt-7 overflow-hidden rounded-[24px] border border-[#e2e8f0] bg-white shadow-[0_8px_30px_rgba(7,27,54,0.05)]">
+            <section class="mt-7 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
 
-                <div class="border-b border-[#e2e8f0] px-6 py-5 sm:px-7">
-                    <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#0e2a4e]">
-                        Recherche avancée
-                    </p>
+                <div class="border-b border-slate-200 px-6 py-5 sm:px-7">
+                    <div class="flex items-center gap-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#071b36] text-[#f5b800]">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 class="h-5 w-5"
+                                 fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor" stroke-width="1.8">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M4 5h16M7 12h10M10 19h4"/>
+                            </svg>
+                        </div>
 
-                    <h2 class="mt-1 text-lg font-bold text-[#071b36]">
-                        Filtrer les signalements
-                    </h2>
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#0e2a4e]">
+                                Recherche avancée
+                            </p>
+                            <h2 class="mt-1 text-lg font-bold text-[#071b36]">
+                                Filtrer les signalements
+                            </h2>
+                        </div>
+                    </div>
 
-                    <p class="mt-1 text-sm text-[#64748b]">
+                    <p class="mt-2 text-sm text-slate-500">
                         Recherchez par annonce, motif, propriétaire ou signaleur.
                     </p>
                 </div>
@@ -509,8 +507,7 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                         <input type="hidden" name="page" value="1">
 
                         <div>
-                            <label for="q"
-                                   class="mb-2 block text-xs font-semibold text-[#0b1528]">
+                            <label for="q" class="mb-2 block text-xs font-semibold text-[#071b36]">
                                 Recherche
                             </label>
 
@@ -519,18 +516,17 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                                    type="search"
                                    value="<?= $e($recherche) ?>"
                                    placeholder="Titre, motif, nom, e-mail..."
-                                   class="h-12 w-full rounded-xl border border-[#cbd5e1] bg-[#f8fafc] px-4 text-sm text-[#0b1528] outline-none transition placeholder:text-[#94a3b8] focus:border-[#071b36] focus:bg-white focus:ring-4 focus:ring-[#071b36]/10">
+                                   class="h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm text-[#071b36] outline-none transition placeholder:text-slate-400 focus:border-[#071b36] focus:bg-white focus:ring-4 focus:ring-[#071b36]/10">
                         </div>
 
                         <div>
-                            <label for="statut"
-                                   class="mb-2 block text-xs font-semibold text-[#0b1528]">
+                            <label for="statut" class="mb-2 block text-xs font-semibold text-[#071b36]">
                                 Statut
                             </label>
 
                             <select id="statut"
                                     name="statut"
-                                    class="h-12 w-full rounded-xl border border-[#cbd5e1] bg-[#f8fafc] px-3 text-sm text-[#0b1528] outline-none transition focus:border-[#071b36] focus:bg-white focus:ring-4 focus:ring-[#071b36]/10">
+                                    class="h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm text-[#071b36] outline-none transition focus:border-[#071b36] focus:bg-white focus:ring-4 focus:ring-[#071b36]/10">
 
                                 <option value="" <?= $filtreStatut === '' ? 'selected' : '' ?>>
                                     Tous les statuts
@@ -566,7 +562,7 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
 
                         <div class="flex items-end">
                             <a href="/immo-sn/admin/signalements"
-                               class="inline-flex h-12 w-full items-center justify-center rounded-xl border border-[#e2e8f0] bg-white px-4 text-sm font-semibold text-[#071b36] transition hover:bg-[#f8fafc] xl:w-auto">
+                               class="inline-flex h-12 w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-4 text-sm font-semibold text-[#071b36] transition hover:bg-slate-50 xl:w-auto">
                                 Réinitialiser
                             </a>
                         </div>
@@ -575,10 +571,10 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
             </section>
 
             <!-- =====================================================
-                 LISTE DES SIGNALEMENTS
+                 LISTE
             ====================================================== -->
 
-            <section class="mt-7">
+            <section class="mt-8">
 
                 <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
 
@@ -587,16 +583,16 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                             Modération
                         </p>
 
-                        <h2 class="mt-1 text-xl font-bold text-[#071b36] sm:text-2xl">
+                        <h2 class="mt-1 text-xl font-bold tracking-tight text-[#071b36] sm:text-2xl">
                             Liste des signalements
                         </h2>
 
-                        <p class="mt-1 text-sm text-[#64748b]">
+                        <p class="mt-1 text-sm text-slate-500">
                             Consultez les détails et choisissez l'action adaptée.
                         </p>
                     </div>
 
-                    <div class="flex items-center gap-2 rounded-full border border-[#e2e8f0] bg-white px-3 py-2">
+                    <div class="inline-flex w-fit items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2">
                         <span class="h-2 w-2 rounded-full bg-[#f5b800]"></span>
                         <span class="text-xs font-bold text-[#071b36]">
                             <?= number_format($nombreFiltres, 0, ',', ' ') ?> résultat(s)
@@ -606,15 +602,15 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
 
                 <?php if (empty($signalementsFiltres)): ?>
 
-                    <div class="overflow-hidden rounded-[24px] border border-[#e2e8f0] bg-white px-6 py-16 text-center shadow-[0_8px_30px_rgba(7,27,54,0.05)]">
+                    <div class="rounded-2xl border border-slate-200 bg-white px-6 py-16 text-center shadow-sm">
 
-                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#071b36]/10 text-[#071b36]">
+                        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[#071b36]/5 text-[#071b36]">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  class="h-8 w-8"
                                  fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" stroke-width="1.6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M4 5h16v12H7l-3 3V5z"/>
+                                          d="M4 5h16v12H7l-3 3V5z"/>
                                 <path stroke-linecap="round" d="M8 9h8M8 13h5"/>
                             </svg>
                         </div>
@@ -623,7 +619,7 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                             Aucun signalement trouvé
                         </h3>
 
-                        <p class="mx-auto mt-2 max-w-md text-sm leading-6 text-[#64748b]">
+                        <p class="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500">
                             Aucun signalement ne correspond à votre recherche.
                             Modifiez les filtres ou réinitialisez-les.
                         </p>
@@ -681,15 +677,16 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                             [$libelleStatut, $classeBadge, $classePoint] = $signalementStatut($statut);
                             ?>
 
-                            <article class="flex h-full flex-col justify-between overflow-hidden rounded-[22px] border border-[#e2e8f0] bg-white p-6 shadow-[0_8px_30px_rgba(7,27,54,0.05)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(7,27,54,0.10)]">
+                            <article class="flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md">
 
                                 <div>
-                                    <div class="flex items-start justify-between gap-3 border-b border-[#e2e8f0] pb-4">
-                                        <div>
+                                    <div class="flex items-start justify-between gap-3 border-b border-slate-100 pb-4">
+                                        <div class="min-w-0">
                                             <p class="text-[11px] font-bold uppercase tracking-[0.14em] text-[#0e2a4e]">
                                                 Signalement #<?= $e(substr($id, 0, 8)) ?>
                                             </p>
-                                            <h3 class="mt-1 text-base font-bold text-[#071b36]">
+
+                                            <h3 class="mt-1 break-words text-base font-bold text-[#071b36]">
                                                 <?= $e($titreBien) ?>
                                             </h3>
                                         </div>
@@ -700,53 +697,72 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                                         </span>
                                     </div>
 
-                                    <div class="mt-4 space-y-2.5">
+                                    <div class="mt-4 space-y-3">
+
                                         <div>
-                                            <p class="text-xs font-semibold text-[#64748b]">Motif</p>
-                                            <p class="mt-0.5 text-sm font-bold text-[#071b36]">
+                                            <p class="text-xs font-semibold text-slate-500">Motif du signalement</p>
+                                            <p class="mt-1 text-sm font-bold text-[#071b36]">
                                                 <?= $e($motif !== '' ? $motif : 'Motif non précisé') ?>
                                             </p>
                                         </div>
 
                                         <?php if ($description !== ''): ?>
-                                            <p class="rounded-xl bg-[#f8fafc] p-3 text-xs leading-6 text-[#0b1528]">
-                                                <?= $e($description) ?>
-                                            </p>
+                                            <div class="rounded-xl border border-slate-100 bg-slate-50 p-3">
+                                                <p class="text-xs leading-6 text-slate-600">
+                                                    <?= $e($description) ?>
+                                                </p>
+                                            </div>
                                         <?php endif; ?>
                                     </div>
 
-                                    <dl class="mt-4 space-y-2 border-t border-[#e2e8f0] pt-4 text-xs">
-                                        <div class="flex items-center justify-between gap-2">
-                                            <dt class="text-[#64748b]">Propriétaire</dt>
-                                            <dd class="font-semibold text-[#0b1528]"><?= $e($nomProprietaire) ?></dd>
+                                    <dl class="mt-4 space-y-3 border-t border-slate-100 pt-4 text-xs">
+
+                                        <div class="flex items-start justify-between gap-3">
+                                            <dt class="shrink-0 text-slate-500">Propriétaire</dt>
+                                            <dd class="text-right font-semibold text-[#071b36]">
+                                                <?= $e($nomProprietaire) ?>
+                                            </dd>
                                         </div>
 
-                                        <div class="flex items-center justify-between gap-2">
-                                            <dt class="text-[#64748b]">Signalé par</dt>
-                                            <dd class="font-semibold text-[#0b1528]"><?= $e($nomSignaleur) ?></dd>
+                                        <div class="flex items-start justify-between gap-3">
+                                            <dt class="shrink-0 text-slate-500">Signalé par</dt>
+                                            <dd class="text-right font-semibold text-[#071b36]">
+                                                <?= $e($nomSignaleur) ?>
+                                            </dd>
                                         </div>
 
-                                        <div class="flex items-center justify-between gap-2">
-                                            <dt class="text-[#64748b]">Date</dt>
-                                            <dd class="font-medium text-[#0e2a4e]"><?= $e($dateCreation) ?></dd>
+                                        <div class="flex items-start justify-between gap-3">
+                                            <dt class="shrink-0 text-slate-500">Date</dt>
+                                            <dd class="text-right font-medium text-[#0e2a4e]">
+                                                <?= $e($dateCreation) ?>
+                                            </dd>
                                         </div>
                                     </dl>
                                 </div>
 
-                                <div class="mt-5 space-y-2 border-t border-[#e2e8f0] pt-4">
+                                <div class="mt-5 space-y-2 border-t border-slate-100 pt-4">
+
                                     <?php if ($bienId !== ''): ?>
                                         <a href="/immo-sn/biens/<?= rawurlencode($bienId) ?>"
-                                           class="flex w-full items-center justify-center gap-2 rounded-xl border border-[#e2e8f0] bg-white px-4 py-2.5 text-xs font-bold text-[#071b36] transition hover:bg-[#f8fafc]">
+                                           class="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-bold text-[#071b36] transition hover:bg-slate-50">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 class="h-4 w-4"
+                                                 fill="none" viewBox="0 0 24 24"
+                                                 stroke="currentColor" stroke-width="1.8">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                          d="M15 3h6v6M21 3l-9 9M5 7H3v14h14v-2"/>
+                                            </svg>
                                             Consulter le bien
                                         </a>
                                     <?php endif; ?>
 
                                     <?php if ($statut === 'en_attente' && $id !== ''): ?>
                                         <div class="grid grid-cols-2 gap-2">
+
                                             <form method="POST"
                                                   action="/immo-sn/admin/signalements/<?= rawurlencode($id) ?>/traiter">
                                                 <button type="submit"
-                                                        class="w-full rounded-xl bg-[#071b36] px-3 py-2 text-xs font-bold text-white transition hover:bg-[#0e2a4e]">
+                                                        class="w-full rounded-xl bg-[#071b36] px-3 py-2.5 text-xs font-bold text-white transition hover:bg-[#0e2a4e]">
                                                     Traiter
                                                 </button>
                                             </form>
@@ -754,14 +770,15 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                                             <form method="POST"
                                                   action="/immo-sn/admin/signalements/<?= rawurlencode($id) ?>/rejeter">
                                                 <button type="submit"
-                                                        class="w-full rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-xs font-bold text-red-700 transition hover:bg-red-100">
+                                                        class="w-full rounded-xl border border-red-200 bg-red-50 px-3 py-2.5 text-xs font-bold text-red-700 transition hover:bg-red-100">
                                                     Rejeter
                                                 </button>
                                             </form>
+
                                         </div>
                                     <?php endif; ?>
-                                </div>
 
+                                </div>
                             </article>
 
                         <?php endforeach; ?>
@@ -775,9 +792,9 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                 ====================================================== -->
 
                 <?php if ($totalSignalements > 0): ?>
-                    <div class="mt-7 flex flex-col items-center justify-between gap-4 rounded-2xl border border-[#e2e8f0] bg-white px-5 py-4 shadow-[0_5px_24px_rgba(7,27,54,0.035)] sm:flex-row">
+                    <div class="mt-7 flex flex-col items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white px-5 py-4 shadow-sm sm:flex-row">
 
-                        <p class="text-xs text-[#64748b]">
+                        <p class="text-xs text-slate-500">
                             Affichage de
                             <strong class="text-[#071b36]"><?= $premierResultat ?></strong>
                             à
@@ -790,18 +807,19 @@ $dernierResultat = min($page * $parPage, $totalSignalements);
                         <?php if ($totalPages > 1): ?>
                             <nav class="flex flex-wrap items-center gap-2"
                                  aria-label="Pagination des signalements">
+
                                 <a href="<?= $e($urlPage(max(1, $page - 1))) ?>"
-                                   class="rounded-xl border border-[#e2e8f0] bg-white px-3.5 py-2 text-xs font-bold text-[#071b36] transition hover:bg-[#f8fafc] <?= $page <= 1 ? 'pointer-events-none opacity-40' : '' ?>"
+                                   class="rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-bold text-[#071b36] transition hover:bg-slate-50 <?= $page <= 1 ? 'pointer-events-none opacity-40' : '' ?>"
                                    <?= $page <= 1 ? 'aria-disabled="true"' : '' ?>>
                                     ← Précédent
                                 </a>
 
-                                <span class="px-2 text-xs font-bold text-[#071b36]">
+                                <span class="rounded-xl bg-[#071b36]/5 px-3 py-2 text-xs font-bold text-[#071b36]">
                                     Page <?= $page ?> / <?= $totalPages ?>
                                 </span>
 
                                 <a href="<?= $e($urlPage(min($totalPages, $page + 1))) ?>"
-                                   class="rounded-xl border border-[#e2e8f0] bg-white px-3.5 py-2 text-xs font-bold text-[#071b36] transition hover:bg-[#f8fafc] <?= $page >= $totalPages ? 'pointer-events-none opacity-40' : '' ?>"
+                                   class="rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-bold text-[#071b36] transition hover:bg-slate-50 <?= $page >= $totalPages ? 'pointer-events-none opacity-40' : '' ?>"
                                    <?= $page >= $totalPages ? 'aria-disabled="true"' : '' ?>>
                                     Suivant →
                                 </a>

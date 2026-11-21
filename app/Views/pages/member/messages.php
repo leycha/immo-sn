@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Vue : Messagerie membre
@@ -60,44 +61,67 @@ function initialesUtilisateur(
     <!-- =========================================================
          HEADER
     ========================================================== -->
-    <header class="sticky top-0 z-20 border-b border-[#E5E2D8] bg-white/95 backdrop-blur">
+    <header class="sticky top-0 z-30 border-b border-[#E7E0D2] bg-white/95 shadow-sm backdrop-blur-xl">
 
-        <div class="flex min-h-[76px] flex-col items-start justify-center gap-2 px-4 py-4 sm:px-5 md:px-8">
+        <div class="flex min-h-[82px] flex-col justify-center px-4 py-4 sm:px-6 lg:px-8">
 
-            <div>
+            <div class="mx-auto w-full max-w-7xl">
 
-                <div class="mb-1 flex items-center gap-2 text-xs font-medium text-[#7E9833]">
+                <div class="mb-1.5 flex items-center gap-2 text-xs font-semibold">
 
-                    <span>Espace membre</span>
+                    <span class="text-[#8A6500]">
+                        Espace membre
+                    </span>
 
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        class="h-3.5 w-3.5"
+                        class="h-3.5 w-3.5 text-[#A5A5A0]"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                         stroke-width="1.8"
                     >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="m9 18 6-6-6-6"
-                        />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/>
                     </svg>
 
-                    <span class="text-[#71869A]">
+                    <span class="text-[#718096]">
                         Messagerie
                     </span>
 
                 </div>
 
-                <h1 class="break-words text-xl font-bold tracking-tight text-[#101D33] sm:text-2xl">
-                    Messagerie
-                </h1>
+                <div class="flex flex-wrap items-center justify-between gap-3">
 
-                <p class="mt-1 text-sm text-[#71869A]">
-                    Consultez les messages reçus concernant vos biens.
-                </p>
+                    <div>
+                        <h1 class="text-xl font-extrabold tracking-tight text-[#071B36] sm:text-2xl">
+                            Messagerie
+                        </h1>
+
+                        <p class="mt-1 text-xs text-[#718096] sm:text-sm">
+                            Retrouvez et consultez les messages reçus concernant vos biens.
+                        </p>
+                    </div>
+
+                    <div class="hidden items-center gap-2 rounded-xl border border-[#E9E1D2] bg-[#FAF8F3] px-3 py-2 sm:flex">
+
+                        <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#071B36] text-[#F5B800]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/>
+                            </svg>
+                        </span>
+
+                        <div>
+                            <p class="text-[10px] font-semibold uppercase tracking-wider text-[#8A6500]">
+                                IMMO-SN
+                            </p>
+                            <p class="text-xs font-bold text-[#071B36]">
+                                Centre de messages
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -107,40 +131,44 @@ function initialesUtilisateur(
 
 
     <!-- =========================================================
-         CONTENU
+         CONTENU PRINCIPAL
     ========================================================== -->
-    <main class="px-4 py-5 md:px-6 md:py-7">
+    <main class="px-3 py-5 sm:px-5 md:px-6 md:py-7">
 
         <div class="mx-auto max-w-7xl">
 
-            <div class="flex min-h-[650px] min-w-0 flex-col overflow-hidden rounded-2xl border border-[#E5E2D8] bg-white shadow-sm lg:flex-row">
+            <div class="flex min-h-[680px] min-w-0 flex-col overflow-hidden rounded-2xl border border-[#E7E0D2] bg-white shadow-[0_12px_45px_rgba(7,27,54,0.06)] lg:flex-row">
 
 
                 <!-- =================================================
-                     COLONNE GAUCHE
+                     COLONNE GAUCHE : CONVERSATIONS
                 ================================================== -->
-                <aside class="w-full min-w-0 shrink-0 border-b border-[#E5E2D8] bg-white lg:w-[320px] lg:border-b-0 lg:border-r">
+                <aside class="w-full min-w-0 shrink-0 border-b border-[#E7E0D2] bg-white lg:w-[350px] lg:border-b-0 lg:border-r">
 
-                    <!-- HEADER CONVERSATIONS -->
-                    <div class="border-b border-[#E5E2D8] p-5">
+                    <!-- EN-TÊTE -->
+                    <div class="border-b border-[#EEE9DF] px-5 py-5">
 
                         <div class="flex items-center justify-between gap-3">
 
-                            <div class="min-w-0 flex-1">
+                            <div>
+                                <div class="flex items-center gap-2">
 
-                                <h2 class="break-words text-sm font-bold text-[#101D33]">
-                                    Messages reçus
-                                </h2>
+                                    <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
 
-                                <p class="mt-1 text-xs text-[#71869A]">
-                                    Vos échanges récents
+                                    <h2 class="text-sm font-extrabold text-[#071B36]">
+                                        Messages reçus
+                                    </h2>
+
+                                </div>
+
+                                <p class="mt-1.5 text-xs text-[#8490A0]">
+                                    Consultez vos échanges récents
                                 </p>
-
                             </div>
 
                             <?php if (!empty($messages)): ?>
 
-                                <span class="rounded-full bg-[#EEF2E4] px-3 py-1 text-xs font-bold text-[#647A28]">
+                                <span class="flex h-8 min-w-8 items-center justify-center rounded-xl bg-[#071B36] px-2.5 text-xs font-extrabold text-[#F5B800] shadow-sm">
                                     <?= count($messages) ?>
                                 </span>
 
@@ -149,28 +177,24 @@ function initialesUtilisateur(
                         </div>
 
 
-                        <!-- Recherche visuelle -->
-                        <div class="relative mt-4">
+                        <!-- RECHERCHE VISUELLE -->
+                        <div class="relative mt-5">
 
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#7E9833]"
+                                class="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8A6500]"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
                                 stroke-width="1.8"
                             >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6.04 6.04a7.5 7.5 0 0 0 10.61 10.61Z"
-                                />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6.04 6.04a7.5 7.5 0 0 0 10.61 10.61Z"/>
                             </svg>
 
                             <input
                                 type="text"
                                 placeholder="Rechercher un message..."
-                                class="h-11 w-full rounded-xl border border-[#E5E2D8] bg-[#F9F8F4] pl-9 pr-3 text-xs text-[#101D33] outline-none transition placeholder:text-[#9AA5AF] focus:border-[#7E9833] focus:ring-2 focus:ring-[#7E9833]/15"
+                                class="h-11 w-full rounded-xl border border-[#E8E3D9] bg-[#FAF9F6] pl-10 pr-3 text-xs text-[#071B36] outline-none transition placeholder:text-[#9AA3AD] focus:border-[#D7A200] focus:bg-white focus:ring-2 focus:ring-[#F5B800]/15"
                             >
 
                         </div>
@@ -178,8 +202,8 @@ function initialesUtilisateur(
                     </div>
 
 
-                    <!-- LISTE DES MESSAGES -->
-                    <div class="max-h-[570px] divide-y divide-[#EEEDE7] overflow-y-auto">
+                    <!-- LISTE DES CONVERSATIONS -->
+                    <div class="max-h-[600px] divide-y divide-[#F0ECE4] overflow-y-auto">
 
                         <?php if (!empty($messages)): ?>
 
@@ -214,20 +238,19 @@ function initialesUtilisateur(
 
                                 <button
                                     type="button"
-                                    class="group flex w-full items-center gap-3 px-4 py-4 text-left transition
+                                    class="group relative flex w-full items-center gap-3.5 px-4 py-4 text-left transition duration-200
                                     <?= $active
-                                        ? 'bg-[#F0F3E9] border-l-[3px] border-l-[#7E9833]'
-                                        : 'bg-white hover:bg-[#F8F9F5]' ?>"
+                                        ? 'border-l-[3px] border-l-[#F5B800] bg-[#F8F6EF]'
+                                        : 'border-l-[3px] border-l-transparent bg-white hover:bg-[#FAF9F6]' ?>"
                                 >
 
-                                    <!-- Avatar -->
+                                    <!-- AVATAR -->
                                     <div class="relative shrink-0">
 
-                                        <div class="flex h-11 w-11 items-center justify-center rounded-full
+                                        <div class="flex h-12 w-12 items-center justify-center rounded-2xl text-xs font-extrabold shadow-sm
                                             <?= $active
-                                                ? 'bg-[#101D33] text-white'
-                                                : 'bg-[#EEF2E4] text-[#647A28]' ?>
-                                            text-xs font-bold">
+                                                ? 'bg-[#071B36] text-[#F5B800]'
+                                                : 'border border-[#E9E1D2] bg-[#F5F1E8] text-[#8A6500]' ?>">
 
                                             <?= htmlspecialchars(
                                                 $initiales,
@@ -240,7 +263,7 @@ function initialesUtilisateur(
                                         <?php if ($nonLu): ?>
 
                                             <span
-                                                class="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-[#7E9833]"
+                                                class="absolute -bottom-1 -right-1 h-3.5 w-3.5 rounded-full border-[2.5px] border-white bg-[#D7A200]"
                                                 title="Message non lu"
                                             ></span>
 
@@ -249,12 +272,12 @@ function initialesUtilisateur(
                                     </div>
 
 
-                                    <!-- Informations -->
+                                    <!-- INFORMATIONS -->
                                     <div class="min-w-0 flex-1">
 
                                         <div class="flex items-center justify-between gap-2">
 
-                                            <p class="truncate text-sm <?= $nonLu ? 'font-bold' : 'font-semibold' ?> text-[#101D33]">
+                                            <p class="truncate text-[13px] <?= $nonLu ? 'font-extrabold' : 'font-semibold' ?> text-[#071B36]">
 
                                                 <?= htmlspecialchars(
                                                     $nomComplet,
@@ -264,7 +287,7 @@ function initialesUtilisateur(
 
                                             </p>
 
-                                            <span class="shrink-0 text-[10px] text-[#71869A]">
+                                            <span class="shrink-0 text-[9px] font-medium text-[#929BA6]">
 
                                                 <?= htmlspecialchars(
                                                     formatDateMessage(
@@ -279,7 +302,7 @@ function initialesUtilisateur(
                                         </div>
 
 
-                                        <p class="mt-1 truncate text-xs font-semibold text-[#647A28]">
+                                        <p class="mt-1.5 truncate text-xs font-bold text-[#8A6500]">
 
                                             <?= htmlspecialchars(
                                                 $message['sujet'] ?? 'Message',
@@ -290,7 +313,7 @@ function initialesUtilisateur(
                                         </p>
 
 
-                                        <p class="mt-1 truncate text-xs text-[#71869A]">
+                                        <p class="mt-1 truncate text-xs leading-5 text-[#8290A0]">
 
                                             <?= htmlspecialchars(
                                                 $message['contenu'] ?? '',
@@ -303,9 +326,12 @@ function initialesUtilisateur(
 
                                         <?php if (!empty($message['bien_titre'])): ?>
 
-                                            <p class="mt-1 truncate text-[10px] text-[#7E9833]">
+                                            <p class="mt-1.5 truncate text-[10px] font-medium text-[#718096]">
 
-                                                Bien :
+                                                <span class="font-bold text-[#8A6500]">
+                                                    Bien :
+                                                </span>
+
                                                 <?= htmlspecialchars(
                                                     $message['bien_titre'],
                                                     ENT_QUOTES,
@@ -321,7 +347,7 @@ function initialesUtilisateur(
 
                                     <?php if ($nonLu): ?>
 
-                                        <div class="h-2 w-2 shrink-0 rounded-full bg-[#7E9833]"></div>
+                                        <div class="h-2 w-2 shrink-0 rounded-full bg-[#D7A200]"></div>
 
                                     <?php endif; ?>
 
@@ -333,35 +359,30 @@ function initialesUtilisateur(
                         <?php else: ?>
 
 
-                            <!-- Aucun message -->
-                            <div class="px-5 py-14 text-center">
+                            <!-- AUCUN MESSAGE -->
+                            <div class="px-5 py-16 text-center">
 
-                                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EEF2E4]">
+                                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-[#E9E1D2] bg-[#F8F6EF]">
 
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        class="h-6 w-6 text-[#7E9833]"
+                                        class="h-7 w-7 text-[#8A6500]"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
                                         stroke-width="1.6"
                                     >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"
-                                        />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/>
                                     </svg>
 
                                 </div>
 
-                                <p class="mt-4 text-sm font-bold text-[#101D33]">
+                                <p class="mt-4 text-sm font-extrabold text-[#071B36]">
                                     Aucun message
                                 </p>
 
-                                <p class="mt-1 text-xs leading-5 text-[#71869A]">
-                                    Les messages concernant vos biens
-                                    apparaîtront ici.
+                                <p class="mx-auto mt-2 max-w-[220px] text-xs leading-5 text-[#8490A0]">
+                                    Les messages concernant vos biens apparaîtront ici.
                                 </p>
 
                             </div>
@@ -374,9 +395,9 @@ function initialesUtilisateur(
 
 
                 <!-- =================================================
-                     COLONNE DROITE
+                     COLONNE DROITE : CONVERSATION
                 ================================================== -->
-                <section class="flex min-w-0 flex-1 flex-col bg-[#F5F3ED]">
+                <section class="flex min-w-0 flex-1 flex-col bg-[#F7F6F2]">
 
                     <?php if ($conversationActive): ?>
 
@@ -410,12 +431,12 @@ function initialesUtilisateur(
                         ?>
 
 
-                        <!-- HEADER CONVERSATION -->
-                        <div class="flex items-center justify-between border-b border-[#E5E2D8] bg-white px-5 py-4 md:px-6">
+                        <!-- EN-TÊTE DE CONVERSATION -->
+                        <div class="flex items-center justify-between border-b border-[#E9E3D8] bg-white px-5 py-4 md:px-7">
 
-                            <div class="flex min-w-0 items-center gap-3">
+                            <div class="flex min-w-0 items-center gap-3.5">
 
-                                <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#101D33] text-xs font-bold text-white">
+                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#071B36] text-xs font-extrabold text-[#F5B800] shadow-sm">
 
                                     <?= htmlspecialchars(
                                         $initialesActive,
@@ -428,7 +449,7 @@ function initialesUtilisateur(
 
                                 <div class="min-w-0">
 
-                                    <h2 class="break-words text-sm font-bold text-[#101D33]">
+                                    <h2 class="break-words text-sm font-extrabold text-[#071B36]">
 
                                         <?= htmlspecialchars(
                                             $nomActiveComplet,
@@ -441,9 +462,12 @@ function initialesUtilisateur(
 
                                     <?php if (!empty($conversationActive['bien_titre'])): ?>
 
-                                        <p class="mt-1 break-words text-[11px] text-[#71869A]">
+                                        <p class="mt-1 break-words text-[11px] text-[#8290A0]">
 
-                                            Concernant :
+                                            <span class="font-semibold text-[#8A6500]">
+                                                Concernant :
+                                            </span>
+
                                             <?= htmlspecialchars(
                                                 $conversationActive['bien_titre'],
                                                 ENT_QUOTES,
@@ -454,7 +478,7 @@ function initialesUtilisateur(
 
                                     <?php else: ?>
 
-                                        <p class="mt-1 text-[11px] text-[#71869A]">
+                                        <p class="mt-1 text-[11px] text-[#8290A0]">
                                             Message reçu
                                         </p>
 
@@ -464,23 +488,46 @@ function initialesUtilisateur(
 
                             </div>
 
+
+                            <div class="hidden items-center gap-2 rounded-xl border border-[#E9E1D2] bg-[#FAF8F3] px-3 py-2 sm:flex">
+
+                                <span class="h-2 w-2 rounded-full bg-[#D7A200]"></span>
+
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-[#8A6500]">
+                                    Conversation
+                                </span>
+
+                            </div>
+
                         </div>
 
 
                         <!-- =================================================
-                             MESSAGE
+                             CONTENU DU MESSAGE
                         ================================================== -->
-                        <div class="flex-1 overflow-y-auto px-5 py-8 md:px-8">
+                        <div class="flex-1 overflow-y-auto px-4 py-8 sm:px-6 md:px-8">
 
                             <div class="mx-auto max-w-3xl">
 
 
-                                <!-- Sujet -->
+                                <!-- SUJET -->
                                 <?php if (!empty($conversationActive['sujet'])): ?>
 
-                                    <div class="mb-6 text-center">
+                                    <div class="mb-8 text-center">
 
-                                        <span class="inline-flex rounded-full border border-[#E5E2D8] bg-white px-4 py-2 text-xs font-bold text-[#647A28] shadow-sm">
+                                        <div class="mb-3 flex items-center justify-center gap-3">
+
+                                            <span class="h-px w-8 bg-[#D9D0BD]"></span>
+
+                                            <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-[#9A8C70]">
+                                                Objet du message
+                                            </span>
+
+                                            <span class="h-px w-8 bg-[#D9D0BD]"></span>
+
+                                        </div>
+
+                                        <span class="inline-flex max-w-full items-center rounded-xl border border-[#E9E1D2] bg-white px-4 py-2.5 text-xs font-bold text-[#8A6500] shadow-sm">
 
                                             <?= htmlspecialchars(
                                                 $conversationActive['sujet'],
@@ -496,9 +543,9 @@ function initialesUtilisateur(
 
 
                                 <!-- MESSAGE REÇU -->
-                                <div class="flex items-start gap-3">
+                                <div class="flex items-start gap-3.5">
 
-                                    <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#EEF2E4] text-[10px] font-bold text-[#647A28]">
+                                    <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#E9E1D2] bg-white text-[10px] font-extrabold text-[#8A6500] shadow-sm">
 
                                         <?= htmlspecialchars(
                                             $initialesActive,
@@ -509,11 +556,11 @@ function initialesUtilisateur(
                                     </div>
 
 
-                                    <div class="min-w-0 max-w-[90%] sm:max-w-[75%]">
+                                    <div class="min-w-0 max-w-[92%] sm:max-w-[80%]">
 
-                                        <div class="mb-1.5 flex flex-wrap items-center gap-2">
+                                        <div class="mb-2 flex flex-wrap items-center gap-2.5">
 
-                                            <p class="text-[11px] font-semibold text-[#101D33]">
+                                            <p class="text-xs font-extrabold text-[#071B36]">
 
                                                 <?= htmlspecialchars(
                                                     $nomActiveComplet,
@@ -523,7 +570,7 @@ function initialesUtilisateur(
 
                                             </p>
 
-                                            <span class="text-[10px] text-[#71869A]">
+                                            <span class="text-[10px] text-[#929BA6]">
 
                                                 <?= htmlspecialchars(
                                                     formatDateMessage(
@@ -538,7 +585,9 @@ function initialesUtilisateur(
                                         </div>
 
 
-                                        <div class="min-w-0 break-words rounded-2xl rounded-tl-md border border-[#E5E2D8] bg-white px-4 py-3.5 text-sm leading-6 text-[#26364B] shadow-sm [overflow-wrap:anywhere]">
+                                        <div class="relative min-w-0 rounded-2xl rounded-tl-md border border-[#E9E3D8] bg-white px-4 py-4 text-sm leading-7 text-[#354357] shadow-[0_5px_20px_rgba(7,27,54,0.04)] [overflow-wrap:anywhere] sm:px-5">
+
+                                            <div class="absolute left-0 top-0 h-10 w-1 rounded-tl-md bg-[#F5B800]"></div>
 
                                             <?= nl2br(
                                                 htmlspecialchars(
@@ -553,16 +602,27 @@ function initialesUtilisateur(
 
                                         <?php if (!empty($conversationActive['bien_titre'])): ?>
 
-                                            <p class="mt-2 text-[10px] text-[#7E9833]">
+                                            <div class="mt-3 inline-flex max-w-full items-center gap-2 rounded-lg border border-[#E9E1D2] bg-white px-3 py-2">
 
-                                                Bien concerné :
-                                                <?= htmlspecialchars(
-                                                    $conversationActive['bien_titre'],
-                                                    ENT_QUOTES,
-                                                    'UTF-8'
-                                                ) ?>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 shrink-0 text-[#8A6500]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1V10Z"/>
+                                                </svg>
 
-                                            </p>
+                                                <p class="truncate text-[10px] text-[#718096]">
+
+                                                    <span class="font-bold text-[#8A6500]">
+                                                        Bien concerné :
+                                                    </span>
+
+                                                    <?= htmlspecialchars(
+                                                        $conversationActive['bien_titre'],
+                                                        ENT_QUOTES,
+                                                        'UTF-8'
+                                                    ) ?>
+
+                                                </p>
+
+                                            </div>
 
                                         <?php endif; ?>
 
@@ -576,41 +636,40 @@ function initialesUtilisateur(
 
 
                         <!-- =================================================
-                             INFORMATION
+                             INFORMATIONS / AIDE
                         ================================================== -->
-                        <div class="border-t border-[#E5E2D8] bg-white p-4 md:p-5">
+                        <div class="border-t border-[#E9E3D8] bg-white p-4 md:p-5">
 
                             <div class="mx-auto max-w-3xl">
 
-                                <div class="rounded-xl border border-[#DCE5C8] bg-[#F3F6EC] px-4 py-3">
+                                <div class="rounded-2xl border border-[#E9E1D2] bg-[#FAF8F3] p-4">
 
-                                    <div class="flex items-start gap-3">
+                                    <div class="flex items-start gap-3.5">
 
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="mt-0.5 h-5 w-5 shrink-0 text-[#7E9833]"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            stroke-width="1.7"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M12 9v3.75m0 3h.008v.008H12V15.75ZM10.29 3.86 2.82 17a2 2 0 0 0 1.73 3h14.9a2 2 0 0 0 1.73-3L13.71 3.86a2 2 0 0 0-3.42 0Z"
-                                            />
-                                        </svg>
+                                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#071B36] text-[#F5B800]">
 
-                                        <div>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-5 w-5"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                                stroke-width="1.7"
+                                            >
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0 3h.008v.008H12V15.75ZM10.29 3.86 2.82 17a2 2 0 0 0 1.73 3h14.9a2 2 0 0 0 1.73-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/>
+                                            </svg>
 
-                                            <p class="text-xs font-bold text-[#101D33]">
-                                                Réponse depuis la fiche du bien
+                                        </div>
+
+
+                                        <div class="min-w-0">
+
+                                            <p class="text-xs font-extrabold text-[#071B36]">
+                                                Comment répondre à ce message ?
                                             </p>
 
-                                            <p class="mt-1 text-[11px] leading-5 text-[#71869A]">
-                                                Pour répondre à cet utilisateur,
-                                                ouvrez la fiche du bien concerné
-                                                et utilisez le formulaire de contact.
+                                            <p class="mt-1.5 text-[11px] leading-5 text-[#718096]">
+                                                Pour répondre à cet utilisateur, ouvrez la fiche du bien concerné et utilisez le formulaire de contact disponible sur cette page.
                                             </p>
 
                                         </div>
@@ -618,6 +677,10 @@ function initialesUtilisateur(
                                     </div>
 
                                 </div>
+
+                                <p class="mt-3 text-center text-[9px] font-medium tracking-wide text-[#A0A5AA]">
+                                    IMMO-SN · Votre espace de communication immobilière
+                                </p>
 
                             </div>
 
@@ -628,42 +691,60 @@ function initialesUtilisateur(
 
 
                         <!-- =================================================
-                             AUCUN MESSAGE
+                             AUCUNE CONVERSATION
                         ================================================== -->
-                        <div class="flex flex-1 items-center justify-center px-6 text-center">
+                        <div class="flex flex-1 items-center justify-center px-5 py-14 text-center sm:px-8">
 
                             <div class="max-w-sm">
 
-                                <div class="relative mx-auto flex h-24 w-24 items-center justify-center rounded-3xl bg-[#EEF2E4]">
+                                <div class="relative mx-auto flex h-24 w-24 items-center justify-center rounded-[28px] border border-[#E9E1D2] bg-white shadow-sm">
 
-                                    <div class="absolute inset-2 rounded-2xl border border-[#DCE5C8]"></div>
+                                    <div class="absolute inset-2 rounded-[21px] border border-dashed border-[#DCCFAF]"></div>
 
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="relative h-10 w-10 text-[#7E9833]"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                    >
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"
-                                        />
-                                    </svg>
+                                    <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-[#071B36] text-[#F5B800]">
+
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="h-7 w-7"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            stroke-width="1.5"
+                                        >
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/>
+                                        </svg>
+
+                                    </div>
 
                                 </div>
 
 
-                                <h2 class="mt-7 text-2xl font-bold text-[#101D33]">
-                                    Votre messagerie
-                                </h2>
+                                <div class="mt-7">
 
-                                <p class="mt-3 text-sm leading-6 text-[#71869A]">
-                                    Les messages concernant vos biens
-                                    apparaîtront automatiquement ici.
-                                </p>
+                                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#A18442]">
+                                        Centre de communication
+                                    </span>
+
+                                    <h2 class="mt-3 text-2xl font-extrabold tracking-tight text-[#071B36]">
+                                        Votre messagerie
+                                    </h2>
+
+                                    <p class="mt-3 text-sm leading-7 text-[#8290A0]">
+                                        Vous n'avez pas encore reçu de message. Les échanges concernant vos biens apparaîtront automatiquement dans cet espace.
+                                    </p>
+
+                                </div>
+
+
+                                <div class="mx-auto mt-7 flex max-w-[250px] items-center justify-center gap-2 rounded-xl border border-[#E9E1D2] bg-white px-4 py-3">
+
+                                    <span class="h-2 w-2 rounded-full bg-[#D7A200]"></span>
+
+                                    <span class="text-[10px] font-semibold text-[#718096]">
+                                        Votre espace est prêt
+                                    </span>
+
+                                </div>
 
                             </div>
 

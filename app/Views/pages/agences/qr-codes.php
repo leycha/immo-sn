@@ -52,70 +52,100 @@ $e = static function ($valeur): string {
     <main class="min-h-screen lg:ml-[270px]">
 
         <!-- EN-TÊTE -->
-        <header class="sticky top-0 z-30 flex flex-col gap-4 border-b border-[#E5E5DD] bg-white/95 px-5 py-4 backdrop-blur sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <header class="sticky top-0 z-30 border-b border-[#E5E5DD] bg-white/95 backdrop-blur-xl">
 
-            <div>
-                <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#7E9833]">
-                    Espace professionnel
-                </p>
+            <div class="flex min-h-[82px] flex-col justify-center gap-4 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8">
 
-                <h1 class="mt-1 text-xl font-extrabold text-[#101D33] sm:text-2xl">
-                    Mes QR Codes
-                </h1>
+                <div>
+                    <div class="mb-1 flex items-center gap-2 text-xs">
+                        <span class="font-bold text-[#C89A00]">Espace agence</span>
+                        <span class="text-gray-300">/</span>
+                        <span class="text-gray-500">Mes QR Codes</span>
+                    </div>
 
-                <p class="mt-1 text-sm text-gray-500">
-                    Gérez les QR Codes associés à vos annonces immobilières.
-                </p>
+                    <h1 class="text-2xl font-extrabold tracking-tight text-[#071B36] sm:text-3xl">
+                        Mes QR Codes
+                    </h1>
+
+                    <p class="mt-1 text-sm text-[#718096]">
+                        Gérez les QR Codes associés à vos annonces immobilières.
+                    </p>
+                </div>
+
+                <a
+                    href="/immo-sn/agence/qr-codes/zip"
+                    class="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-[#071B36] px-5 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#0E2A4E] hover:shadow-md"
+                >
+                    <svg class="h-5 w-5 text-[#F5B800]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v3h16v-3"/>
+                    </svg>
+                    Télécharger tout
+                </a>
+
             </div>
-
-            <a
-                href="/immo-sn/agence/qr-codes/zip"
-                class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#101D33] px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#1D304C] hover:shadow-md"
-            >
-                <span class="text-lg">↓</span>
-                Télécharger tout
-            </a>
 
         </header>
 
-        <!-- CONTENU -->
+
+        <!-- CONTENU PRINCIPAL -->
         <div class="mx-auto max-w-7xl space-y-8 px-5 py-8 sm:px-8">
 
-            <!-- BANNIÈRE -->
-            <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#101D33] via-[#1A304A] to-[#263D50] p-7 text-white shadow-lg sm:p-9">
 
-                <div class="pointer-events-none absolute -right-12 -top-16 h-64 w-64 rounded-full border-[35px] border-[#7E9833]/20"></div>
+            <!-- BANNIÈRE INTRODUCTIVE -->
+            <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#071B36] via-[#102C4C] to-[#1D3854] p-7 text-white shadow-lg sm:p-10">
 
-                <div class="pointer-events-none absolute -bottom-24 right-36 h-52 w-52 rounded-full bg-[#7E9833]/15 blur-2xl"></div>
+                <div class="pointer-events-none absolute -right-16 -top-20 h-72 w-72 rounded-full border-[38px] border-[#F5B800]/10"></div>
+
+                <div class="pointer-events-none absolute -bottom-28 right-36 h-60 w-60 rounded-full bg-[#F5B800]/10 blur-3xl"></div>
+
+                <div class="pointer-events-none absolute right-12 top-12 hidden opacity-[0.08] md:block">
+                    <svg class="h-40 w-40" viewBox="0 0 100 100" fill="none">
+                        <path d="M10 10H90V90H10V10Z" stroke="white" stroke-width="2"/>
+                        <path d="M25 25H75V75H25V25Z" stroke="white" stroke-width="2"/>
+                        <path d="M38 38H62V62H38V38Z" stroke="white" stroke-width="2"/>
+                    </svg>
+                </div>
 
                 <div class="relative z-10 max-w-2xl">
 
-                    <div class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-[#D5E5A8]">
-                        <span class="h-2 w-2 rounded-full bg-[#8FAF35]"></span>
-                        Bibliothèque numérique
+                    <div class="inline-flex items-center gap-2 rounded-full border border-[#F5B800]/25 bg-[#F5B800]/10 px-4 py-2 text-xs font-bold tracking-wide text-[#F5D35B]">
+                        <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
+                        BIBLIOTHÈQUE NUMÉRIQUE
                     </div>
 
-                    <h2 class="mt-5 break-words text-2xl font-extrabold leading-tight sm:text-3xl">
+                    <h2 class="mt-5 break-words text-2xl font-extrabold leading-tight sm:text-3xl md:text-4xl">
                         Vos biens, accessibles en un scan.
                     </h2>
 
-                    <p class="mt-3 text-sm leading-7 text-[#D8E0E8] sm:text-base">
+                    <p class="mt-4 max-w-xl text-sm leading-7 text-[#D8E0E8] sm:text-base">
                         Retrouvez tous les QR Codes de vos annonces.
                         Facilitez l'accès à vos biens et suivez les consultations
                         enregistrées grâce aux scans.
                     </p>
 
-                    <div class="mt-6 flex flex-wrap items-center gap-3 text-xs font-medium text-[#D8E0E8]">
+                    <div class="mt-7 flex flex-wrap gap-3">
 
-                        <span class="rounded-lg border border-white/15 bg-white/10 px-3 py-2">
+                        <span class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-xs font-semibold text-white/90">
+                            <svg class="h-4 w-4 text-[#F5B800]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v3h16v-3"/>
+                            </svg>
                             Téléchargement individuel
                         </span>
 
-                        <span class="rounded-lg border border-white/15 bg-white/10 px-3 py-2">
+                        <span class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-xs font-semibold text-white/90">
+                            <svg class="h-4 w-4 text-[#F5B800]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                                <path stroke-linecap="round" d="M14 14h3v3h-3zM20 14v2m-3 5h4v-4"/>
+                            </svg>
                             Archive ZIP
                         </span>
 
-                        <span class="rounded-lg border border-white/15 bg-white/10 px-3 py-2">
+                        <span class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-xs font-semibold text-white/90">
+                            <svg class="h-4 w-4 text-[#F5B800]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v18h18M7 14l4-4 4 4 6-7"/>
+                            </svg>
                             Suivi des scans
                         </span>
 
@@ -125,20 +155,21 @@ $e = static function ($valeur): string {
 
             </section>
 
+
             <!-- STATISTIQUES -->
             <section class="grid gap-5 sm:grid-cols-2">
 
-                <!-- TOTAL QR -->
-                <article class="group relative overflow-hidden rounded-2xl border border-[#E5E5DD] bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                <!-- TOTAL QR CODES -->
+                <article class="group relative overflow-hidden rounded-2xl border border-[#E5E5DD] bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
 
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between gap-4">
 
                         <div>
-                            <p class="text-sm font-semibold text-gray-500">
+                            <p class="text-sm font-semibold text-[#718096]">
                                 QR Codes disponibles
                             </p>
 
-                            <p class="mt-3 text-3xl font-extrabold tracking-tight text-[#101D33]">
+                            <p class="mt-3 text-4xl font-extrabold tracking-tight text-[#071B36]">
                                 <?= $nombreQrCodes ?>
                             </p>
 
@@ -147,27 +178,35 @@ $e = static function ($valeur): string {
                             </p>
                         </div>
 
-                        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EEF2E4] text-2xl text-[#7E9833]">
-                            ▦
+                        <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#F5B800]/10 text-[#C89A00] transition group-hover:bg-[#F5B800]/20">
+
+                            <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 14h3v3h-3zM20 14v2m-3 5h4v-4"/>
+                            </svg>
+
                         </div>
 
                     </div>
 
-                    <div class="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#7E9833] to-[#A6BD63]"></div>
+                    <div class="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#F5B800] to-[#E6D18B]"></div>
 
                 </article>
 
-                <!-- TOTAL SCANS -->
-                <article class="group relative overflow-hidden rounded-2xl border border-[#E5E5DD] bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
 
-                    <div class="flex items-center justify-between">
+                <!-- TOTAL SCANS -->
+                <article class="group relative overflow-hidden rounded-2xl border border-[#E5E5DD] bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+
+                    <div class="flex items-center justify-between gap-4">
 
                         <div>
-                            <p class="text-sm font-semibold text-gray-500">
+                            <p class="text-sm font-semibold text-[#718096]">
                                 Nombre total de scans
                             </p>
 
-                            <p class="mt-3 text-3xl font-extrabold tracking-tight text-[#101D33]">
+                            <p class="mt-3 text-4xl font-extrabold tracking-tight text-[#071B36]">
                                 <?= $totalScans ?>
                             </p>
 
@@ -176,70 +215,96 @@ $e = static function ($valeur): string {
                             </p>
                         </div>
 
-                        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EDF1F5] text-2xl text-[#71869A]">
-                            ↗
+                        <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#EDF1F5] text-[#71869A] transition group-hover:bg-[#E1E9F0]">
+
+                            <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 17l6-6 4 4 8-9"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 6h6v6"/>
+                            </svg>
+
                         </div>
 
                     </div>
 
-                    <div class="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#101D33] to-[#71869A]"></div>
+                    <div class="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#071B36] to-[#71869A]"></div>
 
                 </article>
 
             </section>
 
-            <!-- BIBLIOTHÈQUE -->
+
+            <!-- BIBLIOTHÈQUE DES QR CODES -->
             <section class="space-y-6">
 
-                <div class="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+                <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
 
                     <div>
-                        <p class="text-xs font-bold uppercase tracking-widest text-[#7E9833]">
+                        <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#C89A00]">
                             Gestion des annonces
                         </p>
 
-                        <h3 class="mt-1 text-xl font-extrabold text-[#101D33] sm:text-2xl">
+                        <h3 class="mt-2 text-xl font-extrabold text-[#071B36] sm:text-2xl">
                             Bibliothèque de mes QR Codes
                         </h3>
 
-                        <p class="mt-2 text-sm text-gray-500">
+                        <p class="mt-2 text-sm text-[#718096]">
                             Consultez, suivez et téléchargez les QR Codes de vos biens.
                         </p>
                     </div>
 
-                    <span class="inline-flex w-fit items-center rounded-full border border-[#DCE4CC] bg-white px-4 py-2 text-sm font-bold text-[#526A25]">
+                    <span class="inline-flex w-fit items-center gap-2 rounded-xl border border-[#F5B800]/30 bg-[#F5B800]/10 px-4 py-2.5 text-sm font-bold text-[#806000]">
+
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                            <rect x="3" y="3" width="7" height="7" rx="1"/>
+                            <rect x="14" y="3" width="7" height="7" rx="1"/>
+                            <rect x="3" y="14" width="7" height="7" rx="1"/>
+                        </svg>
+
                         <?= $nombreQrCodes ?> QR Code(s)
+
                     </span>
 
                 </div>
+
 
                 <?php if (empty($qrCodes)): ?>
 
                     <!-- ÉTAT VIDE -->
                     <div class="rounded-3xl border border-[#E5E5DD] bg-white px-6 py-16 text-center shadow-sm">
 
-                        <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-[#EEF2E4] text-4xl text-[#7E9833]">
-                            ▦
+                        <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-[#F5B800]/10 text-[#C89A00]">
+
+                            <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14 14h3v3h-3zM20 14v2m-3 5h4v-4"/>
+                            </svg>
+
                         </div>
 
-                        <h3 class="mt-6 text-xl font-extrabold text-[#101D33]">
+                        <h3 class="mt-6 text-xl font-extrabold text-[#071B36]">
                             Aucun QR Code disponible
                         </h3>
 
-                        <p class="mx-auto mt-3 max-w-md text-sm leading-7 text-gray-500">
+                        <p class="mx-auto mt-3 max-w-md text-sm leading-7 text-[#718096]">
                             Aucun QR Code n'est actuellement associé à vos biens.
                             Dès qu'un QR Code sera disponible, vous pourrez le retrouver ici.
                         </p>
 
                         <a
                             href="/immo-sn/agence/biens"
-                            class="mt-7 inline-flex items-center justify-center gap-2 rounded-xl bg-[#101D33] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1D304C]"
+                            class="mt-7 inline-flex items-center justify-center gap-2 rounded-xl bg-[#071B36] px-6 py-3.5 text-sm font-bold text-white transition hover:bg-[#0E2A4E]"
                         >
                             Consulter mes biens
-                            <span>→</span>
+
+                            <svg class="h-4 w-4 text-[#F5B800]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7l7 7-7 7"/>
+                            </svg>
                         </a>
 
                     </div>
+
 
                 <?php else: ?>
 
@@ -277,24 +342,27 @@ $e = static function ($valeur): string {
 
                             <article class="group flex flex-col overflow-hidden rounded-3xl border border-[#E5E5DD] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
 
-                                <!-- EN-TÊTE -->
+
+                                <!-- EN-TÊTE DE LA CARTE -->
                                 <div class="flex items-start justify-between gap-3 p-5">
 
                                     <div class="min-w-0">
 
                                         <div class="flex items-center gap-2">
-                                            <span class="h-2 w-2 rounded-full bg-[#8FAF35]"></span>
 
-                                            <p class="text-[11px] font-bold uppercase tracking-[0.16em] text-[#7E9833]">
+                                            <span class="h-2 w-2 shrink-0 rounded-full bg-[#F5B800]"></span>
+
+                                            <p class="text-[11px] font-bold uppercase tracking-[0.16em] text-[#B58B00]">
                                                 Bien immobilier
                                             </p>
+
                                         </div>
 
-                                        <h4 class="mt-3 line-clamp-2 break-words text-base font-extrabold leading-6 text-[#101D33]">
+                                        <h4 class="mt-3 line-clamp-2 break-words text-base font-extrabold leading-6 text-[#071B36]">
                                             <?= $e($qr['titre'] ?? 'Bien sans titre') ?>
                                         </h4>
 
-                                        <p class="mt-1 text-xs text-gray-400">
+                                        <p class="mt-2 text-xs text-[#8A96A3]">
                                             Référence : <?= $e($qr['bien_id'] ?? '—') ?>
                                         </p>
 
@@ -306,10 +374,11 @@ $e = static function ($valeur): string {
 
                                 </div>
 
-                                <!-- IMAGE QR CODE -->
-                                <div class="mx-5 flex flex-col items-center rounded-2xl border border-[#E5E5DD] bg-[#F5F3ED] px-4 py-6">
 
-                                    <div class="flex h-44 w-44 items-center justify-center rounded-2xl border border-[#E5E5DD] bg-white p-3 shadow-sm transition duration-300 group-hover:shadow-md">
+                                <!-- IMAGE QR CODE -->
+                                <div class="mx-5 flex flex-col items-center rounded-2xl border border-[#E5E5DD] bg-[#F8F7F2] px-4 py-6">
+
+                                    <div class="flex h-44 w-44 items-center justify-center rounded-2xl border border-[#E5E5DD] bg-white p-3 shadow-sm transition duration-300 group-hover:border-[#F5B800]/50 group-hover:shadow-md">
 
                                         <img
                                             src="<?= $e($cheminImage) ?>"
@@ -320,40 +389,60 @@ $e = static function ($valeur): string {
 
                                     </div>
 
-                                    <p class="mt-4 text-xs font-medium text-[#71869A]">
+                                    <p class="mt-4 flex items-center gap-2 text-xs font-medium text-[#718096]">
+
+                                        <svg class="h-4 w-4 text-[#C89A00]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM20 14v2m-3 5h4v-4"/>
+                                        </svg>
+
                                         Scannez pour accéder à l'annonce
+
                                     </p>
 
                                 </div>
 
-                                <!-- STATISTIQUES -->
+
+                                <!-- STATISTIQUES DE LA CARTE -->
                                 <div class="mt-5 grid grid-cols-2 divide-x divide-[#E5E5DD] border-y border-[#E5E5DD]">
 
                                     <div class="px-4 py-4 text-center">
 
-                                        <div class="flex items-center justify-center gap-2 text-gray-400">
-                                            <span>↗</span>
+                                        <div class="flex items-center justify-center gap-2 text-[#8A96A3]">
+
+                                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 17l6-6 4 4 8-9"/>
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 6h6v6"/>
+                                            </svg>
+
                                             <p class="text-xs font-medium">
                                                 Nombre de scans
                                             </p>
+
                                         </div>
 
-                                        <p class="mt-2 text-xl font-extrabold text-[#101D33]">
+                                        <p class="mt-2 text-2xl font-extrabold text-[#071B36]">
                                             <?= (int) ($qr['nb_scans'] ?? 0) ?>
                                         </p>
 
                                     </div>
 
+
                                     <div class="px-3 py-4 text-center">
 
-                                        <div class="flex items-center justify-center gap-2 text-gray-400">
-                                            <span>◷</span>
+                                        <div class="flex items-center justify-center gap-2 text-[#8A96A3]">
+
+                                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                                                <circle cx="12" cy="12" r="9"/>
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2"/>
+                                            </svg>
+
                                             <p class="text-xs font-medium">
                                                 Dernier scan
                                             </p>
+
                                         </div>
 
-                                        <p class="mt-2 break-words text-sm font-bold text-[#101D33]">
+                                        <p class="mt-2 break-words text-sm font-bold text-[#071B36]">
 
                                             <?php if ($dernierScan): ?>
 
@@ -380,16 +469,22 @@ $e = static function ($valeur): string {
 
                                 </div>
 
-                                <!-- ACTION -->
+
+                                <!-- ACTION DE TÉLÉCHARGEMENT -->
                                 <div class="mt-auto p-5">
 
                                     <a
                                         href="<?= $e($cheminImage) ?>"
                                         download="<?= $e($nomFichier) ?>"
-                                        class="flex w-full items-center justify-center gap-3 rounded-xl bg-[#101D33] px-4 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#1D304C] hover:shadow-md"
+                                        class="flex w-full items-center justify-center gap-3 rounded-xl bg-[#071B36] px-4 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-[#0E2A4E] hover:shadow-md"
                                     >
-                                        <span class="text-lg">↓</span>
+
+                                        <svg class="h-5 w-5 text-[#F5B800]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v3h16v-3"/>
+                                        </svg>
+
                                         Télécharger le QR Code
+
                                     </a>
 
                                 </div>
@@ -400,35 +495,37 @@ $e = static function ($valeur): string {
 
                     </div>
 
+
                     <!-- PAGINATION -->
                     <?php if ($totalPages > 1): ?>
 
-                        <div class="flex flex-col items-center justify-between gap-4 rounded-2xl border border-[#E5E5DD] bg-white p-5 shadow-sm sm:flex-row">
+                        <div class="flex flex-col items-center justify-between gap-5 rounded-2xl border border-[#E5E5DD] bg-white p-5 shadow-sm sm:flex-row">
 
                             <div class="text-center sm:text-left">
 
-                                <p class="text-sm font-bold text-[#101D33]">
+                                <p class="text-sm font-bold text-[#071B36]">
                                     Page <?= $pageActuelle ?> sur <?= $totalPages ?>
                                 </p>
 
-                                <p class="mt-1 text-xs text-gray-500">
+                                <p class="mt-1 text-xs text-[#718096]">
                                     <?= $nombreQrCodes ?> QR Codes au total
                                 </p>
 
                             </div>
 
-                            <nav class="flex flex-wrap items-center justify-center gap-2">
+                            <nav class="flex flex-wrap items-center justify-center gap-2" aria-label="Pagination des QR Codes">
 
                                 <?php if ($pageActuelle > 1): ?>
 
                                     <a
                                         href="?page=<?= $pageActuelle - 1 ?>"
-                                        class="inline-flex items-center gap-2 rounded-xl border border-[#E5E5DD] px-4 py-2.5 text-sm font-semibold text-[#101D33] transition hover:bg-[#F5F3ED]"
+                                        class="inline-flex items-center gap-2 rounded-xl border border-[#E5E5DD] px-4 py-2.5 text-sm font-semibold text-[#071B36] transition hover:border-[#F5B800] hover:bg-[#F5F3ED]"
                                     >
                                         ← Précédent
                                     </a>
 
                                 <?php endif; ?>
+
 
                                 <?php for ($i = 1; $i <= $totalPages; $i++): ?>
 
@@ -437,8 +534,8 @@ $e = static function ($valeur): string {
                                         aria-current="<?= $i === $pageActuelle ? 'page' : 'false' ?>"
                                         class="flex h-10 w-10 items-center justify-center rounded-xl text-sm font-bold transition
                                         <?= $i === $pageActuelle
-                                            ? 'bg-[#101D33] text-white shadow-sm'
-                                            : 'border border-[#E5E5DD] bg-white text-[#101D33] hover:bg-[#F5F3ED]'
+                                            ? 'bg-[#071B36] text-white shadow-sm'
+                                            : 'border border-[#E5E5DD] bg-white text-[#071B36] hover:border-[#F5B800] hover:bg-[#F5F3ED]'
                                         ?>"
                                     >
                                         <?= $i ?>
@@ -446,11 +543,12 @@ $e = static function ($valeur): string {
 
                                 <?php endfor; ?>
 
+
                                 <?php if ($pageActuelle < $totalPages): ?>
 
                                     <a
                                         href="?page=<?= $pageActuelle + 1 ?>"
-                                        class="inline-flex items-center gap-2 rounded-xl border border-[#E5E5DD] px-4 py-2.5 text-sm font-semibold text-[#101D33] transition hover:bg-[#F5F3ED]"
+                                        class="inline-flex items-center gap-2 rounded-xl border border-[#E5E5DD] px-4 py-2.5 text-sm font-semibold text-[#071B36] transition hover:border-[#F5B800] hover:bg-[#F5F3ED]"
                                     >
                                         Suivant →
                                     </a>
@@ -469,38 +567,39 @@ $e = static function ($valeur): string {
 
         </div>
 
-        <!-- PIED DE PAGE -->
-        <footer class="mt-10 border-t border-[#E5E5DD] bg-white px-5 py-6 sm:px-8">
 
-            <div class="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <!-- PIED DE PAGE -->
+        <footer class="mt-10 border-t border-[#E5E5DD] bg-white px-5 py-7 sm:px-8">
+
+            <div class="mx-auto flex max-w-7xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
 
                 <div>
 
-                    <a href="/immo-sn/" class="inline-flex items-center gap-2">
+                    <a href="/immo-sn/" class="inline-flex items-center gap-3">
 
-                        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#101D33] text-sm font-extrabold text-[#8FAF35]">
+                        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#071B36] text-sm font-extrabold text-[#F5B800]">
                             IM
                         </span>
 
-                        <span class="text-base font-extrabold tracking-wide text-[#101D33]">
-                            IMMO<span class="text-[#7E9833]">-SN</span>
+                        <span class="text-lg font-extrabold tracking-wide text-[#071B36]">
+                            IMMO<span class="text-[#C89A00]">-SN</span>
                         </span>
 
                     </a>
 
-                    <p class="mt-2 text-xs text-gray-500">
+                    <p class="mt-2 text-xs text-[#718096]">
                         Votre partenaire immobilier au Sénégal.
                     </p>
 
                 </div>
 
-                <div class="flex flex-col gap-2 text-xs text-gray-500 sm:items-end">
+                <div class="flex flex-col gap-2 text-xs text-[#718096] sm:items-end">
 
                     <p>
                         © <?= date('Y') ?> IMMO-SN. Tous droits réservés.
                     </p>
 
-                    <p class="font-medium text-[#7E9833]">
+                    <p class="font-semibold text-[#B58B00]">
                         Espace professionnel · Gestion des QR Codes
                     </p>
 

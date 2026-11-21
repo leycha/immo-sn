@@ -3,6 +3,7 @@
 
 /**
  * PAGE : PUBLICATION D'UN BIEN — IMMO-SN
+ * Design : Navy & Gold
  */
 
 $categories = is_array($categories ?? null) ? $categories : [];
@@ -24,17 +25,17 @@ $e = static function ($value): string {
     <main class="min-h-screen lg:ml-[270px]">
 
         <!-- EN-TÊTE -->
-        <header class="sticky top-0 z-30 border-b border-gray-200/80 bg-white/95 backdrop-blur-xl">
+        <header class="sticky top-0 z-30 border-b border-[#E8E4DC] bg-white/95 backdrop-blur-xl">
             <div class="flex min-h-[76px] flex-col items-start justify-center gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8">
 
                 <div>
                     <div class="mb-1 flex items-center gap-2 text-xs">
-                        <span class="font-semibold text-[#7E9833]">Espace agence</span>
+                        <span class="font-semibold text-[#C89A00]">Espace agence</span>
                         <span class="text-gray-300">/</span>
                         <span class="text-gray-500">Publier un bien</span>
                     </div>
 
-                    <h1 class="text-xl font-bold tracking-tight text-[#101D33] sm:text-2xl md:text-3xl">
+                    <h1 class="text-xl font-bold tracking-tight text-[#071B36] sm:text-2xl md:text-3xl">
                         Publier un bien
                     </h1>
 
@@ -44,7 +45,7 @@ $e = static function ($value): string {
                 </div>
 
                 <a href="/immo-sn/agence/biens"
-                   class="inline-flex shrink-0 items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm font-semibold text-[#101D33] shadow-sm transition hover:border-[#7E9833] hover:bg-[#F5F3ED]">
+                   class="inline-flex shrink-0 items-center gap-2 rounded-xl border border-[#E5E1D8] bg-white px-4 py-3 text-sm font-semibold text-[#071B36] shadow-sm transition hover:border-[#F5B800] hover:bg-[#FBF8EF]">
 
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
@@ -63,12 +64,12 @@ $e = static function ($value): string {
             <div class="mx-auto max-w-6xl">
 
                 <!-- BANDEAU INTRODUCTIF -->
-                <div class="relative mb-7 overflow-hidden rounded-3xl bg-[#101D33] p-6 text-white shadow-sm md:p-9">
+                <div class="relative mb-7 overflow-hidden rounded-3xl bg-[#071B36] p-6 text-white shadow-lg shadow-[#071B36]/10 md:p-9">
 
                     <div class="relative z-10 max-w-2xl">
 
-                        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-xs font-semibold text-[#C3DE8B]">
-                            <span class="h-2 w-2 rounded-full bg-[#A8C66A]"></span>
+                        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-[#F5B800]/25 bg-[#F5B800]/10 px-3 py-1.5 text-xs font-semibold text-[#F5D66D]">
+                            <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
                             ESPACE PROFESSIONNEL
                         </div>
 
@@ -83,14 +84,15 @@ $e = static function ($value): string {
                     </div>
 
                     <div class="pointer-events-none absolute -right-10 -top-16 h-64 w-64 rounded-full border-[35px] border-white/5"></div>
-                    <div class="pointer-events-none absolute -bottom-24 right-28 h-48 w-48 rounded-full bg-[#7E9833]/20 blur-2xl"></div>
+                    <div class="pointer-events-none absolute -bottom-24 right-28 h-48 w-48 rounded-full bg-[#F5B800]/15 blur-2xl"></div>
+                    <div class="pointer-events-none absolute bottom-0 right-0 h-40 w-40 rounded-full border border-[#F5B800]/10"></div>
 
                 </div>
 
                 <!-- MESSAGES -->
                 <?php if (!empty($success)): ?>
 
-                    <div role="status" class="mb-6 flex gap-3 rounded-2xl border border-[#7E9833]/25 bg-[#7E9833]/10 p-5 text-[#526C21]">
+                    <div role="status" class="mb-6 flex gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-emerald-800">
 
                         <svg class="mt-0.5 h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
@@ -128,19 +130,19 @@ $e = static function ($value): string {
 
 
                 <!-- CARTE DU FORMULAIRE -->
-                <div class="overflow-hidden rounded-3xl border border-gray-200/80 bg-white shadow-sm">
+                <div class="overflow-hidden rounded-3xl border border-[#E8E4DC] bg-white shadow-sm">
 
                     <!-- PROGRESSION -->
-                    <div class="border-b border-gray-100 bg-[#FAFAF8] px-5 py-6 md:px-8">
+                    <div class="border-b border-[#EEEAE2] bg-[#FAFAF8] px-5 py-6 md:px-8">
 
                         <div class="flex flex-wrap items-center justify-between gap-4">
 
                             <div>
-                                <p class="text-xs font-bold uppercase tracking-wider text-[#7E9833]">
+                                <p class="text-xs font-bold uppercase tracking-wider text-[#C89A00]">
                                     Création d'annonce
                                 </p>
 
-                                <h2 id="titre-etape" class="mt-1 text-xl font-bold text-[#101D33]">
+                                <h2 id="titre-etape" class="mt-1 text-xl font-bold text-[#071B36]">
                                     Informations générales
                                 </h2>
 
@@ -149,8 +151,8 @@ $e = static function ($value): string {
                                 </p>
                             </div>
 
-                            <div class="rounded-2xl border border-gray-200 bg-white px-4 py-3 text-center">
-                                <p id="pourcentage-etape" class="text-xl font-extrabold text-[#7E9833]">
+                            <div class="rounded-2xl border border-[#E8E4DC] bg-white px-4 py-3 text-center">
+                                <p id="pourcentage-etape" class="text-xl font-extrabold text-[#C89A00]">
                                     20 %
                                 </p>
                                 <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400">
@@ -160,9 +162,9 @@ $e = static function ($value): string {
 
                         </div>
 
-                        <div class="mt-6 h-2 overflow-hidden rounded-full bg-gray-200">
+                        <div class="mt-6 h-2 overflow-hidden rounded-full bg-[#E9E6DF]">
                             <div id="barre-progression"
-                                 class="h-full rounded-full bg-[#7E9833] transition-all duration-300"
+                                 class="h-full rounded-full bg-[#F5B800] transition-all duration-300"
                                  style="width:20%">
                             </div>
                         </div>
@@ -185,7 +187,7 @@ $e = static function ($value): string {
                                 <div class="indicateur-etape text-center"
                                      data-indicateur="<?= $numero ?>">
 
-                                    <div class="numero-indicateur mx-auto flex h-9 w-9 items-center justify-center rounded-full border-2 border-gray-200 bg-white text-sm font-bold text-gray-400">
+                                    <div class="numero-indicateur mx-auto flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#E5E1D8] bg-white text-sm font-bold text-gray-400">
                                         <?= $numero ?>
                                     </div>
 
@@ -219,11 +221,11 @@ $e = static function ($value): string {
                         <section class="etape-formulaire" data-etape="1">
 
                             <div class="mb-7">
-                                <span class="text-xs font-bold uppercase tracking-wider text-[#7E9833]">
+                                <span class="text-xs font-bold uppercase tracking-wider text-[#C89A00]">
                                     Étape 01
                                 </span>
 
-                                <h3 class="mt-1 text-xl font-bold text-[#101D33]">
+                                <h3 class="mt-1 text-xl font-bold text-[#071B36]">
                                     Présentez votre bien
                                 </h3>
 
@@ -314,11 +316,11 @@ $e = static function ($value): string {
                         <section class="etape-formulaire hidden" data-etape="2" hidden>
 
                             <div class="mb-7">
-                                <span class="text-xs font-bold uppercase tracking-wider text-[#7E9833]">
+                                <span class="text-xs font-bold uppercase tracking-wider text-[#C89A00]">
                                     Étape 02
                                 </span>
 
-                                <h3 class="mt-1 text-xl font-bold text-[#101D33]">
+                                <h3 class="mt-1 text-xl font-bold text-[#071B36]">
                                     Localisation du bien
                                 </h3>
 
@@ -370,13 +372,13 @@ $e = static function ($value): string {
 
 
                                 <!-- GPS -->
-                                <div class="overflow-hidden rounded-2xl border border-gray-200">
+                                <div class="overflow-hidden rounded-2xl border border-[#E8E4DC]">
 
-                                    <div class="border-b border-gray-100 bg-[#FAFAF8] p-5">
+                                    <div class="border-b border-[#EEEAE2] bg-[#FAFAF8] p-5">
 
                                         <div class="flex items-start gap-3">
 
-                                            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#7E9833]/10 text-[#7E9833]">
+                                            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F5B800]/10 text-[#B68A00]">
                                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s8-4.5 8-11a8 8 0 10-16 0c0 6.5 8 11 8 11z"/>
                                                     <circle cx="12" cy="10" r="2.5"/>
@@ -384,7 +386,7 @@ $e = static function ($value): string {
                                             </div>
 
                                             <div>
-                                                <h4 class="font-bold text-[#101D33]">
+                                                <h4 class="font-bold text-[#071B36]">
                                                     Position GPS
                                                 </h4>
 
@@ -401,7 +403,7 @@ $e = static function ($value): string {
 
                                         <button type="button"
                                                 id="detecter-position"
-                                                class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#101D33] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#1D2E4A] sm:w-auto">
+                                                class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#071B36] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#0E2A4E] sm:w-auto">
 
                                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v3m0 14v3M2 12h3m14 0h3M12 8a4 4 0 100 8 4 4 0 000-8z"/>
@@ -462,11 +464,11 @@ $e = static function ($value): string {
                         <section class="etape-formulaire hidden" data-etape="3" hidden>
 
                             <div class="mb-7">
-                                <span class="text-xs font-bold uppercase tracking-wider text-[#7E9833]">
+                                <span class="text-xs font-bold uppercase tracking-wider text-[#C89A00]">
                                     Étape 03
                                 </span>
 
-                                <h3 class="mt-1 text-xl font-bold text-[#101D33]">
+                                <h3 class="mt-1 text-xl font-bold text-[#071B36]">
                                     Caractéristiques et description
                                 </h3>
 
@@ -539,11 +541,11 @@ $e = static function ($value): string {
                         <section class="etape-formulaire hidden" data-etape="4" hidden>
 
                             <div class="mb-7">
-                                <span class="text-xs font-bold uppercase tracking-wider text-[#7E9833]">
+                                <span class="text-xs font-bold uppercase tracking-wider text-[#C89A00]">
                                     Étape 04
                                 </span>
 
-                                <h3 class="mt-1 text-xl font-bold text-[#101D33]">
+                                <h3 class="mt-1 text-xl font-bold text-[#071B36]">
                                     Photos du bien
                                 </h3>
 
@@ -552,9 +554,9 @@ $e = static function ($value): string {
                                 </p>
                             </div>
 
-                            <div class="rounded-2xl border-2 border-dashed border-[#B9C98E] bg-[#F7F8F2] p-6 text-center sm:p-10">
+                            <div class="rounded-2xl border-2 border-dashed border-[#D8C78E] bg-[#FBF9F2] p-6 text-center sm:p-10">
 
-                                <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-[#7E9833] shadow-sm">
+                                <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-[#B68A00] shadow-sm">
                                     <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
                                         <rect x="3" y="3" width="18" height="18" rx="3"/>
                                         <circle cx="8.5" cy="8.5" r="1.5"/>
@@ -562,7 +564,7 @@ $e = static function ($value): string {
                                     </svg>
                                 </div>
 
-                                <h4 class="text-lg font-bold text-[#101D33]">
+                                <h4 class="text-lg font-bold text-[#071B36]">
                                     Ajoutez les photos de votre annonce
                                 </h4>
 
@@ -570,7 +572,7 @@ $e = static function ($value): string {
                                     Sélectionnez plusieurs images au format JPG, JPEG ou PNG.
                                 </p>
 
-                                <label for="photos" class="mt-6 inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#101D33] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1D2E4A]">
+                                <label for="photos" class="mt-6 inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#071B36] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#0E2A4E]">
 
                                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0L7 9m5-5l5 5M4 16v4h16v-4"/>
@@ -586,7 +588,7 @@ $e = static function ($value): string {
                                        accept="image/png,image/jpeg"
                                        class="sr-only">
 
-                                <p id="nombre-photos" class="mt-5 text-sm font-semibold text-[#668025]" aria-live="polite">
+                                <p id="nombre-photos" class="mt-5 text-sm font-semibold text-[#A47B00]" aria-live="polite">
                                     Aucune photo sélectionnée.
                                 </p>
 
@@ -594,15 +596,15 @@ $e = static function ($value): string {
 
                             <div id="apercu-photos" class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3"></div>
 
-                            <div class="mt-6 flex gap-3 rounded-2xl border border-gray-200 bg-[#FAFAF8] p-4">
+                            <div class="mt-6 flex gap-3 rounded-2xl border border-[#E8E4DC] bg-[#FAFAF8] p-4">
 
-                                <svg class="mt-0.5 h-5 w-5 shrink-0 text-[#7E9833]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                                <svg class="mt-0.5 h-5 w-5 shrink-0 text-[#B68A00]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                                     <circle cx="12" cy="12" r="9"/>
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 11v5m0-8h.01"/>
                                 </svg>
 
                                 <div>
-                                    <p class="text-sm font-bold text-[#101D33]">Conseil pour vos photos</p>
+                                    <p class="text-sm font-bold text-[#071B36]">Conseil pour vos photos</p>
                                     <p class="mt-1 text-sm leading-6 text-gray-500">
                                         Privilégiez des images lumineuses de la façade, du salon, des chambres et des espaces importants.
                                     </p>
@@ -617,11 +619,11 @@ $e = static function ($value): string {
                         <section class="etape-formulaire hidden" data-etape="5" hidden>
 
                             <div class="mb-7">
-                                <span class="text-xs font-bold uppercase tracking-wider text-[#7E9833]">
+                                <span class="text-xs font-bold uppercase tracking-wider text-[#C89A00]">
                                     Étape 05
                                 </span>
 
-                                <h3 class="mt-1 text-xl font-bold text-[#101D33]">
+                                <h3 class="mt-1 text-xl font-bold text-[#071B36]">
                                     Vérifiez votre annonce
                                 </h3>
 
@@ -630,10 +632,10 @@ $e = static function ($value): string {
                                 </p>
                             </div>
 
-                            <div class="overflow-hidden rounded-2xl border border-gray-200">
+                            <div class="overflow-hidden rounded-2xl border border-[#E8E4DC]">
 
-                                <div class="bg-[#101D33] px-5 py-6 text-white md:px-7">
-                                    <p class="text-xs font-bold uppercase tracking-wider text-[#A8C66A]">
+                                <div class="bg-[#071B36] px-5 py-6 text-white md:px-7">
+                                    <p class="text-xs font-bold uppercase tracking-wider text-[#F5D66D]">
                                         Votre annonce immobilière
                                     </p>
 
@@ -646,76 +648,76 @@ $e = static function ($value): string {
                                     </p>
                                 </div>
 
-                                <div class="divide-y divide-gray-100">
+                                <div class="divide-y divide-[#EEEAE2]">
 
                                     <div class="p-5 md:p-7">
                                         <div class="mb-5 flex items-center justify-between gap-3">
-                                            <h5 class="font-bold text-[#101D33]">Informations générales</h5>
-                                            <button type="button" data-aller-etape="1" class="text-sm font-bold text-[#668025] hover:underline">Modifier</button>
+                                            <h5 class="font-bold text-[#071B36]">Informations générales</h5>
+                                            <button type="button" data-aller-etape="1" class="text-sm font-bold text-[#A47B00] hover:underline">Modifier</button>
                                         </div>
 
                                         <dl class="grid gap-5 sm:grid-cols-2">
                                             <div>
                                                 <dt class="text-xs font-medium text-gray-400">Catégorie</dt>
-                                                <dd id="recap-categorie" class="mt-1 break-words font-semibold text-[#101D33]">—</dd>
+                                                <dd id="recap-categorie" class="mt-1 break-words font-semibold text-[#071B36]">—</dd>
                                             </div>
 
                                             <div>
                                                 <dt class="text-xs font-medium text-gray-400">Prix</dt>
-                                                <dd id="recap-prix" class="mt-1 font-bold text-[#668025]">—</dd>
+                                                <dd id="recap-prix" class="mt-1 font-bold text-[#A47B00]">—</dd>
                                             </div>
                                         </dl>
                                     </div>
 
                                     <div class="p-5 md:p-7">
                                         <div class="mb-5 flex items-center justify-between gap-3">
-                                            <h5 class="font-bold text-[#101D33]">Localisation</h5>
-                                            <button type="button" data-aller-etape="2" class="text-sm font-bold text-[#668025] hover:underline">Modifier</button>
+                                            <h5 class="font-bold text-[#071B36]">Localisation</h5>
+                                            <button type="button" data-aller-etape="2" class="text-sm font-bold text-[#A47B00] hover:underline">Modifier</button>
                                         </div>
 
                                         <dl class="grid gap-5 sm:grid-cols-2">
                                             <div>
                                                 <dt class="text-xs font-medium text-gray-400">Ville / Localité</dt>
-                                                <dd id="recap-ville" class="mt-1 break-words font-semibold text-[#101D33]">—</dd>
+                                                <dd id="recap-ville" class="mt-1 break-words font-semibold text-[#071B36]">—</dd>
                                             </div>
 
                                             <div>
                                                 <dt class="text-xs font-medium text-gray-400">Latitude</dt>
-                                                <dd id="recap-latitude" class="mt-1 font-semibold text-[#101D33]">—</dd>
+                                                <dd id="recap-latitude" class="mt-1 font-semibold text-[#071B36]">—</dd>
                                             </div>
 
                                             <div>
                                                 <dt class="text-xs font-medium text-gray-400">Longitude</dt>
-                                                <dd id="recap-longitude" class="mt-1 font-semibold text-[#101D33]">—</dd>
+                                                <dd id="recap-longitude" class="mt-1 font-semibold text-[#071B36]">—</dd>
                                             </div>
                                         </dl>
                                     </div>
 
                                     <div class="p-5 md:p-7">
                                         <div class="mb-5 flex items-center justify-between gap-3">
-                                            <h5 class="font-bold text-[#101D33]">Caractéristiques</h5>
-                                            <button type="button" data-aller-etape="3" class="text-sm font-bold text-[#668025] hover:underline">Modifier</button>
+                                            <h5 class="font-bold text-[#071B36]">Caractéristiques</h5>
+                                            <button type="button" data-aller-etape="3" class="text-sm font-bold text-[#A47B00] hover:underline">Modifier</button>
                                         </div>
 
                                         <dl class="grid grid-cols-2 gap-5 sm:grid-cols-4">
                                             <div>
                                                 <dt class="text-xs font-medium text-gray-400">Surface</dt>
-                                                <dd id="recap-surface" class="mt-1 font-semibold text-[#101D33]">—</dd>
+                                                <dd id="recap-surface" class="mt-1 font-semibold text-[#071B36]">—</dd>
                                             </div>
 
                                             <div>
                                                 <dt class="text-xs font-medium text-gray-400">Pièces</dt>
-                                                <dd id="recap-pieces" class="mt-1 font-semibold text-[#101D33]">—</dd>
+                                                <dd id="recap-pieces" class="mt-1 font-semibold text-[#071B36]">—</dd>
                                             </div>
 
                                             <div>
                                                 <dt class="text-xs font-medium text-gray-400">Chambres</dt>
-                                                <dd id="recap-chambres" class="mt-1 font-semibold text-[#101D33]">—</dd>
+                                                <dd id="recap-chambres" class="mt-1 font-semibold text-[#071B36]">—</dd>
                                             </div>
 
                                             <div>
                                                 <dt class="text-xs font-medium text-gray-400">Salles de bain</dt>
-                                                <dd id="recap-salles-bain" class="mt-1 font-semibold text-[#101D33]">—</dd>
+                                                <dd id="recap-salles-bain" class="mt-1 font-semibold text-[#071B36]">—</dd>
                                             </div>
                                         </dl>
 
@@ -727,8 +729,8 @@ $e = static function ($value): string {
 
                                     <div class="p-5 md:p-7">
                                         <div class="mb-4 flex items-center justify-between gap-3">
-                                            <h5 class="font-bold text-[#101D33]">Photos</h5>
-                                            <button type="button" data-aller-etape="4" class="text-sm font-bold text-[#668025] hover:underline">Modifier</button>
+                                            <h5 class="font-bold text-[#071B36]">Photos</h5>
+                                            <button type="button" data-aller-etape="4" class="text-sm font-bold text-[#A47B00] hover:underline">Modifier</button>
                                         </div>
 
                                         <p id="recap-photos" class="text-sm text-gray-500">
@@ -739,16 +741,16 @@ $e = static function ($value): string {
                                 </div>
                             </div>
 
-                            <div class="mt-6 rounded-2xl border border-[#DCE6C6] bg-[#F7F8F2] p-5">
+                            <div class="mt-6 rounded-2xl border border-[#E9DCA9] bg-[#FBF8EF] p-5">
 
                                 <div class="flex gap-3">
-                                    <svg class="mt-0.5 h-5 w-5 shrink-0 text-[#7E9833]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                                    <svg class="mt-0.5 h-5 w-5 shrink-0 text-[#B68A00]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
                                         <circle cx="12" cy="12" r="9"/>
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 11v5m0-8h.01"/>
                                     </svg>
 
                                     <div>
-                                        <p class="font-bold text-[#101D33]">Dernière vérification</p>
+                                        <p class="font-bold text-[#071B36]">Dernière vérification</p>
                                         <p class="mt-1 text-sm leading-6 text-gray-600">
                                             En cliquant sur « Publier le bien », votre annonce sera enregistrée et envoyée à notre équipe pour modération. Elle sera visible publiquement après validation.
                                         </p>
@@ -761,11 +763,11 @@ $e = static function ($value): string {
 
 
                         <!-- NAVIGATION -->
-                        <div class="mt-9 flex flex-col-reverse gap-3 border-t border-gray-100 pt-6 sm:flex-row sm:items-center sm:justify-between">
+                        <div class="mt-9 flex flex-col-reverse gap-3 border-t border-[#EEEAE2] pt-6 sm:flex-row sm:items-center sm:justify-between">
 
                             <button type="button"
                                     id="bouton-precedent"
-                                    class="hidden w-full items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-5 py-3 text-sm font-bold text-[#101D33] transition hover:bg-[#F5F3ED] sm:w-auto">
+                                    class="hidden w-full items-center justify-center gap-2 rounded-xl border border-[#E5E1D8] bg-white px-5 py-3 text-sm font-bold text-[#071B36] transition hover:bg-[#F5F3ED] sm:w-auto">
 
                                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m7 7l-7-7 7-7"/>
@@ -777,13 +779,13 @@ $e = static function ($value): string {
                             <div class="flex flex-col gap-3 sm:ml-auto sm:flex-row">
 
                                 <a href="/immo-sn/agence/biens"
-                                   class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-gray-500 transition hover:bg-[#F5F3ED] hover:text-[#101D33]">
+                                   class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-gray-500 transition hover:bg-[#F5F3ED] hover:text-[#071B36]">
                                     Annuler
                                 </a>
 
                                 <button type="button"
                                         id="bouton-suivant"
-                                        class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#101D33] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#1D2E4A] sm:w-auto">
+                                        class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#071B36] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#0E2A4E] sm:w-auto">
 
                                     Étape suivante
 
@@ -794,7 +796,7 @@ $e = static function ($value): string {
 
                                 <button type="submit"
                                         id="bouton-publier"
-                                        class="hidden w-full items-center justify-center gap-2 rounded-xl bg-[#7E9833] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#668025] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto">
+                                        class="hidden w-full items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-6 py-3 text-sm font-bold text-[#071B36] shadow-sm transition hover:bg-[#DFA600] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto">
 
                                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
@@ -819,17 +821,17 @@ $e = static function ($value): string {
         </div>
 
         <!-- PIED DE PAGE -->
-        <footer class="mt-auto border-t border-gray-200 bg-white">
+        <footer class="mt-auto border-t border-[#E8E4DC] bg-white">
 
             <div class="mx-auto flex max-w-[1450px] flex-col gap-4 px-5 py-6 sm:px-7 md:flex-row md:items-center md:justify-between lg:px-9">
 
                 <div class="flex items-center gap-3">
-                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#101D33] text-lg font-extrabold text-[#A8C66A]">
+                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#071B36] text-lg font-extrabold text-[#F5B800]">
                         I
                     </div>
 
                     <div>
-                        <p class="text-sm font-extrabold tracking-wide text-[#101D33]">
+                        <p class="text-sm font-extrabold tracking-wide text-[#071B36]">
                             IMMO-SN
                         </p>
                         <p class="mt-0.5 text-[11px] text-gray-500">
@@ -843,7 +845,7 @@ $e = static function ($value): string {
                         © <?= date('Y') ?> IMMO-SN. Tous droits réservés.
                     </p>
 
-                    <p class="mt-1 text-[11px] text-[#7E9833]">
+                    <p class="mt-1 text-[11px] text-[#A47B00]">
                         Espace professionnel · Gestion des biens immobiliers
                     </p>
                 </div>
@@ -861,7 +863,7 @@ $e = static function ($value): string {
 .label-publication {
     display: block;
     margin-bottom: 0.55rem;
-    color: #101D33;
+    color: #071B36;
     font-size: 0.875rem;
     font-weight: 700;
 }
@@ -870,20 +872,20 @@ $e = static function ($value): string {
     display: block;
     width: 100%;
     min-height: 49px;
-    border: 1px solid #E1E4E6;
+    border: 1px solid #E5E1D8;
     border-radius: 0.85rem;
     background: #FAFAF8;
     padding: 0.8rem 1rem;
-    color: #101D33;
+    color: #071B36;
     font-size: 0.9rem;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
 }
 
 .champ-publication:focus {
-    border-color: #7E9833;
+    border-color: #D7A200;
     background: #fff;
-    box-shadow: 0 0 0 3px rgba(126, 152, 51, 0.13);
+    box-shadow: 0 0 0 3px rgba(245, 184, 0, 0.16);
 }
 
 .champ-publication::placeholder {
@@ -893,6 +895,10 @@ $e = static function ($value): string {
 .champ-publication:disabled {
     cursor: not-allowed;
     background: #F0F1ED;
+}
+
+.champ-publication:invalid:not(:placeholder-shown) {
+    border-color: #E5E1D8;
 }
 
 .aide-publication {
@@ -907,20 +913,20 @@ $e = static function ($value): string {
 }
 
 .numero-indicateur.actif {
-    border-color: #7E9833;
-    background: #101D33;
+    border-color: #F5B800;
+    background: #071B36;
     color: white;
-    box-shadow: 0 0 0 4px rgba(126, 152, 51, 0.13);
+    box-shadow: 0 0 0 4px rgba(245, 184, 0, 0.16);
 }
 
 .numero-indicateur.termine {
-    border-color: #7E9833;
-    background: #EAF0DC;
-    color: #668025;
+    border-color: #F5B800;
+    background: #FBF3D8;
+    color: #8A6900;
 }
 
 .indicateur-etape.actif p {
-    color: #101D33;
+    color: #071B36;
     font-weight: 700;
 }
 
@@ -929,10 +935,23 @@ $e = static function ($value): string {
     width: 100%;
     aspect-ratio: 4 / 3;
     overflow: hidden;
-    border: 1px solid #E1E4E6;
+    border: 1px solid #E5E1D8;
     border-radius: 0.85rem;
     background: #F5F3ED;
     object-fit: cover;
+}
+
+#detecter-position:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+#bouton-publier:focus-visible,
+#bouton-suivant:focus-visible,
+#bouton-precedent:focus-visible,
+#detecter-position:focus-visible {
+    outline: 3px solid rgba(245, 184, 0, 0.45);
+    outline-offset: 3px;
 }
 
 @media (max-width: 640px) {
