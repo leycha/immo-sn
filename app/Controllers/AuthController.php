@@ -609,30 +609,8 @@ $baseUrl = $appConfig['url'];
         );
     }
 
-   $headersFile = '';
-$headersLine = 0;
-
-$headersAlreadySent = headers_sent(
-    $headersFile,
-    $headersLine
-);
-
-error_log(
-    '[RESET PASSWORD - REDIRECTION]'
-    . ' | headers_sent=' . ($headersAlreadySent ? 'oui' : 'non')
-    . ' | fichier=' . $headersFile
-    . ' | ligne=' . $headersLine
-    . ' | statut_avant=' . http_response_code()
-);
-
-header('Location: /immo-sn/mot-de-passe-oublie', true, 302);
-
-error_log(
-    '[RESET PASSWORD - REDIRECTION]'
-    . ' | statut_apres=' . http_response_code()
-);
-
-exit;
+    header('Location: /immo-sn/mot-de-passe-oublie');
+    exit;
 }
 
 /**
