@@ -230,6 +230,18 @@ $router->add(
     '/messages/envoyer',
     ['MessageController', 'envoyer']
 );
+// Messages
+$router->add(
+    'POST',
+    '/messages/envoyer',
+    ['MessageController', 'envoyer']
+);
+
+$router->add(
+    'POST',
+    '/member/messages/repondre',
+    ['MemberController', 'repondreMessage']
+);
 
 // Signalements
 $router->add(

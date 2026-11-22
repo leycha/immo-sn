@@ -204,72 +204,175 @@ class MemberController extends Controller
         }
     }
 
-    /**
-     * =========================================================
-     * MESSAGERIE
-     * =========================================================
-     */
-    public function messages(): void
-    {
-        $userId = $this->utilisateurConnecte();
+/**
+ * =========================================================
+ * MESSAGERIE — LISTE ET HISTORIQUE DES CONVERSATIONS
+ * =========================================================
+ */
+public function messages(): void
+{
+    $userId = $this->utilisateurConnecte();
 
-        $messagesRecus = Message::recus($userId);
+    $recus = Message::recus($userId);
+    $envoyes = Message::envoyes($userId);
 
-        $messages = [];
+    $threads = [];
 
-        foreach ($messagesRecus as $message) {
-            $prenom = trim(
-                $message['expediteur_prenom'] ?? ''
-            );
+    // Combiner messages reçus et envoyés pour construire les conversations.
+    foreach (array_merge($recus, $envoyes) as $m) {
 
-            $nom = trim(
-                $message['expediteur_nom'] ?? ''
-            );
+        $expediteur = (string) $m['expediteur_id'];
+        $destinataire = (string) $m['destinataire_id'];
 
-            $nomComplet = trim(
-                $prenom . ' ' . $nom
-            );
+        $participants = [$expediteur, $destinataire];
+        sort($participants);
 
-            if ($nomComplet === '') {
-                $nomComplet = 'Utilisateur';
-            }
+        $key = (string) ($m['bien_id'] ?? '') . '|' . implode('|', $participants);
 
-            $date = '';
-            $heure = '';
+        $incoming = $expediteur === $userId;
 
-            if (!empty($message['created_at'])) {
-                $timestamp = strtotime(
-                    $message['created_at']
-                );
+        $prenom = $incoming
+            ? ($m['destinataire_prenom'] ?? '')
+            : ($m['expediteur_prenom'] ?? '');
 
-                if ($timestamp !== false) {
-                    $date = date('d/m/Y', $timestamp);
-                    $heure = date('H:i', $timestamp);
-                }
-            }
+        $nom = $incoming
+            ? ($m['destinataire_nom'] ?? '')
+            : ($m['expediteur_nom'] ?? '');
 
-            $messages[] = [
-                'id' => $message['id'],
-                'nom' => $nomComplet,
-                'objet' => $message['sujet'] ?? 'Message',
-                'message' => $message['contenu'] ?? '',
-                'date' => $date,
-                'heure' => $heure,
-                'lu' => !empty($message['lu']),
-                'bien_id' => $message['bien_id'] ?? null,
-                'bien_titre' => $message['bien_titre'] ?? '',
-            ];
+        // Dans les messages reçus, les noms sont ceux de l'expéditeur.
+        if (!$incoming && isset($m['destinataire_prenom'])) {
+            $prenom = $m['destinataire_prenom'];
+            $nom = $m['destinataire_nom'] ?? '';
         }
 
-        $this->view(
-            'pages/member/messages',
-            [
-                'title' => 'Messagerie — ImmoSn',
-                'messages' => $messages,
-            ]
+       $item = [
+    'id' => $m['id'],
+    'bien_id' => $m['bien_id'],
+    'bien_titre' => $m['bien_titre'] ?? '',
+    'interlocuteur_prenom' => $prenom,
+    'interlocuteur_nom' => $nom,
+    'sujet' => $m['sujet'] ?? 'Message',
+    'contenu' => $m['contenu'] ?? '',
+    'created_at' => $m['created_at'] ?? '',
+    'lu' => !empty($m['lu']),
+    'expediteur_id' => $m['expediteur_id'],
+    'non_lus_total' => $threads[$key]['non_lus_total'] ?? 0,
+];
+
+        // Garder le message le plus récent de chaque fil.
+        if (
+            !isset($threads[$key])
+            || strtotime($item['created_at'] ?: '1970-01-01')
+                >= strtotime($threads[$key]['created_at'] ?: '1970-01-01')
+        ) {
+            $threads[$key] = $item;
+        }
+
+       // Comptage des messages reçus non lus uniquement.
+if ($expediteur !== $userId && empty($m['lu'])) {
+    $threads[$key]['non_lus_total']++;
+}
+    }
+
+    $messages = array_values($threads);
+
+    usort($messages, function ($a, $b) {
+        return strtotime($b['created_at'] ?: '1970-01-01')
+            <=> strtotime($a['created_at'] ?: '1970-01-01');
+    });
+
+    // Conversation sélectionnée.
+    $selectedId = trim($_GET['id'] ?? '');
+
+    if ($selectedId === '' && !empty($messages)) {
+        $selectedId = (string) $messages[0]['id'];
+    }
+
+    $conversation = null;
+
+    if ($selectedId !== '') {
+        $conversation = Message::conversationParMessage(
+            $selectedId,
+            $userId
         );
     }
 
+    $this->view('pages/member/messages', [
+        'title' => 'Messagerie — ImmoSn',
+        'messages' => $messages,
+        'conversation' => $conversation,
+        'selectedId' => $selectedId,
+    ]);
+}
+
+/**
+ * =========================================================
+ * MESSAGERIE — RÉPONDRE
+ * =========================================================
+ */
+public function repondreMessage(): void
+{
+    $userId = $this->utilisateurConnecte();
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        http_response_code(405);
+        exit('Méthode non autorisée.');
+    }
+
+    if (!Session::verifyCsrfToken($_POST['_csrf_token'] ?? null)) {
+        Session::flash(
+            'message_error',
+            'Votre session a expiré. Veuillez réessayer.'
+        );
+
+        header('Location: /immo-sn/member/messages');
+        exit;
+    }
+
+    $messageId = trim($_POST['message_id'] ?? '');
+    $contenu = trim($_POST['contenu'] ?? '');
+
+    try {
+        if ($messageId === '' || $contenu === '') {
+            throw new \RuntimeException(
+                'Veuillez saisir votre message.'
+            );
+        }
+
+        if (mb_strlen($contenu) < 3 || mb_strlen($contenu) > 5000) {
+            throw new \RuntimeException(
+                'Le message doit contenir entre 3 et 5000 caractères.'
+            );
+        }
+
+        Message::repondre(
+            $messageId,
+            $userId,
+            $contenu
+        );
+
+        Session::flash(
+            'message_success',
+            'Votre réponse a été envoyée.'
+        );
+
+    } catch (\Throwable $e) {
+        error_log('[IMMO-SN MESSAGERIE] ' . $e->getMessage());
+
+        Session::flash(
+            'message_error',
+            $e instanceof \RuntimeException
+                ? $e->getMessage()
+                : 'Impossible d’envoyer votre réponse pour le moment.'
+        );
+    }
+
+    header(
+        'Location: /immo-sn/member/messages?id=' .
+        rawurlencode($messageId)
+    );
+    exit;
+}
     /**
      * =========================================================
      * MES ALERTES
