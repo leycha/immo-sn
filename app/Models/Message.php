@@ -27,6 +27,7 @@ class Message
         ';
 
         $stmt = Database::getConnection()->prepare($sql);
+
         $stmt->execute([
             'bien_id' => $bienId,
             'expediteur_id' => $expediteurId,
@@ -41,10 +42,11 @@ class Message
     public static function recus(string $userId): array
     {
         $sql = '
-            SELECT m.*,
-                   u.nom AS expediteur_nom,
-                   u.prenom AS expediteur_prenom,
-                   b.titre AS bien_titre
+            SELECT
+                m.*,
+                u.nom AS expediteur_nom,
+                u.prenom AS expediteur_prenom,
+                b.titre AS bien_titre
             FROM messages m
             LEFT JOIN users u ON u.id = m.expediteur_id
             LEFT JOIN biens b ON b.id = m.bien_id
@@ -61,10 +63,11 @@ class Message
     public static function envoyes(string $userId): array
     {
         $sql = '
-            SELECT m.*,
-                   u.nom AS destinataire_nom,
-                   u.prenom AS destinataire_prenom,
-                   b.titre AS bien_titre
+            SELECT
+                m.*,
+                u.nom AS destinataire_nom,
+                u.prenom AS destinataire_prenom,
+                b.titre AS bien_titre
             FROM messages m
             LEFT JOIN users u ON u.id = m.destinataire_id
             LEFT JOIN biens b ON b.id = m.bien_id
@@ -90,6 +93,7 @@ class Message
         ';
 
         $stmt = Database::getConnection()->prepare($sql);
+
         return $stmt->execute([
             'id' => $messageId,
             'user_id' => $userId,
@@ -98,7 +102,6 @@ class Message
 
     /**
      * Retrouve une conversation à partir d'un message.
-     * L'utilisateur doit être l'un des deux participants.
      */
     public static function conversationParMessage(
         string $messageId,
@@ -106,6 +109,7 @@ class Message
     ): ?array {
         $db = Database::getConnection();
 
+        // Identifier le message et son interlocuteur.
         $sql = '
             SELECT
                 m.id,
@@ -116,40 +120,53 @@ class Message
                 b.titre AS bien_titre,
 
                 CASE
-                    WHEN m.expediteur_id = CAST(:user_id AS UUID)
+                    WHEN m.expediteur_id = CAST(:user_case AS UUID)
                     THEN m.destinataire_id
                     ELSE m.expediteur_id
                 END AS interlocuteur_id,
 
                 CASE
-                    WHEN m.expediteur_id = CAST(:user_id AS UUID)
+                    WHEN m.expediteur_id = CAST(:user_prenom AS UUID)
                     THEN receiver.prenom
                     ELSE sender.prenom
                 END AS interlocuteur_prenom,
 
                 CASE
-                    WHEN m.expediteur_id = CAST(:user_id AS UUID)
+                    WHEN m.expediteur_id = CAST(:user_nom AS UUID)
                     THEN receiver.nom
                     ELSE sender.nom
                 END AS interlocuteur_nom
 
             FROM messages m
-            LEFT JOIN biens b ON b.id = m.bien_id
-            LEFT JOIN users sender ON sender.id = m.expediteur_id
-            LEFT JOIN users receiver ON receiver.id = m.destinataire_id
+
+            LEFT JOIN biens b
+                ON b.id = m.bien_id
+
+            LEFT JOIN users sender
+                ON sender.id = m.expediteur_id
+
+            LEFT JOIN users receiver
+                ON receiver.id = m.destinataire_id
 
             WHERE m.id = CAST(:message_id AS UUID)
+
               AND (
-                  m.expediteur_id = CAST(:user_id AS UUID)
-                  OR m.destinataire_id = CAST(:user_id AS UUID)
+                  m.expediteur_id = CAST(:user_sender AS UUID)
+                  OR m.destinataire_id = CAST(:user_receiver AS UUID)
               )
+
             LIMIT 1
         ';
 
         $stmt = $db->prepare($sql);
+
         $stmt->execute([
             'message_id' => $messageId,
-            'user_id' => $userId,
+            'user_case' => $userId,
+            'user_prenom' => $userId,
+            'user_nom' => $userId,
+            'user_sender' => $userId,
+            'user_receiver' => $userId,
         ]);
 
         $conversation = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -158,8 +175,10 @@ class Message
             return null;
         }
 
-        // Marquer comme lus les messages reçus de cet interlocuteur
-        // pour ce bien uniquement.
+        $interlocuteurId = (string) $conversation['interlocuteur_id'];
+        $bienId = (string) $conversation['bien_id'];
+
+        // Marquer comme lus les messages reçus de cet interlocuteur.
         $stmtLu = $db->prepare('
             UPDATE messages
             SET lu = TRUE
@@ -170,12 +189,12 @@ class Message
         ');
 
         $stmtLu->execute([
-            'bien_id' => $conversation['bien_id'],
-            'interlocuteur_id' => $conversation['interlocuteur_id'],
+            'bien_id' => $bienId,
+            'interlocuteur_id' => $interlocuteurId,
             'user_id' => $userId,
         ]);
 
-        // Historique complet de l'échange.
+        // Récupérer tout l'historique de la conversation.
         $stmtHistorique = $db->prepare('
             SELECT
                 m.id,
@@ -188,27 +207,37 @@ class Message
                 m.created_at,
                 u.prenom AS expediteur_prenom,
                 u.nom AS expediteur_nom
+
             FROM messages m
-            LEFT JOIN users u ON u.id = m.expediteur_id
+
+            LEFT JOIN users u
+                ON u.id = m.expediteur_id
+
             WHERE m.bien_id = CAST(:bien_id AS UUID)
+
               AND (
-                (
-                    m.expediteur_id = CAST(:user_id AS UUID)
-                    AND m.destinataire_id = CAST(:interlocuteur_id AS UUID)
-                )
-                OR
-                (
-                    m.expediteur_id = CAST(:interlocuteur_id AS UUID)
-                    AND m.destinataire_id = CAST(:user_id AS UUID)
-                )
+                  (
+                      m.expediteur_id = CAST(:history_sender AS UUID)
+                      AND m.destinataire_id = CAST(:history_receiver AS UUID)
+                  )
+
+                  OR
+
+                  (
+                      m.expediteur_id = CAST(:history_receiver_sender AS UUID)
+                      AND m.destinataire_id = CAST(:history_receiver_user AS UUID)
+                  )
               )
+
             ORDER BY m.created_at ASC
         ');
 
         $stmtHistorique->execute([
-            'bien_id' => $conversation['bien_id'],
-            'user_id' => $userId,
-            'interlocuteur_id' => $conversation['interlocuteur_id'],
+            'bien_id' => $bienId,
+            'history_sender' => $userId,
+            'history_receiver' => $interlocuteurId,
+            'history_receiver_sender' => $interlocuteurId,
+            'history_receiver_user' => $userId,
         ]);
 
         $conversation['historique'] =
@@ -218,7 +247,7 @@ class Message
     }
 
     /**
-     * Envoyer une réponse à une conversation existante.
+     * Envoyer une réponse dans une conversation existante.
      */
     public static function repondre(
         string $messageId,
