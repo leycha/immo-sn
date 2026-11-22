@@ -1,115 +1,194 @@
 <?php
-declare(strict_types=1);
+
 namespace Core;
 
-use PHPMailer\PHPMailer\PHPMailer;
 use RuntimeException;
 
 class MailService
 {
-    private PHPMailer $mailer;
+    private string $apiKey;
+    private string $from;
+    private string $fromName;
 
     public function __construct()
     {
         // Initialisation centrale de IMMO-SN.
         require_once dirname(__DIR__) . '/config/bootstrap.php';
 
-        // Chargement de la configuration SMTP.
+        // Chargement de la configuration Brevo.
         $config = require BASE_PATH . '/config/mail.php';
 
-        $host = $config['host'];
-        $port = $config['port'];
-        $username = $config['username'];
-        $password = $config['password'];
-        $from = $config['from'];
-        $fromName = $config['from_name'];
+        $this->apiKey = $config['api_key'];
+        $this->from = $config['from'];
+        $this->fromName = $config['from_name'];
 
         // Vérification de la configuration.
-        if (
-            $host === '' ||
-            $from === '' ||
-            $port < 1 ||
-            $port > 65535
-        ) {
+        if ($this->apiKey === '') {
             throw new RuntimeException(
-                'Configuration SMTP incomplète : vérifiez MAIL_HOST, MAIL_PORT et MAIL_FROM.'
+                'Configuration Brevo incomplète : BREVO_API_KEY est manquante.'
             );
         }
 
-        if (!filter_var($from, FILTER_VALIDATE_EMAIL)) {
+        if ($this->from === '') {
+            throw new RuntimeException(
+                'Configuration e-mail incomplète : MAIL_FROM est manquante.'
+            );
+        }
+
+        if (!filter_var($this->from, FILTER_VALIDATE_EMAIL)) {
             throw new RuntimeException(
                 'MAIL_FROM doit être une adresse e-mail valide.'
             );
         }
 
-        $this->mailer = new PHPMailer(true);
-
-        $this->mailer->isSMTP();
-        $this->mailer->Host = $host;
-        $this->mailer->Port = $port;
-        $this->mailer->CharSet = 'UTF-8';
-        $this->mailer->SMTPDebug = 0;
-        $this->mailer->Timeout = 20;
-
-        // Authentification SMTP.
-        if ($username !== '' || $password !== '') {
-            if ($username === '' || $password === '') {
-                throw new RuntimeException(
-                    'MAIL_USER et MAIL_PASS doivent être renseignés ensemble.'
-                );
-            }
-
-            $this->mailer->SMTPAuth = true;
-            $this->mailer->Username = $username;
-            $this->mailer->Password = $password;
-        } else {
-            $this->mailer->SMTPAuth = false;
-        }
-
-        // Configuration du chiffrement SMTP.
-        if ($port === 465) {
-            $this->mailer->SMTPSecure =
-                PHPMailer::ENCRYPTION_SMTPS;
-        } elseif ($port === 587 || $port === 25) {
-            $this->mailer->SMTPSecure =
-                PHPMailer::ENCRYPTION_STARTTLS;
-        } else {
+        if (!function_exists('curl_init')) {
             throw new RuntimeException(
-                'Port SMTP non pris en charge automatiquement. Vérifiez le port et le chiffrement requis par votre fournisseur.'
+                'L’extension PHP cURL est nécessaire pour envoyer les e-mails.'
             );
         }
-
-        $this->mailer->setFrom($from, $fromName);
-        $this->mailer->isHTML(true);
     }
 
+    /**
+     * Envoyer un e-mail via l'API HTTPS de Brevo.
+     */
     public function send(
         string $to,
         string $subject,
         string $htmlBody,
         ?string $textBody = null
     ): void {
+
         if (!filter_var($to, FILTER_VALIDATE_EMAIL)) {
             throw new RuntimeException(
                 'Adresse du destinataire invalide.'
             );
         }
 
-        $this->mailer->clearAllRecipients();
-        $this->mailer->clearAttachments();
-        $this->mailer->clearReplyTos();
+        // Préparation du contenu texte.
+        $plainText = $textBody;
 
-        $this->mailer->addAddress($to);
-        $this->mailer->Subject = $subject;
-        $this->mailer->Body = $htmlBody;
-
-        $this->mailer->AltBody = $textBody
-            ?? trim(strip_tags(str_replace(
+        if ($plainText === null) {
+            $plainText = str_replace(
                 ['<br>', '<br/>', '<br />', '</p>'],
                 "\n",
                 $htmlBody
-            )));
+            );
 
-        $this->mailer->send();
+            $plainText = html_entity_decode(
+                strip_tags($plainText),
+                ENT_QUOTES | ENT_HTML5,
+                'UTF-8'
+            );
+
+            $plainText = trim($plainText);
+        }
+
+        // Construction du message.
+        $payload = [
+            'sender' => [
+                'name' => $this->fromName,
+                'email' => $this->from,
+            ],
+
+            'to' => [
+                [
+                    'email' => $to,
+                ],
+            ],
+
+            'subject' => $subject,
+            'htmlContent' => $htmlBody,
+            'textContent' => $plainText,
+        ];
+
+        try {
+            $jsonPayload = json_encode(
+                $payload,
+                JSON_UNESCAPED_UNICODE
+                | JSON_UNESCAPED_SLASHES
+                | JSON_THROW_ON_ERROR
+            );
+        } catch (\JsonException $e) {
+            throw new RuntimeException(
+                'Impossible de préparer le contenu de l’e-mail : '
+                . $e->getMessage(),
+                0,
+                $e
+            );
+        }
+
+        // Connexion à l'API officielle de Brevo.
+        $curl = curl_init(
+            'https://api.brevo.com/v3/smtp/email'
+        );
+
+        if ($curl === false) {
+            throw new RuntimeException(
+                'Impossible d’initialiser la connexion à Brevo.'
+            );
+        }
+
+        curl_setopt_array($curl, [
+            CURLOPT_POST => true,
+            CURLOPT_RETURNTRANSFER => true,
+
+            CURLOPT_HTTPHEADER => [
+                'accept: application/json',
+                'api-key: ' . $this->apiKey,
+                'content-type: application/json',
+            ],
+
+            CURLOPT_POSTFIELDS => $jsonPayload,
+
+            CURLOPT_CONNECTTIMEOUT => 10,
+            CURLOPT_TIMEOUT => 30,
+        ]);
+
+        $response = curl_exec($curl);
+
+        $curlError = curl_error($curl);
+        $httpCode = (int) curl_getinfo(
+            $curl,
+            CURLINFO_HTTP_CODE
+        );
+
+        curl_close($curl);
+
+        // Erreur de connexion.
+        if ($response === false) {
+            throw new RuntimeException(
+                'Connexion à l’API Brevo impossible : '
+                . $curlError
+            );
+        }
+
+        // Décodage de la réponse.
+        $responseData = json_decode(
+            $response,
+            true
+        );
+
+        // Vérification du résultat.
+        if ($httpCode < 200 || $httpCode >= 300) {
+
+            $errorMessage = 'Réponse inattendue de Brevo.';
+
+            if (is_array($responseData)) {
+                $errorMessage = (string) (
+                    $responseData['message']
+                    ?? $responseData['code']
+                    ?? $errorMessage
+                );
+            }
+
+            throw new RuntimeException(
+                'Erreur API Brevo (HTTP '
+                . $httpCode
+                . ') : '
+                . $errorMessage
+            );
+        }
+
+        // Envoi accepté par Brevo.
     }
 }
