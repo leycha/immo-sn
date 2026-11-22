@@ -458,7 +458,7 @@ $e = static function ($valeur): string {
                         class="inline-flex w-fit items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-5 py-3 text-sm font-bold text-[#071B36] shadow-sm transition hover:bg-[#DCA500]"
                     >
                         <span>✎</span>
-                        Modifier mes informations
+                        Modifier les informations de l'agence
                     </button>
 
 
