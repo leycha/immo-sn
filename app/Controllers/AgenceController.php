@@ -744,21 +744,37 @@ class AgenceController extends Controller
             exit('Bien introuvable ou accès non autorisé.');
         }
 
-        $donnees = [
-            'category_id' => (int) ($_POST['category_id'] ?? 0),
-            'ville_id' => (int) ($_POST['ville_id'] ?? 0),
-            'titre' => trim($_POST['titre'] ?? ''),
-            'description' => trim($_POST['description'] ?? ''),
-            'type_offre' => trim($_POST['type_offre'] ?? ''),
-            'prix' => $_POST['prix'] ?? '',
-            'surface' => $_POST['surface'] ?? '',
-            'pieces' => $_POST['pieces'] ?? null,
-            'chambres' => $_POST['chambres'] ?? null,
-            'salles_de_bain' => $_POST['salles_de_bain'] ?? null,
-            'latitude' => $_POST['latitude'] ?? null,
-            'longitude' => $_POST['longitude'] ?? null,
-            'video_url' => trim($_POST['video_url'] ?? ''),
-        ];
+       $donnees = [
+    'category_id' => (int) ($_POST['category_id'] ?? 0),
+    'ville_id' => (int) ($_POST['ville_id'] ?? 0),
+    'titre' => trim($_POST['titre'] ?? ''),
+    'description' => trim($_POST['description'] ?? ''),
+    'type_offre' => trim($_POST['type_offre'] ?? ''),
+    'prix' => (float) ($_POST['prix'] ?? 0),
+    'surface' => (float) ($_POST['surface'] ?? 0),
+
+    'pieces' => ($_POST['pieces'] ?? '') !== ''
+        ? (int) $_POST['pieces']
+        : null,
+
+    'chambres' => ($_POST['chambres'] ?? '') !== ''
+        ? (int) $_POST['chambres']
+        : null,
+
+    'salles_de_bain' => ($_POST['salles_de_bain'] ?? '') !== ''
+        ? (int) $_POST['salles_de_bain']
+        : null,
+
+    'latitude' => ($_POST['latitude'] ?? '') !== ''
+        ? (float) $_POST['latitude']
+        : null,
+
+    'longitude' => ($_POST['longitude'] ?? '') !== ''
+        ? (float) $_POST['longitude']
+        : null,
+
+    'video_url' => trim($_POST['video_url'] ?? ''),
+];
 
         if (
             $donnees['category_id'] <= 0 ||
