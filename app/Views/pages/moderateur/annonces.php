@@ -465,13 +465,25 @@ $typeMessage = (string) ($_GET['type'] ?? 'succes');
 
                         <article class="group flex h-full flex-col overflow-hidden rounded-[22px] border border-[#E8E1D5] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#D7A200]/40 hover:shadow-xl">
 
-                            <!-- PHOTO -->
+                               <!-- PHOTO -->
                             <div class="relative h-48 shrink-0 overflow-hidden bg-[#F0EDE6]">
 
-                                <?php if (!empty($bien['photo'])): ?>
+                                <?php
+                                $photo = trim((string) ($bien['photo'] ?? ''));
+
+                                $photoUrl = $photo !== ''
+                                    ? (
+                                        preg_match('#^https?://#i', $photo)
+                                            ? $photo
+                                            : '/' . ltrim($photo, '/')
+                                    )
+                                    : '';
+                                ?>
+
+                                <?php if ($photoUrl !== ''): ?>
 
                                     <img
-                                        src="<?= $e('/' . ltrim((string) $bien['photo'], '/')) ?>"
+                                        src="<?= $e($photoUrl) ?>"
                                         alt="<?= $e($bien['titre'] ?? 'Photo du bien') ?>"
                                         class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                                         loading="lazy"
@@ -480,30 +492,22 @@ $typeMessage = (string) ($_GET['type'] ?? 'succes');
                                 <?php else: ?>
 
                                     <div class="flex h-full items-center justify-center text-[#A98232]">
-
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
                                             <path d="m3 10 9-7 9 7"></path>
                                             <path d="M5 9v11h14V9"></path>
                                             <path d="M9 20v-6h6v6"></path>
                                         </svg>
-
                                     </div>
 
                                 <?php endif; ?>
 
-
                                 <!-- Statut -->
                                 <span class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-bold text-amber-800 shadow-sm">
-
                                     <span class="h-2 w-2 rounded-full bg-amber-500"></span>
-
                                     En attente
-
                                 </span>
 
                             </div>
-
-
                             <!-- INFORMATIONS -->
                             <div class="flex min-w-0 flex-1 flex-col p-5">
 

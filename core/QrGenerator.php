@@ -28,7 +28,17 @@ class QrGenerator
         // URL contenue dans le QR Code
         // =====================================================
 
-     $url = 'http://192.168.0.104/immo-sn/scan/' . rawurlencode($jeton);
+   $appConfig = require BASE_PATH . '/config/app.php';
+
+$baseUrl = rtrim((string) ($appConfig['url'] ?? ''), '/');
+
+if ($baseUrl === '') {
+    throw new \RuntimeException(
+        'URL de l application non configurée.'
+    );
+}
+
+$url = $baseUrl . '/scan/' . rawurlencode($jeton);
 
         // =====================================================
         // Dossier physique des QR Codes
