@@ -451,12 +451,199 @@ $e = static function ($valeur): string {
 
                             Enregistrer mon profil
                         </button>
+                        
+                    <button
+                        type="button"
+                        onclick="ouvrirPopupAgence()"
+                        class="inline-flex w-fit items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-5 py-3 text-sm font-bold text-[#071B36] shadow-sm transition hover:bg-[#DCA500]"
+                    >
+                        <span>✎</span>
+                        Modifier mes informations
+                    </button>
+
 
                     </div>
 
                 </form>
 
             </section>
+            <!-- POPUP MODIFICATION AGENCE -->
+<div
+    id="popupAgence"
+    class="fixed inset-0 z-[100] hidden items-center justify-center bg-[#071B36]/75 px-4 py-6 backdrop-blur-sm"
+    onclick="fermerPopupAgence(event)"
+>
+
+    <div class="flex max-h-[90vh] w-full min-w-0 max-w-2xl flex-col overflow-hidden rounded-3xl bg-white shadow-2xl">
+
+        <!-- HEADER POPUP -->
+        <div class="relative overflow-hidden border-b border-slate-200 bg-[#071B36] px-6 py-5 text-white">
+
+            <div class="pointer-events-none absolute -right-10 -top-16 h-40 w-40 rounded-full bg-[#F5B800]/15 blur-2xl"></div>
+
+            <div class="relative flex items-center justify-between gap-4">
+
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-widest text-[#F5B800]">
+                        Profil professionnel
+                    </p>
+
+                    <h2 class="mt-1 text-xl font-extrabold">
+                        Modifier mon agence
+                    </h2>
+
+                    <p class="mt-1 text-sm text-slate-300">
+                        Mettez à jour les informations de votre agence.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    onclick="fermerPopupAgence()"
+                    class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-2xl text-white transition hover:bg-white/10"
+                    aria-label="Fermer"
+                >
+                    &times;
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- FORMULAIRE -->
+        <form
+            action="/immo-sn/agence/mon-agence/modifier"
+            method="POST"
+            class="space-y-5 overflow-y-auto p-6"
+        >
+
+            <input
+                type="hidden"
+                name="_csrf_token"
+                value="<?= $e(Session::csrfToken()) ?>"
+            >
+
+            <div>
+
+                <label class="mb-2 block text-sm font-bold text-[#071B36]">
+                    Nom de l'agence
+                </label>
+
+                <input
+                    type="text"
+                    name="nom_agence"
+                    value="<?= $e($agence['nom_agence'] ?? '') ?>"
+                    required
+                    class="w-full rounded-xl border border-slate-200 bg-[#F4F6F9] px-4 py-3 text-sm text-[#071B36] outline-none transition focus:border-[#F5B800] focus:bg-white focus:ring-2 focus:ring-[#F5B800]/15"
+                >
+
+            </div>
+
+            <div>
+
+                <label class="mb-2 block text-sm font-bold text-[#071B36]">
+                    Adresse
+                </label>
+
+                <input
+                    type="text"
+                    name="adresse"
+                    value="<?= $e($agence['adresse'] ?? '') ?>"
+                    required
+                    class="w-full rounded-xl border border-slate-200 bg-[#F4F6F9] px-4 py-3 text-sm text-[#071B36] outline-none transition focus:border-[#F5B800] focus:bg-white focus:ring-2 focus:ring-[#F5B800]/15"
+                >
+
+            </div>
+
+            <div class="grid gap-5 sm:grid-cols-2">
+
+                <div>
+
+                    <label class="mb-2 block text-sm font-bold text-[#071B36]">
+                        Téléphone
+                    </label>
+
+                    <input
+                        type="text"
+                        name="telephone"
+                        value="<?= $e($agence['telephone'] ?? '') ?>"
+                        class="w-full rounded-xl border border-slate-200 bg-[#F4F6F9] px-4 py-3 text-sm text-[#071B36] outline-none transition focus:border-[#F5B800] focus:bg-white focus:ring-2 focus:ring-[#F5B800]/15"
+                    >
+
+                </div>
+
+                <div>
+
+                    <label class="mb-2 block text-sm font-bold text-[#071B36]">
+                        Adresse e-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        value="<?= $e($agence['email'] ?? '') ?>"
+                        class="w-full rounded-xl border border-slate-200 bg-[#F4F6F9] px-4 py-3 text-sm text-[#071B36] outline-none transition focus:border-[#F5B800] focus:bg-white focus:ring-2 focus:ring-[#F5B800]/15"
+                    >
+
+                </div>
+
+            </div>
+
+            <div>
+
+                <label class="mb-2 block text-sm font-bold text-[#071B36]">
+                    NINEA
+                </label>
+
+                <input
+                    type="text"
+                    name="ninea"
+                    value="<?= $e($agence['ninea'] ?? '') ?>"
+                    required
+                    class="w-full rounded-xl border border-slate-200 bg-[#F4F6F9] px-4 py-3 text-sm text-[#071B36] outline-none transition focus:border-[#F5B800] focus:bg-white focus:ring-2 focus:ring-[#F5B800]/15"
+                >
+
+            </div>
+
+            <div>
+
+                <label class="mb-2 block text-sm font-bold text-[#071B36]">
+                    Description
+                </label>
+
+                <textarea
+                    name="description"
+                    rows="4"
+                    class="w-full resize-y rounded-xl border border-slate-200 bg-[#F4F6F9] px-4 py-3 text-sm text-[#071B36] outline-none transition focus:border-[#F5B800] focus:bg-white focus:ring-2 focus:ring-[#F5B800]/15"
+                ><?= $e($agence['description'] ?? '') ?></textarea>
+
+            </div>
+
+            <!-- BOUTONS -->
+            <div class="flex flex-col-reverse gap-3 border-t border-slate-200 pt-5 sm:flex-row sm:justify-end">
+
+                <button
+                    type="button"
+                    onclick="fermerPopupAgence()"
+                    class="rounded-xl border border-slate-200 px-5 py-3 text-sm font-bold text-slate-500 transition hover:bg-[#F4F6F9]"
+                >
+                    Annuler
+                </button>
+
+                <button
+                    type="submit"
+                    class="rounded-xl bg-[#F5B800] px-6 py-3 text-sm font-bold text-[#071B36] shadow-sm transition hover:bg-[#DCA500]"
+                >
+                    Enregistrer les modifications
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
         </div>
 
@@ -506,3 +693,34 @@ $e = static function ($valeur): string {
     </main>
 
 </div>
+
+<!-- GESTION DU POPUP -->
+<script>
+    function ouvrirPopupAgence() {
+        const popup = document.getElementById('popupAgence');
+
+        if (!popup) return;
+
+        popup.classList.remove('hidden');
+        popup.classList.add('flex');
+        document.body.classList.add('overflow-hidden');
+    }
+
+    function fermerPopupAgence(event) {
+        const popup = document.getElementById('popupAgence');
+
+        if (!popup) return;
+
+        if (!event || event.target === popup) {
+            popup.classList.add('hidden');
+            popup.classList.remove('flex');
+            document.body.classList.remove('overflow-hidden');
+        }
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            fermerPopupAgence();
+        }
+    });
+</script>
