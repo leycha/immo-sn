@@ -3,6 +3,7 @@
 namespace Core;
 
 use RuntimeException;
+use JsonException;
 
 class MailService
 {
@@ -18,9 +19,9 @@ class MailService
         // Chargement de la configuration Brevo.
         $config = require BASE_PATH . '/config/mail.php';
 
-        $this->apiKey = $config['api_key'];
-        $this->from = $config['from'];
-        $this->fromName = $config['from_name'];
+        $this->apiKey = (string) ($config['api_key'] ?? '');
+        $this->from = (string) ($config['from'] ?? '');
+        $this->fromName = (string) ($config['from_name'] ?? 'IMMO-SN');
 
         // Vérification de la configuration.
         if ($this->apiKey === '') {
@@ -64,6 +65,12 @@ class MailService
             );
         }
 
+        if (trim($subject) === '') {
+            throw new RuntimeException(
+                'Le sujet de l’e-mail ne peut pas être vide.'
+            );
+        }
+
         // Préparation du contenu texte.
         $plainText = $textBody;
 
@@ -89,13 +96,11 @@ class MailService
                 'name' => $this->fromName,
                 'email' => $this->from,
             ],
-
             'to' => [
                 [
                     'email' => $to,
                 ],
             ],
-
             'subject' => $subject,
             'htmlContent' => $htmlBody,
             'textContent' => $plainText,
@@ -108,7 +113,7 @@ class MailService
                 | JSON_UNESCAPED_SLASHES
                 | JSON_THROW_ON_ERROR
             );
-        } catch (\JsonException $e) {
+        } catch (JsonException $e) {
             throw new RuntimeException(
                 'Impossible de préparer le contenu de l’e-mail : '
                 . $e->getMessage(),
@@ -142,11 +147,17 @@ class MailService
 
             CURLOPT_CONNECTTIMEOUT => 10,
             CURLOPT_TIMEOUT => 30,
+
+            // Vérification de sécurité HTTPS.
+            CURLOPT_SSL_VERIFYPEER => true,
+            CURLOPT_SSL_VERIFYHOST => 2,
         ]);
 
         $response = curl_exec($curl);
 
         $curlError = curl_error($curl);
+        $curlErrorNumber = curl_errno($curl);
+
         $httpCode = (int) curl_getinfo(
             $curl,
             CURLINFO_HTTP_CODE
@@ -157,7 +168,9 @@ class MailService
         // Erreur de connexion.
         if ($response === false) {
             throw new RuntimeException(
-                'Connexion à l’API Brevo impossible : '
+                'Connexion à Brevo impossible (cURL '
+                . $curlErrorNumber
+                . ') : '
                 . $curlError
             );
         }
@@ -168,8 +181,8 @@ class MailService
             true
         );
 
-        // Vérification du résultat.
-        if ($httpCode < 200 || $httpCode >= 300) {
+        // Vérification de la réponse Brevo.
+        if ($httpCode !== 201) {
 
             $errorMessage = 'Réponse inattendue de Brevo.';
 
@@ -189,6 +202,9 @@ class MailService
             );
         }
 
-        // Envoi accepté par Brevo.
+        // Brevo a accepté le message.
+        error_log(
+            '[IMMO-SN MAIL] Message accepté par Brevo. HTTP 201.'
+        );
     }
 }
