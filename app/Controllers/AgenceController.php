@@ -1096,247 +1096,288 @@ class AgenceController extends Controller
     /**
      * Publier un bien depuis l'espace agence.
      */
-    public function publierBien(): void
-    {
-        Session::requireAuth('/immo-sn/login');
+    
+public function publierBien(): void
+{
+    Session::requireAuth('/immo-sn/login');
 
-        $utilisateur = Session::user();
-        $userId = Session::userId();
+    $utilisateur = Session::user();
+    $userId = Session::userId();
+
+    if (
+        !$utilisateur ||
+        ($utilisateur['role'] ?? '') !== 'agence'
+    ) {
+        http_response_code(403);
+        exit('Accès interdit : cette page est réservée aux agences.');
+    }
+
+    if (!$userId) {
+        header('Location: /immo-sn/login');
+        exit;
+    }
+
+    $agence = Agence::trouverParResponsable($userId);
+
+    if (!$agence) {
+        http_response_code(404);
+        exit('Aucune agence n’est associée à ce compte.');
+    }
+
+    $categories = Bien::categories();
+    $villes = Bien::villes();
+
+    // Affichage du formulaire.
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        $this->view('pages/agences/publier', [
+            'title' => 'Publier un bien — Espace agence',
+            'agence' => $agence,
+            'categories' => $categories,
+            'villes' => $villes,
+            'success' => Session::getFlash('publication_success'),
+            'error' => Session::getFlash('publication_error'),
+        ]);
+
+        return;
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        http_response_code(405);
+        exit('Méthode non autorisée.');
+    }
+
+    // Vérification CSRF avec retour au formulaire.
+    if (!Session::verifyCsrfToken($_POST['_csrf_token'] ?? null)) {
+        Session::flash(
+            'publication_error',
+            'Votre session de sécurité a expiré. Veuillez réessayer.'
+        );
+
+        header('Location: /immo-sn/agence/publier');
+        exit;
+    }
+
+    $photosUploades = [];
+
+    try {
+        $titre = trim($_POST['titre'] ?? '');
+        $description = trim($_POST['description'] ?? '');
+
+        $categoryId = !empty($_POST['category_id'])
+            ? (int) $_POST['category_id']
+            : null;
+
+        $villeId = !empty($_POST['ville_id'])
+            ? (int) $_POST['ville_id']
+            : null;
+
+        $prix = isset($_POST['prix']) && $_POST['prix'] !== ''
+            ? (float) $_POST['prix']
+            : null;
+
+        $surface = isset($_POST['surface']) && $_POST['surface'] !== ''
+            ? (float) $_POST['surface']
+            : null;
+
+        $pieces = !empty($_POST['pieces'])
+            ? (int) $_POST['pieces']
+            : null;
+
+        $chambres = !empty($_POST['chambres'])
+            ? (int) $_POST['chambres']
+            : null;
+
+        $sallesBain = !empty($_POST['salles_bain'])
+            ? (int) $_POST['salles_bain']
+            : null;
+
+        $latitude = isset($_POST['latitude']) && $_POST['latitude'] !== ''
+            ? (float) $_POST['latitude']
+            : null;
+
+        $longitude = isset($_POST['longitude']) && $_POST['longitude'] !== ''
+            ? (float) $_POST['longitude']
+            : null;
+
+        $typeOffre = trim($_POST['type_offre'] ?? '');
+
+        // Validations.
+        if ($titre === '') {
+            throw new \RuntimeException(
+                'Le titre du bien est obligatoire.'
+            );
+        }
+
+        if ($description === '') {
+            throw new \RuntimeException(
+                'La description du bien est obligatoire.'
+            );
+        }
+
+        if (!$categoryId || !$villeId) {
+            throw new \RuntimeException(
+                'Veuillez sélectionner une catégorie et une ville.'
+            );
+        }
+
+        if (!in_array($typeOffre, ['vente', 'location'], true)) {
+            throw new \RuntimeException(
+                'Veuillez sélectionner un type d’offre valide.'
+            );
+        }
+
+        if ($prix === null || $prix <= 0) {
+            throw new \RuntimeException(
+                'Veuillez saisir un prix valide.'
+            );
+        }
+
+        if ($surface === null || $surface <= 0) {
+            throw new \RuntimeException(
+                'Veuillez saisir une surface valide.'
+            );
+        }
 
         if (
-            !$utilisateur ||
-            ($utilisateur['role'] ?? '') !== 'agence'
+            $latitude !== null &&
+            ($latitude < -90 || $latitude > 90)
         ) {
-            http_response_code(403);
-            exit('Accès interdit : cette page est réservée aux agences.');
+            throw new \RuntimeException('La latitude est invalide.');
         }
 
-        if (!$userId) {
-            header('Location: /immo-sn/login');
-            exit;
+        if (
+            $longitude !== null &&
+            ($longitude < -180 || $longitude > 180)
+        ) {
+            throw new \RuntimeException('La longitude est invalide.');
         }
 
-        $agence = Agence::trouverParResponsable($userId);
+        // Données du bien.
+        $data = [
+            'user_id' => $userId,
+            'category_id' => $categoryId,
+            'ville_id' => $villeId,
+            'Titre' => $titre,
+            'Description' => $description,
+            'type_offre' => $typeOffre,
+            'Prix' => $prix,
+            'Surface' => $surface,
+            'Pièces' => $pieces,
+            'Chambres' => $chambres,
+            'salles_de_bain' => $sallesBain,
+            'Latitude' => $latitude,
+            'Longitude' => $longitude,
+            'Statut' => 'en_attente',
+            'nb_vues' => 0,
+            'expire_at' => date(
+                'Y-m-d H:i:s',
+                strtotime('+30 days')
+            ),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ];
 
-        if (!$agence) {
-            http_response_code(404);
-            exit('Aucune agence n’est associée à ce compte.');
-        }
+        // Enregistrement du bien.
+        $bienId = Bien::publier($data);
 
-        $categories = Bien::categories();
-        $villes = Bien::villes();
-
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $this->view('pages/agences/publier', [
-                'title' => 'Publier un bien — Espace agence',
-                'agence' => $agence,
-                'categories' => $categories,
-                'villes' => $villes,
-                'success' => Session::getFlash('publication_success'),
-                'error' => Session::getFlash('publication_error'),
-            ]);
-
-            return;
-        }
-
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            http_response_code(405);
-            exit('Méthode non autorisée.');
-        }
-
-        if (!Session::verifyCsrfToken($_POST['_csrf_token'] ?? null)) {
-            http_response_code(403);
-            exit('Jeton de sécurité invalide. Veuillez recharger la page.');
-        }
-
-        $photosUploades = [];
-
-        try {
-            $titre = trim($_POST['titre'] ?? '');
-            $description = trim($_POST['description'] ?? '');
-
-            $categoryId = !empty($_POST['category_id'])
-                ? (int) $_POST['category_id']
-                : null;
-
-            $villeId = !empty($_POST['ville_id'])
-                ? (int) $_POST['ville_id']
-                : null;
-
-            $prix = isset($_POST['prix']) && $_POST['prix'] !== ''
-                ? (float) $_POST['prix']
-                : null;
-
-            $surface = isset($_POST['surface']) && $_POST['surface'] !== ''
-                ? (float) $_POST['surface']
-                : null;
-
-            $pieces = !empty($_POST['pieces'])
-                ? (int) $_POST['pieces']
-                : null;
-
-            $chambres = !empty($_POST['chambres'])
-                ? (int) $_POST['chambres']
-                : null;
-
-            $sallesBain = !empty($_POST['salles_bain'])
-                ? (int) $_POST['salles_bain']
-                : null;
-
-            $latitude = isset($_POST['latitude']) && $_POST['latitude'] !== ''
-                ? (float) $_POST['latitude']
-                : null;
-
-            $longitude = isset($_POST['longitude']) && $_POST['longitude'] !== ''
-                ? (float) $_POST['longitude']
-                : null;
-
-            $typeOffre = trim($_POST['type_offre'] ?? '');
-
-            // Validations.
-            if ($titre === '') {
-                throw new \RuntimeException('Le titre du bien est obligatoire.');
-            }
-
-            if ($description === '') {
-                throw new \RuntimeException('La description du bien est obligatoire.');
-            }
-
-            if (!$categoryId || !$villeId) {
-                throw new \RuntimeException('Veuillez sélectionner une catégorie et une ville.');
-            }
-
-            if (!in_array($typeOffre, ['vente', 'location'], true)) {
-                throw new \RuntimeException('Veuillez sélectionner un type d’offre valide.');
-            }
-
-            if ($prix === null || $prix <= 0) {
-                throw new \RuntimeException('Veuillez saisir un prix valide.');
-            }
-
-            if ($surface === null || $surface <= 0) {
-                throw new \RuntimeException('Veuillez saisir une surface valide.');
-            }
-
-            if (
-                $latitude !== null &&
-                ($latitude < -90 || $latitude > 90)
-            ) {
-                throw new \RuntimeException('La latitude est invalide.');
-            }
-
-            if (
-                $longitude !== null &&
-                ($longitude < -180 || $longitude > 180)
-            ) {
-                throw new \RuntimeException('La longitude est invalide.');
-            }
-
-            $data = [
-                'user_id' => $userId,
-                'category_id' => $categoryId,
-                'ville_id' => $villeId,
-                'Titre' => $titre,
-                'Description' => $description,
-                'type_offre' => $typeOffre,
-                'Prix' => $prix,
-                'Surface' => $surface,
-                'Pièces' => $pieces,
-                'Chambres' => $chambres,
-                'salles_de_bain' => $sallesBain,
-                'Latitude' => $latitude,
-                'Longitude' => $longitude,
-                'Statut' => 'en_attente',
-                'nb_vues' => 0,
-                'expire_at' => date('Y-m-d H:i:s', strtotime('+30 days')),
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
-            ];
-
-            $bienId = Bien::publier($data);
-
-            if (
-                isset($_FILES['photos']) &&
-                is_array($_FILES['photos'])
-            ) {
-                $photosUploades = Uploader::uploadPhotos(
-                    $_FILES['photos'],
-                    $bienId
-                );
-            }
-
-            if (!empty($photosUploades)) {
-                $db = Database::getConnection();
-
-                $stmt = $db->prepare('
-                    INSERT INTO photos (
-                        id,
-                        bien_id,
-                        file_path,
-                        is_principal,
-                        created_at
-                    )
-                    VALUES (
-                        gen_random_uuid(),
-                        :bien_id,
-                        :file_path,
-                        :is_principal,
-                        NOW()
-                    )
-                ');
-
-                foreach ($photosUploades as $photo) {
-                    $stmt->bindValue(':bien_id', $bienId, PDO::PARAM_STR);
-                    $stmt->bindValue(':file_path', $photo['file_path'], PDO::PARAM_STR);
-                    $stmt->bindValue(
-                        ':is_principal',
-                        !empty($photo['is_principal']) ? 'true' : 'false',
-                        PDO::PARAM_STR
-                    );
-
-                    $stmt->execute();
-                }
-            }
-
-            QrGenerator::generate($bienId);
-
-            $message = 'Votre annonce a été envoyée pour modération.';
-
-            if (!empty($photosUploades)) {
-                $message .= ' ' . count($photosUploades) . ' photo(s) enregistrée(s).';
-            }
-
-            Session::flash(
-                'publication_success',
-                $message . ' Elle sera visible publiquement après validation.'
+        // Upload des photos.
+        if (
+            isset($_FILES['photos']) &&
+            is_array($_FILES['photos'])
+        ) {
+            $photosUploades = Uploader::uploadPhotos(
+                $_FILES['photos'],
+                $bienId
             );
+        }
 
-            header('Location: /immo-sn/agence/publier');
-            exit;
-        } catch (\Throwable $e) {
+        // Enregistrement des photos en base.
+        if (!empty($photosUploades)) {
+            $db = Database::getConnection();
+
+            $stmt = $db->prepare('
+                INSERT INTO photos (
+                    id,
+                    bien_id,
+                    file_path,
+                    is_principal,
+                    created_at
+                )
+                VALUES (
+                    gen_random_uuid(),
+                    :bien_id,
+                    :file_path,
+                    :is_principal,
+                    NOW()
+                )
+            ');
+
             foreach ($photosUploades as $photo) {
-                $nomFichier = basename($photo['file_path'] ?? '');
+                $stmt->bindValue(
+                    ':bien_id',
+                    $bienId,
+                    \PDO::PARAM_STR
+                );
 
-                if ($nomFichier !== '') {
-                    $chemin = BASE_PATH . '/stockage/photos/' . $nomFichier;
+                $stmt->bindValue(
+                    ':file_path',
+                    $photo['file_path'],
+                    \PDO::PARAM_STR
+                );
 
-                    if (is_file($chemin)) {
-                        @unlink($chemin);
-                    }
-                }
+                $stmt->bindValue(
+                    ':is_principal',
+                    !empty($photo['is_principal']) ? 'true' : 'false',
+                    \PDO::PARAM_STR
+                );
+
+                $stmt->execute();
             }
-
-            error_log('Publication agence : ' . $e->getMessage());
-
-            Session::flash(
-                'publication_error',
-                'Erreur pendant la publication : ' . $e->getMessage()
-            );
-
-            header('Location: /immo-sn/agence/publier');
-            exit;
         }
+
+        // Génération du QR Code indépendante de la publication.
+        try {
+            QrGenerator::generate($bienId);
+        } catch (\Throwable $qrError) {
+            error_log(
+                '[IMMO-SN] Erreur QR Code agence, bien '
+                . $bienId . ' : ' . $qrError->getMessage()
+            );
+        }
+
+        // Confirmation.
+        $message = 'Votre annonce a été envoyée pour modération.';
+
+        if (!empty($photosUploades)) {
+            $message .= ' '
+                . count($photosUploades)
+                . ' photo(s) enregistrée(s).';
+        }
+
+        Session::flash(
+            'publication_success',
+            $message . ' Elle sera visible publiquement après validation.'
+        );
+
+        header('Location: /immo-sn/agence/publier');
+        exit;
+
+    } catch (\Throwable $e) {
+        error_log(
+            '[IMMO-SN] Erreur publication agence : '
+            . $e->getMessage()
+        );
+
+        Session::flash(
+            'publication_error',
+            'Erreur pendant la publication : ' . $e->getMessage()
+        );
+
+        header('Location: /immo-sn/agence/publier');
+        exit;
     }
+}
+
 
     /**
      * Télécharger le QR code d'un bien appartenant à l'agence connectée.
