@@ -1202,199 +1202,79 @@ $categoriesDesign = [
      DESIGN PREMIUM IMMO-SN — BLEU NUIT & OR
      ========================================================= -->
 <style>
-/* IMMO-SN — Fonds bleu nuit, cartes blanches, accents or */
-.home-categories,
-.home-properties,
-.home-agencies {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    color: #FFFFFF;
-}
+/* ============================================================
+   IMMO-SN — Direction artistique premium inspirée de la référence
+   Bleu nuit / or / blanc / bleu pâle. Sections aérées, cartes nettes.
+   ============================================================ */
+:root { --immo-navy:#071B36; --immo-blue:#12345B; --immo-gold:#D7AE42; --immo-gold2:#F3D77D; --immo-text:#12243B; --immo-muted:#64748B; --immo-pale:#F1F6FD; }
 
-.home-categories,
-.home-agencies {
-    background:
-        radial-gradient(ellipse at 8% 0%, rgba(212,175,55,.12), transparent 38%),
-        radial-gradient(ellipse at 92% 100%, rgba(48,83,125,.28), transparent 42%),
-        #0B1426 !important;
-}
-.home-properties {
-    background:
-        radial-gradient(ellipse at 100% 5%, rgba(212,175,55,.08), transparent 38%),
-        #0B1426 !important;
-}
-.home-categories::before,
-.home-properties::before,
-.home-agencies::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: .16;
-    background-image: radial-gradient(rgba(255,255,255,.22) .65px, transparent .65px);
-    background-size: 22px 22px;
-    mask-image: linear-gradient(to bottom, black, transparent 75%);
-}
-.home-categories > div,
-.home-properties > div,
-.home-agencies > div {
-    position: relative;
-    z-index: 1;
-}
+/* Hero: preserve the existing photo and content, strengthen readability */
+section:first-of-type { color:#fff; }
+section:first-of-type h1 { text-shadow:0 3px 22px rgba(0,0,0,.22); }
+section:first-of-type a { transition:transform .2s ease, box-shadow .2s ease, background .2s ease; }
+section:first-of-type a:hover { transform:translateY(-2px); }
 
-/* Headings and section copy */
-.home-categories h2,
-.home-properties h2,
-.home-agencies h2 {
-    color: #FFFFFF !important;
-}
-.home-categories p,
-.home-properties p,
-.home-agencies p {
-    color: #B8C5D6;
-}
-.home-categories .text-\[\#8A6500\],
-.home-properties .text-\[\#8A6500\],
-.home-agencies .text-\[\#8A6500\] {
-    color: #E5B83D !important;
-}
-.home-categories a.inline-flex,
-.home-properties a.inline-flex,
-.home-agencies a.inline-flex {
-    color: #E5B83D !important;
-}
+/* Stats strip */
+section:nth-of-type(2) { position:relative; z-index:4; }
+section:nth-of-type(2) > div { box-shadow:0 18px 45px rgba(7,27,54,.12); }
 
-/* CATEGORY cards: white */
-.home-categories .grid > a {
-    min-height: 210px;
-    border: 1px solid rgba(212,175,55,.35) !important;
-    background: #FFFFFF !important;
-    color: #0B1426 !important;
-    box-shadow: 0 14px 36px rgba(0,0,0,.18);
-    transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
-}
-.home-categories .grid > a:hover {
-    transform: translateY(-6px);
-    border-color: #D4AF37 !important;
-    box-shadow: 0 20px 44px rgba(0,0,0,.28), 0 0 22px rgba(212,175,55,.12);
-}
-.home-categories .grid > a h3 {
-    color: #0B1426 !important;
-}
-.home-categories .grid > a p {
-    color: #64748B !important;
-}
-.home-categories .grid > a .rounded-2xl {
-    background: linear-gradient(135deg, #FFF4CC, #F0D77A) !important;
-    color: #0B1426 !important;
-    box-shadow: 0 8px 22px rgba(212,175,55,.15);
-}
-.home-categories .grid > a .text-xs.font-bold {
-    color: #9A7615 !important;
-}
-.home-categories .grid > a .rounded-full {
-    background: #F5F6F8 !important;
-    border: 1px solid #E5E7EB !important;
-    color: #0B1426 !important;
-}
+/* Services/categories: white, subtle pattern, clean spacing */
+.home-categories { background:#fff !important; color:var(--immo-text) !important; position:relative; overflow:hidden; }
+.home-categories::before { content:""; position:absolute; inset:0; pointer-events:none; opacity:.24; background-image:radial-gradient(#9BB6D2 1px,transparent 1px); background-size:19px 19px; mask-image:linear-gradient(90deg,black,transparent 24%,transparent 80%,black); }
+.home-categories > div { position:relative; z-index:1; }
+.home-categories h2 { color:var(--immo-navy) !important; letter-spacing:-.035em; }
+.home-categories p { color:var(--immo-muted) !important; }
+.home-categories .grid > a { background:#fff !important; color:var(--immo-navy) !important; border:1px solid #E4EAF2 !important; border-radius:20px !important; box-shadow:0 5px 20px rgba(15,38,70,.07) !important; min-height:180px; transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease; }
+.home-categories .grid > a:hover { transform:translateY(-5px); border-color:rgba(215,174,66,.65) !important; box-shadow:0 14px 30px rgba(15,38,70,.12) !important; }
+.home-categories .grid > a h3 { color:var(--immo-navy) !important; }
+.home-categories .grid > a p { color:#66758A !important; }
+.home-categories .grid > a .rounded-2xl { background:#EEF4FB !important; color:var(--immo-navy) !important; box-shadow:none !important; }
+.home-categories .grid > a .rounded-full { background:#F8FAFC !important; border:1px solid #E5EAF0 !important; color:#173B66 !important; }
 
-/* PROPERTY cards: white info panel, photos unchanged */
-.home-properties article {
-    border: 1px solid rgba(212,175,55,.32) !important;
-    background: #FFFFFF !important;
-    color: #0B1426 !important;
-    box-shadow: 0 15px 35px rgba(0,0,0,.20);
-    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
-}
-.home-properties article:hover {
-    transform: translateY(-5px);
-    border-color: #D4AF37 !important;
-    box-shadow: 0 24px 45px rgba(0,0,0,.30), 0 0 22px rgba(212,175,55,.10);
-}
-.home-properties article > div:first-child {
-    position: relative;
-}
-.home-properties article > div:first-child::after {
-    content: "";
-    position: absolute;
-    inset: 40% 0 0;
-    pointer-events: none;
-    background: linear-gradient(to top, rgba(8,23,42,.58), transparent);
-}
-.home-properties article > div:nth-child(2) {
-    background: #FFFFFF !important;
-}
-.home-properties article h3 {
-    color: #0B1426 !important;
-}
-.home-properties article .border-b {
-    border-color: #E5E7EB !important;
-}
-.home-properties article .text-xl.font-extrabold {
-    color: #9A7615 !important;
-}
-.home-properties article .text-xs,
-.home-properties article .text-sm {
-    color: #64748B !important;
-}
-.home-properties article .text-\[\#71869A\] {
-    color: #64748B !important;
-}
-.home-properties article .bg-\[\#FFF4CC\] {
-    background: #FFF4CC !important;
-    color: #8A6500 !important;
-}
-.home-properties article .group-hover\:bg-\[\#F5B800\] {
-    background: #D4AF37 !important;
-}
-.home-properties article a[aria-label="Voir le bien"] {
-    background: linear-gradient(135deg, #D4AF37, #F0D77A) !important;
-    color: #0B1426 !important;
-    box-shadow: 0 8px 20px rgba(212,175,55,.16);
-}
+/* Featured property listings: pale blue canvas + white cards */
+.home-properties { background:var(--immo-pale) !important; color:var(--immo-text) !important; position:relative; }
+.home-properties::before { content:""; position:absolute; inset:0; pointer-events:none; opacity:.18; background:radial-gradient(ellipse at 90% 5%,#B5CBE6,transparent 35%); }
+.home-properties > div { position:relative; z-index:1; }
+.home-properties h2 { color:var(--immo-navy) !important; letter-spacing:-.035em; }
+.home-properties p { color:#66758A !important; }
+.home-properties article { background:#fff !important; color:var(--immo-text) !important; border:1px solid #E3EAF3 !important; border-radius:19px !important; overflow:hidden; box-shadow:0 6px 22px rgba(15,38,70,.08) !important; transition:transform .25s ease,box-shadow .25s ease; }
+.home-properties article:hover { transform:translateY(-4px); box-shadow:0 16px 34px rgba(15,38,70,.13) !important; }
+.home-properties article > div:nth-child(2) { background:#fff !important; }
+.home-properties article h3 { color:var(--immo-navy) !important; }
+.home-properties article .border-b { border-color:#E8EDF3 !important; }
+.home-properties article .text-xl.font-extrabold { color:#A77B18 !important; }
+.home-properties article .text-xs,.home-properties article .text-sm,.home-properties article .text-\[\#71869A\] { color:#68778B !important; }
+.home-properties article .bg-\[\#FFF4CC\] { background:#FFF6D9 !important; color:#856211 !important; }
+.home-properties article a[aria-label="Voir le bien"] { background:linear-gradient(135deg,#E0B84F,#F1D477) !important; color:#09203C !important; box-shadow:0 4px 12px rgba(215,174,66,.22); }
+.home-properties a.inline-flex { border-color:#234A79 !important; color:#153B67 !important; }
 
-/* AGENCY cards: white */
-.home-agencies .grid > a {
-    border: 1px solid rgba(212,175,55,.35) !important;
-    background: #FFFFFF !important;
-    color: #0B1426 !important;
-    box-shadow: 0 14px 35px rgba(0,0,0,.18);
-    transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
-}
-.home-agencies .grid > a:hover {
-    transform: translateY(-5px);
-    border-color: #D4AF37 !important;
-    box-shadow: 0 22px 44px rgba(0,0,0,.28), 0 0 22px rgba(212,175,55,.10);
-}
-.home-agencies .grid > a h3 {
-    color: #0B1426 !important;
-}
-.home-agencies .grid > a .bg-\[\#071B36\] {
-    background: linear-gradient(135deg, #0B1426, #16243A) !important;
-    color: #D4AF37 !important;
-}
-.home-agencies .grid > a .border-t {
-    border-color: #E5E7EB !important;
-}
-.home-agencies .grid > a .text-\[\#071B36\] {
-    color: #0B1426 !important;
-}
-.home-agencies .grid > a .text-\[\#B88700\] {
-    color: #9A7615 !important;
-}
-/* Keep section cards' white backgrounds while preserving readability */
-.home-categories .rounded-\[24px\]:not(.grid > a),
-.home-properties .rounded-\[28px\],
-.home-agencies .rounded-\[24px\] {
-    background-color: #FFFFFF;
-    color: #0B1426;
-}
-@media (prefers-reduced-motion: reduce) {
-    .home-categories .grid > a,
-    .home-properties article,
-    .home-agencies .grid > a {
-        transition: none !important;
-    }
-}
+/* Map showcase block already present: make it feel like a premium feature */
+section:nth-of-type(5) .grid > div:first-child { color:#fff; }
+section:nth-of-type(5) .grid > div:first-child h2 { color:#fff !important; }
+
+/* Why IMMO-SN: bright editorial section */
+section:nth-of-type(6) { background:#fff !important; color:var(--immo-text) !important; }
+section:nth-of-type(6) h2 { color:var(--immo-navy) !important; }
+section:nth-of-type(6) p { color:#64748B !important; }
+
+/* Agencies: very pale blue background and white cards */
+.home-agencies { background:#F4F7FC !important; color:var(--immo-text) !important; position:relative; }
+.home-agencies h2 { color:var(--immo-navy) !important; }
+.home-agencies p { color:#64748B !important; }
+.home-agencies .grid > a { background:#fff !important; color:var(--immo-navy) !important; border:1px solid #E4EAF2 !important; border-radius:20px !important; box-shadow:0 6px 22px rgba(15,38,70,.07) !important; transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease; }
+.home-agencies .grid > a:hover { transform:translateY(-4px); border-color:rgba(215,174,66,.65) !important; box-shadow:0 15px 32px rgba(15,38,70,.12) !important; }
+.home-agencies .grid > a h3 { color:var(--immo-navy) !important; }
+.home-agencies .grid > a .bg-\[\#071B36\] { background:linear-gradient(145deg,#0B2443,#173C67) !important; color:#E6C15B !important; }
+.home-agencies .grid > a .border-t { border-color:#E7EDF3 !important; }
+.home-agencies .grid > a .text-\[\#071B36\] { color:var(--immo-navy) !important; }
+.home-agencies .grid > a .text-\[\#B88700\] { color:#A77B18 !important; }
+
+/* CTA section: navy + gold, generous rounded corners */
+section:last-of-type .rounded-\[30px\] { border:1px solid rgba(215,174,66,.25); box-shadow:0 18px 42px rgba(7,27,54,.17); }
+section:last-of-type a { box-shadow:0 8px 22px rgba(215,174,66,.18); }
+
+/* Common refinement: use the same premium rhythm without oversized effects */
+.home-categories,.home-properties,.home-agencies { padding-top:clamp(3.5rem,6vw,5rem) !important; padding-bottom:clamp(3.5rem,6vw,5rem) !important; }
+@media (max-width:640px) { .home-categories .grid > a,.home-agencies .grid > a { border-radius:16px !important; } }
+@media (prefers-reduced-motion:reduce) { .home-categories .grid > a,.home-properties article,.home-agencies .grid > a,section:first-of-type a { transition:none !important; } }
 </style>
