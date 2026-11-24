@@ -1,6 +1,13 @@
+
 <?php
 
 require BASE_PATH . '/app/Views/components/icon.php';
+
+/*
+|--------------------------------------------------------------------------
+| DONNÉES DE LA PAGE D'ACCUEIL
+|--------------------------------------------------------------------------
+*/
 
 $biensAccueil = is_array($biens ?? null) ? $biens : [];
 $agencesAccueil = is_array($agences ?? null) ? $agences : [];
@@ -8,25 +15,27 @@ $resumeAccueil = is_array($resume ?? null) ? $resume : [];
 $categoriesAccueil = is_array($categories ?? null) ? $categories : [];
 
 $imageHero = 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1800&q=85';
+
 $imageFallback = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80';
 
 /*
 |--------------------------------------------------------------------------
-| Statistiques réelles
+| STATISTIQUES RÉELLES
 |--------------------------------------------------------------------------
 */
+
 $totalBiens = (int) ($resumeAccueil['biens'] ?? 0);
 $totalQuartiers = (int) ($resumeAccueil['quartiers'] ?? 0);
 $totalAgences = (int) ($resumeAccueil['agences'] ?? 0);
 
-
 /*
 |--------------------------------------------------------------------------
-| Icônes et descriptions des catégories
+| CONFIGURATION DES CATÉGORIES
 |--------------------------------------------------------------------------
 */
 
 $categoriesDesign = [
+
     'maison' => [
         'icon' => 'house',
         'description' => 'Maisons familiales et résidentielles'
@@ -110,17 +119,12 @@ $categoriesDesign = [
 
 /*
 |--------------------------------------------------------------------------
-| Normalisation du slug pour retrouver la bonne icône
-|--------------------------------------------------------------------------
-*/
-
-/*
-|--------------------------------------------------------------------------
-| Normalisation du slug pour retrouver la bonne icône
+| NORMALISATION DES SLUGS
 |--------------------------------------------------------------------------
 */
 
 $normaliserSlugCategorie = static function ($slug) {
+
     $slug = trim((string) $slug);
 
     if (function_exists('mb_strtolower')) {
@@ -151,60 +155,76 @@ $normaliserSlugCategorie = static function ($slug) {
 
     return trim($slug, '-');
 };
+
 ?>
 
 <!-- =========================================================
-     1. HERO : PHOTO LUMINEUSE + TEXTE + RECHERCHE
+     1. HERO — PRÉSENTATION INSTITUTIONNELLE
 ========================================================= -->
 
-<section class="relative overflow-hidden bg-[#061830] pb-24 pt-12 sm:pb-28 sm:pt-16 lg:pb-32 lg:pt-20">
+<section class="relative isolate overflow-hidden bg-[#061830]">
 
     <!-- Image de fond -->
-    <div class="absolute inset-0">
+    <div class="absolute inset-0 -z-20">
         <img
             src="<?= htmlspecialchars($imageHero, ENT_QUOTES, 'UTF-8') ?>"
-            alt="Présentation de la plateforme immobilière IMMO-SN"
-            class="h-full w-full object-cover object-right"
+            alt="Présentation immobilière IMMO-SN"
+            class="h-full w-full object-cover object-center"
         >
-
-        <div class="absolute inset-0 bg-gradient-to-r from-[#061830] via-[#061830]/80 to-transparent"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-[#061830]/70 via-transparent to-[#061830]/40"></div>
     </div>
 
-    <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+    <!-- Voile bleu marine -->
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-[#061830] via-[#061830]/95 to-[#061830]/65"></div>
 
-        <div class="grid items-center gap-8 lg:grid-cols-12">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-t from-[#061830]/80 via-transparent to-[#061830]/30"></div>
 
-            <!-- TEXTE ET RECHERCHE -->
+    <!-- Contenu -->
+    <div class="mx-auto max-w-7xl px-5 pb-20 pt-16 sm:px-8 sm:pb-24 sm:pt-20 lg:px-10 lg:pb-28 lg:pt-24">
+
+        <div class="grid items-center gap-12 lg:grid-cols-12">
+
+            <!-- Colonne gauche -->
             <div class="lg:col-span-7">
 
-                <div class="mb-4 flex items-center gap-3">
-                    <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#F5D061]">
-                        La référence immobilière au Sénégal
-                    </span>
+                <div class="mb-6 inline-flex items-center gap-3 border-l-2 border-[#F5C542] pl-4">
 
-                    <span class="h-[2px] w-10 bg-[#F5C542]"></span>
+                    <div>
+                        <p class="text-[10px] font-bold uppercase tracking-[0.24em] text-[#F5C542]">
+                            Plateforme immobilière
+                        </p>
+
+                        <p class="mt-1 text-xs font-medium text-white/75">
+                            La référence immobilière au Sénégal
+                        </p>
+                    </div>
+
                 </div>
 
-                <h1 class="font-['Playfair_Display'] text-4xl font-bold leading-[1.08] tracking-tight text-white drop-shadow-sm sm:text-6xl">
-                    Trouvez un lieu <br>
-                    <span class="text-[#F5C542]">à votre image.</span>
+                <h1 class="max-w-2xl text-4xl font-extrabold leading-[1.12] tracking-tight text-white sm:text-5xl lg:text-6xl">
+
+                    Trouvez le bien immobilier
+
+                    <span class="mt-1 block text-[#F5C542]">
+                        qui vous correspond.
+                    </span>
+
                 </h1>
 
-                <p class="mt-4 max-w-lg text-sm leading-6 text-white/90 sm:text-base">
-                    Maisons, appartements, villas, terrains et immeubles.
-                    Découvrez des opportunités immobilières sélectionnées pour vous, partout au Sénégal.
+                <p class="mt-6 max-w-xl text-sm leading-7 text-slate-200 sm:text-base">
+                    Découvrez une sélection de maisons, appartements, villas,
+                    terrains et espaces professionnels partout au Sénégal.
+                    IMMO-SN vous accompagne dans votre recherche immobilière.
                 </p>
 
-                <!-- BARRE DE RECHERCHE -->
-                <div class="mt-7 max-w-xl rounded-2xl border border-white/25 bg-white/95 p-1.5 shadow-2xl backdrop-blur-md">
+                <!-- Barre de recherche -->
+                <div class="mt-9 max-w-2xl rounded-xl border border-white/20 bg-white p-2 shadow-2xl">
 
-                    <form action="/biens" method="GET" class="flex flex-col gap-1.5 sm:flex-row">
+                    <form action="/biens" method="GET" class="flex flex-col gap-2 sm:flex-row">
 
-                        <div class="flex flex-1 items-center rounded-xl bg-slate-100 px-3.5 py-2.5">
+                        <div class="flex min-h-[52px] flex-1 items-center gap-3 rounded-lg bg-[#F2F5F9] px-4">
 
-                            <span class="mr-2.5 text-[#B88700]">
-                                <?= icon('search', 'w-4 h-4') ?>
+                            <span class="text-[#B88700]">
+                                <?= icon('search', 'h-5 w-5') ?>
                             </span>
 
                             <input
@@ -213,126 +233,145 @@ $normaliserSlugCategorie = static function ($slug) {
                                 placeholder="Ville, quartier, type de bien..."
                                 class="w-full bg-transparent text-sm font-medium text-[#061830] outline-none placeholder:text-slate-500"
                             >
+
                         </div>
 
                         <button
                             type="submit"
-                            class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#F5C542] px-6 py-3 text-sm font-extrabold text-[#061830] shadow transition hover:bg-[#e5b32e]"
+                            class="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg bg-[#F5C542] px-7 text-sm font-extrabold text-[#061830] transition hover:bg-[#e5b32e]"
                         >
                             Rechercher
-                            <?= icon('arrow-right', 'w-4 h-4') ?>
+                            <?= icon('arrow-right', 'h-4 w-4') ?>
                         </button>
 
                     </form>
+
                 </div>
 
-                <!-- BOUTONS D'EXPLORATION -->
-                <div class="mt-5 flex flex-wrap items-center gap-3">
+                <!-- Liens rapides -->
+                <div class="mt-5 flex flex-wrap gap-3">
 
                     <a
                         href="/biens"
-                        class="inline-flex items-center gap-2 rounded-full bg-[#F5C542] px-5 py-2.5 text-xs font-extrabold text-[#061830] shadow-lg transition hover:bg-[#e5b32e]"
+                        class="inline-flex items-center gap-2 rounded-lg bg-[#F5C542] px-5 py-3 text-xs font-extrabold text-[#061830] transition hover:bg-[#e5b32e]"
                     >
                         Explorer les biens
-                        <?= icon('arrow-right', 'w-3.5 h-3.5') ?>
+                        <?= icon('arrow-right', 'h-4 w-4') ?>
                     </a>
 
                     <a
                         href="/biens/carte"
-                        class="inline-flex items-center gap-2 rounded-full border border-white/40 bg-[#061830]/50 px-5 py-2.5 text-xs font-bold text-white backdrop-blur-md transition hover:border-[#F5C542] hover:bg-[#061830]/80"
+                        class="inline-flex items-center gap-2 rounded-lg border border-white/40 bg-white/10 px-5 py-3 text-xs font-bold text-white transition hover:border-[#F5C542] hover:bg-white/20"
                     >
-                        <span class="flex h-4 w-4 items-center justify-center rounded-full bg-white text-[#061830]">
-                            <?= icon('map-pin', 'w-2.5 h-2.5') ?>
-                        </span>
+                        <?= icon('map-pin', 'h-4 w-4 text-[#F5C542]') ?>
                         Explorer la carte
                     </a>
 
                     <a
                         href="/scanner"
-                        class="inline-flex items-center gap-2 rounded-full border border-[#F5C542]/50 bg-[#061830]/50 px-5 py-2.5 text-xs font-bold text-[#F5D061] backdrop-blur-md transition hover:bg-[#F5C542]/20"
+                        class="inline-flex items-center gap-2 rounded-lg border border-white/40 bg-white/10 px-5 py-3 text-xs font-bold text-white transition hover:border-[#F5C542] hover:bg-white/20"
                     >
-                        <?= icon('qr-code', 'w-3.5 h-3.5') ?>
+                        <?= icon('qr-code', 'h-4 w-4 text-[#F5C542]') ?>
                         Scanner un QR
                     </a>
 
                 </div>
 
-                <!-- STATISTIQUES -->
-                <div class="mt-8 flex flex-wrap items-center gap-6 border-t border-white/15 pt-5 text-white">
-
-                    <div>
-                        <p class="text-xl font-extrabold text-[#F5C542]">
-                            <?= number_format($totalBiens, 0, ',', ' ') ?>
-                        </p>
-                        <p class="text-[11px] text-white/80">Biens référencés</p>
-                    </div>
-
-                    <div class="h-7 w-px bg-white/20"></div>
-
-                    <div>
-                        <p class="text-xl font-extrabold text-[#F5C542]">
-                            <?= number_format($totalQuartiers, 0, ',', ' ') ?>
-                        </p>
-                        <p class="text-[11px] text-white/80">Quartiers couverts</p>
-                    </div>
-
-                    <div class="h-7 w-px bg-white/20"></div>
-
-                    <div>
-                        <p class="text-xl font-extrabold text-[#F5C542]">
-                            <?= number_format($totalAgences, 0, ',', ' ') ?>
-                        </p>
-                        <p class="text-[11px] text-white/80">Agences partenaires</p>
-                    </div>
-
-                    <div class="h-7 w-px bg-white/20"></div>
-
-                    <div>
-                        <p class="text-xl font-extrabold text-[#F5C542]">24/7</p>
-                        <p class="text-[11px] text-white/80">Accès plateforme</p>
-                    </div>
-
-                </div>
-
             </div>
 
-            <!-- BADGE PREMIUM -->
-            <div class="hidden lg:col-span-5 lg:flex lg:justify-end lg:self-end">
+            <!-- Colonne droite : encadré institutionnel -->
+            <div class="hidden lg:col-span-5 lg:block">
 
-                <div class="flex h-28 w-28 flex-col items-center justify-center rounded-full border-[3px] border-[#F5C542] bg-[#061830]/90 p-2 text-center shadow-2xl ring-4 ring-[#F5C542]/30 backdrop-blur-md">
+                <div class="ml-auto max-w-sm border border-white/20 bg-[#061830]/75 p-7 shadow-2xl backdrop-blur-md">
 
-                    <span class="text-[#F5C542]">
-                        <?= icon('shield-check', 'w-5 h-5') ?>
-                    </span>
+                    <div class="flex items-center gap-3 border-b border-white/15 pb-5">
 
-                    <span class="mt-1 font-['Playfair_Display'] text-xs font-bold leading-tight text-[#F5C542]">
-                        Qualité<br>Premium
-                    </span>
+                        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-[#F5C542] text-[#061830]">
+                            <?= icon('shield-check', 'h-6 w-6') ?>
+                        </div>
 
-                    <span class="mt-0.5 text-[9px] font-semibold uppercase tracking-wider text-white/80">
-                        IMMO-SN
-                    </span>
+                        <div>
+                            <p class="text-sm font-extrabold text-white">
+                                IMMO-SN
+                            </p>
+                            <p class="mt-1 text-[10px] font-semibold uppercase tracking-widest text-[#F5C542]">
+                                Votre espace immobilier
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <h2 class="mt-6 text-xl font-bold leading-snug text-white">
+                        Une plateforme pensée pour simplifier vos projets immobiliers.
+                    </h2>
+
+                    <p class="mt-3 text-xs leading-6 text-slate-300">
+                        Recherche, consultation des annonces, localisation
+                        et accès rapide aux informations des biens.
+                    </p>
+
+                    <div class="mt-6 flex items-center gap-3 border-t border-white/15 pt-5">
+
+                        <div class="flex h-10 w-10 items-center justify-center rounded-full border border-[#F5C542]/50 text-[#F5C542]">
+                            <?= icon('check', 'h-5 w-5') ?>
+                        </div>
+
+                        <p class="text-xs font-semibold text-white">
+                            Une expérience immobilière centralisée.
+                        </p>
+
+                    </div>
 
                 </div>
 
             </div>
 
         </div>
+
     </div>
 
-    <!-- COURBE BAS DE SECTION -->
-    <div class="pointer-events-none absolute bottom-0 left-0 right-0 overflow-hidden leading-none">
+    <!-- Bandeau statistiques -->
+    <div class="border-t border-white/15 bg-[#061830]/90">
 
-        <svg
-            class="relative block h-10 w-full sm:h-14"
-            viewBox="0 0 1440 80"
-            preserveAspectRatio="none"
-        >
-            <path
-                d="M0,35 C480,95 960,-10 1440,45 L1440,80 L0,80 Z"
-                fill="#E6EEF8"
-            ></path>
-        </svg>
+        <div class="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-y divide-white/10 px-5 sm:px-8 md:grid-cols-4 md:divide-y-0 lg:px-10">
+
+            <div class="px-4 py-5 text-center sm:py-6">
+                <p class="text-2xl font-extrabold text-[#F5C542]">
+                    <?= number_format($totalBiens, 0, ',', ' ') ?>
+                </p>
+                <p class="mt-1 text-[10px] font-semibold uppercase tracking-wider text-slate-300 sm:text-xs">
+                    Biens référencés
+                </p>
+            </div>
+
+            <div class="px-4 py-5 text-center sm:py-6">
+                <p class="text-2xl font-extrabold text-[#F5C542]">
+                    <?= number_format($totalQuartiers, 0, ',', ' ') ?>
+                </p>
+                <p class="mt-1 text-[10px] font-semibold uppercase tracking-wider text-slate-300 sm:text-xs">
+                    Quartiers couverts
+                </p>
+            </div>
+
+            <div class="px-4 py-5 text-center sm:py-6">
+                <p class="text-2xl font-extrabold text-[#F5C542]">
+                    <?= number_format($totalAgences, 0, ',', ' ') ?>
+                </p>
+                <p class="mt-1 text-[10px] font-semibold uppercase tracking-wider text-slate-300 sm:text-xs">
+                    Agences partenaires
+                </p>
+            </div>
+
+            <div class="px-4 py-5 text-center sm:py-6">
+                <p class="text-2xl font-extrabold text-[#F5C542]">
+                    24/7
+                </p>
+                <p class="mt-1 text-[10px] font-semibold uppercase tracking-wider text-slate-300 sm:text-xs">
+                    Accès plateforme
+                </p>
+            </div>
+
+        </div>
 
     </div>
 
@@ -341,56 +380,60 @@ $normaliserSlugCategorie = static function ($slug) {
 
 <!-- =========================================================
      2. CATÉGORIES IMMOBILIÈRES
-     FOND BLEU CLAIR + CARTES BLANCHE + ICÔNES INDIVIDUELLES
 ========================================================= -->
 
-<section class="relative overflow-hidden bg-[#E6EEF8] py-16">
+<section class="relative overflow-hidden bg-[#E6EEF8] py-16 sm:py-20">
 
-    <!-- Motif architectural décoratif -->
-    <svg
-        class="pointer-events-none absolute -right-10 top-4 h-72 w-72 text-[#061830]/[0.05]"
-        viewBox="0 0 200 200"
-        fill="currentColor"
-    >
-        <path d="M100 15L15 85h25v95h120V85h25L100 15zm0 30l45 37v78h-30v-45H85v45H55V82l45-37z"/>
-    </svg>
+    <div class="pointer-events-none absolute -right-20 -top-20 h-80 w-80 rounded-full border-[35px] border-[#061830]/[0.035]"></div>
 
-    <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+    <div class="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
-        <!-- EN-TÊTE -->
-        <div class="mx-auto mb-10 max-w-xl text-center">
+        <!-- En-tête -->
+        <div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
 
-            <div class="inline-flex items-center gap-2.5">
-                <span class="h-[1.5px] w-6 bg-[#D4A017]"></span>
+            <div>
 
-                <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#B88700]">
-                    Explorer nos offres
-                </span>
+                <div class="mb-3 flex items-center gap-3">
+                    <span class="h-[2px] w-8 bg-[#D4A017]"></span>
 
-                <span class="h-[1.5px] w-6 bg-[#D4A017]"></span>
+                    <span class="text-[10px] font-extrabold uppercase tracking-[0.22em] text-[#9A7100]">
+                        Nos catégories
+                    </span>
+                </div>
+
+                <h2 class="text-2xl font-extrabold tracking-tight text-[#061830] sm:text-3xl">
+                    Quel bien recherchez-vous ?
+                </h2>
+
+                <p class="mt-2 max-w-xl text-sm leading-6 text-slate-600">
+                    Identifiez rapidement le type de bien correspondant
+                    à votre projet immobilier.
+                </p>
+
             </div>
 
-            <h2 class="mt-2 font-['Playfair_Display'] text-2xl font-bold text-[#061830] sm:text-4xl">
-                Quel bien recherchez-vous ?
-            </h2>
-
-            <p class="mt-2 text-xs leading-6 text-slate-600 sm:text-sm">
-                Parcourez les principales catégories immobilières disponibles sur notre plateforme.
-            </p>
+            <a
+                href="/biens"
+                class="inline-flex w-fit items-center gap-2 text-xs font-extrabold text-[#061830] transition hover:text-[#9A7100]"
+            >
+                Voir toutes les annonces
+                <?= icon('arrow-right', 'h-4 w-4') ?>
+            </a>
 
         </div>
 
-        <!-- CATÉGORIES -->
         <?php if (empty($categoriesAccueil)): ?>
 
-            <div class="rounded-2xl border border-[#061830]/10 bg-white p-8 text-center shadow-sm">
-                <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-[#E6EEF8] text-[#061830]">
-                    <?= icon('house', 'w-6 h-6') ?>
+            <div class="border border-slate-200 bg-white p-10 text-center shadow-sm">
+
+                <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-[#E6EEF8] text-[#061830]">
+                    <?= icon('house', 'h-7 w-7') ?>
                 </div>
 
-                <p class="mt-3 text-sm font-semibold text-slate-600">
+                <p class="mt-4 text-sm font-semibold text-slate-600">
                     Aucune catégorie disponible pour le moment.
                 </p>
+
             </div>
 
         <?php else: ?>
@@ -400,6 +443,7 @@ $normaliserSlugCategorie = static function ($slug) {
                 <?php foreach ($categoriesAccueil as $categorie): ?>
 
                     <?php
+
                     $nomCategorie = $categorie['libelle'] ?? 'Immobilier';
 
                     $slugBrut = $categorie['slug'] ?? $nomCategorie;
@@ -408,48 +452,46 @@ $normaliserSlugCategorie = static function ($slug) {
 
                     $totalCategorie = (int) ($categorie['total'] ?? 0);
 
-                   $designCategorie = $categoriesDesign[$slugCategorie] ?? [
-    'icon' => 'house',
-    'description' => 'Découvrez nos biens immobiliers'
-];
+                    $designCategorie = $categoriesDesign[$slugCategorie] ?? [
+                        'icon' => 'house',
+                        'description' => 'Découvrez nos biens immobiliers'
+                    ];
+
                     ?>
 
                     <a
                         href="/biens?category_id=<?= urlencode((string) ($categorie['id'] ?? '')) ?>"
-                        class="group relative flex h-full flex-col items-center overflow-hidden rounded-2xl border border-white bg-white px-4 py-6 text-center shadow-[0_4px_20px_rgba(6,24,48,0.06)] transition duration-300 hover:-translate-y-1 hover:border-[#F5C542]/70 hover:shadow-[0_12px_30px_rgba(6,24,48,0.12)] sm:px-5 sm:py-7"
+                        class="group flex min-h-[220px] flex-col border border-slate-200/80 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#D4A017] hover:shadow-xl sm:p-6"
                     >
 
-                        <!-- Halo décoratif -->
-                        <div class="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#F5C542]/[0.06] transition group-hover:bg-[#F5C542]/[0.14]"></div>
+                        <div class="flex items-start justify-between">
 
-                        <!-- ICÔNE DE LA CATÉGORIE -->
-                        <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl border border-[#F5C542]/25 bg-[#061830] text-[#F5C542] shadow-sm transition duration-300 group-hover:scale-110 group-hover:bg-[#F5C542] group-hover:text-[#061830] group-hover:shadow-md">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-[#061830] text-[#F5C542] transition group-hover:bg-[#F5C542] group-hover:text-[#061830]">
+                                <?= icon($designCategorie['icon'], 'h-6 w-6') ?>
+                            </div>
 
-                            <?= icon($designCategorie['icon'], 'w-6 h-6') ?>
+                            <span class="text-slate-300 transition group-hover:text-[#D4A017]">
+                                <?= icon('arrow-up-right', 'h-5 w-5') ?>
+                            </span>
 
                         </div>
 
-                        <!-- NOM -->
-                        <h3 class="relative mt-4 text-sm font-extrabold text-[#061830] sm:text-base">
+                        <h3 class="mt-5 text-sm font-extrabold text-[#061830] sm:text-base">
                             <?= htmlspecialchars($nomCategorie, ENT_QUOTES, 'UTF-8') ?>
                         </h3>
 
-                        <!-- DESCRIPTION -->
-                        <p class="relative mt-1.5 min-h-[32px] text-xs leading-5 text-slate-500">
+                        <p class="mt-2 min-h-[40px] text-xs leading-5 text-slate-500">
                             <?= htmlspecialchars($designCategorie['description'], ENT_QUOTES, 'UTF-8') ?>
                         </p>
 
-                        <!-- NOMBRE DE BIENS + FLÈCHE -->
-                        <div class="relative mt-4 flex items-center justify-between gap-2">
+                        <div class="mt-auto border-t border-slate-100 pt-4">
 
-                            <span class="rounded-full bg-[#E6EEF8] px-3 py-1 text-[11px] font-bold text-[#061830] transition group-hover:bg-[#F5C542]/20">
+                            <span class="inline-flex items-center gap-2 text-[11px] font-bold text-[#061830]">
+
+                                <span class="h-1.5 w-1.5 rounded-full bg-[#D4A017]"></span>
+
                                 <?= number_format($totalCategorie, 0, ',', ' ') ?>
                                 bien<?= $totalCategorie > 1 ? 's' : '' ?>
-                            </span>
-
-                            <span class="flex h-8 w-8 items-center justify-center rounded-full border border-[#061830]/10 bg-white text-[#061830] transition duration-300 group-hover:border-[#F5C542] group-hover:bg-[#F5C542]">
-
-                                <?= icon('arrow-right', 'w-3.5 h-3.5') ?>
 
                             </span>
 
@@ -467,407 +509,697 @@ $normaliserSlugCategorie = static function ($slug) {
 
 </section>
 
+
 <!-- =========================================================
-     3. LES BIENS À DÉCOUVRIR (FOND BLANC + 3 CARDS/LIGNE + BOUTON OR EN BAS)
+     3. LES BIENS À DÉCOUVRIR
 ========================================================= -->
-<section class="bg-white py-20">
+
+<section class="bg-white py-16 sm:py-20">
+
     <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
-        <div class="mb-10">
-            <div class="flex items-center gap-2">
-                <span class="h-[1.5px] w-6 bg-[#D4A017]"></span>
-                <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#B88700]">
-                    Sélection IMMO-SN
-                </span>
+        <!-- En-tête -->
+        <div class="mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+
+            <div>
+
+                <div class="mb-3 flex items-center gap-3">
+                    <span class="h-[2px] w-8 bg-[#D4A017]"></span>
+
+                    <span class="text-[10px] font-extrabold uppercase tracking-[0.22em] text-[#9A7100]">
+                        Sélection immobilière
+                    </span>
+                </div>
+
+                <h2 class="text-2xl font-extrabold tracking-tight text-[#061830] sm:text-3xl">
+                    Les biens à découvrir
+                </h2>
+
+                <p class="mt-2 text-sm text-slate-500">
+                    Retrouvez les opportunités immobilières disponibles sur IMMO-SN.
+                </p>
+
             </div>
-            <h2 class="mt-2 font-['Playfair_Display'] text-3xl font-bold text-[#061830] sm:text-4xl">
-                Les biens à découvrir
-            </h2>
-            <p class="mt-2 text-sm text-slate-500">
-                Découvrez les dernières opportunités disponibles.
-            </p>
+
+            <a
+                href="/biens"
+                class="hidden items-center gap-2 text-xs font-extrabold text-[#061830] transition hover:text-[#9A7100] sm:inline-flex"
+            >
+                Consulter toutes les annonces
+                <?= icon('arrow-right', 'h-4 w-4') ?>
+            </a>
+
         </div>
 
         <?php if (empty($biensAccueil)): ?>
-            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-12 text-center">
-                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-[#B88700] shadow-sm">
-                    <?= icon('house', 'w-7 h-7') ?>
+
+            <div class="border border-slate-200 bg-[#F7F9FC] px-5 py-14 text-center">
+
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-xl bg-white text-[#B88700] shadow-sm">
+                    <?= icon('house', 'h-8 w-8') ?>
                 </div>
+
                 <h3 class="mt-5 text-lg font-extrabold text-[#061830]">
                     Aucun bien disponible
                 </h3>
+
                 <p class="mt-2 text-sm text-slate-500">
                     Les nouvelles annonces apparaîtront ici prochainement.
                 </p>
+
             </div>
+
         <?php else: ?>
-            <!-- 3 cards par ligne (md:grid-cols-2 lg:grid-cols-3) -->
-            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
                 <?php foreach (array_slice($biensAccueil, 0, 6) as $bien): ?>
+
                     <?php
+
                     $id = $bien['id'] ?? '';
+
                     $photo = $bien['photo'] ?? null;
+
                     $photoUrl = $photo
                         ? (str_starts_with($photo, 'http') ? $photo : '/' . ltrim($photo, '/'))
                         : $imageFallback;
+
                     $titre = $bien['titre'] ?? 'Bien immobilier';
+
                     $ville = $bien['ville_nom'] ?? 'Sénégal';
+
                     $quartier = $bien['quartier_nom'] ?? '';
+
                     $prix = (float) ($bien['prix'] ?? 0);
+
                     $categorie = $bien['categorie_nom'] ?? 'Immobilier';
+
                     $typeOffre = strtolower($bien['type_offre'] ?? '');
+
                     ?>
 
-                    <article class="group overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-md transition duration-300 hover:-translate-y-1 hover:border-[#F5C542] hover:shadow-xl">
+                    <article class="group overflow-hidden border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#D4A017] hover:shadow-xl">
 
-                        <!-- Photo avec bandeau sombre prix & lieu intégré en bas -->
-                        <div class="relative h-[235px] overflow-hidden">
+                        <!-- Image -->
+                        <div class="relative h-[230px] overflow-hidden bg-[#E6EEF8]">
+
                             <img
                                 src="<?= htmlspecialchars($photoUrl, ENT_QUOTES, 'UTF-8') ?>"
                                 alt="<?= htmlspecialchars($titre, ENT_QUOTES, 'UTF-8') ?>"
-                                class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                                class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                                 onerror="this.src='<?= htmlspecialchars($imageFallback, ENT_QUOTES, 'UTF-8') ?>'"
                             >
 
-                            <!-- Badges haut -->
-                            <div class="absolute inset-x-0 top-0 flex items-center justify-between p-3.5">
+                            <!-- Badges -->
+                            <div class="absolute left-4 top-4 flex flex-wrap gap-2">
+
                                 <?php if ($typeOffre === 'location'): ?>
-                                    <span class="rounded-full bg-[#1D74F5] px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow">
+
+                                    <span class="bg-[#0B3B68] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white shadow">
                                         Location
                                     </span>
+
                                 <?php else: ?>
-                                    <span class="rounded-full bg-[#16A34A] px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow">
-                                        À Vendre
+
+                                    <span class="bg-[#D4A017] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#061830] shadow">
+                                        À vendre
                                     </span>
+
                                 <?php endif; ?>
 
-                                <span class="rounded-full bg-[#061830]/85 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white backdrop-blur-sm">
+                            </div>
+
+                            <div class="absolute right-4 top-4">
+                                <span class="bg-[#061830]/90 px-3 py-1.5 text-[10px] font-bold text-white backdrop-blur-sm">
                                     <?= htmlspecialchars($categorie, ENT_QUOTES, 'UTF-8') ?>
                                 </span>
                             </div>
 
-                            <!-- Bandeau sombre bas : Localisation à gauche, Prix à droite -->
-                            <div class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 bg-gradient-to-t from-[#061830] via-[#061830]/90 to-transparent px-4 pb-3 pt-9 text-white">
-                                <p class="flex min-w-0 items-center gap-1.5 text-xs font-medium text-slate-200">
-                                    <span class="shrink-0 text-[#F5C542]">
-                                        <?= icon('map-pin', 'w-3.5 h-3.5') ?>
-                                    </span>
-                                    <span class="truncate">
-                                        <?= htmlspecialchars($ville, ENT_QUOTES, 'UTF-8') ?><?= $quartier ? ' · ' . htmlspecialchars($quartier, ENT_QUOTES, 'UTF-8') : '' ?>
-                                    </span>
-                                </p>
+                            <!-- Bandeau inférieur -->
+                            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#061830] via-[#061830]/80 to-transparent px-4 pb-4 pt-12">
 
-                                <p class="shrink-0 text-sm font-extrabold text-white">
-                                    <?= number_format($prix, 0, ',', ' ') ?> <span class="text-xs text-[#F5C542]">FCFA</span><?= $typeOffre === 'location' ? '<span class="text-[10px] font-normal text-slate-300">/mois</span>' : '' ?>
-                                </p>
+                                <div class="flex items-end justify-between gap-3">
+
+                                    <p class="flex min-w-0 items-center gap-1.5 text-xs text-white/90">
+
+                                        <span class="shrink-0 text-[#F5C542]">
+                                            <?= icon('map-pin', 'h-4 w-4') ?>
+                                        </span>
+
+                                        <span class="truncate">
+                                            <?= htmlspecialchars($ville, ENT_QUOTES, 'UTF-8') ?>
+
+                                            <?php if ($quartier): ?>
+                                                · <?= htmlspecialchars($quartier, ENT_QUOTES, 'UTF-8') ?>
+                                            <?php endif; ?>
+                                        </span>
+
+                                    </p>
+
+                                    <p class="shrink-0 text-sm font-extrabold text-white">
+
+                                        <?= number_format($prix, 0, ',', ' ') ?>
+
+                                        <span class="text-[10px] font-bold text-[#F5C542]">
+                                            FCFA
+                                        </span>
+
+                                        <?php if ($typeOffre === 'location'): ?>
+                                            <span class="text-[10px] font-normal text-white/70">
+                                                /mois
+                                            </span>
+                                        <?php endif; ?>
+
+                                    </p>
+
+                                </div>
+
                             </div>
+
                         </div>
 
-                        <!-- Bas de carte -->
+                        <!-- Informations -->
                         <div class="p-5">
-                            <h3 class="line-clamp-1 text-base font-extrabold text-[#061830] transition group-hover:text-[#0B3B68]">
-                                <a href="/biens/<?= rawurlencode((string) $id) ?>">
-                                    <?= htmlspecialchars($titre, ENT_QUOTES, 'UTF-8') ?>
-                                </a>
-                            </h3>
 
-                            <div class="mt-3.5 flex items-center justify-between border-t border-slate-100 pt-3.5 text-xs text-slate-600">
-                                <div class="flex items-center gap-4">
-                                    <?php if (!empty($bien['chambres'])): ?>
-                                        <span class="flex items-center gap-1.5 font-medium">
-                                            <?= icon('bed-double', 'w-4 h-4 text-[#B88700]') ?>
-                                            <?= (int) $bien['chambres'] ?> chambres
-                                        </span>
-                                    <?php endif; ?>
+                            <div class="flex items-start justify-between gap-3">
 
-                                    <?php if (!empty($bien['surface'])): ?>
-                                        <span class="flex items-center gap-1.5 font-medium">
-                                            <?= icon('maximize', 'w-4 h-4 text-[#B88700]') ?>
-                                            <?= (int) $bien['surface'] ?> m²
-                                        </span>
-                                    <?php endif; ?>
-                                </div>
+                                <h3 class="line-clamp-1 text-base font-extrabold text-[#061830] transition group-hover:text-[#0B3B68]">
+                                    <a href="/biens/<?= rawurlencode((string) $id) ?>">
+                                        <?= htmlspecialchars($titre, ENT_QUOTES, 'UTF-8') ?>
+                                    </a>
+                                </h3>
+
+                                <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-[#D4A017]"></span>
+
+                            </div>
+
+                            <div class="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-slate-100 pt-4 text-xs text-slate-600">
+
+                                <?php if (!empty($bien['chambres'])): ?>
+
+                                    <span class="inline-flex items-center gap-1.5">
+                                        <?= icon('bed-double', 'h-4 w-4 text-[#B88700]') ?>
+                                        <?= (int) $bien['chambres'] ?> chambres
+                                    </span>
+
+                                <?php endif; ?>
+
+                                <?php if (!empty($bien['surface'])): ?>
+
+                                    <span class="inline-flex items-center gap-1.5">
+                                        <?= icon('maximize', 'h-4 w-4 text-[#B88700]') ?>
+                                        <?= (int) $bien['surface'] ?> m²
+                                    </span>
+
+                                <?php endif; ?>
 
                                 <a
                                     href="/biens/<?= rawurlencode((string) $id) ?>"
-                                    class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#FFF4CC] text-[#8A6500] transition group-hover:bg-[#F5C542] group-hover:text-[#061830]"
+                                    class="ml-auto inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[#E6EEF8] text-[#061830] transition hover:bg-[#F5C542]"
                                     aria-label="Voir le bien"
                                 >
-                                    <?= icon('arrow-up-right', 'w-4 h-4') ?>
+                                    <?= icon('arrow-up-right', 'h-4 w-4') ?>
                                 </a>
+
                             </div>
+
                         </div>
 
                     </article>
+
                 <?php endforeach; ?>
+
             </div>
 
-            <!-- Bouton Jaune Or en bas -->
-            <div class="mt-10 flex justify-center sm:justify-end">
+            <!-- Bouton mobile et desktop -->
+            <div class="mt-10 flex justify-center">
+
                 <a
                     href="/biens"
-                    class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#F5C542] px-7 py-3.5 text-sm font-extrabold text-[#061830] shadow-md transition hover:bg-[#e5b32e]"
+                    class="inline-flex items-center justify-center gap-3 bg-[#061830] px-7 py-3.5 text-xs font-extrabold text-white transition hover:bg-[#0B3B68]"
                 >
-                    Explorer tous les biens
-                    <?= icon('arrow-right', 'w-4 h-4') ?>
+                    Voir toutes les annonces
+                    <?= icon('arrow-right', 'h-4 w-4 text-[#F5C542]') ?>
                 </a>
+
             </div>
+
         <?php endif; ?>
 
     </div>
+
 </section>
 
 
 <!-- =========================================================
-     4. EXPLORER LES BIENS SUR LA CARTE (CONSERVÉ EN BLEU NUIT)
+     4. EXPLORER LES BIENS SUR LA CARTE
 ========================================================= -->
-<section class="bg-[#F2F5F9] py-12">
+
+<section class="bg-[#E6EEF8] py-16 sm:py-20">
+
     <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div class="relative overflow-hidden rounded-2xl bg-[#061830] shadow-xl">
 
-            <!-- Lignes dorées décoratives en courbe -->
-            <svg class="pointer-events-none absolute right-0 top-0 h-full w-1/2 opacity-30" viewBox="0 0 400 180" fill="none">
-                <path d="M90,-20 C170,70 40,120 150,200" stroke="#F5C542" stroke-width="2" />
-                <path d="M150,-20 C230,70 100,120 210,200" stroke="#F5C542" stroke-width="1.5" />
-            </svg>
+        <div class="relative overflow-hidden bg-[#061830] shadow-xl">
 
-            <div class="grid items-center lg:grid-cols-12">
+            <!-- Motif décoratif -->
+            <div class="pointer-events-none absolute -right-16 -top-24 h-80 w-80 rounded-full border-[35px] border-white/[0.04]"></div>
 
-                <div class="relative h-48 sm:h-52 lg:col-span-4 lg:h-full">
+            <div class="grid lg:grid-cols-12">
+
+                <!-- Image -->
+                <div class="relative min-h-[220px] lg:col-span-5">
+
                     <img
                         src="https://images.unsplash.com/photo-1524666041070-9d87656c25f5?auto=format&fit=crop&w=900&q=80"
-                        alt="Carte interactive IMMO-SN"
-                        class="h-full w-full object-cover"
+                        alt="Localisation géographique des biens immobiliers"
+                        class="absolute inset-0 h-full w-full object-cover"
                     >
-                    <div class="absolute inset-0 hidden bg-gradient-to-r from-transparent via-[#061830]/30 to-[#061830] lg:block"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#061830] to-transparent lg:hidden"></div>
+
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent to-[#061830]/70"></div>
+
+                    <div class="absolute bottom-5 left-5 flex items-center gap-3 bg-[#061830]/90 px-4 py-3 backdrop-blur-sm">
+
+                        <span class="flex h-9 w-9 items-center justify-center bg-[#F5C542] text-[#061830]">
+                            <?= icon('map-pin', 'h-5 w-5') ?>
+                        </span>
+
+                        <div>
+                            <p class="text-xs font-bold text-white">
+                                Exploration géographique
+                            </p>
+                            <p class="mt-1 text-[10px] text-slate-300">
+                                Sénégal
+                            </p>
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="px-6 py-7 sm:px-8 lg:col-span-5">
-                    <p class="text-[10px] font-bold uppercase tracking-[0.22em] text-[#F5C542]">
-                        Localisez votre futur bien
-                    </p>
-                    <h2 class="mt-1 font-['Playfair_Display'] text-2xl font-bold text-white sm:text-3xl">
-                        Explorez les biens sur la carte
+                <!-- Texte -->
+                <div class="flex flex-col justify-center px-6 py-9 sm:px-10 lg:col-span-7 lg:px-12">
+
+                    <div class="mb-4 flex items-center gap-3">
+                        <span class="h-[2px] w-8 bg-[#F5C542]"></span>
+
+                        <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#F5C542]">
+                            Localisation des annonces
+                        </span>
+                    </div>
+
+                    <h2 class="max-w-xl text-2xl font-extrabold leading-tight text-white sm:text-3xl">
+                        Explorez les biens immobiliers sur la carte.
                     </h2>
-                    <p class="mt-1.5 text-xs text-slate-300 sm:text-sm">
-                        Visualisez les biens disponibles par quartier et trouvez l'emplacement idéal.
-                    </p>
-                </div>
 
-                <div class="px-6 pb-7 lg:col-span-3 lg:flex lg:justify-end lg:px-8 lg:py-0">
-                    <a
-                        href="/biens/carte"
-                        class="inline-flex items-center gap-2 rounded-full bg-[#F5C542] px-6 py-3 text-xs font-extrabold text-[#061830] shadow-lg transition hover:bg-[#e5b32e] sm:text-sm"
-                    >
-                        <?= icon('map', 'w-4 h-4') ?>
-                        Explorer la carte
-                        <?= icon('arrow-right', 'w-4 h-4') ?>
-                    </a>
+                    <p class="mt-4 max-w-xl text-sm leading-7 text-slate-300">
+                        Visualisez les biens disponibles par quartier,
+                        repérez leur emplacement et identifiez plus facilement
+                        les opportunités correspondant à votre recherche.
+                    </p>
+
+                    <div class="mt-7">
+
+                        <a
+                            href="/biens/carte"
+                            class="inline-flex items-center gap-3 bg-[#F5C542] px-6 py-3.5 text-xs font-extrabold text-[#061830] transition hover:bg-[#e5b32e]"
+                        >
+                            <?= icon('map', 'h-4 w-4') ?>
+                            Accéder à la carte interactive
+                            <?= icon('arrow-right', 'h-4 w-4') ?>
+                        </a>
+
+                    </div>
+
                 </div>
 
             </div>
+
         </div>
+
     </div>
+
 </section>
 
 
 <!-- =========================================================
-     5. UNE EXPÉRIENCE IMMOBILIÈRE PLUS SIMPLE (FOND BLANC + CARDS BLEU NUIT)
+     5. LES AVANTAGES DE LA PLATEFORME
 ========================================================= -->
-<section class="bg-white py-20">
+
+<section class="bg-white py-16 sm:py-20">
+
     <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
-        <div class="mx-auto max-w-xl text-center">
-            <div class="inline-flex items-center gap-2.5">
-                <span class="h-[1.5px] w-6 bg-[#D4A017]"></span>
-                <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#B88700]">
-                    Pourquoi IMMO-SN ?
+        <!-- En-tête -->
+        <div class="mx-auto max-w-2xl text-center">
+
+            <div class="mb-3 flex items-center justify-center gap-3">
+                <span class="h-[2px] w-8 bg-[#D4A017]"></span>
+
+                <span class="text-[10px] font-extrabold uppercase tracking-[0.22em] text-[#9A7100]">
+                    Notre engagement
                 </span>
-                <span class="h-[1.5px] w-6 bg-[#D4A017]"></span>
+
+                <span class="h-[2px] w-8 bg-[#D4A017]"></span>
             </div>
 
-            <h2 class="mt-1.5 font-['Playfair_Display'] text-2xl font-bold text-[#061830] sm:text-4xl">
+            <h2 class="text-2xl font-extrabold tracking-tight text-[#061830] sm:text-3xl">
                 Une expérience immobilière plus simple
             </h2>
-            <p class="mt-2 text-xs text-slate-500 sm:text-sm">
-                Nous réunissons recherche, localisation et découverte des biens sur une seule plateforme.
+
+            <p class="mt-3 text-sm leading-6 text-slate-500">
+                Des outils pratiques pour faciliter la recherche,
+                la consultation et la découverte des biens immobiliers.
             </p>
+
         </div>
 
-        <!-- Petites cards en Bleu Nuit (#061830) -->
-        <div class="mt-11 grid gap-6 md:grid-cols-3">
-            <div class="rounded-2xl border border-[#12335E] bg-[#061830] p-7 text-white shadow-lg transition duration-300 hover:-translate-y-1 hover:border-[#F5C542]">
-                <div class="flex items-center gap-3.5">
-                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F5C542] text-[#061830]">
-                        <?= icon('search-check', 'w-6 h-6') ?>
-                    </div>
-                    <h3 class="text-base font-extrabold text-white">Recherche simplifiée</h3>
-                </div>
-                <p class="mt-3.5 text-xs leading-6 text-slate-300 sm:text-sm">
-                    Trouvez rapidement un bien grâce aux filtres, aux catégories et à la recherche par localisation.
-                </p>
-            </div>
+        <!-- Avantages -->
+        <div class="mt-12 grid gap-6 md:grid-cols-3">
 
-            <div class="rounded-2xl border border-[#12335E] bg-[#061830] p-7 text-white shadow-lg transition duration-300 hover:-translate-y-1 hover:border-[#F5C542]">
-                <div class="flex items-center gap-3.5">
-                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F5C542] text-[#061830]">
-                        <?= icon('map-pin', 'w-6 h-6') ?>
-                    </div>
-                    <h3 class="text-base font-extrabold text-white">Localisation précise</h3>
-                </div>
-                <p class="mt-3.5 text-xs leading-6 text-slate-300 sm:text-sm">
-                    Consultez la position des biens sur une carte interactive pour mieux préparer votre visite.
-                </p>
-            </div>
+            <!-- Carte 1 -->
+            <article class="group border border-slate-200 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#D4A017] hover:shadow-lg">
 
-            <div class="rounded-2xl border border-[#12335E] bg-[#061830] p-7 text-white shadow-lg transition duration-300 hover:-translate-y-1 hover:border-[#F5C542]">
-                <div class="flex items-center gap-3.5">
-                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F5C542] text-[#061830]">
-                        <?= icon('qr-code', 'w-6 h-6') ?>
-                    </div>
-                    <h3 class="text-base font-extrabold text-white">Technologie QR</h3>
+                <div class="flex h-14 w-14 items-center justify-center bg-[#061830] text-[#F5C542] transition group-hover:bg-[#F5C542] group-hover:text-[#061830]">
+                    <?= icon('search-check', 'h-7 w-7') ?>
                 </div>
-                <p class="mt-3.5 text-xs leading-6 text-slate-300 sm:text-sm">
-                    Accédez rapidement aux informations d'un bien grâce au système de QR code intégré.
+
+                <p class="mt-6 text-[10px] font-bold uppercase tracking-widest text-[#9A7100]">
+                    01 — Recherche
                 </p>
-            </div>
+
+                <h3 class="mt-2 text-lg font-extrabold text-[#061830]">
+                    Recherche simplifiée
+                </h3>
+
+                <p class="mt-3 text-sm leading-7 text-slate-500">
+                    Trouvez rapidement un bien grâce aux catégories,
+                    aux filtres et à la recherche par localisation.
+                </p>
+
+                <div class="mt-6 border-t border-slate-100 pt-4">
+                    <span class="text-xs font-bold text-[#061830]">
+                        Trouvez plus facilement
+                    </span>
+                </div>
+
+            </article>
+
+            <!-- Carte 2 -->
+            <article class="group border border-slate-200 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#D4A017] hover:shadow-lg">
+
+                <div class="flex h-14 w-14 items-center justify-center bg-[#061830] text-[#F5C542] transition group-hover:bg-[#F5C542] group-hover:text-[#061830]">
+                    <?= icon('map-pin', 'h-7 w-7') ?>
+                </div>
+
+                <p class="mt-6 text-[10px] font-bold uppercase tracking-widest text-[#9A7100]">
+                    02 — Localisation
+                </p>
+
+                <h3 class="mt-2 text-lg font-extrabold text-[#061830]">
+                    Localisation précise
+                </h3>
+
+                <p class="mt-3 text-sm leading-7 text-slate-500">
+                    Consultez la position des biens sur une carte
+                    interactive pour mieux préparer vos visites.
+                </p>
+
+                <div class="mt-6 border-t border-slate-100 pt-4">
+                    <span class="text-xs font-bold text-[#061830]">
+                        Repérez les opportunités
+                    </span>
+                </div>
+
+            </article>
+
+            <!-- Carte 3 -->
+            <article class="group border border-slate-200 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#D4A017] hover:shadow-lg">
+
+                <div class="flex h-14 w-14 items-center justify-center bg-[#061830] text-[#F5C542] transition group-hover:bg-[#F5C542] group-hover:text-[#061830]">
+                    <?= icon('qr-code', 'h-7 w-7') ?>
+                </div>
+
+                <p class="mt-6 text-[10px] font-bold uppercase tracking-widest text-[#9A7100]">
+                    03 — Technologie
+                </p>
+
+                <h3 class="mt-2 text-lg font-extrabold text-[#061830]">
+                    Technologie QR
+                </h3>
+
+                <p class="mt-3 text-sm leading-7 text-slate-500">
+                    Accédez rapidement aux informations d'un bien
+                    grâce au système de QR code intégré.
+                </p>
+
+                <div class="mt-6 border-t border-slate-100 pt-4">
+                    <span class="text-xs font-bold text-[#061830]">
+                        Accès rapide aux informations
+                    </span>
+                </div>
+
+            </article>
+
         </div>
 
     </div>
+
 </section>
 
 
 <!-- =========================================================
-     6. AGENCES PARTENAIRES (FOND BLANC + CARDS BLEU & JAUNE OR)
+     6. AGENCES PARTENAIRES
 ========================================================= -->
-<section class="border-t border-slate-100 bg-white py-16">
+
+<section class="border-y border-slate-200 bg-[#F2F5F9] py-16 sm:py-20">
+
     <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
-        <div class="mb-9 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <!-- En-tête -->
+        <div class="mb-10 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+
             <div>
-                <div class="flex items-center gap-2">
-                    <span class="h-[1.5px] w-6 bg-[#D4A017]"></span>
-                    <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#B88700]">
+
+                <div class="mb-3 flex items-center gap-3">
+                    <span class="h-[2px] w-8 bg-[#D4A017]"></span>
+
+                    <span class="text-[10px] font-extrabold uppercase tracking-[0.22em] text-[#9A7100]">
                         Réseau professionnel
                     </span>
                 </div>
-                <h2 class="mt-1.5 font-['Playfair_Display'] text-2xl font-bold text-[#061830] sm:text-4xl">
-                    Nos Agences Partenaires
+
+                <h2 class="text-2xl font-extrabold tracking-tight text-[#061830] sm:text-3xl">
+                    Nos agences partenaires
                 </h2>
-                <p class="mt-1.5 text-xs text-slate-500 sm:text-sm">
+
+                <p class="mt-2 text-sm text-slate-500">
                     Découvrez les professionnels et agences immobilières présents sur IMMO-SN.
                 </p>
+
             </div>
 
             <?php if (!empty($agencesAccueil)): ?>
+
                 <a
                     href="/agences"
-                    class="inline-flex w-fit items-center gap-2 rounded-xl bg-[#F5C542] px-5 py-2.5 text-xs font-extrabold text-[#061830] shadow-sm transition hover:bg-[#e5b32e]"
+                    class="inline-flex w-fit items-center gap-2 bg-[#061830] px-5 py-3 text-xs font-extrabold text-white transition hover:bg-[#0B3B68]"
                 >
-                    Découvrir toutes les agences
-                    <?= icon('arrow-right', 'w-3.5 h-3.5') ?>
+                    Toutes les agences
+                    <?= icon('arrow-right', 'h-4 w-4 text-[#F5C542]') ?>
                 </a>
+
             <?php endif; ?>
+
         </div>
 
         <?php if (!empty($agencesAccueil)): ?>
-            <div class="grid gap-5 md:grid-cols-3">
+
+            <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+
                 <?php foreach (array_slice($agencesAccueil, 0, 3) as $agence): ?>
+
                     <?php
+
                     $nomAgence = $agence['nom_agence'] ?? 'Agence immobilière';
+
                     $initiale = strtoupper(substr(trim($nomAgence), 0, 1));
+
                     ?>
 
-                    <!-- Card combinant Bleu Nuit & Jaune Or -->
                     <a
                         href="/agences/<?= rawurlencode((string) ($agence['id'] ?? '')) ?>"
-                        class="group flex items-center gap-4 rounded-2xl border-2 border-[#F5C542]/70 bg-[#061830] p-5 text-white shadow-md transition duration-300 hover:-translate-y-1 hover:border-[#F5C542] hover:shadow-xl"
+                        class="group border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#D4A017] hover:shadow-lg"
                     >
-                        <div class="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-[#F5C542] bg-[#F5C542] text-lg font-extrabold text-[#061830]">
-                            <?php if (!empty($agence['logo'])): ?>
-                                <img
-                                    src="<?= htmlspecialchars($agence['logo'], ENT_QUOTES, 'UTF-8') ?>"
-                                    alt="<?= htmlspecialchars($nomAgence, ENT_QUOTES, 'UTF-8') ?>"
-                                    class="h-full w-full object-cover"
-                                >
-                            <?php else: ?>
-                                <?= htmlspecialchars($initiale, ENT_QUOTES, 'UTF-8') ?>
-                            <?php endif; ?>
-                        </div>
 
-                        <div class="min-w-0 flex-1">
-                            <div class="flex items-center justify-between gap-2">
-                                <h3 class="truncate text-sm font-extrabold text-white sm:text-base">
-                                    <?= htmlspecialchars($nomAgence, ENT_QUOTES, 'UTF-8') ?>
-                                </h3>
-                                <span class="shrink-0 rounded-full bg-[#F5C542] px-2.5 py-0.5 text-[10px] font-extrabold text-[#061830]">
-                                    <?= (int) ($agence['nombre_biens'] ?? 0) ?> biens
-                                </span>
+                        <div class="flex items-center gap-4">
+
+                            <!-- Logo -->
+                            <div class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden border border-[#D4A017]/40 bg-[#061830] text-xl font-extrabold text-[#F5C542]">
+
+                                <?php if (!empty($agence['logo'])): ?>
+
+                                    <img
+                                        src="<?= htmlspecialchars($agence['logo'], ENT_QUOTES, 'UTF-8') ?>"
+                                        alt="<?= htmlspecialchars($nomAgence, ENT_QUOTES, 'UTF-8') ?>"
+                                        class="h-full w-full object-cover"
+                                    >
+
+                                <?php else: ?>
+
+                                    <?= htmlspecialchars($initiale, ENT_QUOTES, 'UTF-8') ?>
+
+                                <?php endif; ?>
+
                             </div>
 
-                            <p class="mt-1 flex items-center gap-1 truncate text-xs text-slate-300">
-                                <span class="shrink-0 text-[#F5C542]"><?= icon('map-pin', 'w-3 h-3') ?></span>
-                                <span class="truncate"><?= htmlspecialchars($agence['adresse'] ?? 'Dakar, Sénégal', ENT_QUOTES, 'UTF-8') ?></span>
-                            </p>
+                            <!-- Informations -->
+                            <div class="min-w-0 flex-1">
 
-                            <?php if (!empty($agence['badge_verifie'])): ?>
-                                <span class="mt-1.5 inline-flex items-center gap-1 text-[11px] font-bold text-[#F5C542]">
-                                    ✓ Agence vérifiée
-                                </span>
-                            <?php endif; ?>
+                                <div class="flex items-start justify-between gap-2">
+
+                                    <h3 class="truncate text-sm font-extrabold text-[#061830] transition group-hover:text-[#9A7100]">
+                                        <?= htmlspecialchars($nomAgence, ENT_QUOTES, 'UTF-8') ?>
+                                    </h3>
+
+                                    <span class="shrink-0 bg-[#E6EEF8] px-2 py-1 text-[10px] font-bold text-[#061830]">
+                                        <?= (int) ($agence['nombre_biens'] ?? 0) ?> biens
+                                    </span>
+
+                                </div>
+
+                                <p class="mt-2 flex items-center gap-1.5 truncate text-xs text-slate-500">
+
+                                    <span class="text-[#B88700]">
+                                        <?= icon('map-pin', 'h-3.5 w-3.5') ?>
+                                    </span>
+
+                                    <?= htmlspecialchars($agence['adresse'] ?? 'Dakar, Sénégal', ENT_QUOTES, 'UTF-8') ?>
+
+                                </p>
+
+                                <?php if (!empty($agence['badge_verifie'])): ?>
+
+                                    <span class="mt-2 inline-flex items-center gap-1 text-[10px] font-bold text-[#997000]">
+
+                                        <?= icon('shield-check', 'h-3.5 w-3.5') ?>
+
+                                        Agence vérifiée
+
+                                    </span>
+
+                                <?php endif; ?>
+
+                            </div>
+
                         </div>
+
+                        <div class="mt-5 flex items-center justify-between border-t border-slate-100 pt-4">
+
+                            <span class="text-[11px] font-semibold text-slate-500">
+                                Consulter l'agence
+                            </span>
+
+                            <span class="flex h-8 w-8 items-center justify-center bg-[#E6EEF8] text-[#061830] transition group-hover:bg-[#F5C542]">
+                                <?= icon('arrow-up-right', 'h-4 w-4') ?>
+                            </span>
+
+                        </div>
+
                     </a>
+
                 <?php endforeach; ?>
+
             </div>
+
         <?php else: ?>
-            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-8 text-center">
-                <p class="text-sm text-slate-500">Aucune agence partenaire disponible pour le moment.</p>
+
+            <div class="border border-slate-200 bg-white p-10 text-center">
+
+                <div class="mx-auto flex h-14 w-14 items-center justify-center bg-[#E6EEF8] text-[#061830]">
+                    <?= icon('building', 'h-7 w-7') ?>
+                </div>
+
+                <h3 class="mt-4 text-sm font-bold text-[#061830]">
+                    Aucune agence partenaire disponible
+                </h3>
+
+                <p class="mt-2 text-xs text-slate-500">
+                    Les agences partenaires apparaîtront ici prochainement.
+                </p>
+
             </div>
+
         <?php endif; ?>
 
     </div>
+
 </section>
 
 
 <!-- =========================================================
-     7. CTA FINAL AVANT LE FOOTER (SANS BLEU NUIT, FOND CLAIR SABLE/OR)
+     7. APPEL À L'ACTION FINAL
 ========================================================= -->
-<section class="border-t border-[#E8DFC8] bg-[#F8F5EC] py-16 text-center">
-    <div class="mx-auto max-w-4xl px-5 sm:px-8">
 
-        <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#F5C542]/25 text-[#8A6500]">
-            <?= icon('house', 'w-6 h-6') ?>
+<section class="relative overflow-hidden bg-[#061830] py-16 sm:py-20">
+
+    <!-- Décoration -->
+    <div class="pointer-events-none absolute -right-20 -top-32 h-96 w-96 rounded-full border-[45px] border-white/[0.035]"></div>
+
+    <div class="pointer-events-none absolute -bottom-32 -left-20 h-80 w-80 rounded-full border-[35px] border-[#F5C542]/[0.08]"></div>
+
+    <div class="relative mx-auto max-w-5xl px-5 text-center sm:px-8">
+
+        <div class="mx-auto flex h-16 w-16 items-center justify-center border border-[#F5C542]/40 bg-[#F5C542]/10 text-[#F5C542]">
+            <?= icon('house', 'h-8 w-8') ?>
         </div>
 
-        <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#B88700]">
-            Votre prochain projet commence ici
+        <p class="mt-6 text-[10px] font-extrabold uppercase tracking-[0.25em] text-[#F5C542]">
+            Votre projet immobilier commence ici
         </p>
 
-        <h2 class="mt-2 font-['Playfair_Display'] text-3xl font-bold leading-tight text-[#061830] sm:text-5xl">
-            Prêt à trouver votre prochain bien immobilier ?
+        <h2 class="mx-auto mt-4 max-w-3xl text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+            Donnez vie à votre prochain projet immobilier.
         </h2>
 
-        <p class="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-600">
-            Explorez les annonces, comparez les biens et trouvez l'opportunité qui correspond à votre projet.
+        <p class="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-300">
+            Explorez les annonces, comparez les biens et découvrez
+            les opportunités qui correspondent à vos besoins partout au Sénégal.
         </p>
 
-        <div class="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+        <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+
             <a
                 href="/biens"
-                class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#F5C542] px-8 py-3.5 text-sm font-extrabold text-[#061830] shadow-md transition hover:bg-[#e5b32e]"
+                class="inline-flex items-center justify-center gap-3 bg-[#F5C542] px-7 py-4 text-xs font-extrabold text-[#061830] transition hover:bg-[#e5b32e]"
             >
-                <?= icon('search', 'w-4 h-4') ?>
+                <?= icon('search', 'h-4 w-4') ?>
                 Commencer ma recherche
+                <?= icon('arrow-right', 'h-4 w-4') ?>
             </a>
 
             <a
                 href="/biens/carte"
-                class="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[#061830] bg-white px-8 py-3.5 text-sm font-bold text-[#061830] transition hover:bg-[#061830] hover:text-white"
+                class="inline-flex items-center justify-center gap-3 border border-white/40 bg-white/5 px-7 py-4 text-xs font-bold text-white transition hover:border-[#F5C542] hover:bg-white/10"
             >
-                <?= icon('map', 'w-4 h-4') ?>
+                <?= icon('map', 'h-4 w-4 text-[#F5C542]') ?>
                 Explorer la carte
             </a>
+
         </div>
+
+        <div class="mx-auto mt-10 flex max-w-xl items-center justify-center gap-3 border-t border-white/15 pt-6">
+
+            <span class="text-[#F5C542]">
+                <?= icon('shield-check', 'h-5 w-5') ?>
+            </span>
+
+            <p class="text-[11px] font-medium text-slate-300">
+                IMMO-SN — Votre espace de découverte immobilière au Sénégal.
+            </p>
+
+        </div>
+
     </div>
+
 </section>
