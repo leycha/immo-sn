@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Vue : Détail d'une agence — IMMO-SN
@@ -66,37 +65,41 @@ $services = [
         'icone' => 'M4 7h16M4 12h16M4 17h10M3 4h18v16H3z'
     ]
 ];
+
+$urlBiensAgence = '/biens?agence=' . urlencode((string) $idAgence);
 ?>
 
-<div class="min-h-screen bg-[#F5F3ED] text-[#101D33]">
+<div class="min-h-screen bg-[#F4F6F9] text-[#061830]">
 
-    <!-- FIL D'ARIANE -->
+    <!-- =====================================================
+         FIL D'ARIANE
+    ====================================================== -->
     <div class="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
 
-        <nav class="flex flex-wrap items-center gap-2 text-sm text-[#71869A]"
+        <nav class="flex flex-wrap items-center gap-2 text-sm text-[#8290A0]"
              aria-label="Fil d’Ariane">
 
-            <a href="/" class="transition hover:text-[#B88A00]">
+            <a href="/" class="transition hover:text-[#D4A900]">
                 Accueil
             </a>
 
-            <svg class="h-3.5 w-3.5 text-[#AAB4BF]" viewBox="0 0 24 24"
+            <svg class="h-3.5 w-3.5 text-[#B8C2CE]" viewBox="0 0 24 24"
                  fill="none" stroke="currentColor" stroke-width="2"
                  aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/>
             </svg>
 
-            <a href="/agences" class="transition hover:text-[#B88A00]">
+            <a href="/agences" class="transition hover:text-[#D4A900]">
                 Agences
             </a>
 
-            <svg class="h-3.5 w-3.5 text-[#AAB4BF]" viewBox="0 0 24 24"
+            <svg class="h-3.5 w-3.5 text-[#B8C2CE]" viewBox="0 0 24 24"
                  fill="none" stroke="currentColor" stroke-width="2"
                  aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/>
             </svg>
 
-            <span class="max-w-[220px] truncate font-semibold text-[#101D33]">
+            <span class="max-w-[220px] truncate font-bold text-[#061830]">
                 <?= $e($nom) ?>
             </span>
 
@@ -104,19 +107,20 @@ $services = [
 
     </div>
 
+
     <!-- =====================================================
          BANNIÈRE PRINCIPALE DE L'AGENCE
     ====================================================== -->
     <section class="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
 
-        <div class="relative isolate overflow-hidden rounded-[30px] bg-gradient-to-br from-[#071B36] via-[#102943] to-[#1D3851] shadow-[0_24px_70px_rgba(7,27,54,0.18)]">
+        <div class="relative isolate overflow-hidden rounded-[30px] bg-gradient-to-br from-[#061830] via-[#0B2342] to-[#173B60] shadow-[0_24px_70px_rgba(6,24,48,0.20)]">
 
-            <!-- Décoration -->
-            <div class="pointer-events-none absolute -right-24 -top-32 h-96 w-96 rounded-full bg-[#F5B800]/10 blur-3xl"></div>
+            <!-- Décorations -->
+            <div class="pointer-events-none absolute -right-24 -top-32 h-96 w-96 rounded-full bg-[#F5C542]/15 blur-3xl"></div>
 
-            <div class="pointer-events-none absolute -bottom-40 left-1/3 h-80 w-80 rounded-full bg-[#D7A200]/10 blur-3xl"></div>
+            <div class="pointer-events-none absolute -bottom-40 left-1/3 h-80 w-80 rounded-full bg-[#D4A900]/10 blur-3xl"></div>
 
-            <div class="pointer-events-none absolute right-0 top-0 h-full w-1/2 opacity-[0.06]"
+            <div class="pointer-events-none absolute right-0 top-0 h-full w-1/2 opacity-[0.05]"
                  style="background-image: linear-gradient(135deg, transparent 25%, #fff 25%, #fff 26%, transparent 26%, transparent 50%, #fff 50%, #fff 51%, transparent 51%); background-size: 34px 34px;">
             </div>
 
@@ -138,7 +142,7 @@ $services = [
 
                         <?php else: ?>
 
-                            <div class="flex h-full w-full items-center justify-center rounded-[19px] bg-[#F5F3ED] text-5xl font-black text-[#B88A00]">
+                            <div class="flex h-full w-full items-center justify-center rounded-[19px] bg-[#EAF0F8] text-5xl font-black text-[#D4A900]">
                                 <?= $e($initiale) ?>
                             </div>
 
@@ -146,14 +150,15 @@ $services = [
 
                     </div>
 
-                    <!-- IDENTITÉ -->
+
+                    <!-- IDENTITÉ DE L'AGENCE -->
                     <div class="min-w-0 flex-1">
 
                         <div class="mb-4 flex flex-wrap items-center gap-2">
 
-                            <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-2 text-xs font-bold text-[#E4EAF0]">
+                            <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-2 text-xs font-bold text-[#E0E8F1]">
 
-                                <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
+                                <span class="h-2 w-2 rounded-full bg-[#F5C542]"></span>
 
                                 Agence immobilière
 
@@ -161,7 +166,7 @@ $services = [
 
                             <?php if ($badge): ?>
 
-                                <span class="inline-flex items-center gap-1.5 rounded-full border border-[#F5B800]/30 bg-[#F5B800] px-3.5 py-2 text-xs font-extrabold text-[#071B36]">
+                                <span class="inline-flex items-center gap-1.5 rounded-full border border-[#F5C542]/30 bg-[#F5C542] px-3.5 py-2 text-xs font-extrabold text-[#061830]">
 
                                     <svg viewBox="0 0 20 20" fill="currentColor"
                                          class="h-4 w-4" aria-hidden="true">
@@ -180,9 +185,9 @@ $services = [
                             <?= $e($nom) ?>
                         </h1>
 
-                        <p class="mt-3 flex items-start gap-2.5 text-sm leading-7 text-[#C7D3DF] sm:text-base">
+                        <p class="mt-3 flex items-start gap-2.5 text-sm leading-7 text-[#C7D5E4] sm:text-base">
 
-                            <svg class="mt-1 h-5 w-5 shrink-0 text-[#F5B800]"
+                            <svg class="mt-1 h-5 w-5 shrink-0 text-[#F5C542]"
                                  viewBox="0 0 24 24" fill="none"
                                  stroke="currentColor" stroke-width="1.8"
                                  aria-hidden="true">
@@ -196,12 +201,12 @@ $services = [
 
                         </p>
 
-                        <div class="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-xs text-[#B8C7D2] sm:text-sm">
+                        <div class="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-xs text-[#C0CDDA] sm:text-sm">
 
                             <?php if ($ninea !== ''): ?>
 
                                 <span class="inline-flex items-center gap-2">
-                                    <svg class="h-4 w-4 text-[#F5B800]" viewBox="0 0 24 24"
+                                    <svg class="h-4 w-4 text-[#F5C542]" viewBox="0 0 24 24"
                                          fill="none" stroke="currentColor" stroke-width="1.8"
                                          aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M7 3h10l4 4v14H3V3h4Zm3 0v5h4V3M7 13h10M7 17h7"/>
@@ -212,7 +217,7 @@ $services = [
                             <?php endif; ?>
 
                             <span class="inline-flex items-center gap-2">
-                                <svg class="h-4 w-4 text-[#F5B800]" viewBox="0 0 24 24"
+                                <svg class="h-4 w-4 text-[#F5C542]" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="1.8"
                                      aria-hidden="true">
                                     <circle cx="12" cy="12" r="9"/>
@@ -227,12 +232,13 @@ $services = [
 
                 </div>
 
+
                 <!-- ACTIONS -->
                 <div class="flex flex-col gap-3 sm:flex-row lg:min-w-[205px] lg:flex-col">
 
                     <a
                         href="<?= $e($contactUrl) ?>"
-                        class="inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#F5B800] px-5 py-4 text-sm font-extrabold text-[#071B36] shadow-lg shadow-black/10 transition hover:bg-[#FFD04A] hover:shadow-xl"
+                        class="inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#F5C542] px-5 py-4 text-sm font-extrabold text-[#061830] shadow-lg shadow-black/10 transition hover:bg-[#FFDA68] hover:shadow-xl"
                     >
 
                         <svg class="h-5 w-5" viewBox="0 0 24 24"
@@ -246,8 +252,8 @@ $services = [
                     </a>
 
                     <a
-                        href="/biens?agence=<?= urlencode((string) $idAgence) ?>"
-                        class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-4 text-sm font-bold text-white transition hover:border-[#F5B800]/50 hover:bg-white/10"
+                        href="<?= $e($urlBiensAgence) ?>"
+                        class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/5 px-5 py-4 text-sm font-bold text-white transition hover:border-[#F5C542]/60 hover:bg-white/10"
                     >
 
                         Découvrir ses biens
@@ -264,21 +270,25 @@ $services = [
 
             </div>
 
+
             <!-- BANDEAU INFÉRIEUR -->
             <div class="relative flex flex-wrap items-center justify-between gap-3 border-t border-white/10 bg-black/10 px-6 py-4 sm:px-10">
 
-                <p class="text-xs font-medium text-[#C7D3DF]">
+                <p class="text-xs font-medium text-[#C7D5E4]">
                     Votre partenaire immobilier au Sénégal
                 </p>
 
                 <a href="#biens-agence"
-                   class="inline-flex items-center gap-2 text-xs font-extrabold text-[#F5B800] transition hover:text-white">
+                   class="inline-flex items-center gap-2 text-xs font-extrabold text-[#F5C542] transition hover:text-white">
+
                     Explorer le catalogue
+
                     <svg class="h-4 w-4" viewBox="0 0 24 24"
                          fill="none" stroke="currentColor" stroke-width="2"
                          aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m-7-7 7 7 7-7"/>
                     </svg>
+
                 </a>
 
             </div>
@@ -287,6 +297,7 @@ $services = [
 
     </section>
 
+
     <!-- =====================================================
          CONTENU PRINCIPAL
     ====================================================== -->
@@ -294,15 +305,16 @@ $services = [
 
         <div class="flex w-full flex-col gap-8">
 
+
             <!-- =================================================
                  À PROPOS
             ================================================== -->
             <section id="description-agence"
-                     class="w-full rounded-[28px] border border-[#E8E5DC] bg-white p-6 shadow-[0_12px_40px_rgba(7,27,54,0.045)] sm:p-8">
+                     class="w-full rounded-[28px] border border-[#E3E9F0] bg-white p-6 shadow-[0_12px_40px_rgba(6,24,48,0.045)] sm:p-8">
 
                 <div class="mb-6 flex items-start gap-4">
 
-                    <div class="flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl bg-[#FFF5D8] text-[#A77C00]">
+                    <div class="flex h-13 w-13 shrink-0 items-center justify-center rounded-2xl bg-[#EAF0F8] text-[#D4A900]">
 
                         <svg class="h-6 w-6" viewBox="0 0 24 24"
                              fill="none" stroke="currentColor" stroke-width="1.7"
@@ -315,11 +327,11 @@ $services = [
 
                     <div>
 
-                        <p class="text-xs font-extrabold uppercase tracking-[0.2em] text-[#A77C00]">
+                        <p class="text-xs font-extrabold uppercase tracking-[0.2em] text-[#B18B12]">
                             Découvrez-nous
                         </p>
 
-                        <h2 class="mt-1 text-xl font-black tracking-tight text-[#101D33] sm:text-2xl">
+                        <h2 class="mt-1 text-xl font-black tracking-tight text-[#061830] sm:text-2xl">
                             À propos de l'agence
                         </h2>
 
@@ -327,7 +339,7 @@ $services = [
 
                 </div>
 
-                <div class="rounded-2xl bg-[#FAFAF8] p-5 sm:p-6">
+                <div class="rounded-2xl bg-[#F4F6F9] p-5 sm:p-6">
 
                     <p class="whitespace-pre-line text-sm leading-8 text-[#5F6F80] sm:text-base">
                         <?= $e(
@@ -339,29 +351,30 @@ $services = [
 
             </section>
 
+
             <!-- =================================================
                  SERVICES
             ================================================== -->
             <section id="services-agence"
-                     class="w-full overflow-hidden rounded-[28px] border border-[#E9E3D3] bg-gradient-to-br from-[#FFF9E9] via-white to-[#F5F3ED] p-6 shadow-[0_12px_40px_rgba(7,27,54,0.045)] sm:p-8">
+                     class="w-full overflow-hidden rounded-[28px] border border-[#E3E9F0] bg-white p-6 shadow-[0_12px_40px_rgba(6,24,48,0.045)] sm:p-8">
 
                 <div class="mb-7">
 
                     <div class="flex items-center gap-3">
 
-                        <div class="h-1 w-9 rounded-full bg-[#F5B800]"></div>
+                        <div class="h-1 w-9 rounded-full bg-[#F5C542]"></div>
 
-                        <p class="text-xs font-extrabold uppercase tracking-[0.2em] text-[#A77C00]">
+                        <p class="text-xs font-extrabold uppercase tracking-[0.2em] text-[#B18B12]">
                             Notre accompagnement
                         </p>
 
                     </div>
 
-                    <h2 class="mt-3 text-xl font-black tracking-tight text-[#101D33] sm:text-2xl">
+                    <h2 class="mt-3 text-xl font-black tracking-tight text-[#061830] sm:text-2xl">
                         Les services immobiliers
                     </h2>
 
-                    <p class="mt-2 text-sm leading-6 text-[#71869A]">
+                    <p class="mt-2 text-sm leading-6 text-[#8290A0]">
                         Un accompagnement professionnel adapté à vos projets immobiliers.
                     </p>
 
@@ -371,9 +384,9 @@ $services = [
 
                     <?php foreach ($services as $service): ?>
 
-                        <article class="group rounded-2xl border border-[#EAE7DE] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#E7C65B] hover:shadow-[0_14px_35px_rgba(7,27,54,0.08)]">
+                        <article class="group rounded-2xl border border-[#E3E9F0] bg-[#F8FAFC] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#F5C542] hover:bg-white hover:shadow-[0_14px_35px_rgba(6,24,48,0.08)]">
 
-                            <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#FFF5D8] text-[#A77C00] transition duration-300 group-hover:bg-[#101D33] group-hover:text-[#F5B800]">
+                            <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#EAF0F8] text-[#D4A900] transition duration-300 group-hover:bg-[#061830] group-hover:text-[#F5C542]">
 
                                 <svg class="h-5 w-5" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="1.7"
@@ -384,15 +397,15 @@ $services = [
 
                             </div>
 
-                            <h3 class="font-extrabold text-[#101D33]">
+                            <h3 class="font-extrabold text-[#061830]">
                                 <?= $e($service['titre']) ?>
                             </h3>
 
-                            <p class="mt-2 text-sm leading-6 text-[#71869A]">
+                            <p class="mt-2 text-sm leading-6 text-[#8290A0]">
                                 <?= $e($service['texte']) ?>
                             </p>
 
-                            <div class="mt-5 h-1 w-8 rounded-full bg-[#F5B800] transition-all duration-300 group-hover:w-14"></div>
+                            <div class="mt-5 h-1 w-8 rounded-full bg-[#F5C542] transition-all duration-300 group-hover:w-14"></div>
 
                         </article>
 
@@ -402,29 +415,30 @@ $services = [
 
             </section>
 
+
             <!-- =================================================
                  INFORMATIONS GÉNÉRALES
             ================================================== -->
             <section id="informations-agence"
-                     class="w-full rounded-[28px] border border-[#E8E5DC] bg-white p-6 shadow-[0_12px_40px_rgba(7,27,54,0.045)] sm:p-8">
+                     class="w-full rounded-[28px] border border-[#E3E9F0] bg-white p-6 shadow-[0_12px_40px_rgba(6,24,48,0.045)] sm:p-8">
 
                 <div class="mb-7">
 
                     <div class="flex items-center gap-3">
 
-                        <div class="h-1 w-9 rounded-full bg-[#F5B800]"></div>
+                        <div class="h-1 w-9 rounded-full bg-[#F5C542]"></div>
 
-                        <p class="text-xs font-extrabold uppercase tracking-[0.2em] text-[#A77C00]">
+                        <p class="text-xs font-extrabold uppercase tracking-[0.2em] text-[#B18B12]">
                             Coordonnées et accès
                         </p>
 
                     </div>
 
-                    <h2 class="mt-3 text-xl font-black tracking-tight text-[#101D33] sm:text-2xl">
+                    <h2 class="mt-3 text-xl font-black tracking-tight text-[#061830] sm:text-2xl">
                         Informations générales
                     </h2>
 
-                    <p class="mt-2 text-sm text-[#71869A]">
+                    <p class="mt-2 text-sm text-[#8290A0]">
                         Retrouvez les informations utiles pour contacter et localiser cette agence.
                     </p>
 
@@ -432,13 +446,14 @@ $services = [
 
                 <div class="grid w-full grid-cols-1 items-stretch gap-5 md:grid-cols-2 xl:grid-cols-3">
 
+
                     <!-- =========================================
                          COORDONNÉES
                     ========================================== -->
                     <section id="contact-agence"
-                             class="rounded-[24px] border border-[#E8E5DC] bg-[#FAFAF8] p-6">
+                             class="rounded-[24px] border border-[#E3E9F0] bg-[#F8FAFC] p-6">
 
-                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#FFF5D8] text-[#A77C00]">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#EAF0F8] text-[#D4A900]">
 
                             <svg class="h-6 w-6" viewBox="0 0 24 24"
                                  fill="none" stroke="currentColor" stroke-width="1.7"
@@ -448,24 +463,25 @@ $services = [
 
                         </div>
 
-                        <p class="mt-5 text-xs font-extrabold uppercase tracking-[0.16em] text-[#A77C00]">
+                        <p class="mt-5 text-xs font-extrabold uppercase tracking-[0.16em] text-[#B18B12]">
                             Parlons de votre projet
                         </p>
 
-                        <h2 class="mt-2 text-xl font-black text-[#101D33]">
+                        <h2 class="mt-2 text-xl font-black text-[#061830]">
                             Contacter l'agence
                         </h2>
 
-                        <p class="mt-2 text-sm leading-6 text-[#71869A]">
+                        <p class="mt-2 text-sm leading-6 text-[#8290A0]">
                             Vous souhaitez visiter un bien ou obtenir des informations ?
                         </p>
 
                         <div class="mt-6 space-y-5">
 
+
                             <!-- TÉLÉPHONE -->
                             <div class="flex items-start gap-3">
 
-                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-[#A77C00] shadow-sm">
+                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-[#D4A900] shadow-sm">
 
                                     <svg class="h-5 w-5" viewBox="0 0 24 24"
                                          fill="none" stroke="currentColor" stroke-width="1.7"
@@ -477,7 +493,7 @@ $services = [
 
                                 <div class="min-w-0">
 
-                                    <p class="text-xs font-semibold text-[#71869A]">
+                                    <p class="text-xs font-semibold text-[#8290A0]">
                                         Téléphone
                                     </p>
 
@@ -485,14 +501,14 @@ $services = [
 
                                         <a
                                             href="tel:<?= $e(preg_replace('/[^0-9+]/', '', $telephone)) ?>"
-                                            class="mt-1 block break-words text-sm font-bold text-[#101D33] transition hover:text-[#A77C00]"
+                                            class="mt-1 block break-words text-sm font-bold text-[#061830] transition hover:text-[#B18B12]"
                                         >
                                             <?= $e($telephone) ?>
                                         </a>
 
                                     <?php else: ?>
 
-                                        <p class="mt-1 text-sm text-[#71869A]">
+                                        <p class="mt-1 text-sm text-[#8290A0]">
                                             Non renseigné
                                         </p>
 
@@ -502,10 +518,11 @@ $services = [
 
                             </div>
 
+
                             <!-- EMAIL -->
                             <div class="flex items-start gap-3">
 
-                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-[#A77C00] shadow-sm">
+                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-[#D4A900] shadow-sm">
 
                                     <svg class="h-5 w-5" viewBox="0 0 24 24"
                                          fill="none" stroke="currentColor" stroke-width="1.7"
@@ -518,7 +535,7 @@ $services = [
 
                                 <div class="min-w-0">
 
-                                    <p class="text-xs font-semibold text-[#71869A]">
+                                    <p class="text-xs font-semibold text-[#8290A0]">
                                         Adresse e-mail
                                     </p>
 
@@ -526,14 +543,14 @@ $services = [
 
                                         <a
                                             href="mailto:<?= $e($email) ?>"
-                                            class="mt-1 block break-all text-sm font-bold text-[#101D33] transition hover:text-[#A77C00]"
+                                            class="mt-1 block break-all text-sm font-bold text-[#061830] transition hover:text-[#B18B12]"
                                         >
                                             <?= $e($email) ?>
                                         </a>
 
                                     <?php else: ?>
 
-                                        <p class="mt-1 text-sm text-[#71869A]">
+                                        <p class="mt-1 text-sm text-[#8290A0]">
                                             Non renseignée
                                         </p>
 
@@ -543,10 +560,11 @@ $services = [
 
                             </div>
 
+
                             <!-- ADRESSE -->
                             <div class="flex items-start gap-3">
 
-                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-[#A77C00] shadow-sm">
+                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-[#D4A900] shadow-sm">
 
                                     <svg class="h-5 w-5" viewBox="0 0 24 24"
                                          fill="none" stroke="currentColor" stroke-width="1.7"
@@ -559,11 +577,11 @@ $services = [
 
                                 <div class="min-w-0">
 
-                                    <p class="text-xs font-semibold text-[#71869A]">
+                                    <p class="text-xs font-semibold text-[#8290A0]">
                                         Adresse
                                     </p>
 
-                                    <p class="mt-1 break-words text-sm font-bold leading-6 text-[#101D33]">
+                                    <p class="mt-1 break-words text-sm font-bold leading-6 text-[#061830]">
                                         <?= $e($adresse ?: 'Sénégal') ?>
                                     </p>
 
@@ -573,12 +591,14 @@ $services = [
 
                         </div>
 
+
                         <?php if ($telephone !== '' || $email !== ''): ?>
 
                             <a
                                 href="<?= $e($contactUrl) ?>"
-                                class="mt-7 flex w-full items-center justify-center gap-2 rounded-xl bg-[#071B36] px-5 py-3.5 text-sm font-extrabold text-white transition hover:bg-[#1B3654]"
+                                class="mt-7 flex w-full items-center justify-center gap-2 rounded-xl bg-[#061830] px-5 py-3.5 text-sm font-extrabold text-white transition hover:bg-[#173B60]"
                             >
+
                                 Prendre contact
 
                                 <svg class="h-4 w-4" viewBox="0 0 24 24"
@@ -593,12 +613,13 @@ $services = [
 
                     </section>
 
+
                     <!-- =========================================
                          LOCALISATION
                     ========================================== -->
-                    <section class="rounded-[24px] border border-[#E8E5DC] bg-[#FAFAF8] p-6">
+                    <section class="rounded-[24px] border border-[#E3E9F0] bg-[#F8FAFC] p-6">
 
-                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#FFF5D8] text-[#A77C00]">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#EAF0F8] text-[#D4A900]">
 
                             <svg class="h-6 w-6" viewBox="0 0 24 24"
                                  fill="none" stroke="currentColor" stroke-width="1.7"
@@ -609,27 +630,28 @@ $services = [
 
                         </div>
 
-                        <p class="mt-5 text-xs font-extrabold uppercase tracking-[0.16em] text-[#A77C00]">
+                        <p class="mt-5 text-xs font-extrabold uppercase tracking-[0.16em] text-[#B18B12]">
                             Nous trouver
                         </p>
 
-                        <h2 class="mt-2 text-xl font-black text-[#101D33]">
+                        <h2 class="mt-2 text-xl font-black text-[#061830]">
                             Localisation
                         </h2>
 
-                        <p class="mt-2 text-sm text-[#71869A]">
+                        <p class="mt-2 text-sm text-[#8290A0]">
                             Adresse de l'agence
                         </p>
 
-                        <div class="relative mt-6 min-h-[150px] overflow-hidden rounded-2xl border border-[#E8E5DC] bg-gradient-to-br from-[#FFF7E1] to-[#F0EEE7] p-5">
 
-                            <div class="absolute -right-5 -top-5 h-28 w-28 rounded-full bg-[#F5B800]/15"></div>
+                        <div class="relative mt-6 min-h-[150px] overflow-hidden rounded-2xl border border-[#DCE5EF] bg-gradient-to-br from-[#EAF0F8] to-[#DCE7F3] p-5">
 
-                            <div class="absolute -bottom-10 -left-8 h-32 w-32 rounded-full bg-[#D7A200]/10"></div>
+                            <div class="absolute -right-5 -top-5 h-28 w-28 rounded-full bg-[#F5C542]/20"></div>
+
+                            <div class="absolute -bottom-10 -left-8 h-32 w-32 rounded-full bg-[#061830]/5"></div>
 
                             <div class="relative">
 
-                                <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[#A77C00] shadow-sm">
+                                <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[#D4A900] shadow-sm">
 
                                     <svg class="h-5 w-5" viewBox="0 0 24 24"
                                          fill="none" stroke="currentColor" stroke-width="1.8"
@@ -640,11 +662,11 @@ $services = [
 
                                 </div>
 
-                                <p class="break-words text-sm font-bold leading-6 text-[#101D33]">
+                                <p class="break-words text-sm font-bold leading-6 text-[#061830]">
                                     <?= $e($adresse ?: 'Adresse non renseignée') ?>
                                 </p>
 
-                                <p class="mt-2 text-xs font-medium text-[#71869A]">
+                                <p class="mt-2 text-xs font-medium text-[#71839A]">
                                     Sénégal
                                 </p>
 
@@ -652,13 +674,14 @@ $services = [
 
                         </div>
 
+
                         <?php if ($adresse !== ''): ?>
 
                             <a
                                 href="https://www.google.com/maps/search/?api=1&amp;query=<?= rawurlencode($adresse . ', Sénégal') ?>"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="mt-5 inline-flex items-center gap-2 text-sm font-extrabold text-[#A77C00] transition hover:text-[#071B36]"
+                                class="mt-5 inline-flex items-center gap-2 text-sm font-extrabold text-[#B18B12] transition hover:text-[#061830]"
                             >
 
                                 Ouvrir dans Google Maps
@@ -675,16 +698,17 @@ $services = [
 
                     </section>
 
+
                     <!-- =========================================
                          QR CODES
                     ========================================== -->
-                    <section class="relative overflow-hidden rounded-[24px] border border-[#E9DDAF] bg-gradient-to-br from-[#FFF8E4] via-[#FFFDF7] to-[#F6F0DF] p-6">
+                    <section class="relative overflow-hidden rounded-[24px] border border-[#DCE5EF] bg-gradient-to-br from-[#EAF0F8] via-white to-[#F4F6F9] p-6">
 
-                        <div class="absolute -right-12 -top-12 h-36 w-36 rounded-full bg-[#F5B800]/10"></div>
+                        <div class="absolute -right-12 -top-12 h-36 w-36 rounded-full bg-[#F5C542]/15"></div>
 
                         <div class="relative">
 
-                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#A77C00] shadow-sm">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-[#D4A900] shadow-sm">
 
                                 <svg class="h-6 w-6" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="1.7"
@@ -697,11 +721,11 @@ $services = [
 
                             </div>
 
-                            <p class="mt-5 text-xs font-extrabold uppercase tracking-[0.16em] text-[#A77C00]">
+                            <p class="mt-5 text-xs font-extrabold uppercase tracking-[0.16em] text-[#B18B12]">
                                 Accès rapide
                             </p>
 
-                            <h2 class="mt-2 text-xl font-black text-[#101D33]">
+                            <h2 class="mt-2 text-xl font-black text-[#061830]">
                                 QR Codes de l'agence
                             </h2>
 
@@ -709,9 +733,9 @@ $services = [
                                 Retrouvez les QR Codes associés aux biens de cette agence et partagez facilement vos annonces.
                             </p>
 
-                            <div class="mt-5 flex items-center gap-3 rounded-xl border border-[#E9DDAF] bg-white/80 p-3">
+                            <div class="mt-5 flex items-center gap-3 rounded-xl border border-[#DCE5EF] bg-white/90 p-3">
 
-                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#FFF5D8] text-[#A77C00]">
+                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#EAF0F8] text-[#D4A900]">
 
                                     <svg class="h-5 w-5" viewBox="0 0 24 24"
                                          fill="none" stroke="currentColor" stroke-width="1.8"
@@ -729,7 +753,7 @@ $services = [
 
                             <a
                                 href="/agences/<?= urlencode((string) $idAgence) ?>/qr-zip"
-                                class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#071B36] px-4 py-3.5 text-sm font-extrabold text-white transition hover:bg-[#1B3654]"
+                                class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#061830] px-4 py-3.5 text-sm font-extrabold text-white transition hover:bg-[#173B60]"
                             >
 
                                 <svg class="h-4 w-4" viewBox="0 0 24 24"
@@ -750,11 +774,12 @@ $services = [
 
             </section>
 
+
             <!-- =================================================
                  BIENS DE L'AGENCE
             ================================================== -->
             <section id="biens-agence"
-                     class="w-full rounded-[28px] border border-[#E8E5DC] bg-white p-6 shadow-[0_12px_40px_rgba(7,27,54,0.045)] sm:p-8">
+                     class="w-full rounded-[28px] border border-[#E3E9F0] bg-white p-6 shadow-[0_12px_40px_rgba(6,24,48,0.045)] sm:p-8">
 
                 <div class="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
 
@@ -762,21 +787,21 @@ $services = [
 
                         <div class="flex items-center gap-3">
 
-                            <div class="h-1 w-9 rounded-full bg-[#F5B800]"></div>
+                            <div class="h-1 w-9 rounded-full bg-[#F5C542]"></div>
 
-                            <p class="text-xs font-extrabold uppercase tracking-[0.2em] text-[#A77C00]">
+                            <p class="text-xs font-extrabold uppercase tracking-[0.2em] text-[#B18B12]">
                                 Catalogue immobilier
                             </p>
 
                         </div>
 
-                        <h2 class="mt-3 text-xl font-black tracking-tight text-[#101D33] sm:text-2xl">
+                        <h2 class="mt-3 text-xl font-black tracking-tight text-[#061830] sm:text-2xl">
                             Les biens de l'agence
                         </h2>
 
-                        <div class="mt-3 inline-flex items-center gap-2 rounded-full bg-[#FFF5D8] px-3 py-1.5 text-xs font-bold text-[#8A6500]">
+                        <div class="mt-3 inline-flex items-center gap-2 rounded-full bg-[#EAF0F8] px-3 py-1.5 text-xs font-bold text-[#173B60]">
 
-                            <span class="h-1.5 w-1.5 rounded-full bg-[#D7A200]"></span>
+                            <span class="h-1.5 w-1.5 rounded-full bg-[#D4A900]"></span>
 
                             <?= $nombreBiens ?>
                             bien<?= $nombreBiens > 1 ? 's' : '' ?>
@@ -786,11 +811,12 @@ $services = [
 
                     </div>
 
+
                     <?php if ($nombreBiens > 3): ?>
 
                         <a
-                            href="/biens?agence=<?= urlencode((string) $idAgence) ?>"
-                            class="inline-flex items-center gap-2 text-sm font-extrabold text-[#A77C00] transition hover:text-[#071B36]"
+                            href="<?= $e($urlBiensAgence) ?>"
+                            class="inline-flex items-center gap-2 text-sm font-extrabold text-[#B18B12] transition hover:text-[#061830]"
                         >
 
                             Voir tous les biens
@@ -806,6 +832,7 @@ $services = [
                     <?php endif; ?>
 
                 </div>
+
 
                 <?php if (!empty($biens)): ?>
 
@@ -823,10 +850,11 @@ $services = [
                             $photo = $bien['photo'] ?? '';
                             ?>
 
-                            <article class="group overflow-hidden rounded-[24px] border border-[#E8E5DC] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#E5C65C] hover:shadow-[0_18px_45px_rgba(7,27,54,0.11)]">
+                            <article class="group overflow-hidden rounded-[24px] border border-[#E3E9F0] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#F5C542] hover:shadow-[0_18px_45px_rgba(6,24,48,0.11)]">
+
 
                                 <!-- PHOTO -->
-                                <div class="relative overflow-hidden bg-[#F0EEE7]">
+                                <div class="relative overflow-hidden bg-[#EAF0F8]">
 
                                     <?php if ($photo !== ''): ?>
 
@@ -839,7 +867,7 @@ $services = [
 
                                     <?php else: ?>
 
-                                        <div class="flex h-56 items-center justify-center bg-gradient-to-br from-[#FFF8E4] to-[#EDEBE3] text-[#A77C00]">
+                                        <div class="flex h-56 items-center justify-center bg-gradient-to-br from-[#EAF0F8] to-[#DCE7F3] text-[#D4A900]">
 
                                             <div class="text-center">
 
@@ -860,17 +888,19 @@ $services = [
 
                                     <?php endif; ?>
 
+
                                     <!-- BADGE OFFRE -->
-                                    <span class="absolute left-4 top-4 rounded-lg px-3 py-2 text-xs font-extrabold shadow-sm <?= $isVente ? 'bg-[#F5B800] text-[#071B36]' : 'bg-[#071B36] text-white' ?>">
+                                    <span class="absolute left-4 top-4 rounded-lg px-3 py-2 text-xs font-extrabold shadow-sm <?= $isVente ? 'bg-[#F5C542] text-[#061830]' : 'bg-[#061830] text-white' ?>">
                                         <?= $e($typeOffre) ?>
                                     </span>
 
                                 </div>
 
+
                                 <!-- CONTENU -->
                                 <div class="p-5">
 
-                                    <p class="flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-[#A77C00]">
+                                    <p class="flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-[#B18B12]">
 
                                         <svg class="h-3.5 w-3.5" viewBox="0 0 24 24"
                                              fill="none" stroke="currentColor" stroke-width="2"
@@ -882,29 +912,30 @@ $services = [
                                         <?= $e($ville) ?>
 
                                         <?php if ($quartier !== ''): ?>
-                                            <span class="text-[#B8C1CA]">·</span>
+                                            <span class="text-[#B8C2CE]">·</span>
                                             <?= $e($quartier) ?>
                                         <?php endif; ?>
 
                                     </p>
 
-                                    <h3 class="mt-3 line-clamp-2 min-h-12 font-extrabold leading-6 text-[#101D33] transition group-hover:text-[#A77C00]">
+                                    <h3 class="mt-3 line-clamp-2 min-h-12 font-extrabold leading-6 text-[#061830] transition group-hover:text-[#B18B12]">
                                         <?= $e($titreBien) ?>
                                     </h3>
 
-                                    <div class="mt-5 flex items-end justify-between gap-3 border-t border-[#EAE7DE] pt-4">
+
+                                    <div class="mt-5 flex items-end justify-between gap-3 border-t border-[#E8EDF3] pt-4">
 
                                         <div class="min-w-0">
 
-                                            <p class="text-xs text-[#71869A]">
+                                            <p class="text-xs text-[#8290A0]">
                                                 Prix annoncé
                                             </p>
 
-                                            <p class="mt-1 text-xl font-black text-[#101D33]">
+                                            <p class="mt-1 text-xl font-black text-[#061830]">
 
                                                 <?= number_format($prix, 0, ',', ' ') ?>
 
-                                                <span class="text-xs font-bold text-[#A77C00]">
+                                                <span class="text-xs font-bold text-[#B18B12]">
                                                     FCFA
                                                 </span>
 
@@ -913,8 +944,8 @@ $services = [
                                         </div>
 
                                         <a
-                                            href="/biens?agence=<?= urlencode((string) $idAgence) ?>"
-                                            class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#FFF5D8] text-[#A77C00] transition hover:bg-[#071B36] hover:text-[#F5B800]"
+                                            href="<?= $e($urlBiensAgence) ?>"
+                                            class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#EAF0F8] text-[#061830] transition hover:bg-[#061830] hover:text-[#F5C542]"
                                             aria-label="Découvrir les biens de l'agence"
                                         >
 
@@ -936,13 +967,14 @@ $services = [
 
                     </div>
 
+
                     <?php if ($nombreBiens > 3): ?>
 
                         <div class="mt-8 flex justify-center">
 
                             <a
-                                href="/biens?agence=<?= urlencode((string) $idAgence) ?>"
-                                class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#071B36] px-7 py-4 text-sm font-extrabold text-white shadow-lg shadow-[#071B36]/10 transition hover:bg-[#1B3654]"
+                                href="<?= $e($urlBiensAgence) ?>"
+                                class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#061830] px-7 py-4 text-sm font-extrabold text-white shadow-lg shadow-[#061830]/10 transition hover:bg-[#173B60]"
                             >
 
                                 Voir les <?= $nombreBiens ?> biens
@@ -959,12 +991,14 @@ $services = [
 
                     <?php endif; ?>
 
+
                 <?php else: ?>
 
-                    <!-- AUCUN BIEN -->
-                    <div class="rounded-[24px] border border-dashed border-[#E2D6B5] bg-[#FFFCF4] px-6 py-14 text-center">
 
-                        <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-[24px] bg-[#FFF5D8] text-[#A77C00]">
+                    <!-- AUCUN BIEN -->
+                    <div class="rounded-[24px] border border-dashed border-[#C9D6E5] bg-[#F8FAFC] px-6 py-14 text-center">
+
+                        <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-[24px] bg-[#EAF0F8] text-[#D4A900]">
 
                             <svg class="h-9 w-9" viewBox="0 0 24 24"
                                  fill="none" stroke="currentColor" stroke-width="1.5"
@@ -974,18 +1008,18 @@ $services = [
 
                         </div>
 
-                        <h3 class="mt-6 text-lg font-black text-[#101D33]">
+                        <h3 class="mt-6 text-lg font-black text-[#061830]">
                             Aucun bien disponible pour le moment
                         </h3>
 
-                        <p class="mx-auto mt-2 max-w-md text-sm leading-7 text-[#71869A]">
+                        <p class="mx-auto mt-2 max-w-md text-sm leading-7 text-[#8290A0]">
                             Les annonces de cette agence apparaîtront ici lorsqu'elles seront disponibles.
                             N'hésitez pas à revenir consulter son catalogue.
                         </p>
 
                         <a
                             href="/biens"
-                            class="mt-7 inline-flex items-center justify-center gap-2 rounded-xl bg-[#071B36] px-6 py-3.5 text-sm font-extrabold text-white transition hover:bg-[#1B3654]"
+                            class="mt-7 inline-flex items-center justify-center gap-2 rounded-xl bg-[#061830] px-6 py-3.5 text-sm font-extrabold text-white transition hover:bg-[#173B60]"
                         >
 
                             Explorer les biens
@@ -1008,40 +1042,138 @@ $services = [
 
     </main>
 
+
     <!-- =====================================================
-         PIED DE PAGE
+         PIED DE PAGE BLEU MARINE
     ====================================================== -->
-    <footer class="mt-6 border-t border-[#E8E5DC] bg-white">
+    <footer class="relative mt-8 overflow-hidden bg-[#061830] text-white">
 
-        <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+        <!-- Décorations -->
+        <div class="pointer-events-none absolute -right-24 -top-28 h-72 w-72 rounded-full bg-[#F5C542]/10 blur-3xl"></div>
 
-            <a href="/" class="text-xl font-black tracking-tight text-[#071B36]">
-                IMMO<span class="text-[#D7A200]">-SN</span>
-            </a>
+        <div class="pointer-events-none absolute -bottom-32 left-1/4 h-64 w-64 rounded-full bg-[#173B60]/50 blur-3xl"></div>
 
-            <p class="text-sm text-[#71869A]">
-                Votre partenaire immobilier au Sénégal.
-            </p>
 
-            <a
-                href="/agences"
-                class="inline-flex items-center gap-2 text-sm font-extrabold text-[#A77C00] transition hover:text-[#071B36]"
-            >
+        <!-- CONTENU DU FOOTER -->
+        <div class="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
 
-                Toutes les agences
+            <div class="grid gap-10 md:grid-cols-3 md:items-center">
 
-                <svg class="h-4 w-4" viewBox="0 0 24 24"
-                     fill="none" stroke="currentColor" stroke-width="2"
-                     aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/>
-                </svg>
 
-            </a>
+                <!-- LOGO ET IDENTITÉ -->
+                <div>
 
-        </div>
+                    <a href="/" class="inline-flex items-center text-2xl font-black tracking-tight text-white">
 
-        <div class="border-t border-[#F0EEE7] py-4 text-center text-xs text-[#9AA5B1]">
-            © <?= date('Y') ?> IMMO-SN. Tous droits réservés.
+                        IMMO<span class="text-[#F5C542]">-SN</span>
+
+                    </a>
+
+                    <p class="mt-4 max-w-sm text-sm leading-7 text-[#B8C7D8]">
+                        Votre partenaire immobilier au Sénégal. Trouvez le bien qui correspond à vos projets et découvrez les agences immobilières de confiance.
+                    </p>
+
+                    <div class="mt-5 flex items-center gap-2">
+
+                        <span class="h-1 w-8 rounded-full bg-[#F5C542]"></span>
+
+                        <span class="text-xs font-bold uppercase tracking-[0.18em] text-[#F5C542]">
+                            L'immobilier en toute confiance
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NAVIGATION -->
+                <div class="md:justify-self-center">
+
+                    <h3 class="text-sm font-extrabold uppercase tracking-[0.16em] text-white">
+                        Navigation
+                    </h3>
+
+                    <div class="mt-5 flex flex-col gap-3">
+
+                        <a href="/"
+                           class="text-sm text-[#B8C7D8] transition hover:text-[#F5C542]">
+                            Accueil
+                        </a>
+
+                        <a href="/biens"
+                           class="text-sm text-[#B8C7D8] transition hover:text-[#F5C542]">
+                            Nos biens immobiliers
+                        </a>
+
+                        <a href="/agences"
+                           class="text-sm text-[#B8C7D8] transition hover:text-[#F5C542]">
+                            Nos agences
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONTACT ET RETOUR -->
+                <div class="md:justify-self-end">
+
+                    <h3 class="text-sm font-extrabold uppercase tracking-[0.16em] text-white">
+                        Vous recherchez un bien ?
+                    </h3>
+
+                    <p class="mt-4 max-w-xs text-sm leading-7 text-[#B8C7D8]">
+                        Parcourez notre catalogue et trouvez votre prochain logement ou investissement immobilier.
+                    </p>
+
+                    <a
+                        href="/biens"
+                        class="mt-5 inline-flex items-center justify-center gap-2 rounded-xl bg-[#F5C542] px-5 py-3.5 text-sm font-extrabold text-[#061830] transition hover:bg-[#FFDA68]"
+                    >
+
+                        Explorer les biens
+
+                        <svg class="h-4 w-4" viewBox="0 0 24 24"
+                             fill="none" stroke="currentColor" stroke-width="2"
+                             aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/>
+                        </svg>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- SÉPARATION -->
+            <div class="my-9 h-px bg-white/10"></div>
+
+
+            <!-- COPYRIGHT -->
+            <div class="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
+
+                <p class="text-xs text-[#AFC0D2]">
+                    © <?= date('Y') ?> IMMO-SN. Tous droits réservés.
+                </p>
+
+                <a
+                    href="/agences"
+                    class="inline-flex items-center gap-2 text-xs font-extrabold text-[#F5C542] transition hover:text-white"
+                >
+
+                    Toutes les agences
+
+                    <svg class="h-4 w-4" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2"
+                         aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/>
+                    </svg>
+
+                </a>
+
+            </div>
+
         </div>
 
     </footer>
