@@ -2,32 +2,68 @@
 
 $nomAgence = $agence['nom_agence'] ?? 'Mon agence';
 $initialeAgence = strtoupper(substr($nomAgence, 0, 1));
+$nombreMessagesNonLus = (int) ($nombreMessagesNonLus ?? 0);
 
 $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 
-$currentPath = preg_replace('#^/immo-sn/public#', '', $currentPath);
-$currentPath = preg_replace('#^/immo-sn#', '', $currentPath);
+/*
+|--------------------------------------------------------------------------
+| Nettoyage du chemin de base
+|--------------------------------------------------------------------------
+*/
 
-if (!$currentPath) {
-    $currentPath = '/';
-}
+$currentPath = preg_replace(
+    '#^/immo-sn/public#',
+    '',
+    $currentPath
+);
+
+$currentPath = preg_replace(
+    '#^/immo-sn#',
+    '',
+    $currentPath
+);
+
+/*
+|--------------------------------------------------------------------------
+| Normalisation du chemin
+|--------------------------------------------------------------------------
+| Supprime le slash final pour éviter les différences entre :
+| /agence/biens et /agence/biens/
+|--------------------------------------------------------------------------
+*/
+
+$currentPath = rtrim($currentPath, '/') ?: '/';
+
+
+/*
+|--------------------------------------------------------------------------
+| Détection du lien actif
+|--------------------------------------------------------------------------
+*/
 
 if (!function_exists('isAgenceActive')) {
+
     function isAgenceActive(string $path): bool
     {
         global $currentPath;
 
+        // Normaliser également la route du lien
+        $path = rtrim($path, '/') ?: '/';
+
+        // Tableau de bord : route exacte uniquement
         if ($path === '/agence/mon-agence') {
             return $currentPath === $path;
         }
 
+        // Rubriques : route exacte ou sous-route
         return $currentPath === $path
             || str_starts_with($currentPath, $path . '/');
     }
+
 }
 
 ?>
-
 <aside
     id="agencySidebar"
     aria-label="Navigation agence"
@@ -111,6 +147,50 @@ if (!function_exists('isAgenceActive')) {
 
                 <span class="font-medium">Mes biens</span>
             </a>
+
+            <!-- MESSAGES -->
+<a href="/immo-sn/agence/messages"
+   class="group flex items-center gap-3 rounded-xl px-3 py-3 text-sm transition-all
+   <?= isAgenceActive('/agence/messages')
+       ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-md shadow-[#071b36]/20'
+       : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white' ?>">
+
+    <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg
+        <?= isAgenceActive('/agence/messages')
+            ? 'bg-[#0b1528]/10 text-[#0b1528]'
+            : 'bg-[#0e2a4e] text-slate-200 group-hover:bg-[#163d6e] group-hover:text-[#f5b800]' ?>">
+
+        <svg class="h-[18px] w-[18px]"
+             fill="none"
+             viewBox="0 0 24 24"
+             stroke="currentColor"
+             stroke-width="1.8">
+
+            <path stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 11.5a8.38 8.38 0 0 1-.9 3.8
+                     8.5 8.5 0 0 1-7.6 4.7
+                     8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7
+                     a8.38 8.38 0 0 1-.9-3.8
+                     8.5 8.5 0 0 1 4.7-7.6
+                     8.38 8.38 0 0 1 3.8-.9h.5
+                     a8.48 8.48 0 0 1 8 8v.5Z"/>
+        </svg>
+    </span>
+
+    <span class="flex-1 font-medium">Messages</span>
+
+    <?php if ($nombreMessagesNonLus > 0): ?>
+
+        <span class="flex h-5 min-w-5 items-center justify-center rounded-full bg-[#f5b800] px-1.5 text-[10px] font-black text-[#071b36]">
+
+            <?= $nombreMessagesNonLus > 99 ? '99+' : $nombreMessagesNonLus ?>
+
+        </span>
+
+    <?php endif; ?>
+
+</a>
 
             <!-- PUBLIER UN BIEN -->
             <a href="/immo-sn/agence/publier"

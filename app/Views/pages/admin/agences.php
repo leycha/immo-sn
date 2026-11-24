@@ -110,72 +110,77 @@ $e = static function ($valeur): string {
                 </div>
             <?php endif; ?>
 
-            <!-- PRÉSENTATION -->
-            <section class="relative overflow-hidden rounded-[26px] bg-[#071B36] shadow-[0_18px_50px_rgba(7,27,54,0.12)]">
+<!-- PRÉSENTATION — HERO COMPACT -->
+<section class="relative overflow-hidden rounded-[26px] bg-[#071B36] shadow-[0_18px_50px_rgba(7,27,54,0.12)]">
 
-                <div class="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#F5B800]/10 blur-3xl"></div>
-                <div class="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-[#0E2A4E]/70 blur-3xl"></div>
+    <div class="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#F5B800]/10 blur-3xl"></div>
+    <div class="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-[#0E2A4E]/70 blur-3xl"></div>
 
-                <div class="relative flex flex-col gap-7 px-6 py-8 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
+    <div class="relative flex flex-col gap-5 px-5 py-5 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
 
-                    <div class="max-w-2xl">
-                        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
-                            <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
-                            <span class="text-xs font-medium text-slate-200">
-                                Centre de gestion immobilière
-                            </span>
-                        </div>
+        <!-- TEXTE DE PRÉSENTATION -->
+        <div class="max-w-2xl">
 
-                        <h2 class="text-3xl font-semibold leading-tight text-white sm:text-4xl">
-                            Gestion des
-                            <span class="text-[#F5B800]">agences partenaires</span>
-                        </h2>
+            <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
+                <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
+                <span class="text-xs font-medium text-slate-200">
+                    Centre de gestion immobilière
+                </span>
+            </div>
 
-                        <p class="mt-4 max-w-xl text-sm leading-7 text-slate-300">
-                            Consultez les demandes d'inscription, vérifiez les informations
-                            des agences et contrôlez leurs autorisations sur la plateforme IMMO-SN.
-                        </p>
-                    </div>
+            <h2 class="text-2xl font-semibold leading-tight text-white sm:text-3xl">
+                Gestion des
+                <span class="text-[#F5B800]">agences partenaires</span>
+            </h2>
 
-                    <!-- TOTAL -->
-                    <div class="shrink-0 rounded-2xl border border-white/10 bg-[#0E2A4E]/80 p-5 backdrop-blur-sm lg:min-w-[270px]">
-                        <div class="flex items-center justify-between gap-5">
-                            <div>
-                                <p class="text-xs uppercase tracking-[0.15em] text-slate-400">
-                                    Total des agences
-                                </p>
-                                <p class="mt-2 text-3xl font-bold tabular-nums text-white">
-                                    <?= number_format($totalAgences, 0, ',', ' ') ?>
-                                </p>
-                                <p class="mt-1 text-xs text-slate-300">
-                                    agence(s) enregistrée(s)
-                                </p>
-                            </div>
+            <p class="mt-3 max-w-xl text-sm leading-6 text-slate-300">
+                Consultez les demandes d'inscription, vérifiez les informations
+                des agences et contrôlez leurs autorisations sur la plateforme IMMO-SN.
+            </p>
+        </div>
 
-                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#F5B800]/15 text-[#F5B800]">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                     class="h-6 w-6"
-                                     fill="none"
-                                     viewBox="0 0 24 24"
-                                     stroke="currentColor"
-                                     stroke-width="1.8">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2m6-10a4 4 0 100-8 4 4 0 000 8zm10 10v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-                                </svg>
-                            </div>
-                        </div>
+        <!-- TOTAL DES AGENCES -->
+        <div class="shrink-0 rounded-2xl border border-white/10 bg-[#0E2A4E]/80 p-4 backdrop-blur-sm lg:min-w-[250px]">
 
-                        <div class="mt-5 h-1.5 overflow-hidden rounded-full bg-white/10">
-                            <div class="h-full w-full rounded-full bg-[#F5B800]"></div>
-                        </div>
+            <div class="flex items-center justify-between gap-5">
+                <div>
+                    <p class="text-xs uppercase tracking-[0.15em] text-slate-400">
+                        Total des agences
+                    </p>
 
-                        <p class="mt-2 text-right text-[11px] text-slate-400">
-                            Réseau des partenaires IMMO-SN
-                        </p>
-                    </div>
+                    <p class="mt-1.5 text-2xl font-bold tabular-nums text-white">
+                        <?= number_format($totalAgences, 0, ',', ' ') ?>
+                    </p>
 
+                    <p class="mt-1 text-xs text-slate-300">
+                        agence(s) enregistrée(s)
+                    </p>
                 </div>
-            </section>
+
+                <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F5B800]/15 text-[#F5B800]">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="h-5 w-5"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2m6-10a4 4 0 100-8 4 4 0 000 8zm10 10v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="mt-4 h-1.5 overflow-hidden rounded-full bg-white/10">
+                <div class="h-full w-full rounded-full bg-[#F5B800]"></div>
+            </div>
+
+            <p class="mt-1.5 text-right text-[11px] text-slate-400">
+                Réseau des partenaires IMMO-SN
+            </p>
+        </div>
+
+    </div>
+</section>
 
             <!-- STATISTIQUES -->
             <section class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">

@@ -194,113 +194,118 @@ $cartes = [
     ====================================================== -->
     <main class="mx-auto max-w-[1600px] space-y-8 px-5 py-7 sm:px-8 lg:py-10">
 
-        <!-- =================================================
-             HERO / CENTRE DE PILOTAGE
-        ================================================== -->
-        <section class="relative overflow-hidden rounded-[28px] bg-[#071b36] shadow-[0_20px_60px_rgba(7,27,54,0.14)]">
+       
+<!-- =================================================
+     HERO / CENTRE DE PILOTAGE — VERSION COMPACTE
+================================================== -->
+<section class="relative overflow-hidden rounded-[28px] bg-[#071b36] shadow-[0_20px_60px_rgba(7,27,54,0.14)]">
 
-            <div class="pointer-events-none absolute -right-20 -top-24 h-80 w-80 rounded-full bg-[#f5b800]/10 blur-3xl"></div>
-            <div class="pointer-events-none absolute -bottom-36 left-1/3 h-72 w-72 rounded-full bg-[#0e2a4e]/80 blur-3xl"></div>
+    <div class="pointer-events-none absolute -right-20 -top-24 h-80 w-80 rounded-full bg-[#f5b800]/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-36 left-1/3 h-72 w-72 rounded-full bg-[#0e2a4e]/80 blur-3xl"></div>
 
-            <div class="relative grid gap-8 p-6 sm:p-9 lg:grid-cols-[1fr_330px] lg:items-center lg:p-11">
+    <div class="relative grid gap-5 p-5 sm:p-6 lg:grid-cols-[1fr_330px] lg:items-center lg:gap-6 lg:p-7">
 
-                <div>
-                    <div class="inline-flex items-center gap-2 rounded-full border border-[#f5b800]/20 bg-[#f5b800]/10 px-3 py-2 text-xs font-bold text-[#f5b800]">
-                        <span class="h-2 w-2 rounded-full bg-[#f5b800]"></span>
-                        CENTRE DE PILOTAGE IMMO-SN
-                    </div>
-
-                    <h1 class="mt-5 max-w-3xl text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-                        Votre plateforme,
-                        <span class="text-[#f5b800]">en un coup d’œil.</span>
-                    </h1>
-
-                    <p class="mt-4 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
-                        Suivez vos annonces immobilières, contrôlez leur publication
-                        et gérez les activités de votre plateforme depuis un espace
-                        centralisé.
-                    </p>
-
-                    <div class="mt-7 flex flex-wrap gap-3">
-
-                        <a href="/immo-sn/admin/biens"
-                           class="inline-flex items-center gap-2.5 rounded-xl bg-[#f5b800] px-5 py-3 text-sm font-extrabold text-[#071b36] shadow-lg shadow-black/10 transition hover:-translate-y-0.5 hover:bg-[#ffca28]">
-
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="h-5 w-5"
-                                 fill="none"
-                                 viewBox="0 0 24 24"
-                                 stroke="currentColor"
-                                 stroke-width="1.8">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M12 5v14m-7-7h14"/>
-                            </svg>
-
-                            Gérer les annonces
-                        </a>
-
-                        <a href="/immo-sn/admin/signalements"
-                           class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-bold text-white transition hover:border-white/30 hover:bg-white/10">
-                            Examiner les signalements
-                            <span aria-hidden="true">→</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- PRIORITÉS -->
-                <div class="rounded-[24px] border border-white/10 bg-[#0e2a4e]/70 p-5 backdrop-blur-md sm:p-6">
-
-                    <div class="flex items-center justify-between">
-                        <p class="text-xs font-bold uppercase tracking-[0.15em] text-slate-400">
-                            Votre priorité
-                        </p>
-
-                        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#f5b800]/10 text-[#f5b800]">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="h-4 w-4"
-                                 fill="none"
-                                 viewBox="0 0 24 24"
-                                 stroke="currentColor"
-                                 stroke-width="1.8">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M12 9v3m0 4h.01M5 20h14a2 2 0 001.7-3.05l-7-12a2 2 0 00-3.4 0l-7 12A2 2 0 005 20z"/>
-                            </svg>
-                        </span>
-                    </div>
-
-                    <p class="mt-4 text-5xl font-black tracking-tight text-white">
-                        <?= number_format($totalPriorites, 0, ',', ' ') ?>
-                    </p>
-
-                    <p class="mt-2 text-sm leading-6 text-slate-300">
-                        éléments en attente de traitement
-                    </p>
-
-                    <div class="mt-5 space-y-3">
-
-                        <a href="/immo-sn/admin/biens?statut=en_attente"
-                           class="flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-3 transition hover:border-[#f5b800]/30 hover:bg-white/[0.08]">
-                            <span class="text-sm text-white">
-                                Annonces à examiner
-                            </span>
-                            <span class="font-black text-[#f5b800]">
-                                <?= number_format($biensEnAttente, 0, ',', ' ') ?>
-                            </span>
-                        </a>
-
-                        <a href="/immo-sn/admin/signalements"
-                           class="flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-3 transition hover:border-[#f5b800]/30 hover:bg-white/[0.08]">
-                            <span class="text-sm text-white">
-                                Signalements en attente
-                            </span>
-                            <span class="font-black text-[#f5b800]">
-                                <?= number_format($signalementsEnAttente, 0, ',', ' ') ?>
-                            </span>
-                        </a>
-                    </div>
-                </div>
+        <!-- CONTENU PRINCIPAL -->
+        <div>
+            <div class="inline-flex items-center gap-2 rounded-full border border-[#f5b800]/20 bg-[#f5b800]/10 px-3 py-1.5 text-xs font-bold text-[#f5b800]">
+                <span class="h-2 w-2 rounded-full bg-[#f5b800]"></span>
+                CENTRE DE PILOTAGE IMMO-SN
             </div>
-        </section>
+
+            <h1 class="mt-3 max-w-3xl text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl lg:text-4xl">
+                Votre plateforme,
+                <span class="text-[#f5b800]">en un coup d’œil.</span>
+            </h1>
+
+            <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-300 sm:text-base">
+                Suivez vos annonces immobilières, contrôlez leur publication
+                et gérez les activités de votre plateforme depuis un espace
+                centralisé.
+            </p>
+
+            <!-- ACTIONS -->
+            <div class="mt-5 flex flex-wrap gap-3">
+
+                <a href="/immo-sn/admin/biens"
+                   class="inline-flex items-center gap-2.5 rounded-xl bg-[#f5b800] px-5 py-3 text-sm font-extrabold text-[#071b36] shadow-lg shadow-black/10 transition hover:-translate-y-0.5 hover:bg-[#ffca28]">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="h-5 w-5"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M12 5v14m-7-7h14"/>
+                    </svg>
+
+                    Gérer les annonces
+                </a>
+
+                <a href="/immo-sn/admin/signalements"
+                   class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-bold text-white transition hover:border-white/30 hover:bg-white/10">
+                    Examiner les signalements
+                    <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- PRIORITÉS -->
+        <div class="rounded-[22px] border border-white/10 bg-[#0e2a4e]/70 p-4 backdrop-blur-md sm:p-5">
+
+            <div class="flex items-center justify-between">
+                <p class="text-xs font-bold uppercase tracking-[0.15em] text-slate-400">
+                    Votre priorité
+                </p>
+
+                <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#f5b800]/10 text-[#f5b800]">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="h-4 w-4"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M12 9v3m0 4h.01M5 20h14a2 2 0 001.7-3.05l-7-12a2 2 0 00-3.4 0l-7 12A2 2 0 005 20z"/>
+                    </svg>
+                </span>
+            </div>
+
+            <p class="mt-3 text-4xl font-black tracking-tight text-white">
+                <?= number_format($totalPriorites, 0, ',', ' ') ?>
+            </p>
+
+            <p class="mt-1 text-sm leading-6 text-slate-300">
+                éléments en attente de traitement
+            </p>
+
+            <div class="mt-4 space-y-2.5">
+
+                <a href="/immo-sn/admin/biens?statut=en_attente"
+                   class="flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 transition hover:border-[#f5b800]/30 hover:bg-white/[0.08]">
+                    <span class="text-sm text-white">
+                        Annonces à examiner
+                    </span>
+                    <span class="font-black text-[#f5b800]">
+                        <?= number_format($biensEnAttente, 0, ',', ' ') ?>
+                    </span>
+                </a>
+
+                <a href="/immo-sn/admin/signalements"
+                   class="flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 transition hover:border-[#f5b800]/30 hover:bg-white/[0.08]">
+                    <span class="text-sm text-white">
+                        Signalements en attente
+                    </span>
+                    <span class="font-black text-[#f5b800]">
+                        <?= number_format($signalementsEnAttente, 0, ',', ' ') ?>
+                    </span>
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</section>
 
         <!-- =================================================
              INDICATEURS

@@ -93,172 +93,93 @@ $imageParDefaut = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?
 
 <section class="min-h-screen bg-[#F5F3ED] text-[#101D33]">
 
-    <!-- =====================================================
-         HERO — PRÉSENTATION IMMO-SN
-    ====================================================== -->
+   
+<!-- =====================================================
+     HERO — PRÉSENTATION IMMO-SN
+====================================================== -->
 
-    <section class="relative isolate overflow-hidden rounded-b-[30px] bg-[#101D33] text-white shadow-[0_18px_45px_rgba(16,29,51,0.13)] sm:rounded-b-[38px]">
+<section class="overflow-hidden rounded-b-2xl bg-[#071B36] text-white">
 
-        <div class="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#D7A200]/15 blur-3xl"></div>
-        <div class="pointer-events-none absolute -bottom-24 left-0 h-64 w-64 rounded-full bg-[#71869A]/20 blur-3xl"></div>
+    <div class="mx-auto grid max-w-[1450px] items-center gap-6 px-5 py-6 sm:px-8 sm:py-7 lg:grid-cols-2 lg:gap-8 lg:px-10">
 
-        <div class="relative mx-auto grid max-w-[1450px] items-center gap-8 px-5 py-9 sm:px-8 sm:py-12 lg:grid-cols-2 lg:gap-12 lg:px-10 lg:py-14">
+        <!-- TEXTE -->
 
-            <!-- Texte -->
+        <div>
 
-            <div class="relative z-10">
+            <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-[#F5B800]/30 bg-white/5 px-3 py-1.5">
+                <span class="h-1.5 w-1.5 rounded-full bg-[#F5B800]"></span>
+                <span class="text-[10px] font-extrabold uppercase tracking-wider text-[#F5B800]">
+                    Votre espace immobilier
+                </span>
+            </div>
 
-                <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-[#D7A200]/35 bg-white/[0.05] px-4 py-2">
+            <h1 class="max-w-xl text-2xl font-black leading-tight tracking-tight sm:text-3xl lg:text-4xl">
+                Trouvez le bien qui
+                <span class="block text-[#F5B800]">vous ressemble.</span>
+            </h1>
 
-                    <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
+            <p class="mt-3 max-w-lg text-sm leading-6 text-slate-300">
+                Découvrez des logements et des opportunités immobilières au Sénégal.
+                Trouvez le bien adapté à vos besoins et à votre budget.
+            </p>
 
-                    <span class="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#F5D77B]">
-                        Votre espace immobilier
-                    </span>
+            <div class="mt-4 flex flex-wrap gap-2">
 
-                </div>
+                <span class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-[11px] font-semibold text-slate-200">
+                    <span class="text-[#F5B800]">⌂</span>
+                    Annonces immobilières
+                </span>
 
-                <h1 class="max-w-xl text-3xl font-extrabold leading-[1.15] tracking-tight sm:text-4xl lg:text-[46px]">
-
-                    Trouvez le bien qui
-
-                    <span class="mt-1 block text-[#F5C84B]">
-                        vous ressemble.
-                    </span>
-
-                </h1>
-
-                <p class="mt-5 max-w-lg text-sm leading-7 text-white/65 sm:text-[15px]">
-
-                    Découvrez des logements et des opportunités immobilières au Sénégal.
-                    Trouvez le bien adapté à vos besoins et à votre budget.
-
-                </p>
-
-                <!-- Informations -->
-
-                <div class="mt-7 flex flex-wrap gap-3">
-
-                    <div class="inline-flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3">
-
-                        <svg class="h-5 w-5 text-[#F5C84B]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
-                            <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-
-                        <span class="text-xs font-semibold text-white/85">
-                            Annonces immobilières
-                        </span>
-
-                    </div>
-
-                    <div class="inline-flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3">
-
-                        <svg class="h-5 w-5 text-[#F5C84B]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
-                            <circle cx="11" cy="11" r="7"/>
-                            <path d="m16 16 4 4" stroke-linecap="round"/>
-                        </svg>
-
-                        <span class="text-xs font-semibold text-white/85">
-                            Recherche personnalisée
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <!-- Scanner QR -->
-
-                <a
-                    href="/immo-sn/scanner"
-                    class="group mt-6 inline-flex items-center gap-3 rounded-xl bg-[#F5B800] px-5 py-3.5 text-xs font-extrabold text-[#101D33] shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-1 hover:bg-[#FFD04A] focus:outline-none focus:ring-4 focus:ring-[#F5B800]/30"
-                >
-
-                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                        <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z"/>
-                        <path d="M14 14h2v2h-2zM18 14h2M18 18v2M14 18h2"/>
-                    </svg>
-
-                    Scanner un QR code
-
-                    <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                        <path d="M5 12h14m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-
-                </a>
+                <span class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-[11px] font-semibold text-slate-200">
+                    <span class="text-[#F5B800]">⌕</span>
+                    Recherche personnalisée
+                </span>
 
             </div>
 
-            <!-- Image -->
+            <a
+                href="/immo-sn/scanner"
+                class="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#F5B800] px-4 py-3 text-xs font-extrabold text-[#071B36] transition hover:bg-[#FFD04A]"
+            >
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z"/>
+                    <path d="M14 14h2v2h-2zM18 14h2M18 18v2M14 18h2"/>
+                </svg>
+                Scanner un QR code
+            </a>
 
-            <div class="relative mx-auto w-full max-w-xl lg:max-w-none">
+        </div>
 
-                <div class="pointer-events-none absolute inset-5 rounded-[30px] bg-[#D7A200]/20 blur-3xl"></div>
+        <!-- IMAGE -->
 
-                <div class="relative overflow-hidden rounded-[26px] border border-[#F5C84B]/25 bg-[#263751] shadow-[0_20px_50px_rgba(0,0,0,0.25)] sm:rounded-[32px]">
+        <div class="relative mx-auto w-full max-w-md lg:max-w-none">
 
-                    <img
-                        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85"
-                        alt="Villa moderne présentée sur IMMO-SN"
-                        loading="lazy"
-                        class="h-[230px] w-full object-cover transition duration-700 hover:scale-105 sm:h-[280px] lg:h-[330px]"
-                        onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85';"
-                    >
+            <div class="overflow-hidden rounded-2xl border border-white/10">
 
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#101D33]/90 via-[#101D33]/10 to-transparent"></div>
+                <img
+                    src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85"
+                    alt="Villa moderne présentée sur IMMO-SN"
+                    loading="lazy"
+                    class="h-[190px] w-full object-cover sm:h-[220px] lg:h-[245px]"
+                    onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85';"
+                >
 
-                    <div class="absolute bottom-0 left-0 right-0 p-5 sm:p-7">
-
-                        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-md">
-
-                            <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
-
-                            L'immobilier autrement
-
-                        </span>
-
-                        <h2 class="mt-3 text-xl font-extrabold text-white sm:text-2xl">
-                            Votre prochain chez-vous.
-                        </h2>
-
-                        <p class="mt-2 text-xs text-white/70">
-                            Explorez les possibilités avec IMMO-SN.
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <!-- Bandeau -->
-
-                <div class="mt-4 flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-4">
-
-                    <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F5B800]/15 text-[#F5C84B]">
-
-                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
-                            <path d="M3 10.5 12 3l9 7.5M5 9v11h14V9M9 20v-6h6v6" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-
-                    </div>
-
-                    <div>
-
-                        <p class="text-sm font-extrabold text-white">
-                            Votre projet, notre priorité
-                        </p>
-
-                        <p class="mt-1 text-xs text-white/55">
-                            Vente · Location · Immobilier
-                        </p>
-
-                    </div>
-
+                <div class="border-t border-white/10 bg-[#0B2748] px-4 py-3">
+                    <p class="text-sm font-extrabold text-white">
+                        Votre prochain chez-vous.
+                    </p>
+                    <p class="mt-1 text-[11px] text-slate-300">
+                        Votre projet, notre priorité · Vente · Location
+                    </p>
                 </div>
 
             </div>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
     <!-- =====================================================

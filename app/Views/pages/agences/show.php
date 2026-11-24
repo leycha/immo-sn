@@ -108,200 +108,160 @@ $urlBiensAgence = '/biens?agence=' . urlencode((string) $idAgence);
     </div>
 
 
-    <!-- =====================================================
-         BANNIÈRE PRINCIPALE DE L'AGENCE
-    ====================================================== -->
-    <section class="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+   
+<!-- =====================================================
+     BANNIÈRE PRINCIPALE DE L'AGENCE
+====================================================== -->
+<section class="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
 
-        <div class="relative isolate overflow-hidden rounded-[30px] bg-gradient-to-br from-[#061830] via-[#0B2342] to-[#173B60] shadow-[0_24px_70px_rgba(6,24,48,0.20)]">
+    <div class="overflow-hidden rounded-2xl bg-[#071B36] shadow-sm">
 
-            <!-- Décorations -->
-            <div class="pointer-events-none absolute -right-24 -top-32 h-96 w-96 rounded-full bg-[#F5C542]/15 blur-3xl"></div>
+        <div class="grid gap-5 p-5 sm:p-6 lg:grid-cols-[1fr_auto] lg:items-center">
 
-            <div class="pointer-events-none absolute -bottom-40 left-1/3 h-80 w-80 rounded-full bg-[#D4A900]/10 blur-3xl"></div>
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
 
-            <div class="pointer-events-none absolute right-0 top-0 h-full w-1/2 opacity-[0.05]"
-                 style="background-image: linear-gradient(135deg, transparent 25%, #fff 25%, #fff 26%, transparent 26%, transparent 50%, #fff 50%, #fff 51%, transparent 51%); background-size: 34px 34px;">
-            </div>
+                <!-- LOGO -->
+                <div class="flex h-20 w-20 shrink-0 items-center justify-center self-start rounded-xl border border-white/15 bg-white p-2 sm:h-24 sm:w-24">
 
-            <div class="relative grid gap-8 p-6 sm:p-9 lg:grid-cols-[1fr_auto] lg:items-center lg:p-11">
+                    <?php if ($logo !== ''): ?>
 
-                <div class="flex flex-col gap-6 sm:flex-row sm:items-center">
+                        <img
+                            src="<?= $e($logo) ?>"
+                            alt="Logo de <?= $e($nom) ?>"
+                            class="h-full w-full rounded-lg object-contain"
+                            loading="eager"
+                        >
 
-                    <!-- LOGO -->
-                    <div class="flex h-28 w-28 shrink-0 items-center justify-center self-start rounded-[26px] border border-white/20 bg-white p-2.5 shadow-2xl sm:h-36 sm:w-36">
+                    <?php else: ?>
 
-                        <?php if ($logo !== ''): ?>
+                        <div class="flex h-full w-full items-center justify-center rounded-lg bg-[#F3F6FA] text-3xl font-black text-[#A98200]">
+                            <?= $e($initiale) ?>
+                        </div>
 
-                            <img
-                                src="<?= $e($logo) ?>"
-                                alt="Logo de <?= $e($nom) ?>"
-                                class="h-full w-full rounded-[19px] object-contain"
-                                loading="eager"
-                            >
+                    <?php endif; ?>
 
-                        <?php else: ?>
+                </div>
 
-                            <div class="flex h-full w-full items-center justify-center rounded-[19px] bg-[#EAF0F8] text-5xl font-black text-[#D4A900]">
-                                <?= $e($initiale) ?>
-                            </div>
+                <!-- IDENTITÉ DE L'AGENCE -->
+                <div class="min-w-0 flex-1">
+
+                    <div class="mb-3 flex flex-wrap items-center gap-2">
+
+                        <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-bold text-slate-200">
+                            <span class="h-1.5 w-1.5 rounded-full bg-[#F5B800]"></span>
+                            Agence immobilière
+                        </span>
+
+                        <?php if ($badge): ?>
+
+                            <span class="inline-flex items-center gap-1.5 rounded-full bg-[#F5B800] px-3 py-1 text-[11px] font-extrabold text-[#071B36]">
+                                <svg viewBox="0 0 20 20" fill="currentColor" class="h-3.5 w-3.5" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M10 1.5 12.3 3l2.8.1 1.1 2.5 2.1 1.8-.8 2.7.5 2.7-2.4 1.5-1.3 2.5-2.8-.3L10 18l-2.5-1.5-2.8.3-1.3-2.5L1 12.8l.5-2.7-.8-2.7 2.1-1.8 1.1-2.5 2.8-.1L10 1.5Zm3.2 6.2a.75.75 0 0 0-1.1-1l-3.1 3.4-1.2-1.2a.75.75 0 0 0-1.1 1l1.8 1.8a.75.75 0 0 0 1.1 0l3.6-4Z" clip-rule="evenodd"/>
+                                </svg>
+                                Agence vérifiée
+                            </span>
 
                         <?php endif; ?>
 
                     </div>
 
+                    <h1 class="break-words text-xl font-black tracking-tight text-white sm:text-2xl lg:text-3xl">
+                        <?= $e($nom) ?>
+                    </h1>
 
-                    <!-- IDENTITÉ DE L'AGENCE -->
-                    <div class="min-w-0 flex-1">
+                    <p class="mt-2 flex items-start gap-2 text-xs leading-6 text-slate-300 sm:text-sm">
+                        <svg class="mt-1 h-4 w-4 shrink-0 text-[#F5B800]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12Z"/>
+                            <circle cx="12" cy="9" r="2.2"/>
+                        </svg>
 
-                        <div class="mb-4 flex flex-wrap items-center gap-2">
+                        <span class="break-words">
+                            <?= $e($adresse ?: 'Sénégal') ?>
+                        </span>
+                    </p>
 
-                            <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-2 text-xs font-bold text-[#E0E8F1]">
+                    <div class="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-[11px] text-slate-300 sm:text-xs">
 
-                                <span class="h-2 w-2 rounded-full bg-[#F5C542]"></span>
+                        <?php if ($ninea !== ''): ?>
 
-                                Agence immobilière
-
-                            </span>
-
-                            <?php if ($badge): ?>
-
-                                <span class="inline-flex items-center gap-1.5 rounded-full border border-[#F5C542]/30 bg-[#F5C542] px-3.5 py-2 text-xs font-extrabold text-[#061830]">
-
-                                    <svg viewBox="0 0 20 20" fill="currentColor"
-                                         class="h-4 w-4" aria-hidden="true">
-                                        <path fill-rule="evenodd" d="M10 1.5 12.3 3l2.8.1 1.1 2.5 2.1 1.8-.8 2.7.5 2.7-2.4 1.5-1.3 2.5-2.8-.3L10 18l-2.5-1.5-2.8.3-1.3-2.5L1 12.8l.5-2.7-.8-2.7 2.1-1.8 1.1-2.5 2.8-.1L10 1.5Zm3.2 6.2a.75.75 0 0 0-1.1-1l-3.1 3.4-1.2-1.2a.75.75 0 0 0-1.1 1l1.8 1.8a.75.75 0 0 0 1.1 0l3.6-4Z" clip-rule="evenodd"/>
-                                    </svg>
-
-                                    Agence vérifiée
-
-                                </span>
-
-                            <?php endif; ?>
-
-                        </div>
-
-                        <h1 class="break-words text-2xl font-black tracking-tight text-white sm:text-3xl lg:text-4xl">
-                            <?= $e($nom) ?>
-                        </h1>
-
-                        <p class="mt-3 flex items-start gap-2.5 text-sm leading-7 text-[#C7D5E4] sm:text-base">
-
-                            <svg class="mt-1 h-5 w-5 shrink-0 text-[#F5C542]"
-                                 viewBox="0 0 24 24" fill="none"
-                                 stroke="currentColor" stroke-width="1.8"
-                                 aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12Z"/>
-                                <circle cx="12" cy="9" r="2.2"/>
-                            </svg>
-
-                            <span class="min-w-0 break-words">
-                                <?= $e($adresse ?: 'Sénégal') ?>
-                            </span>
-
-                        </p>
-
-                        <div class="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-xs text-[#C0CDDA] sm:text-sm">
-
-                            <?php if ($ninea !== ''): ?>
-
-                                <span class="inline-flex items-center gap-2">
-                                    <svg class="h-4 w-4 text-[#F5C542]" viewBox="0 0 24 24"
-                                         fill="none" stroke="currentColor" stroke-width="1.8"
-                                         aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 3h10l4 4v14H3V3h4Zm3 0v5h4V3M7 13h10M7 17h7"/>
-                                    </svg>
-                                    NINEA : <?= $e($ninea) ?>
-                                </span>
-
-                            <?php endif; ?>
-
-                            <span class="inline-flex items-center gap-2">
-                                <svg class="h-4 w-4 text-[#F5C542]" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="1.8"
-                                     aria-hidden="true">
-                                    <circle cx="12" cy="12" r="9"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2"/>
+                            <span class="inline-flex items-center gap-1.5">
+                                <svg class="h-3.5 w-3.5 text-[#F5B800]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M7 3h10l4 4v14H3V3h4Zm3 0v5h4V3M7 13h10M7 17h7"/>
                                 </svg>
-                                <?= $e($dateFormatee) ?>
+                                NINEA : <?= $e($ninea) ?>
                             </span>
 
-                        </div>
+                        <?php endif; ?>
+
+                        <span class="inline-flex items-center gap-1.5">
+                            <svg class="h-3.5 w-3.5 text-[#F5B800]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2"/>
+                            </svg>
+                            <?= $e($dateFormatee) ?>
+                        </span>
 
                     </div>
 
                 </div>
 
-
-                <!-- ACTIONS -->
-                <div class="flex flex-col gap-3 sm:flex-row lg:min-w-[205px] lg:flex-col">
-
-                    <a
-                        href="<?= $e($contactUrl) ?>"
-                        class="inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#F5C542] px-5 py-4 text-sm font-extrabold text-[#061830] shadow-lg shadow-black/10 transition hover:bg-[#FFDA68] hover:shadow-xl"
-                    >
-
-                        <svg class="h-5 w-5" viewBox="0 0 24 24"
-                             fill="none" stroke="currentColor" stroke-width="1.8"
-                             aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5.5A2.5 2.5 0 0 1 5.5 3h2A1.5 1.5 0 0 1 9 4.2l1 3a1.5 1.5 0 0 1-.7 1.7l-1.5.9a14 14 0 0 0 6.4 6.4l.9-1.5a1.5 1.5 0 0 1 1.7-.7l3 1a1.5 1.5 0 0 1 1.2 1.5v2A2.5 2.5 0 0 1 18.5 21 15.5 15.5 0 0 1 3 5.5Z"/>
-                        </svg>
-
-                        Contacter l'agence
-
-                    </a>
-
-                    <a
-                        href="<?= $e($urlBiensAgence) ?>"
-                        class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/5 px-5 py-4 text-sm font-bold text-white transition hover:border-[#F5C542]/60 hover:bg-white/10"
-                    >
-
-                        Découvrir ses biens
-
-                        <svg class="h-4 w-4" viewBox="0 0 24 24"
-                             fill="none" stroke="currentColor" stroke-width="2"
-                             aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/>
-                        </svg>
-
-                    </a>
-
-                </div>
-
             </div>
 
+            <!-- ACTIONS -->
+            <div class="flex flex-col gap-2 sm:flex-row lg:min-w-[190px] lg:flex-col">
 
-            <!-- BANDEAU INFÉRIEUR -->
-            <div class="relative flex flex-wrap items-center justify-between gap-3 border-t border-white/10 bg-black/10 px-6 py-4 sm:px-10">
-
-                <p class="text-xs font-medium text-[#C7D5E4]">
-                    Votre partenaire immobilier au Sénégal
-                </p>
-
-                <a href="#biens-agence"
-                   class="inline-flex items-center gap-2 text-xs font-extrabold text-[#F5C542] transition hover:text-white">
-
-                    Explorer le catalogue
-
-                    <svg class="h-4 w-4" viewBox="0 0 24 24"
-                         fill="none" stroke="currentColor" stroke-width="2"
-                         aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m-7-7 7 7 7-7"/>
+                <a
+                    href="<?= $e($contactUrl) ?>"
+                    class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-4 py-3 text-xs font-extrabold text-[#071B36] transition hover:bg-[#DCA500] sm:text-sm"
+                >
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 5.5A2.5 2.5 0 0 1 5.5 3h2A1.5 1.5 0 0 1 9 4.2l1 3a1.5 1.5 0 0 1-.7 1.7l-1.5.9a14 14 0 0 0 6.4 6.4l.9-1.5a1.5 1.5 0 0 1 1.7-.7l3 1a1.5 1.5 0 0 1 1.2 1.5v2A2.5 2.5 0 0 1 18.5 21 15.5 15.5 0 0 1 3 5.5Z"/>
                     </svg>
+                    Contacter l'agence
+                </a>
 
+                <a
+                    href="<?= $e($urlBiensAgence) ?>"
+                    class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-xs font-bold text-white transition hover:border-[#F5B800] hover:text-[#F5B800] sm:text-sm"
+                >
+                    Découvrir ses biens
+
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/>
+                    </svg>
                 </a>
 
             </div>
 
         </div>
 
-    </section>
+        <!-- BANDEAU INFÉRIEUR -->
+        <div class="flex flex-wrap items-center justify-between gap-2 border-t border-white/10 bg-[#0B2748] px-5 py-3 sm:px-6">
+
+            <p class="text-[11px] font-medium text-slate-300 sm:text-xs">
+                Votre partenaire immobilier au Sénégal
+            </p>
+
+            <a href="#biens-agence" class="inline-flex items-center gap-2 text-[11px] font-bold text-[#F5B800] transition hover:text-white sm:text-xs">
+                Explorer le catalogue
+
+                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m-7-7 7 7 7-7"/>
+                </svg>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
 
 
     <!-- =====================================================
          CONTENU PRINCIPAL
     ====================================================== -->
-    <main class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <main class="mx-auto max-w-7xl px-4 py-7 sm:px-6 lg:px-8">
 
         <div class="flex w-full flex-col gap-8">
 

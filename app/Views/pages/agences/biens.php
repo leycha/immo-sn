@@ -95,79 +95,96 @@ $formatDate = static function ($date): string {
 
         <div class="mx-auto w-full max-w-[1450px] flex-1 space-y-7 px-4 py-6 sm:px-7 sm:py-8 lg:px-9">
 
-            <!-- =====================================================
-                 BANNIÈRE PRINCIPALE
-            ====================================================== -->
-            <section class="relative isolate overflow-hidden rounded-[26px] bg-[#071B36] px-6 py-8 text-white shadow-[0_18px_45px_rgba(7,27,54,.14)] sm:px-9 sm:py-10">
+           <!-- =====================================================
+     BANNIÈRE PRINCIPALE — HERO COMPACT
+====================================================== -->
 
-                <div class="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full border-[34px] border-[#F5B800]/10"></div>
+<section class="relative isolate overflow-hidden rounded-[26px] bg-[#071B36] px-5 py-5 text-white shadow-[0_18px_45px_rgba(7,27,54,.14)] sm:px-6 sm:py-6">
 
-                <div class="pointer-events-none absolute -bottom-28 right-1/3 h-60 w-60 rounded-full bg-[#365477]/30 blur-3xl"></div>
+    <!-- DÉCORATION -->
+    <div class="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full border-[30px] border-[#F5B800]/10"></div>
 
-                <div class="pointer-events-none absolute right-10 top-10 h-2 w-2 rounded-full bg-[#F5B800]"></div>
+    <div class="pointer-events-none absolute -bottom-28 right-1/3 h-60 w-60 rounded-full bg-[#365477]/30 blur-3xl"></div>
 
-                <div class="relative flex flex-col justify-between gap-7 lg:flex-row lg:items-center">
+    <div class="pointer-events-none absolute right-8 top-8 h-2 w-2 rounded-full bg-[#F5B800]"></div>
 
-                    <div class="max-w-2xl">
+    <!-- CONTENU -->
+    <div class="relative flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
 
-                        <span class="inline-flex items-center gap-2 rounded-full border border-[#F5B800]/20 bg-[#F5B800]/10 px-3 py-1.5 text-[11px] font-bold tracking-wide text-[#F5B800]">
-                            <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
-                            GESTION IMMOBILIÈRE
-                        </span>
+        <!-- PRÉSENTATION -->
+        <div class="max-w-2xl">
 
-                        <h2 class="mt-5 text-2xl font-black leading-tight tracking-tight sm:text-3xl lg:text-[34px]">
-                            Gérez votre portefeuille immobilier
-                            <span class="text-[#F5B800]">en toute simplicité.</span>
-                        </h2>
+            <!-- BADGE -->
+            <span class="inline-flex items-center gap-2 rounded-full border border-[#F5B800]/20 bg-[#F5B800]/10 px-3 py-1.5 text-[10px] font-bold tracking-wide text-[#F5B800]">
 
-                        <p class="mt-3 max-w-xl text-sm leading-7 text-slate-300">
-                            Retrouvez toutes vos annonces, consultez leur état de publication
-                            et gérez facilement leur renouvellement depuis votre espace agence.
-                        </p>
+                <span class="h-1.5 w-1.5 rounded-full bg-[#F5B800]"></span>
 
-                        <div class="mt-7 flex flex-wrap gap-3">
+                GESTION IMMOBILIÈRE
 
-                            <a href="/immo-sn/agence/publier"
-                               class="inline-flex items-center gap-2 rounded-xl bg-[#F5B800] px-5 py-3 text-sm font-extrabold text-[#071B36] transition hover:bg-[#e4aa00] hover:-translate-y-0.5">
-                                + Publier un bien
-                            </a>
+            </span>
 
-                            <a href="#liste-biens"
-                               class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10">
-                                Voir mes annonces
-                                <span class="text-[#F5B800]">→</span>
-                            </a>
+            <!-- TITRE -->
+            <h2 class="mt-3 text-2xl font-black leading-tight tracking-tight sm:text-3xl lg:text-[32px]">
+                Gérez votre portefeuille immobilier
+                <span class="text-[#F5B800]">en toute simplicité.</span>
+            </h2>
 
-                        </div>
-                    </div>
+            <!-- DESCRIPTION -->
+            <p class="mt-2.5 max-w-xl text-sm leading-6 text-slate-300">
+                Retrouvez toutes vos annonces, consultez leur état de publication
+                et gérez facilement leur renouvellement depuis votre espace agence.
+            </p>
 
-                    <!-- Portfolio -->
-                    <div class="flex shrink-0 items-center gap-4 rounded-2xl border border-white/10 bg-white/[.06] p-5 backdrop-blur-sm sm:p-6">
+            <!-- ACTIONS -->
+            <div class="mt-4 flex flex-wrap gap-2.5">
 
-                        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#F5B800]/10 text-2xl text-[#F5B800]">
-                            ⌂
-                        </div>
+                <a href="/immo-sn/agence/publier"
+                   class="inline-flex items-center gap-2 rounded-xl bg-[#F5B800] px-4 py-2.5 text-sm font-extrabold text-[#071B36] transition hover:bg-[#e4aa00] hover:-translate-y-0.5">
 
-                        <div>
-                            <p class="text-xs font-medium text-slate-300">
-                                Votre portefeuille
-                            </p>
+                    + Publier un bien
 
-                            <p class="mt-1 text-3xl font-black text-white">
-                                <?= number_format($nombreBiens, 0, ',', ' ') ?>
+                </a>
 
-                                <span class="text-sm font-semibold text-slate-300">
-                                    bien<?= $nombreBiens > 1 ? 's' : '' ?>
-                                </span>
-                            </p>
-                        </div>
+                <a href="#liste-biens"
+                   class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-white/10">
 
-                    </div>
+                    Voir mes annonces
+                    <span class="text-[#F5B800]">→</span>
 
-                </div>
-            </section>
+                </a>
 
-            <!-- =====================================================
+            </div>
+
+        </div>
+
+        <!-- PORTFOLIO -->
+        <div class="flex shrink-0 items-center gap-3 rounded-2xl border border-white/10 bg-white/[.06] p-4 backdrop-blur-sm">
+
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F5B800]/10 text-xl text-[#F5B800]">
+                ⌂
+            </div>
+
+            <div>
+
+                <p class="text-xs font-medium text-slate-300">
+                    Votre portefeuille
+                </p>
+
+                <p class="mt-1 text-2xl font-black text-white">
+                    <?= number_format($nombreBiens, 0, ',', ' ') ?>
+
+                    <span class="text-sm font-semibold text-slate-300">
+                        bien<?= $nombreBiens > 1 ? 's' : '' ?>
+                    </span>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>            <!-- =====================================================
                  STATISTIQUES
             ====================================================== -->
             <section class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">

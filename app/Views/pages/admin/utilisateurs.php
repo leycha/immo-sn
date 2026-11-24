@@ -185,49 +185,87 @@ $typeMessageAdmin = (string) ($_GET['type'] ?? 'succes');
                 </div>
             <?php endif; ?>
 
-            <!-- BANNIÈRE PRINCIPALE -->
-            <section class="relative overflow-hidden rounded-[28px] bg-[#071B36] shadow-sm">
-                <div class="absolute -right-20 -top-28 h-72 w-72 rounded-full bg-[#F5B800]/10 blur-3xl"></div>
-                <div class="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-blue-400/10 blur-3xl"></div>
+         <!-- =====================================================
+     BANNIÈRE PRINCIPALE — HERO COMPACT
+====================================================== -->
 
-                <div class="relative flex flex-col gap-8 px-6 py-8 sm:px-9 lg:flex-row lg:items-center lg:justify-between lg:py-10">
-                    <div class="max-w-2xl">
-                        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
-                            <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
-                            <span class="text-xs font-medium text-slate-300">Centre de gestion des comptes</span>
-                        </div>
+<section class="relative overflow-hidden rounded-[28px] bg-[#071B36] shadow-sm">
 
-                        <h2 class="text-3xl font-bold leading-tight text-white sm:text-4xl">
-                            Votre communauté,
-                            <span class="text-[#F5B800]">sous contrôle.</span>
-                        </h2>
+    <!-- DÉCORATION -->
+    <div class="pointer-events-none absolute -right-20 -top-28 h-72 w-72 rounded-full bg-[#F5B800]/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-blue-400/10 blur-3xl"></div>
 
-                        <p class="mt-4 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
-                            Consultez les utilisateurs inscrits, identifiez leurs rôles
-                            et gérez leurs accès depuis votre espace d'administration.
-                        </p>
-                    </div>
+    <!-- CONTENU -->
+    <div class="relative flex flex-col gap-5 px-5 py-5 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
 
-                    <div class="shrink-0 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm lg:min-w-[270px]">
-                        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400">
-                            Total des comptes
-                        </p>
+        <!-- PRÉSENTATION -->
+        <div class="max-w-2xl">
 
-                        <p class="mt-3 text-4xl font-bold tabular-nums text-white">
-                            <?= number_format($totalUtilisateurs, 0, ',', ' ') ?>
-                        </p>
+            <!-- BADGE -->
+            <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
+                <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
+                <span class="text-xs font-medium text-slate-300">
+                    Centre de gestion des comptes
+                </span>
+            </div>
 
-                        <p class="mt-2 text-xs text-slate-400">
-                            Comptes enregistrés sur IMMO-SN
-                        </p>
+            <!-- TITRE -->
+            <h2 class="text-2xl font-bold leading-tight text-white sm:text-3xl lg:text-4xl">
+                Votre communauté,
+                <span class="text-[#F5B800]">sous contrôle.</span>
+            </h2>
 
-                        <div class="mt-5 h-1.5 overflow-hidden rounded-full bg-white/10">
-                            <div class="h-full w-full rounded-full bg-[#F5B800]"></div>
-                        </div>
-                    </div>
+            <!-- DESCRIPTION -->
+            <p class="mt-3 max-w-xl text-sm leading-6 text-slate-300 sm:text-base">
+                Consultez les utilisateurs inscrits, identifiez leurs rôles
+                et gérez leurs accès depuis votre espace d'administration.
+            </p>
+
+        </div>
+
+        <!-- CARTE TOTAL DES COMPTES -->
+        <div class="shrink-0 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm lg:min-w-[260px]">
+
+            <div class="flex items-center justify-between gap-4">
+
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400">
+                        Total des comptes
+                    </p>
+
+                    <p class="mt-1.5 text-3xl font-bold tabular-nums text-white">
+                        <?= number_format($totalUtilisateurs, 0, ',', ' ') ?>
+                    </p>
+
+                    <p class="mt-1 text-xs text-slate-400">
+                        Comptes enregistrés sur IMMO-SN
+                    </p>
                 </div>
-            </section>
 
+                <!-- ICÔNE -->
+                <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F5B800]/15 text-[#F5B800]">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="h-5 w-5"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M16 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2m6-10a4 4 0 100-8 4 4 0 000 8zm7-3a4 4 0 014 4m-1 5v-2a4 4 0 00-3-3.87"/>
+                    </svg>
+                </div>
+
+            </div>
+
+            <!-- BARRE DÉCORATIVE -->
+            <div class="mt-4 h-1.5 overflow-hidden rounded-full bg-white/10">
+                <div class="h-full w-full rounded-full bg-[#F5B800]"></div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
             <!-- STATISTIQUES -->
             <section class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-5">
 

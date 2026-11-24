@@ -73,91 +73,77 @@ $e = static function ($valeur): string {
             ================================================== -->
             <section class="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm">
 
-                <!-- BANNIÈRE PROFIL -->
-                <div class="relative overflow-hidden bg-[#071B36] px-6 py-8 text-white sm:px-9 sm:py-10">
+             <!-- BANNIÈRE PROFIL -->
+<div class="overflow-hidden bg-[#071B36] px-5 py-5 text-white sm:px-7 sm:py-6">
 
-                    <!-- Décoration -->
-                    <div class="pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full border-[30px] border-[#F5B800]/10"></div>
-                    <div class="pointer-events-none absolute -right-5 -top-14 h-48 w-48 rounded-full border border-white/5"></div>
-                    <div class="pointer-events-none absolute -bottom-20 left-1/3 h-48 w-48 rounded-full bg-[#F5B800]/10 blur-3xl"></div>
+    <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
+        <span class="h-1.5 w-1.5 rounded-full bg-[#F5B800]"></span>
+        <p class="text-[10px] font-semibold uppercase tracking-[0.15em] text-slate-300">
+            Espace personnel
+        </p>
+    </div>
 
-                    <div class="relative">
+    <div class="mt-4 flex flex-col items-center gap-4 sm:flex-row">
 
-                        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
-                            <span class="h-1.5 w-1.5 rounded-full bg-[#F5B800]"></span>
+        <!-- PHOTO DE PROFIL -->
+        <div class="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-[#F5B800]/30 bg-[#F5B800] text-3xl font-black text-[#071B36]">
 
-                            <p class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-300">
-                                Espace personnel
-                            </p>
-                        </div>
+            <?php if (!empty($responsable['photo_profil'])): ?>
 
-                        <div class="mt-6 flex flex-col items-center gap-6 sm:flex-row sm:items-center">
+                <img
+                    src="<?= $e($responsable['photo_profil']) ?>"
+                    alt="Photo de profil"
+                    class="h-full w-full object-cover"
+                >
 
-                            <!-- PHOTO DE PROFIL -->
-                            <div class="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-[#F5B800]/30 bg-[#F5B800] text-4xl font-black text-[#071B36] shadow-xl ring-4 ring-white/5">
+            <?php else: ?>
 
-                                <?php if (!empty($responsable['photo_profil'])): ?>
+                <?= $e($initiale) ?>
 
-                                    <img
-                                        src="<?= $e($responsable['photo_profil']) ?>"
-                                        alt="Photo de profil"
-                                        class="h-full w-full object-cover"
-                                    >
+            <?php endif; ?>
 
-                                <?php else: ?>
+        </div>
 
-                                    <?= $e($initiale) ?>
+        <!-- INFORMATIONS DU RESPONSABLE -->
+        <div class="min-w-0 text-center sm:text-left">
 
-                                <?php endif; ?>
+            <p class="text-xs font-medium text-slate-300">
+                Responsable d'agence immobilière
+            </p>
 
-                            </div>
+            <h2 class="mt-1 break-words font-['Playfair_Display'] text-xl font-bold tracking-tight text-white sm:text-2xl">
+                <?= $e($nomComplet) ?>
+            </h2>
 
-                            <!-- INFORMATIONS DU RESPONSABLE -->
-                            <div class="min-w-0 text-center sm:text-left">
+            <p class="mt-1 text-xs text-slate-400">
+                Votre identité au sein du réseau IMMO-SN
+            </p>
 
-                                <p class="text-sm font-medium text-slate-300">
-                                    Responsable d'agence immobilière
-                                </p>
+            <div class="mt-3 flex flex-wrap justify-center gap-2 sm:justify-start">
 
-                                <h2 class="mt-2 break-words font-['Playfair_Display'] text-2xl font-bold tracking-tight text-white sm:text-3xl">
-                                    <?= $e($nomComplet) ?>
-                                </h2>
+                <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-[11px] font-semibold text-white">
+                    <span class="h-1.5 w-1.5 rounded-full bg-[#F5B800]"></span>
+                    <?= $e($statutLabel) ?>
+                </span>
 
-                                <p class="mt-2 text-sm text-slate-400">
-                                    Votre identité au sein du réseau IMMO-SN
-                                </p>
+                <?php if (!empty($responsable['is_verified'])): ?>
 
-                                <div class="mt-4 flex flex-wrap justify-center gap-2 sm:justify-start">
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-[#F5B800]/15 px-3 py-1 text-[11px] font-semibold text-[#F5B800]">
+                        <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5 2a8 8 0 11-16 0 8 8 0 0116 0z"/>
+                        </svg>
+                        Compte vérifié
+                    </span>
 
-                                    <!-- STATUT -->
-                                    <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white">
-                                        <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
-                                        <?= $e($statutLabel) ?>
-                                    </span>
+                <?php endif; ?>
 
-                                    <!-- VÉRIFICATION -->
-                                    <?php if (!empty($responsable['is_verified'])): ?>
+            </div>
 
-                                        <span class="inline-flex items-center gap-2 rounded-full bg-[#F5B800]/15 px-3 py-1.5 text-xs font-semibold text-[#F5B800]">
+        </div>
 
-                                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5 2a8 8 0 11-16 0 8 8 0 0116 0z"/>
-                                            </svg>
+    </div>
 
-                                            Compte vérifié
-                                        </span>
-
-                                    <?php endif; ?>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
+</div>
 
                 <!-- INFORMATIONS DU PROFIL -->
                 <div class="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2 sm:p-8">

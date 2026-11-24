@@ -265,144 +265,103 @@ $classesStatut = static function ($statut): array {
 
         <div class="mx-auto max-w-[1500px]">
 
+<!-- =================================================
+     HERO / BIENVENUE — VERSION COMPACTE
+================================================== -->
 
-            <!-- =================================================
-                 HERO / BIENVENUE
-            ================================================== -->
+<section class="relative mb-7 overflow-hidden rounded-2xl bg-[#071B36] shadow-sm">
 
-            <section class="relative mb-9 overflow-hidden rounded-[28px] bg-[#071B36] shadow-[0_18px_50px_rgba(7,27,54,0.14)]">
+    <div class="relative flex flex-col gap-5 px-5 py-5 sm:px-7 sm:py-6 lg:flex-row lg:items-center lg:justify-between">
 
-                <!-- Décorations -->
+        <!-- Texte -->
 
-                <div class="pointer-events-none absolute -right-24 -top-32 h-96 w-96 rounded-full border border-[#D7A200]/20"></div>
+        <div class="max-w-2xl">
 
-                <div class="pointer-events-none absolute -right-8 -top-16 h-72 w-72 rounded-full bg-[#D7A200]/[0.07]"></div>
+            <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-[#F5B800]/25 bg-[#F5B800]/10 px-3 py-1.5">
 
-                <div class="pointer-events-none absolute -bottom-36 right-[28%] h-80 w-80 rounded-full border border-white/[0.07]"></div>
+                <span class="h-1.5 w-1.5 rounded-full bg-[#F5B800]"></span>
 
-                <div class="pointer-events-none absolute -bottom-20 -left-20 h-60 w-60 rounded-full bg-white/[0.025]"></div>
+                <span class="text-[9px] font-bold uppercase tracking-wider text-[#F5D985]">
+                    Votre espace immobilier
+                </span>
 
-                <div class="relative px-6 py-8 md:px-9 md:py-10 lg:px-11">
+            </div>
 
-                    <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+            <h2 class="text-xl font-extrabold leading-tight tracking-tight text-white sm:text-2xl lg:text-3xl">
+                Bonjour <?= $e($prenomAffichage) ?>
+                <span class="text-[#F5B800]">👋</span>
+            </h2>
 
-                        <!-- Texte -->
+            <p class="mt-2 max-w-xl text-xs leading-6 text-[#CBD4E0] sm:text-sm">
+                Retrouvez en un seul endroit vos annonces, vos favoris,
+                vos alertes et les principales activités de votre compte immobilier.
+            </p>
 
-                        <div class="max-w-2xl">
+            <!-- Boutons -->
 
-                            <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-[#D7A200]/30 bg-[#D7A200]/10 px-3.5 py-2">
+            <div class="mt-4 flex flex-col gap-2.5 sm:flex-row">
 
-                                <span class="h-2 w-2 rounded-full bg-[#F5C84C] shadow-[0_0_10px_rgba(245,200,76,0.65)]"></span>
+                <a
+                    href="/immo-sn/member/publier"
+                    class="inline-flex items-center justify-center gap-2 rounded-lg bg-[#F5B800] px-4 py-2.5 text-xs font-extrabold text-[#071B36] transition hover:bg-[#FFDA70]"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="h-4 w-4"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M12 5v14M5 12h14"/>
+                    </svg>
 
-                                <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-[#F5D985]">
-                                    Votre espace immobilier
-                                </span>
+                    Publier un bien
+                </a>
 
-                            </div>
+                <a
+                    href="/immo-sn/member/mes-biens"
+                    class="inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/[0.06] px-4 py-2.5 text-xs font-bold text-white transition hover:border-[#F5B800]/50 hover:bg-white/10"
+                >
+                    Mes biens
 
-                            <h2 class="text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl lg:text-[40px]">
-                                Bonjour <?= $e($prenomAffichage) ?>
-                                <span class="text-[#F5C84C]">👋</span>
-                            </h2>
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="h-4 w-4"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M5 12h14M13 6l6 6-6 6"/>
+                    </svg>
+                </a>
 
-                            <p class="mt-4 max-w-xl text-sm leading-7 text-[#CBD4E0] md:text-base">
-                                Retrouvez en un seul endroit vos annonces,
-                                vos favoris, vos alertes et les principales
-                                activités de votre compte immobilier.
-                            </p>
+            </div>
 
-                            <!-- Boutons -->
+        </div>
 
-                            <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+        <!-- Illustration compacte -->
 
-                                <a
-                                    href="/immo-sn/member/publier"
-                                    class="inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#F5C84C] px-5 py-3.5 text-sm font-extrabold text-[#071B36] shadow-lg shadow-black/10 transition hover:-translate-y-0.5 hover:bg-[#FFDA70]"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                         class="h-4 w-4"
-                                         fill="none"
-                                         viewBox="0 0 24 24"
-                                         stroke="currentColor"
-                                         stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                              d="M12 5v14M5 12h14"/>
-                                    </svg>
+        <div class="hidden shrink-0 items-center justify-center lg:flex">
 
-                                    Publier un bien
-                                </a>
+            <div class="flex h-28 w-28 items-center justify-center rounded-full border border-[#F5B800]/25 bg-[#F5B800]/[0.06]">
 
-                                <a
-                                    href="/immo-sn/member/mes-biens"
-                                    class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.06] px-5 py-3.5 text-sm font-bold text-white transition hover:border-[#F5C84C]/50 hover:bg-white/10"
-                                >
-                                    Mes biens
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="h-14 w-14 text-[#F5B800]"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke="currentColor"
+                     stroke-width="1.2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M3 10.5L12 3l9 7.5M5.5 9v11h13V9M9 20v-6h6v6"/>
+                </svg>
 
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                         class="h-4 w-4"
-                                         fill="none"
-                                         viewBox="0 0 24 24"
-                                         stroke="currentColor"
-                                         stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                              d="M5 12h14M13 6l6 6-6 6"/>
-                                    </svg>
-                                </a>
+            </div>
 
-                            </div>
+        </div>
 
-                        </div>
+    </div>
 
-
-                        <!-- Illustration -->
-
-                        <div class="hidden h-48 w-60 items-center justify-center lg:flex">
-
-                            <div class="relative">
-
-                                <div class="flex h-44 w-44 items-center justify-center rounded-full border border-[#D7A200]/30 bg-[#D7A200]/[0.08]">
-
-                                    <div class="flex h-32 w-32 items-center justify-center rounded-full border border-[#D7A200]/20 bg-white/[0.04]">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                             class="h-20 w-20 text-[#F5C84C]"
-                                             fill="none"
-                                             viewBox="0 0 24 24"
-                                             stroke="currentColor"
-                                             stroke-width="1.1">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M3 10.5L12 3l9 7.5M5.5 9v11h13V9M9 20v-6h6v6"/>
-                                        </svg>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="absolute -right-3 bottom-3 flex h-14 w-14 items-center justify-center rounded-2xl border-4 border-[#071B36] bg-[#F5C84C] shadow-xl">
-
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                         class="h-6 w-6 text-[#071B36]"
-                                         fill="none"
-                                         viewBox="0 0 24 24"
-                                         stroke="currentColor"
-                                         stroke-width="1.8">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                              d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25A5.25 5.25 0 017.5 3c1.387 0 2.64.576 3.5 1.501A5.25 5.25 0 0114.5 3a5.25 5.25 0 015.25 5.25c0 3.924-2.438 7.11-4.739 9.257a25.18 25.18 0 01-4.244 3.17 15.247 15.247 0 01-.383.218l-.022.012-.007.003-.003.001a.752.752 0 01-.707 0l-.003-.001Z"/>
-                                    </svg>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
+</section>
             <!-- =================================================
                  STATISTIQUES
             ================================================== -->

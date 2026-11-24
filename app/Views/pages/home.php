@@ -475,6 +475,16 @@ $normaliserSlugCategorie = static function ($slug) {
             <p class="mt-2 text-sm text-slate-500">
                 Découvrez les dernières opportunités disponibles.
             </p>
+             <!-- Bouton Jaune Or en bas -->
+            <div class="mt-10 flex justify-center sm:justify-end">
+                <a
+                    href="/biens"
+                    class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#F5C542] px-7 py-3.5 text-sm font-extrabold text-[#061830] shadow-md transition hover:bg-[#e5b32e]"
+                >
+                    Explorer tous les biens
+                    <?= icon('arrow-right', 'w-4 h-4') ?>
+                </a>
+            </div>
         </div>
 
         <?php if (empty($biensAccueil)): ?>
@@ -590,17 +600,6 @@ $normaliserSlugCategorie = static function ($slug) {
                     </article>
                 <?php endforeach; ?>
             </div>
-
-            <!-- Bouton Jaune Or en bas -->
-            <div class="mt-10 flex justify-center sm:justify-end">
-                <a
-                    href="/biens"
-                    class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#F5C542] px-7 py-3.5 text-sm font-extrabold text-[#061830] shadow-md transition hover:bg-[#e5b32e]"
-                >
-                    Explorer tous les biens
-                    <?= icon('arrow-right', 'w-4 h-4') ?>
-                </a>
-            </div>
         <?php endif; ?>
 
     </div>
@@ -621,16 +620,6 @@ $normaliserSlugCategorie = static function ($slug) {
             </svg>
 
             <div class="grid items-center lg:grid-cols-12">
-
-                <div class="relative h-48 sm:h-52 lg:col-span-4 lg:h-full">
-                    <img
-                        src="https://images.unsplash.com/photo-1524666041070-9d87656c25f5?auto=format&fit=crop&w=900&q=80"
-                        alt="Carte interactive IMMO-SN"
-                        class="h-full w-full object-cover"
-                    >
-                    <div class="absolute inset-0 hidden bg-gradient-to-r from-transparent via-[#061830]/30 to-[#061830] lg:block"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#061830] to-transparent lg:hidden"></div>
-                </div>
 
                 <div class="px-6 py-7 sm:px-8 lg:col-span-5">
                     <p class="text-[10px] font-bold uppercase tracking-[0.22em] text-[#F5C542]">

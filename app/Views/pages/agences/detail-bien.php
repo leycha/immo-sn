@@ -90,65 +90,71 @@ $e = static function ($value): string {
              CONTENU PRINCIPAL
         ====================================================== -->
         <div class="mx-auto max-w-[1500px] space-y-7 px-4 py-6 sm:px-7 sm:py-8 lg:px-9">
+<!-- =================================================
+     HERO — FICHE IMMOBILIÈRE COMPACT
+================================================== -->
 
-            <!-- =================================================
-                 HERO
-            ================================================== -->
-            <section class="relative isolate overflow-hidden rounded-[26px] bg-[#071B36] px-6 py-8 text-white shadow-[0_18px_45px_rgba(7,27,54,.14)] sm:px-9 sm:py-10">
+<section class="relative isolate overflow-hidden rounded-[26px] bg-[#071B36] px-5 py-5 text-white shadow-[0_18px_45px_rgba(7,27,54,.14)] sm:px-6 sm:py-6">
 
-                <div class="pointer-events-none absolute -right-20 -top-24 h-80 w-80 rounded-full border-[40px] border-[#F5B800]/10"></div>
+    <!-- DÉCORATION -->
+    <div class="pointer-events-none absolute -right-20 -top-24 h-80 w-80 rounded-full border-[35px] border-[#F5B800]/10"></div>
 
-                <div class="pointer-events-none absolute -bottom-24 right-36 h-64 w-64 rounded-full bg-[#365477]/30 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-24 right-36 h-64 w-64 rounded-full bg-[#365477]/30 blur-3xl"></div>
 
-                <div class="pointer-events-none absolute right-12 top-12 h-2 w-2 rounded-full bg-[#F5B800]"></div>
+    <div class="pointer-events-none absolute right-8 top-8 h-2 w-2 rounded-full bg-[#F5B800]"></div>
 
-                <div class="relative">
+    <!-- CONTENU -->
+    <div class="relative">
 
-                    <div class="inline-flex items-center gap-2 rounded-full border border-[#F5B800]/20 bg-[#F5B800]/10 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-wider text-[#F5B800]">
-                        <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
-                        Fiche immobilière
-                    </div>
+        <!-- BADGE -->
+        <div class="inline-flex items-center gap-2 rounded-full border border-[#F5B800]/20 bg-[#F5B800]/10 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-wider text-[#F5B800]">
+            <span class="h-1.5 w-1.5 rounded-full bg-[#F5B800]"></span>
+            Fiche immobilière
+        </div>
 
-                    <h2 class="mt-5 max-w-4xl break-words text-2xl font-black leading-tight tracking-tight sm:text-3xl lg:text-4xl">
-                        <?= $e($titre) ?>
-                    </h2>
+        <!-- TITRE -->
+        <h2 class="mt-3 max-w-4xl break-words text-2xl font-black leading-tight tracking-tight sm:text-3xl lg:text-4xl">
+            <?= $e($titre) ?>
+        </h2>
 
-                    <div class="mt-4 flex flex-wrap items-center gap-3 text-sm text-slate-300">
+        <!-- LOCALISATION ET CATÉGORIE -->
+        <div class="mt-3 flex flex-wrap items-center gap-2.5 text-xs text-slate-300 sm:text-sm">
 
-                        <span class="inline-flex items-center gap-2">
-                            <span class="text-[#F5B800]">⌖</span>
-                            <?= $e($localisation !== '' ? $localisation : 'Localisation non renseignée') ?>
-                        </span>
+            <span class="inline-flex items-center gap-2">
+                <span class="text-[#F5B800]">⌖</span>
+                <?= $e($localisation !== '' ? $localisation : 'Localisation non renseignée') ?>
+            </span>
 
-                        <span class="hidden h-1 w-1 rounded-full bg-white/30 sm:block"></span>
+            <span class="hidden h-1 w-1 rounded-full bg-white/30 sm:block"></span>
 
-                        <span class="inline-flex items-center gap-2">
-                            <span class="text-[#F5B800]">▤</span>
-                            <?= $e($bien['categorie_nom'] ?? 'Catégorie non renseignée') ?>
-                        </span>
+            <span class="inline-flex items-center gap-2">
+                <span class="text-[#F5B800]">▤</span>
+                <?= $e($bien['categorie_nom'] ?? 'Catégorie non renseignée') ?>
+            </span>
 
-                    </div>
+        </div>
 
-                    <div class="mt-7 flex flex-wrap items-center gap-3">
+        <!-- STATUT ET PRIX -->
+        <div class="mt-4 flex flex-wrap items-center gap-2.5">
 
-                        <span class="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-extrabold <?= $styleStatut ?>">
-                            <span class="h-2 w-2 rounded-full bg-current"></span>
-                            <?= $e($labelStatut) ?>
-                        </span>
+            <span class="inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-extrabold <?= $styleStatut ?>">
+                <span class="h-1.5 w-1.5 rounded-full bg-current"></span>
+                <?= $e($labelStatut) ?>
+            </span>
 
-                        <?php if (!empty($bien['prix'])): ?>
-                            <span class="rounded-full border border-[#F5B800]/20 bg-[#F5B800]/10 px-4 py-2 text-sm font-extrabold text-[#F5B800]">
-                                <?= $e($bien['prix']) ?> FCFA
-                            </span>
-                        <?php endif; ?>
+            <?php if (!empty($bien['prix'])): ?>
 
-                    </div>
+                <span class="rounded-full border border-[#F5B800]/20 bg-[#F5B800]/10 px-3.5 py-1.5 text-sm font-extrabold text-[#F5B800]">
+                    <?= $e($bien['prix']) ?> FCFA
+                </span>
 
-                </div>
+            <?php endif; ?>
 
-            </section>
+        </div>
 
-            <!-- =================================================
+    </div>
+
+</section>           <!-- =================================================
                  INFORMATIONS PRINCIPALES
             ================================================== -->
             <section class="grid gap-5 lg:grid-cols-3">

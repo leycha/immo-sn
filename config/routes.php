@@ -92,6 +92,23 @@ $router->add(
     ['AgenceController', 'mesQrCodes']
 );
 
+// =========================================================
+// MESSAGERIE — ESPACE AGENCE
+// =========================================================
+
+// Boîte de réception de l'agence
+$router->add(
+    'GET',
+    '/agence/messages',
+    ['AgenceController', 'messages']
+);
+
+// Répondre à un message
+$router->add(
+    'POST',
+    '/agence/messages/repondre',
+    ['AgenceController', 'repondreMessage']
+);
 // Télécharger les QR Codes de l'agence connectée.
 $router->add(
     'GET',
@@ -224,12 +241,6 @@ $router->add('GET', '/member/profil', ['MemberController', 'profil']);
 $router->add('POST', '/member/profil', ['MemberController', 'profil']);
 $router->add('POST', '/member/mot-de-passe', ['MemberController', 'changerMotDePasse']);
 
-// Messages
-$router->add(
-    'POST',
-    '/messages/envoyer',
-    ['MessageController', 'envoyer']
-);
 // Messages
 $router->add(
     'POST',

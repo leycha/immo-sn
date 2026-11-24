@@ -101,115 +101,136 @@ $configStatut = $statutConfig[$statut] ?? [
         </a>
 
         <!-- =====================================================
-             HEADER AGENCE
-        ====================================================== -->
-        <header class="relative mt-5 overflow-hidden rounded-[28px] bg-[#071b36] p-6 text-white shadow-[0_18px_50px_rgba(7,27,54,0.12)] sm:p-8 lg:p-10">
+     HEADER AGENCE — HERO COMPACT
+====================================================== -->
+<header class="relative mt-5 overflow-hidden rounded-[28px] bg-[#071b36] p-5 text-white shadow-[0_18px_50px_rgba(7,27,54,0.12)] sm:p-6">
 
-            <div class="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#f5b800]/10 blur-3xl"></div>
-            <div class="pointer-events-none absolute -bottom-32 left-1/3 h-64 w-64 rounded-full bg-[#0e2a4e]/80 blur-3xl"></div>
+    <!-- DÉCORATIONS -->
+    <div class="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#f5b800]/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-32 left-1/3 h-64 w-64 rounded-full bg-[#0e2a4e]/80 blur-3xl"></div>
 
-            <div class="relative flex flex-col justify-between gap-6 xl:flex-row xl:items-center">
+    <div class="relative flex flex-col justify-between gap-5 xl:flex-row xl:items-center">
 
-                <div class="flex min-w-0 items-center gap-5">
+        <!-- IDENTITÉ DE L'AGENCE -->
+        <div class="flex min-w-0 items-center gap-4 sm:gap-5">
 
-                    <!-- LOGO -->
-                    <div class="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white p-2 sm:h-24 sm:w-24">
+            <!-- LOGO -->
+            <div class="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white p-2 sm:h-20 sm:w-20">
 
-                        <?php if ($logo !== ''): ?>
-                            <img src="<?= $e($logo) ?>"
-                                 alt="Logo de <?= $e($nomAgence) ?>"
-                                 class="h-full w-full object-contain">
-                        <?php else: ?>
+                <?php if ($logo !== ''): ?>
+
+                    <img src="<?= $e($logo) ?>"
+                         alt="Logo de <?= $e($nomAgence) ?>"
+                         class="h-full w-full object-contain">
+
+                <?php else: ?>
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="h-9 w-9 text-[#071b36]"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         stroke-width="1.6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M3 10.5L12 3l9 7.5M5.25 9v10.75h13.5V9M9 21v-6h6v6"/>
+                    </svg>
+
+                <?php endif; ?>
+
+            </div>
+
+            <!-- INFORMATIONS -->
+            <div class="min-w-0">
+
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-[11px] font-black uppercase tracking-[0.16em] text-[#f5b800]">
+                        Administration · Partenaires
+                    </span>
+                </div>
+
+                <h1 class="mt-1.5 break-words text-xl font-black tracking-tight sm:text-2xl lg:text-3xl">
+                    <?= $e($nomAgence) ?>
+                </h1>
+
+                <p class="mt-1 text-xs text-slate-300 sm:text-sm">
+                    Fiche complète de l'agence partenaire
+                </p>
+
+                <!-- BADGES -->
+                <div class="mt-3 flex flex-wrap items-center gap-2">
+
+                    <!-- STATUT -->
+                    <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold ring-1 <?= $configStatut['classe'] ?>">
+                        <span class="h-1.5 w-1.5 rounded-full <?= $configStatut['point'] ?>"></span>
+                        <?= $e($statuts[$statut] ?? 'Statut inconnu') ?>
+                    </span>
+
+                    <!-- VÉRIFICATION -->
+                    <?php if ($badgeVerifie): ?>
+
+                        <span class="inline-flex items-center gap-1.5 rounded-full bg-[#f5b800] px-2.5 py-1 text-[11px] font-bold text-[#071b36]">
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="h-10 w-10 text-[#071b36]"
+                                 class="h-3.5 w-3.5"
                                  fill="none"
                                  viewBox="0 0 24 24"
                                  stroke="currentColor"
-                                 stroke-width="1.6">
+                                 stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M3 10.5L12 3l9 7.5M5.25 9v10.75h13.5V9M9 21v-6h6v6"/>
+                                      d="M9 12l2 2 4-4m5 2a8 8 0 11-16 0 8 8 0 0116 0z"/>
                             </svg>
-                        <?php endif; ?>
+                            Agence vérifiée
+                        </span>
 
-                    </div>
+                    <?php else: ?>
 
-                    <div class="min-w-0">
+                        <span class="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-slate-300">
+                            <span class="h-1.5 w-1.5 rounded-full bg-slate-400"></span>
+                            Non vérifiée
+                        </span>
 
-                        <div class="flex flex-wrap items-center gap-2">
-                            <span class="text-xs font-black uppercase tracking-[0.18em] text-[#f5b800]">
-                                Administration · Partenaires
-                            </span>
-                        </div>
+                    <?php endif; ?>
 
-                        <h1 class="mt-2 break-words text-2xl font-black tracking-tight sm:text-3xl lg:text-4xl">
-                            <?= $e($nomAgence) ?>
-                        </h1>
-
-                        <p class="mt-2 text-sm text-slate-300">
-                            Fiche complète de l'agence partenaire
-                        </p>
-
-                        <div class="mt-4 flex flex-wrap items-center gap-2">
-
-                            <span class="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold ring-1 <?= $configStatut['classe'] ?>">
-                                <span class="h-2 w-2 rounded-full <?= $configStatut['point'] ?>"></span>
-                                <?= $e($statuts[$statut] ?? 'Statut inconnu') ?>
-                            </span>
-
-                            <?php if ($badgeVerifie): ?>
-                                <span class="inline-flex items-center gap-2 rounded-full bg-[#f5b800] px-3 py-1.5 text-xs font-bold text-[#071b36]">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                         class="h-4 w-4"
-                                         fill="none"
-                                         viewBox="0 0 24 24"
-                                         stroke="currentColor"
-                                         stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M9 12l2 2 4-4m5 2a8 8 0 11-16 0 8 8 0 0116 0z"/>
-                                    </svg>
-                                    Agence vérifiée
-                                </span>
-                            <?php else: ?>
-                                <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-300">
-                                    <span class="h-2 w-2 rounded-full bg-slate-400"></span>
-                                    Non vérifiée
-                                </span>
-                            <?php endif; ?>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- RÉSUMÉ PORTFOLIO -->
-                <div class="flex items-center gap-4 rounded-2xl border border-white/10 bg-[#0e2a4e]/70 p-5 sm:min-w-[240px]">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#f5b800]/10 text-[#f5b800]">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             class="h-6 w-6"
-                             fill="none"
-                             viewBox="0 0 24 24"
-                             stroke="currentColor"
-                             stroke-width="1.8">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M3 21h18M5 21V5l7-3v19m7 0V9l-7-4M9 8v.01M9 12v.01M9 16v.01M15 12v.01M15 16v.01"/>
-                        </svg>
-                    </div>
-
-                    <div>
-                        <p class="text-xs font-semibold text-slate-400">
-                            Portefeuille immobilier
-                        </p>
-                        <p class="mt-1 text-3xl font-black text-white">
-                            <?= number_format($totalBiens, 0, ',', ' ') ?>
-                        </p>
-                        <p class="text-xs text-slate-400">
-                            bien(s) enregistré(s)
-                        </p>
-                    </div>
                 </div>
 
             </div>
-        </header>
 
+        </div>
+
+        <!-- RÉSUMÉ PORTFOLIO -->
+        <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#0e2a4e]/70 p-3.5 backdrop-blur-sm sm:min-w-[230px]">
+
+            <!-- ICÔNE -->
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#f5b800]/10 text-[#f5b800]">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="h-5 w-5"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke="currentColor"
+                     stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M3 21h18M5 21V5l7-3v19m7 0V9l-7-4M9 8v.01M9 12v.01M9 16v.01M15 12v.01M15 16v.01"/>
+                </svg>
+            </div>
+
+            <!-- CHIFFRES -->
+            <div>
+                <p class="text-[11px] font-semibold text-slate-400">
+                    Portefeuille immobilier
+                </p>
+
+                <p class="mt-0.5 text-2xl font-black tabular-nums text-white">
+                    <?= number_format($totalBiens, 0, ',', ' ') ?>
+                </p>
+
+                <p class="text-[11px] text-slate-400">
+                    bien(s) enregistré(s)
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</header>
         <!-- =====================================================
              INFORMATIONS AGENCE + RESPONSABLE
         ====================================================== -->

@@ -124,86 +124,75 @@ $parametres = [
 
         </header>
 
+<!-- =====================================================
+     BANNIÈRE PRINCIPALE — VERSION COMPACTE
+====================================================== -->
+<section class="relative mb-1 overflow-hidden rounded-2xl border border-[#18385D] bg-[#071B36] px-5 py-5 text-white shadow-sm sm:px-7 sm:py-6">
 
-        <!-- =====================================================
-             BANNIÈRE PRINCIPALE
-        ====================================================== -->
-        <section class="relative isolate overflow-hidden rounded-[28px] bg-[#071B36] px-5 py-8 text-white shadow-xl shadow-[#071B36]/15 sm:px-9 sm:py-10 lg:px-12 lg:py-12">
+    <div class="relative z-10 flex flex-col items-center justify-between gap-5 lg:flex-row">
 
-            <!-- Décorations -->
-            <div class="pointer-events-none absolute -right-16 -top-20 h-72 w-72 rounded-full border-[35px] border-white/5"></div>
+        <div class="w-full min-w-0 max-w-2xl">
 
-            <div class="pointer-events-none absolute -bottom-28 right-40 h-64 w-64 rounded-full bg-[#F5B800]/15 blur-3xl"></div>
+            <span class="inline-flex items-center gap-2 rounded-full border border-[#F5B800]/25 bg-[#F5B800]/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#F5D66D]">
 
-            <div class="pointer-events-none absolute -left-20 bottom-0 h-48 w-48 rounded-full bg-blue-400/10 blur-3xl"></div>
+                <span class="h-1.5 w-1.5 rounded-full bg-[#F5B800]"></span>
 
-            <div class="relative z-10 flex flex-col items-center justify-between gap-8 lg:flex-row">
+                Suivi de la modération
 
-                <div class="w-full min-w-0 max-w-2xl">
+            </span>
 
-                    <span class="inline-flex items-center gap-2 rounded-full border border-[#F5B800]/30 bg-[#F5B800]/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#F5D66D]">
+            <h1 class="mt-3 break-words text-xl font-extrabold leading-tight tracking-tight sm:text-2xl lg:text-3xl">
 
-                        <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
+                Historique des décisions<span class="text-[#F5B800]">.</span>
 
-                        Suivi de la modération
+            </h1>
 
-                    </span>
+            <p class="mt-2 max-w-xl text-xs leading-6 text-blue-100/75 sm:text-sm">
+                Retrouvez les décisions prises par les modérateurs,
+                consultez les détails des interventions et suivez
+                les différentes actions effectuées sur la plateforme.
+            </p>
 
-                    <h1 class="mt-6 break-words text-2xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+            <div class="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
 
-                        Historique des décisions<span class="text-[#F5B800]">.</span>
+                <a
+                    href="#journal-decisions"
+                    class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#F5B800] px-4 py-2.5 text-xs font-extrabold text-[#071B36] transition hover:bg-[#FFD34D] sm:w-auto sm:text-sm"
+                >
+                    Consulter l'historique
 
-                    </h1>
-
-                    <p class="mt-5 max-w-xl text-sm leading-7 text-white/70 sm:text-base">
-                        Retrouvez les décisions prises par les modérateurs,
-                        consultez les détails des interventions et suivez
-                        les différentes actions effectuées sur la plateforme.
-                    </p>
-
-                    <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-
-                        <a
-                            href="#journal-decisions"
-                            class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-5 py-3 text-sm font-extrabold text-[#071B36] shadow-lg shadow-black/10 transition hover:bg-[#FFD34D] sm:w-auto"
-                        >
-                            Consulter l'historique
-
-                            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M7 17 17 7"/>
-                                <path d="M7 7h10v10"/>
-                            </svg>
-                        </a>
-
-                        <a
-                            href="/immo-sn/moderateur"
-                            class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/20 sm:w-auto"
-                        >
-                            Tableau de bord
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <!-- Illustration -->
-                <div class="hidden h-56 w-56 shrink-0 items-center justify-center rounded-[32px] border border-[#F5B800]/20 bg-white/5 lg:flex">
-
-                    <svg class="h-32 w-32 text-[#F5B800]" viewBox="0 0 120 120" fill="none">
-                        <rect x="24" y="17" width="72" height="88" rx="8" stroke="currentColor" stroke-width="4"/>
-                        <path d="M42 39h36M42 54h36M42 69h20" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-                        <circle cx="78" cy="83" r="17" fill="#071B36" stroke="currentColor" stroke-width="4"/>
-                        <path d="m70 83 5 5 11-11" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17 17 7"/>
+                        <path d="M7 7h10v10"/>
                     </svg>
+                </a>
 
-                </div>
+                <a
+                    href="/immo-sn/moderateur"
+                    class="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-white/15 sm:w-auto sm:text-sm"
+                >
+                    Tableau de bord
+                </a>
 
             </div>
 
-        </section>
+        </div>
 
+        <!-- Illustration réduite -->
+        <div class="hidden h-24 w-24 shrink-0 items-center justify-center rounded-2xl border border-[#F5B800]/20 bg-[#0B2748] lg:flex">
 
+            <svg class="h-14 w-14 text-[#F5B800]" viewBox="0 0 120 120" fill="none">
+                <rect x="24" y="17" width="72" height="88" rx="8" stroke="currentColor" stroke-width="4"/>
+                <path d="M42 39h36M42 54h36M42 69h20" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="78" cy="83" r="17" fill="#071B36" stroke="currentColor" stroke-width="4"/>
+                <path d="m70 83 5 5 11-11" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+
+        </div>
+
+    </div>
+
+</section>
         <!-- =====================================================
              STATISTIQUES
         ====================================================== -->

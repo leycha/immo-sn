@@ -45,7 +45,7 @@ $e = static function ($valeur): string {
 
 ?>
 
-<div class="min-h-screen bg-[#F5F3ED]">
+<div class="min-h-screen bg-[#F3F6FA]">
 
     <?php require_once BASE_PATH . '/app/Views/components/agence-sidebare.php'; ?>
 
@@ -91,71 +91,99 @@ $e = static function ($valeur): string {
         <div class="mx-auto max-w-7xl space-y-8 px-5 py-8 sm:px-8">
 
 
-            <!-- BANNIÈRE INTRODUCTIVE -->
-            <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#071B36] via-[#102C4C] to-[#1D3854] p-7 text-white shadow-lg sm:p-10">
+           <!-- =====================================================
+     HERO — BIBLIOTHÈQUE QR CODES
+====================================================== -->
 
-                <div class="pointer-events-none absolute -right-16 -top-20 h-72 w-72 rounded-full border-[38px] border-[#F5B800]/10"></div>
+<section class="relative isolate overflow-hidden rounded-[26px] bg-[#071B36] px-5 py-5 text-white shadow-[0_18px_45px_rgba(7,27,54,.14)] sm:px-7 sm:py-6 lg:px-8">
 
-                <div class="pointer-events-none absolute -bottom-28 right-36 h-60 w-60 rounded-full bg-[#F5B800]/10 blur-3xl"></div>
+    <!-- CONTENU -->
+    <div class="relative flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
 
-                <div class="pointer-events-none absolute right-12 top-12 hidden opacity-[0.08] md:block">
-                    <svg class="h-40 w-40" viewBox="0 0 100 100" fill="none">
-                        <path d="M10 10H90V90H10V10Z" stroke="white" stroke-width="2"/>
-                        <path d="M25 25H75V75H25V25Z" stroke="white" stroke-width="2"/>
-                        <path d="M38 38H62V62H38V38Z" stroke="white" stroke-width="2"/>
+        <!-- PRÉSENTATION -->
+        <div class="max-w-2xl">
+
+            <!-- BADGE -->
+            <div class="inline-flex items-center gap-2 rounded-full border border-[#F5B800]/20 bg-[#F5B800]/10 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-wider text-[#F5B800]">
+                <span class="h-1.5 w-1.5 rounded-full bg-[#F5B800]"></span>
+                Bibliothèque numérique
+            </div>
+
+            <!-- TITRE -->
+            <h2 class="mt-3 text-2xl font-black leading-tight tracking-tight sm:text-3xl lg:text-4xl">
+                Vos biens, accessibles
+                <span class="text-[#F5B800]">en un scan.</span>
+            </h2>
+
+            <!-- DESCRIPTION -->
+            <p class="mt-2.5 max-w-xl text-sm leading-6 text-[#C3CEDB]">
+                Retrouvez tous les QR Codes de vos annonces.
+                Facilitez l'accès à vos biens et suivez les consultations
+                enregistrées grâce aux scans.
+            </p>
+
+            <!-- FONCTIONNALITÉS -->
+            <div class="mt-4 flex flex-wrap gap-2">
+
+                <span class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.06] px-3 py-2 text-xs font-semibold text-white">
+                    <svg class="h-4 w-4 text-[#F5B800]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v3h16v-3"/>
                     </svg>
-                </div>
+                    Téléchargement individuel
+                </span>
 
-                <div class="relative z-10 max-w-2xl">
+                <span class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.06] px-3 py-2 text-xs font-semibold text-white">
+                    <svg class="h-4 w-4 text-[#F5B800]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <rect x="3" y="3" width="7" height="7" rx="1"/>
+                        <rect x="14" y="3" width="7" height="7" rx="1"/>
+                        <rect x="3" y="14" width="7" height="7" rx="1"/>
+                        <path stroke-linecap="round" d="M14 14h3v3h-3zM20 14v2m-3 5h4v-4"/>
+                    </svg>
+                    Archive ZIP
+                </span>
 
-                    <div class="inline-flex items-center gap-2 rounded-full border border-[#F5B800]/25 bg-[#F5B800]/10 px-4 py-2 text-xs font-bold tracking-wide text-[#F5D35B]">
-                        <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
-                        BIBLIOTHÈQUE NUMÉRIQUE
-                    </div>
+                <span class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.06] px-3 py-2 text-xs font-semibold text-white">
+                    <svg class="h-4 w-4 text-[#F5B800]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v18h18M7 14l4-4 4 4 6-7"/>
+                    </svg>
+                    Suivi des scans
+                </span>
 
-                    <h2 class="mt-5 break-words text-2xl font-extrabold leading-tight sm:text-3xl md:text-4xl">
-                        Vos biens, accessibles en un scan.
-                    </h2>
+            </div>
 
-                    <p class="mt-4 max-w-xl text-sm leading-7 text-[#D8E0E8] sm:text-base">
-                        Retrouvez tous les QR Codes de vos annonces.
-                        Facilitez l'accès à vos biens et suivez les consultations
-                        enregistrées grâce aux scans.
-                    </p>
+        </div>
 
-                    <div class="mt-7 flex flex-wrap gap-3">
+        <!-- CARTE STATISTIQUE -->
+        <div class="flex shrink-0 items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.06] p-4 sm:p-5 lg:min-w-[235px]">
 
-                        <span class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-xs font-semibold text-white/90">
-                            <svg class="h-4 w-4 text-[#F5B800]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v3h16v-3"/>
-                            </svg>
-                            Téléchargement individuel
-                        </span>
+            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#F5B800]/20 bg-[#F5B800]/10 text-[#F5B800]">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                    <rect x="3" y="3" width="7" height="7" rx="1"/>
+                    <rect x="14" y="3" width="7" height="7" rx="1"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 14h3v3h-3zM20 14v2m-3 5h4v-4"/>
+                </svg>
+            </div>
 
-                        <span class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-xs font-semibold text-white/90">
-                            <svg class="h-4 w-4 text-[#F5B800]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                                <rect x="3" y="3" width="7" height="7" rx="1"/>
-                                <rect x="14" y="3" width="7" height="7" rx="1"/>
-                                <rect x="3" y="14" width="7" height="7" rx="1"/>
-                                <path stroke-linecap="round" d="M14 14h3v3h-3zM20 14v2m-3 5h4v-4"/>
-                            </svg>
-                            Archive ZIP
-                        </span>
+            <div>
+                <p class="text-xs font-medium text-[#C3CEDB]">
+                    QR Codes disponibles
+                </p>
 
-                        <span class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/10 px-3 py-2.5 text-xs font-semibold text-white/90">
-                            <svg class="h-4 w-4 text-[#F5B800]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3v18h18M7 14l4-4 4 4 6-7"/>
-                            </svg>
-                            Suivi des scans
-                        </span>
+                <p class="mt-1 text-3xl font-black tabular-nums text-white">
+                    <?= number_format($nombreQrCodes, 0, ',', ' ') ?>
+                </p>
 
-                    </div>
+                <p class="mt-1 text-[11px] text-[#A9B9C9]">
+                    QR Code(s) associés à vos biens
+                </p>
+            </div>
 
-                </div>
+        </div>
 
-            </section>
+    </div>
 
-
+</section>
             <!-- STATISTIQUES -->
             <section class="grid gap-5 sm:grid-cols-2">
 

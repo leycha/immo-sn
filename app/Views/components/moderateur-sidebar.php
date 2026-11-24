@@ -2,28 +2,61 @@
 
 $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 
+/*
+|--------------------------------------------------------------------------
+| Nettoyage du chemin du projet
+|--------------------------------------------------------------------------
+| Supprime /immo-sn/public ou /immo-sn
+|--------------------------------------------------------------------------
+*/
+
 $currentPath = preg_replace(
-    '#^/immo-sn(?:/public)?#',
+    '#^/immo-sn/public#',
     '',
     $currentPath
 );
 
-if ($currentPath === '') {
-    $currentPath = '/';
-}
+$currentPath = preg_replace(
+    '#^/immo-sn#',
+    '',
+    $currentPath
+);
+
+/*
+|--------------------------------------------------------------------------
+| Normalisation des routes
+|--------------------------------------------------------------------------
+| Supprime le slash final
+|--------------------------------------------------------------------------
+*/
+
+$currentPath = rtrim($currentPath, '/') ?: '/';
+
+
+/*
+|--------------------------------------------------------------------------
+| Détection du lien modérateur actif
+|--------------------------------------------------------------------------
+*/
 
 if (!function_exists('isModeratorActive')) {
+
     function isModeratorActive(string $path): bool
     {
         global $currentPath;
 
+        $path = rtrim($path, '/') ?: '/';
+
+        // Dashboard : route exacte uniquement
         if ($path === '/moderateur') {
-            return $currentPath === '/moderateur'
-                || $currentPath === '/moderateur/';
+            return $currentPath === '/moderateur';
         }
 
-        return str_starts_with($currentPath, $path);
+        // Autres menus : route exacte ou sous-page
+        return $currentPath === $path
+            || str_starts_with($currentPath, $path . '/');
     }
+
 }
 
 ?>

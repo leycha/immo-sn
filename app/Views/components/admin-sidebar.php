@@ -3,31 +3,41 @@
 $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 
 /*
-- Nettoyage du chemin du projet
- */
+|--------------------------------------------------------------------------
+| Nettoyage du chemin du projet
+|--------------------------------------------------------------------------
+*/
+
 $currentPath = preg_replace(
     '#^/immo-sn/public#',
     '',
     $currentPath
 );
 
-if ($currentPath === '') {
-    $currentPath = '/';
-}
+// Normaliser les slashs finaux
+$currentPath = rtrim($currentPath, '/') ?: '/';
 
 
 /*
-- Vérifie si une route est active
- */
+|--------------------------------------------------------------------------
+| Vérifier si une route de l'administration est active
+|--------------------------------------------------------------------------
+*/
+
 function isAdminActive(string $path): bool
 {
     global $currentPath;
 
+    $path = rtrim($path, '/') ?: '/';
+
+    // Dashboard : correspond uniquement à /admin
     if ($path === '/admin') {
-        return $currentPath === '/admin' || $currentPath === '/admin/';
+        return $currentPath === '/admin';
     }
 
-    return str_starts_with($currentPath, $path);
+    // Autres rubriques : route exacte ou sous-page
+    return $currentPath === $path
+        || str_starts_with($currentPath, $path . '/');
 }
 
 ?>

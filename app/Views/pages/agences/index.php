@@ -56,90 +56,96 @@ if (!function_exists('eAgence')) {
     <main class="px-5 py-7 sm:px-8 lg:px-10">
         <div class="mx-auto max-w-[1600px]">
 
-            <!-- HERO -->
-            <section class="relative overflow-hidden rounded-[28px] bg-[#071B36] shadow-[0_20px_60px_rgba(7,27,54,0.16)]">
+           <!-- HERO — VERSION COMPACTE -->
+<section class="relative overflow-hidden rounded-[24px] bg-[#071B36] shadow-[0_16px_40px_rgba(7,27,54,0.14)]">
 
-                <div class="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[#F5B800]/15 blur-3xl"></div>
-                <div class="pointer-events-none absolute -bottom-36 left-1/3 h-80 w-80 rounded-full bg-[#53708F]/20 blur-3xl"></div>
+    <!-- DÉCORATION -->
+    <div class="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-[#F5B800]/15 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-28 left-1/3 h-64 w-64 rounded-full bg-[#53708F]/20 blur-3xl"></div>
 
-                <div class="relative flex flex-col gap-8 px-6 py-9 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10 lg:py-12">
+    <div class="relative flex flex-col gap-5 px-5 py-5 sm:px-7 sm:py-6 lg:flex-row lg:items-center lg:justify-between lg:px-9">
 
-                    <div class="max-w-3xl">
+        <!-- PRÉSENTATION -->
+        <div class="max-w-3xl">
 
-                        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-[#F5B800]/20 bg-[#F5B800]/10 px-3 py-1.5">
-                            <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
-                            <span class="text-xs font-medium text-[#E6EDF5]">
-                                Le réseau immobilier IMMO-SN
-                            </span>
-                        </div>
+            <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-[#F5B800]/20 bg-[#F5B800]/10 px-3 py-1">
+                <span class="h-1.5 w-1.5 rounded-full bg-[#F5B800]"></span>
+                <span class="text-[11px] font-medium text-[#E6EDF5]">
+                    Le réseau immobilier IMMO-SN
+                </span>
+            </div>
 
-                        <h2 class="font-['Playfair_Display'] text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">
-                            Des partenaires de confiance,
-                            <span class="text-[#F5B800]">près de vos projets.</span>
-                        </h2>
+            <h2 class="font-['Playfair_Display'] text-2xl font-semibold leading-tight text-white sm:text-3xl lg:text-4xl">
+                Des partenaires de confiance,
+                <span class="text-[#F5B800]">près de vos projets.</span>
+            </h2>
 
-                        <p class="mt-4 max-w-2xl text-sm leading-7 text-[#C3CEDB] sm:text-base">
-                            Découvrez notre sélection d'agences immobilières au Sénégal.
-                            Des professionnels à votre écoute pour vous accompagner
-                            dans l'achat, la vente et la location de vos biens.
-                        </p>
+            <p class="mt-2.5 max-w-2xl text-sm leading-6 text-[#C3CEDB]">
+                Découvrez notre sélection d'agences immobilières au Sénégal.
+                Des professionnels à votre écoute pour vous accompagner
+                dans l'achat, la vente et la location de vos biens.
+            </p>
 
-                        <div class="mt-7 flex flex-wrap gap-3">
+            <!-- ACTIONS -->
+            <div class="mt-4 flex flex-wrap gap-2.5">
 
-                            <a href="/biens"
-                               class="inline-flex items-center gap-2 rounded-xl bg-[#F5B800] px-5 py-3 text-sm font-bold text-[#071B36] transition hover:bg-[#FFD033]">
-                                Découvrir les biens
-                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14m-6-6 6 6-6 6"/>
-                                </svg>
-                            </a>
+                <a href="/biens"
+                   class="inline-flex items-center gap-2 rounded-xl bg-[#F5B800] px-4 py-2.5 text-sm font-bold text-[#071B36] transition hover:bg-[#FFD033]">
+                    Découvrir les biens
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14m-6-6 6 6-6 6"/>
+                    </svg>
+                </a>
 
-                            <a href="/"
-                               class="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
-                                Retour à l'accueil
-                            </a>
+                <a href="/"
+                   class="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10">
+                    Retour à l'accueil
+                </a>
 
-                        </div>
-                    </div>
+            </div>
+        </div>
 
-                    <!-- STATISTIQUE -->
-                    <div class="shrink-0 rounded-2xl border border-white/10 bg-white/[0.06] p-6 backdrop-blur-md lg:min-w-[270px]">
+        <!-- STATISTIQUE -->
+        <div class="shrink-0 rounded-2xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur-md sm:min-w-[230px]">
 
-                        <div class="flex items-center justify-between gap-5">
-                            <div>
-                                <p class="text-xs uppercase tracking-[0.16em] text-[#A9B9C9]">
-                                    Notre réseau
-                                </p>
+            <div class="flex items-center justify-between gap-4">
 
-                                <p class="mt-2 text-4xl font-bold tabular-nums text-white">
-                                    <?= number_format($totalAgences, 0, ',', ' ') ?>
-                                </p>
+                <div>
+                    <p class="text-[11px] uppercase tracking-[0.16em] text-[#A9B9C9]">
+                        Notre réseau
+                    </p>
 
-                                <p class="mt-1 text-xs text-[#C3CEDB]">
-                                    agence<?= $totalAgences > 1 ? 's' : '' ?>
-                                    référencée<?= $totalAgences > 1 ? 's' : '' ?>
-                                </p>
-                            </div>
+                    <p class="mt-1 text-3xl font-bold tabular-nums text-white">
+                        <?= number_format($totalAgences, 0, ',', ' ') ?>
+                    </p>
 
-                            <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-[#F5B800]/20 bg-[#F5B800]/10 text-[#F5B800]">
-                                <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5"/>
-                                    <path stroke-linecap="round" d="M9 9h.01M15 9h.01M9 12h.01M15 12h.01"/>
-                                </svg>
-                            </div>
-                        </div>
-
-                        <div class="mt-5 h-1.5 overflow-hidden rounded-full bg-white/10">
-                            <div class="h-full w-full rounded-full bg-[#F5B800]"></div>
-                        </div>
-
-                        <p class="mt-2 text-right text-[11px] text-[#A9B9C9]">
-                            Le réseau des partenaires IMMO-SN
-                        </p>
-                    </div>
+                    <p class="mt-1 text-xs text-[#C3CEDB]">
+                        agence<?= $totalAgences > 1 ? 's' : '' ?>
+                        référencée<?= $totalAgences > 1 ? 's' : '' ?>
+                    </p>
                 </div>
-            </section>
 
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#F5B800]/20 bg-[#F5B800]/10 text-[#F5B800]">
+                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5"/>
+                        <path stroke-linecap="round" d="M9 9h.01M15 9h.01M9 12h.01M15 12h.01"/>
+                    </svg>
+                </div>
+
+            </div>
+
+            <div class="mt-3 h-1 overflow-hidden rounded-full bg-white/10">
+                <div class="h-full w-full rounded-full bg-[#F5B800]"></div>
+            </div>
+
+            <p class="mt-2 text-right text-[10px] text-[#A9B9C9]">
+                Le réseau des partenaires IMMO-SN
+            </p>
+
+        </div>
+
+    </div>
+</section>
             <!-- INTRODUCTION -->
             <section class="mt-8">
 
@@ -484,12 +490,24 @@ if (!function_exists('eAgence')) {
 
             </section>
 
-            <!-- FOOTER -->
-            <footer class="mt-10 border-t border-[#E2E5DA] py-6 text-center">
-                <p class="text-xs font-medium text-[#71869A]">
-                    IMMO-SN — Votre partenaire immobilier au Sénégal
-                </p>
-            </footer>
+          <!-- FOOTER — BLEU MARINE -->
+<footer class="mt-10 overflow-hidden rounded-t-[22px] bg-[#071B36] px-5 py-6 text-center shadow-[0_-8px_25px_rgba(7,27,54,0.06)]">
+
+    <div class="mx-auto mb-3 h-1 w-12 rounded-full bg-[#F5B800]"></div>
+
+    <p class="text-sm font-bold tracking-wide text-white">
+        IMMO-SN
+    </p>
+
+    <p class="mt-1 text-xs text-[#C3CEDB]">
+        Votre partenaire immobilier au Sénégal
+    </p>
+
+    <p class="mt-3 text-[10px] text-[#8FA3B9]">
+        © <?= date('Y') ?> IMMO-SN — Tous droits réservés.
+    </p>
+
+</footer>
 
         </div>
     </main>

@@ -165,158 +165,140 @@ $cartes = [
         </header>
 
 
-        <!-- =====================================================
-             BANNIÈRE D'ACCUEIL
-        ====================================================== -->
+      <!-- =====================================================
+     BANNIÈRE D'ACCUEIL — VERSION COMPACTE
+====================================================== -->
 
-        <section class="relative isolate overflow-hidden rounded-[28px] bg-[#071B36] shadow-[0_20px_55px_rgba(7,27,54,0.16)]">
+<section class="relative overflow-hidden rounded-2xl bg-[#071B36] shadow-sm">
 
-            <!-- Décorations -->
+    <div class="relative grid min-w-0 gap-5 p-5 sm:p-6 lg:grid-cols-[minmax(0,1fr)_270px] lg:items-center">
 
-            <div class="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full bg-[#F5B800]/15 blur-3xl"></div>
+        <!-- Présentation -->
 
-            <div class="pointer-events-none absolute -bottom-32 right-1/3 h-64 w-64 rounded-full bg-[#71869A]/15 blur-3xl"></div>
+        <div class="min-w-0">
 
-            <div class="pointer-events-none absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-white/[0.04] to-transparent"></div>
+            <div class="inline-flex items-center gap-2 rounded-full border border-[#F5B800]/20 bg-[#F5B800]/10 px-3 py-1.5 text-[10px] font-bold tracking-wide text-[#F8D76A]">
 
-            <div class="pointer-events-none absolute bottom-0 left-0 h-1 w-40 bg-gradient-to-r from-[#F5B800] to-transparent"></div>
+                <span class="h-1.5 w-1.5 rounded-full bg-[#F5B800]"></span>
 
-
-            <div class="relative grid min-w-0 gap-7 p-5 sm:gap-8 sm:p-9 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-center lg:p-11">
-
-                <!-- Présentation -->
-
-                <div class="min-w-0">
-
-                    <div class="inline-flex items-center gap-2 rounded-full border border-[#F5B800]/20 bg-[#F5B800]/10 px-3 py-2 text-xs font-bold tracking-wide text-[#F8D76A]">
-
-                        <span class="h-2 w-2 rounded-full bg-[#F5B800] shadow-[0_0_10px_rgba(245,184,0,0.6)]"></span>
-
-                        CENTRE DE MODÉRATION IMMO-SN
-
-                    </div>
-
-                    <h1 class="mt-5 max-w-3xl break-words text-2xl font-black leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-
-                        Votre espace,
-                        <span class="text-[#F5B800]">en un coup d’œil.</span>
-
-                    </h1>
-
-                    <p class="mt-4 max-w-2xl text-sm leading-7 text-[#C3CED9] sm:text-base">
-
-                        Suivez les publications immobilières, examinez les signalements
-                        et veillez à la qualité des contenus diffusés sur la plateforme
-                        IMMO-SN.
-
-                    </p>
-
-                    <!-- Boutons -->
-
-                    <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-
-                        <a href="/immo-sn/moderateur/annonces"
-                           class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-5 py-3.5 text-sm font-extrabold text-[#071B36] shadow-[0_8px_20px_rgba(245,184,0,0.16)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#FFD044] hover:shadow-[0_12px_25px_rgba(245,184,0,0.24)] sm:w-auto">
-
-                            Examiner les annonces
-
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="h-5 w-5"
-                                 fill="none"
-                                 viewBox="0 0 24 24"
-                                 stroke="currentColor"
-                                 stroke-width="1.8">
-
-                                <path stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      d="M5 12h14m-6-6 6 6-6 6"/>
-
-                            </svg>
-
-                        </a>
-
-                        <a href="/immo-sn/moderateur/signalements"
-                           class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.06] px-5 py-3.5 text-sm font-bold text-white transition duration-200 hover:border-[#F5B800]/40 hover:bg-white/10 sm:w-auto">
-
-                            Consulter les signalements
-
-                            <span aria-hidden="true">→</span>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <!-- PRIORITÉS -->
-
-                <div class="rounded-2xl border border-white/10 bg-white/[0.06] p-5 shadow-xl backdrop-blur-sm sm:p-6">
-
-                    <div class="flex items-center justify-between gap-3">
-
-                        <p class="text-xs font-bold uppercase tracking-[0.15em] text-[#C3CED9]">
-                            Vos priorités
-                        </p>
-
-                        <span class="rounded-lg border border-[#F5B800]/20 bg-[#F5B800]/10 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-[#F8D76A]">
-                            À traiter
-                        </span>
-
-                    </div>
-
-                    <p class="mt-4 text-5xl font-black tracking-tight text-white tabular-nums">
-                        <?= number_format($totalPriorites, 0, ',', ' ') ?>
-                    </p>
-
-                    <p class="mt-2 text-sm leading-6 text-[#C3CED9]">
-                        éléments en attente de traitement
-                    </p>
-
-                    <div class="mt-5 space-y-3">
-
-                        <a href="/immo-sn/moderateur/annonces"
-                           class="flex items-center justify-between gap-3 rounded-xl border border-white/[0.07] bg-white/[0.05] px-3 py-3 transition hover:border-[#F5B800]/30 hover:bg-white/10">
-
-                            <span class="flex items-center gap-2 text-sm text-white">
-
-                                <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
-
-                                Annonces à examiner
-
-                            </span>
-
-                            <span class="font-black text-[#F5B800]">
-                                <?= number_format($annoncesEnAttente, 0, ',', ' ') ?>
-                            </span>
-
-                        </a>
-
-                        <a href="/immo-sn/moderateur/signalements"
-                           class="flex items-center justify-between gap-3 rounded-xl border border-white/[0.07] bg-white/[0.05] px-3 py-3 transition hover:border-red-300/30 hover:bg-white/10">
-
-                            <span class="flex items-center gap-2 text-sm text-white">
-
-                                <span class="h-2 w-2 rounded-full bg-red-400"></span>
-
-                                Signalements à vérifier
-
-                            </span>
-
-                            <span class="font-black text-[#FCA5A5]">
-                                <?= number_format($signalementsEnAttente, 0, ',', ' ') ?>
-                            </span>
-
-                        </a>
-
-                    </div>
-
-                </div>
+                CENTRE DE MODÉRATION IMMO-SN
 
             </div>
 
-        </section>
+            <h1 class="mt-3 max-w-3xl break-words text-xl font-black leading-tight tracking-tight text-white sm:text-2xl lg:text-3xl">
 
+                Votre espace,
+                <span class="text-[#F5B800]">en un coup d’œil.</span>
+
+            </h1>
+
+            <p class="mt-2 max-w-2xl text-xs leading-6 text-[#C3CED9] sm:text-sm">
+
+                Suivez les publications immobilières, examinez les signalements
+                et veillez à la qualité des contenus diffusés sur la plateforme
+                IMMO-SN.
+
+            </p>
+
+            <!-- Boutons -->
+
+            <div class="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+
+                <a href="/immo-sn/moderateur/annonces"
+                   class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#F5B800] px-4 py-2.5 text-xs font-extrabold text-[#071B36] transition hover:bg-[#FFD044] sm:w-auto">
+
+                    Examiner les annonces
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="h-4 w-4"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         stroke-width="1.8">
+
+                        <path stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M5 12h14m-6-6 6 6-6 6"/>
+
+                    </svg>
+
+                </a>
+
+                <a href="/immo-sn/moderateur/signalements"
+                   class="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/[0.06] px-4 py-2.5 text-xs font-bold text-white transition hover:border-[#F5B800]/40 hover:bg-white/10 sm:w-auto">
+
+                    Consulter les signalements
+
+                    <span aria-hidden="true">→</span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRIORITÉS -->
+
+        <div class="rounded-xl border border-white/10 bg-white/[0.06] p-4">
+
+            <div class="flex items-center justify-between gap-3">
+
+                <p class="text-[10px] font-bold uppercase tracking-wider text-[#C3CED9]">
+                    Vos priorités
+                </p>
+
+                <span class="rounded-md border border-[#F5B800]/20 bg-[#F5B800]/10 px-2 py-1 text-[9px] font-bold uppercase text-[#F8D76A]">
+                    À traiter
+                </span>
+
+            </div>
+
+            <p class="mt-2 text-3xl font-black tracking-tight text-white tabular-nums">
+                <?= number_format($totalPriorites, 0, ',', ' ') ?>
+            </p>
+
+            <p class="mt-1 text-xs text-[#C3CED9]">
+                éléments en attente de traitement
+            </p>
+
+            <div class="mt-3 space-y-2">
+
+                <a href="/immo-sn/moderateur/annonces"
+                   class="flex items-center justify-between gap-2 rounded-lg border border-white/[0.07] bg-white/[0.05] px-3 py-2.5 transition hover:bg-white/10">
+
+                    <span class="flex items-center gap-2 text-xs text-white">
+                        <span class="h-1.5 w-1.5 rounded-full bg-[#F5B800]"></span>
+                        Annonces à examiner
+                    </span>
+
+                    <span class="text-sm font-black text-[#F5B800]">
+                        <?= number_format($annoncesEnAttente, 0, ',', ' ') ?>
+                    </span>
+
+                </a>
+
+                <a href="/immo-sn/moderateur/signalements"
+                   class="flex items-center justify-between gap-2 rounded-lg border border-white/[0.07] bg-white/[0.05] px-3 py-2.5 transition hover:bg-white/10">
+
+                    <span class="flex items-center gap-2 text-xs text-white">
+                        <span class="h-1.5 w-1.5 rounded-full bg-red-400"></span>
+                        Signalements à vérifier
+                    </span>
+
+                    <span class="text-sm font-black text-[#FCA5A5]">
+                        <?= number_format($signalementsEnAttente, 0, ',', ' ') ?>
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
         <!-- =====================================================
              INDICATEURS

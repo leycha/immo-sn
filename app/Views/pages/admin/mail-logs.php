@@ -132,95 +132,112 @@ $dernierePageVisible = min($totalPages, $page + 2);
     <main class="space-y-6 p-4 sm:p-5 lg:p-8">
 
         <!-- =====================================================
-             HERO
-        ====================================================== -->
-        <section class="relative overflow-hidden rounded-[24px] bg-[#071b36] shadow-[0_12px_35px_rgba(7,27,54,0.12)]">
+     HERO — MAIL LOGS COMPACT
+====================================================== -->
+<section class="relative overflow-hidden rounded-[24px] bg-[#071b36] shadow-[0_12px_35px_rgba(7,27,54,0.12)]">
 
-            <div class="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#f5b800]/10 blur-3xl"></div>
-            <div class="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-[#0e2a4e]/60 blur-3xl"></div>
+    <!-- DÉCORATIONS -->
+    <div class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#f5b800]/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-[#0e2a4e]/60 blur-3xl"></div>
 
-            <div class="relative flex flex-col gap-6 p-6 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
+    <div class="relative flex flex-col gap-5 p-5 sm:p-6 lg:flex-row lg:items-center lg:justify-between">
 
-                <div class="max-w-2xl">
+        <!-- PRÉSENTATION -->
+        <div class="max-w-2xl">
 
-                    <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
-                        <span class="h-2 w-2 rounded-full <?= $echecs > 0 ? 'bg-red-400' : 'bg-emerald-400' ?>"></span>
-                        <span class="text-xs font-medium text-slate-300">
-                            Monitoring des communications
-                        </span>
-                    </div>
+            <!-- BADGE -->
+            <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
+                <span class="h-2 w-2 rounded-full <?= $echecs > 0 ? 'bg-red-400' : 'bg-emerald-400' ?>"></span>
+                <span class="text-xs font-medium text-slate-300">
+                    Monitoring des communications
+                </span>
+            </div>
 
-                    <h2 class="text-2xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
-                        Gestion des emails
-                        <span class="text-[#f5b800]">système</span>
-                    </h2>
+            <!-- TITRE -->
+            <h2 class="text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
+                Gestion des emails
+                <span class="text-[#f5b800]">système</span>
+            </h2>
 
-                    <p class="mt-3 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
-                        Surveillez les communications automatiques d'IMMO-SN,
-                        consultez les historiques d'envoi et identifiez
-                        rapidement les erreurs de transmission.
-                    </p>
+            <!-- DESCRIPTION -->
+            <p class="mt-2.5 max-w-xl text-sm leading-6 text-slate-300">
+                Surveillez les communications automatiques d'IMMO-SN,
+                consultez les historiques d'envoi et identifiez
+                rapidement les erreurs de transmission.
+            </p>
 
-                    <div class="mt-5 flex flex-wrap gap-3">
+            <!-- INDICATEURS -->
+            <div class="mt-4 flex flex-wrap gap-2.5">
 
-                        <span class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-300">
-                            <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
-                            <?= $e($envoyes) ?> email(s) envoyé(s)
-                        </span>
+                <span class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-slate-300">
+                    <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                    <?= $e($envoyes) ?> email(s) envoyé(s)
+                </span>
 
-                        <span class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-300">
-                            <span class="h-2 w-2 rounded-full bg-red-400"></span>
-                            <?= $e($echecs) ?> échec(s)
-                        </span>
+                <span class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-slate-300">
+                    <span class="h-2 w-2 rounded-full bg-red-400"></span>
+                    <?= $e($echecs) ?> échec(s)
+                </span>
 
-                    </div>
-                </div>
+            </div>
 
-                <!-- Indicateur de réussite -->
-                <div class="w-full shrink-0 rounded-2xl border border-white/10 bg-[#0e2a4e]/80 p-5 backdrop-blur-sm sm:p-6 lg:w-[280px]">
+        </div>
 
-                    <div class="flex items-center justify-between gap-3">
-                        <p class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-                            Taux de réussite
-                        </p>
+        <!-- INDICATEUR DE RÉUSSITE -->
+        <div class="w-full shrink-0 rounded-2xl border border-white/10 bg-[#0e2a4e]/80 p-4 backdrop-blur-sm sm:p-5 lg:w-[260px]">
 
-                        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f5b800]/15">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="h-4 w-4 text-[#f5b800]"
-                                 fill="none"
-                                 viewBox="0 0 24 24"
-                                 stroke="currentColor"
-                                 stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M5 13l4 4L19 7"/>
-                            </svg>
-                        </div>
-                    </div>
+            <div class="flex items-center justify-between gap-3">
 
-                    <div class="mt-3 flex items-end gap-2">
-                        <span class="text-4xl font-bold text-white">
-                            <?= $tauxSuccesEmails ?>%
-                        </span>
-                        <span class="mb-1 text-xs text-slate-400">
-                            emails acceptés
-                        </span>
-                    </div>
+                <p class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
+                    Taux de réussite
+                </p>
 
-                    <div class="mt-5 h-2 overflow-hidden rounded-full bg-white/10">
-                        <div class="h-full rounded-full bg-[#f5b800] transition-all duration-500"
-                             style="width: <?= $tauxSuccesEmails ?>%;"></div>
-                    </div>
-
-                    <div class="mt-3 flex items-center justify-between text-xs">
-                        <span class="text-slate-400"><?= $e($envoyes) ?> réussis</span>
-                        <span class="text-red-300"><?= $e($echecs) ?> erreurs</span>
-                    </div>
-
+                <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#f5b800]/15">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="h-4 w-4 text-[#f5b800]"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M5 13l4 4L19 7"/>
+                    </svg>
                 </div>
 
             </div>
-        </section>
 
+            <!-- POURCENTAGE -->
+            <div class="mt-2 flex items-end gap-2">
+                <span class="text-3xl font-bold tabular-nums text-white">
+                    <?= $tauxSuccesEmails ?>%
+                </span>
+
+                <span class="mb-1 text-xs text-slate-400">
+                    emails acceptés
+                </span>
+            </div>
+
+            <!-- BARRE DE PROGRESSION -->
+            <div class="mt-4 h-1.5 overflow-hidden rounded-full bg-white/10">
+                <div class="h-full rounded-full bg-[#f5b800] transition-all duration-500"
+                     style="width: <?= $tauxSuccesEmails ?>%;"></div>
+            </div>
+
+            <!-- DÉTAIL -->
+            <div class="mt-2 flex items-center justify-between text-[11px]">
+                <span class="text-slate-400">
+                    <?= $e($envoyes) ?> réussis
+                </span>
+
+                <span class="text-red-300">
+                    <?= $e($echecs) ?> erreurs
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+</section>
         <!-- =====================================================
              NAVIGATION ADMIN
         ====================================================== -->

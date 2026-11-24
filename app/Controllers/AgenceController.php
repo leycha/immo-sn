@@ -11,6 +11,7 @@ use Core\QrGenerator;
 use App\Models\User;
 use App\Models\DemandeRenouvellement;
 use Core\Validator;
+use App\Models\Message;
 use PDO;
 
 class AgenceController extends Controller
@@ -249,12 +250,15 @@ class AgenceController extends Controller
             }
         }
 
-        $this->view('pages/agences/mon-agence', [
-            'title' => 'Mon agence — ImmoSn',
-            'agence' => $agence,
-            'statistiques' => $statistiques,
-            'biens' => $biens,
-        ]);
+       $nombreMessagesNonLus = $this->compterMessagesNonLusAgence($userId);
+
+$this->view('pages/agences/mon-agence', [
+    'title' => 'Mon agence — ImmoSn',
+    'agence' => $agence,
+    'statistiques' => $statistiques,
+    'biens' => $biens,
+    'nombreMessagesNonLus' => $nombreMessagesNonLus,
+]);
     }
 
     /**
@@ -288,11 +292,12 @@ class AgenceController extends Controller
             echo "Profil du responsable introuvable.";
             return;
         }
-
+$nombreMessagesNonLus = $this->compterMessagesNonLusAgence($userId);
         $this->view('pages/agences/profil', [
-            'title' => 'Mon profil — ImmoSn',
-            'responsable' => $responsable,
-        ]);
+    'title' => 'Mon profil — ImmoSn',
+    'responsable' => $responsable,
+    'nombreMessagesNonLus' => $nombreMessagesNonLus,
+]);
     }
 
     /**
@@ -517,15 +522,16 @@ class AgenceController extends Controller
 
         $success = Session::getFlash('publication_success');
         $error = Session::getFlash('publication_error');
-
+$nombreMessagesNonLus = $this->compterMessagesNonLusAgence($userId);
         $this->view('pages/agences/biens', [
-            'title' => 'Mes biens — ImmoSn',
-            'agence' => $agence,
-            'biens' => $biens,
-            'renouvellements' => $renouvellements,
-            'success' => $success,
-            'error' => $error,
-        ]);
+    'title' => 'Mes biens — ImmoSn',
+    'agence' => $agence,
+    'biens' => $biens,
+    'renouvellements' => $renouvellements,
+    'success' => $success,
+    'error' => $error,
+    'nombreMessagesNonLus' => $nombreMessagesNonLus,
+]);
     }
 
     /**
@@ -638,10 +644,11 @@ class AgenceController extends Controller
         }
 
         $qrCodes = Agence::qrCodesBiens((string) $agence['id']);
-
+$nombreMessagesNonLus = $this->compterMessagesNonLusAgence($userId);
         $this->view('pages/agences/qr-codes', [
             'title' => 'Mes QR Codes — ImmoSn',
             'agence' => $agence,
+            'nombreMessagesNonLus' => $nombreMessagesNonLus,
             'qrCodes' => $qrCodes,
         ]);
     }
@@ -693,7 +700,7 @@ class AgenceController extends Controller
             http_response_code(404);
             exit('Agence introuvable.');
         }
-
+$nombreMessagesNonLus = $this->compterMessagesNonLusAgence($userId);
         $this->view('pages/agences/detail-bien', [
             'title' => 'Détails du bien — ImmoSn',
             'agence' => $agence,
@@ -701,6 +708,7 @@ class AgenceController extends Controller
             'photos' => $photos,
             'categories' => $categories,
             'villes' => $villes,
+            'nombreMessagesNonLus' => $nombreMessagesNonLus,
             'qrCode' => $qrCode,
         ]);
     }
@@ -1140,6 +1148,7 @@ public function publierBien(): void
 
     $categories = Bien::categories();
     $villes = Bien::villes();
+    $nombreMessagesNonLus = $this->compterMessagesNonLusAgence($userId);
 
     $success = null;
     $error = null;
@@ -1151,6 +1160,7 @@ public function publierBien(): void
             'agence' => $agence,
             'categories' => $categories,
             'villes' => $villes,
+            'nombreMessagesNonLus' => $nombreMessagesNonLus,
             'success' => null,
             'error' => null,
         ]);
@@ -1238,6 +1248,7 @@ public function publierBien(): void
             'category_id' => $categoryId,
             'ville_id' => $villeId,
             'Titre' => $titre,
+            'nombreMessagesNonLus' => $nombreMessagesNonLus,
             'Description' => $description,
             'type_offre' => $typeOffre,
             'Prix' => (float) $prix,
@@ -1410,4 +1421,382 @@ public function publierBien(): void
         readfile($filePath);
         exit;
     }
+
+
+    /**
+     * Boîte de réception de l'agence.
+     *
+     * Les messages sont limités aux biens appartenant
+     * au responsable de l'agence connecté.
+     */
+    public function messages(): void
+    {
+        Session::requireAuth('/immo-sn/login');
+
+        $utilisateur = Session::user();
+        $userId = Session::userId();
+
+        if (!$utilisateur || ($utilisateur['role'] ?? '') !== 'agence') {
+            http_response_code(403);
+            exit('Accès réservé aux agences.');
+        }
+
+        if (!$userId) {
+            header('Location: /immo-sn/login');
+            exit;
+        }
+
+        $agence = Agence::trouverParResponsable($userId);
+
+        if (!$agence) {
+            http_response_code(404);
+            exit('Aucune agence associée à ce compte.');
+        }
+
+        // Charger les conversations de cette agence uniquement.
+        $messages = $this->chargerConversationsAgence($userId);
+
+        $selectedId = trim((string) ($_GET['id'] ?? ''));
+        $conversation = null;
+
+        /*
+         * Si aucun message n'est sélectionné,
+         * ouvrir automatiquement la conversation la plus récente.
+         */
+        if ($selectedId === '' && !empty($messages)) {
+            $selectedId = (string) $messages[0]['id'];
+        }
+
+        if ($selectedId !== '') {
+            /*
+             * Vérifier que le message appartient bien à un bien
+             * du responsable connecté et qu'il participe à l'échange.
+             */
+            if ($this->messageAppartientAgence($selectedId, $userId)) {
+                $conversation = Message::conversationParMessage(
+                    $selectedId,
+                    $userId
+                );
+
+                /*
+                 * Retrouver l'identifiant du dernier message de la
+                 * conversation pour activer la bonne ligne à gauche.
+                 */
+                if ($conversation) {
+                    foreach ($messages as $message) {
+                        if (
+                            (string) $message['bien_id'] ===
+                                (string) ($conversation['bien_id'] ?? '') &&
+                            (
+                                (string) ($message['interlocuteur_id'] ?? '') ===
+                                (string) ($conversation['interlocuteur_id'] ?? '')
+                            )
+                        ) {
+                            $selectedId = (string) $message['id'];
+                            break;
+                        }
+                    }
+                }
+            } else {
+                $selectedId = '';
+            }
+        }
+
+        /*
+         * La consultation d'une conversation peut marquer des messages
+         * comme lus. On recharge donc la liste pour actualiser les compteurs.
+         */
+        $messages = $this->chargerConversationsAgence($userId);
+
+        $nombreMessagesNonLus = $this->compterMessagesNonLusAgence($userId);
+
+        $this->view('pages/agences/messages', [
+            'title' => 'Messagerie — Espace agence',
+            'agence' => $agence,
+            'messages' => $messages,
+            'conversation' => $conversation,
+            'selectedId' => $selectedId,
+            'nombreMessagesNonLus' => $nombreMessagesNonLus,
+        ]);
+    }
+
+    /**
+     * Répondre à une conversation depuis l'espace agence.
+     */
+    public function repondreMessage(): void
+    {
+        Session::requireAuth('/immo-sn/login');
+
+        $utilisateur = Session::user();
+        $userId = Session::userId();
+
+        if (!$utilisateur || ($utilisateur['role'] ?? '') !== 'agence') {
+            http_response_code(403);
+            exit('Accès réservé aux agences.');
+        }
+
+        if (!$userId) {
+            header('Location: /immo-sn/login');
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            exit('Méthode non autorisée.');
+        }
+
+        if (!Session::verifyCsrfToken($_POST['_csrf_token'] ?? null)) {
+            Session::flash(
+                'message_error',
+                'Votre session a expiré. Veuillez recharger la page.'
+            );
+
+            header('Location: /immo-sn/agence/messages');
+            exit;
+        }
+
+        $messageId = trim((string) ($_POST['message_id'] ?? ''));
+        $contenu = trim((string) ($_POST['contenu'] ?? ''));
+
+        try {
+            if (!$this->estUuidValide($messageId)) {
+                throw new \RuntimeException('Le message sélectionné est invalide.');
+            }
+
+            if (mb_strlen($contenu) < 3) {
+                throw new \RuntimeException('Votre réponse est trop courte.');
+            }
+
+            if (mb_strlen($contenu) > 5000) {
+                throw new \RuntimeException('Votre réponse est trop longue.');
+            }
+
+            /*
+             * Contrôle essentiel : le message doit concerner un bien
+             * appartenant au responsable de l'agence connectée.
+             */
+            if (!$this->messageAppartientAgence($messageId, $userId)) {
+                http_response_code(403);
+                throw new \RuntimeException(
+                    'Vous ne pouvez pas répondre à cette conversation.'
+                );
+            }
+
+            Message::repondre($messageId, $userId, $contenu);
+
+            Session::flash(
+                'message_success',
+                'Votre réponse a été envoyée avec succès.'
+            );
+        } catch (\Throwable $e) {
+            error_log(
+                'Réponse messagerie agence : ' . $e->getMessage()
+            );
+
+            Session::flash(
+                'message_error',
+                $e instanceof \RuntimeException
+                    ? $e->getMessage()
+                    : 'Une erreur est survenue pendant l’envoi de votre réponse.'
+            );
+        }
+
+        header(
+            'Location: /immo-sn/agence/messages?id=' .
+            rawurlencode($messageId)
+        );
+        exit;
+    }
+
+    /**
+     * Charger et regrouper les messages par bien et interlocuteur.
+     */
+    private function chargerConversationsAgence(string $userId): array
+    {
+        $db = Database::getConnection();
+
+        $sql = "
+            SELECT
+                m.id,
+                m.bien_id,
+                m.expediteur_id,
+                m.destinataire_id,
+                m.sujet,
+                m.contenu,
+                m.lu,
+                m.created_at,
+                b.titre AS bien_titre,
+
+                CASE
+                    WHEN m.expediteur_id = CAST(:uid_case AS UUID)
+                    THEN destinataire.prenom
+                    ELSE expediteur.prenom
+                END AS interlocuteur_prenom,
+
+                CASE
+                    WHEN m.expediteur_id = CAST(:uid_case_nom AS UUID)
+                    THEN destinataire.nom
+                    ELSE expediteur.nom
+                END AS interlocuteur_nom,
+
+                CASE
+                    WHEN m.expediteur_id = CAST(:uid_case_id AS UUID)
+                    THEN m.destinataire_id
+                    ELSE m.expediteur_id
+                END AS interlocuteur_id
+
+            FROM public.messages m
+
+            INNER JOIN public.biens b
+                ON b.id = m.bien_id
+
+            LEFT JOIN public.users expediteur
+                ON expediteur.id = m.expediteur_id
+
+            LEFT JOIN public.users destinataire
+                ON destinataire.id = m.destinataire_id
+
+            WHERE b.user_id = CAST(:uid_bien AS UUID)
+              AND (
+                    m.expediteur_id = CAST(:uid_expediteur AS UUID)
+                    OR
+                    m.destinataire_id = CAST(:uid_destinataire AS UUID)
+              )
+
+            ORDER BY m.created_at DESC
+        ";
+
+        $stmt = $db->prepare($sql);
+
+        $stmt->execute([
+            'uid_case' => $userId,
+            'uid_case_nom' => $userId,
+            'uid_case_id' => $userId,
+            'uid_bien' => $userId,
+            'uid_expediteur' => $userId,
+            'uid_destinataire' => $userId,
+        ]);
+
+        $lignes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $conversations = [];
+
+        foreach ($lignes as $ligne) {
+            $bienId = (string) $ligne['bien_id'];
+            $interlocuteurId = (string) $ligne['interlocuteur_id'];
+
+            $cle = $bienId . '_' . $interlocuteurId;
+
+            if (!isset($conversations[$cle])) {
+                $conversations[$cle] = [
+                    'id' => (string) $ligne['id'],
+                    'bien_id' => $bienId,
+                    'bien_titre' => $ligne['bien_titre'] ?? '',
+                    'interlocuteur_id' => $interlocuteurId,
+                    'interlocuteur_prenom' => $ligne['interlocuteur_prenom'] ?? '',
+                    'interlocuteur_nom' => $ligne['interlocuteur_nom'] ?? '',
+                    'sujet' => $ligne['sujet'] ?? '',
+                    'contenu' => $ligne['contenu'] ?? '',
+                    'created_at' => $ligne['created_at'] ?? null,
+                    'expediteur_id' => (string) $ligne['expediteur_id'],
+                    'non_lus_total' => 0,
+                ];
+            }
+
+            /*
+             * PostgreSQL peut retourner un booléen PHP ou une chaîne
+             * selon le pilote. On traite les deux formats.
+             */
+            $lu = in_array(
+                $ligne['lu'],
+                [true, 1, '1', 't', 'true'],
+                true
+            );
+
+            $estDestineAAgence =
+                (string) $ligne['destinataire_id'] === $userId;
+
+            if ($estDestineAAgence && !$lu) {
+                $conversations[$cle]['non_lus_total']++;
+            }
+        }
+
+        return array_values($conversations);
+    }
+
+    /**
+     * Vérifier qu'un message concerne un bien de l'agence
+     * et que le responsable connecté participe à la conversation.
+     */
+    private function messageAppartientAgence(
+        string $messageId,
+        string $userId
+    ): bool {
+        if (!$this->estUuidValide($messageId)) {
+            return false;
+        }
+
+        $db = Database::getConnection();
+
+        $stmt = $db->prepare("
+            SELECT 1
+            FROM public.messages m
+            INNER JOIN public.biens b
+                ON b.id = m.bien_id
+            WHERE m.id = CAST(:message_id AS UUID)
+              AND b.user_id = CAST(:user_id AS UUID)
+              AND (
+                    m.expediteur_id = CAST(:user_id_expediteur AS UUID)
+                    OR
+                    m.destinataire_id = CAST(:user_id_destinataire AS UUID)
+              )
+            LIMIT 1
+        ");
+
+        $stmt->execute([
+            'message_id' => $messageId,
+            'user_id' => $userId,
+            'user_id_expediteur' => $userId,
+            'user_id_destinataire' => $userId,
+        ]);
+
+        return (bool) $stmt->fetchColumn();
+    }
+
+    /**
+     * Compter les messages non lus reçus pour les biens de l'agence.
+     */
+    private function compterMessagesNonLusAgence(string $userId): int
+    {
+        $db = Database::getConnection();
+
+        $stmt = $db->prepare("
+            SELECT COUNT(*)
+            FROM public.messages m
+            INNER JOIN public.biens b
+                ON b.id = m.bien_id
+            WHERE b.user_id = CAST(:user_id AS UUID)
+              AND m.destinataire_id = CAST(:destinataire_id AS UUID)
+              AND m.lu = FALSE
+        ");
+
+        $stmt->execute([
+            'user_id' => $userId,
+            'destinataire_id' => $userId,
+        ]);
+
+        return (int) $stmt->fetchColumn();
+    }
+
+    /**
+     * Vérifier le format d'un UUID.
+     */
+    private function estUuidValide(string $uuid): bool
+    {
+        return (bool) preg_match(
+            '/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/',
+            $uuid
+        );
+    }
+
 }

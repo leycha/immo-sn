@@ -518,138 +518,137 @@ if (in_array(strtolower($statut), ['actif', 'valide', 'validé'], true)) {
 
     </div>
 
-    <!-- =====================================================
-         ESPACE PROPRIÉTAIRE
-    ====================================================== -->
+ <!-- =====================================================
+     ESPACE PROPRIÉTAIRE
+====================================================== -->
 
-    <?php if ($isOwner): ?>
+<?php if ($isOwner): ?>
 
-        <section class="mx-auto mb-6 max-w-7xl px-4 md:px-6">
+    <section class="mx-auto mb-6 max-w-7xl px-4 md:px-6">
 
-            <div class="overflow-hidden rounded-[22px] border border-[#E7E4DC] bg-white shadow-sm">
+        <div class="overflow-hidden rounded-2xl border border-[#18385D] bg-[#071B36] shadow-sm">
 
-                <div class="flex flex-col gap-4 p-5 md:flex-row md:items-center md:justify-between md:p-6">
+            <div class="flex flex-col gap-4 p-5 md:flex-row md:items-center md:justify-between md:p-6">
 
-                    <div class="flex items-start gap-4">
+                <div class="flex items-start gap-4">
 
-                        <div class="gold-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="h-6 w-6"
-                                 fill="none"
-                                 viewBox="0 0 24 24"
-                                 stroke="currentColor"
-                                 stroke-width="1.8">
-                                <path stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      d="M12 15v2m-6 4h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2V3H8v2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2Z"/>
-                            </svg>
-                        </div>
-
-                        <div>
-                            <p class="text-xs font-bold uppercase tracking-[0.15em] gold-text">
-                                Espace propriétaire
-                            </p>
-
-                            <h2 class="mt-1 text-lg font-bold text-[#101D33]">
-                                Gestion de votre annonce
-                            </h2>
-
-                            <p class="mt-1 max-w-xl text-sm leading-6 text-[#71869A]">
-                                Vous êtes le propriétaire de ce bien. Gérez votre annonce depuis cet espace.
-                            </p>
-                        </div>
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F5B800] text-[#071B36]">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="h-6 w-6"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor"
+                             stroke-width="1.8">
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  d="M12 15v2m-6 4h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2V3H8v2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2Z"/>
+                        </svg>
                     </div>
 
-                    <?php if ($isRejected): ?>
-                        <span class="inline-flex w-fit items-center gap-2 rounded-full bg-[#FFF0ED] px-3 py-2 text-xs font-bold text-[#A53C32]">
-                            <span class="h-2 w-2 rounded-full bg-[#A53C32]"></span>
-                            Annonce rejetée
-                        </span>
-                    <?php endif; ?>
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-[0.15em] text-[#F5B800]">
+                            Espace propriétaire
+                        </p>
 
+                        <h2 class="mt-1 text-lg font-bold text-white">
+                            Gestion de votre annonce
+                        </h2>
+
+                        <p class="mt-1 max-w-xl text-sm leading-6 text-blue-100/75">
+                            Vous êtes le propriétaire de ce bien. Gérez votre annonce depuis cet espace.
+                        </p>
+                    </div>
                 </div>
 
                 <?php if ($isRejected): ?>
+                    <span class="inline-flex w-fit items-center gap-2 rounded-full border border-red-300/30 bg-red-500/15 px-3 py-2 text-xs font-bold text-red-200">
+                        <span class="h-2 w-2 rounded-full bg-red-400"></span>
+                        Annonce rejetée
+                    </span>
+                <?php endif; ?>
 
-                    <div class="mx-5 mb-5 rounded-2xl border border-[#E6C1BC] bg-[#FFF5F3] p-4 md:mx-6">
+            </div>
 
-                        <div class="flex items-start gap-3">
+            <?php if ($isRejected): ?>
 
-                            <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-[#A53C32]">
-                                !
-                            </div>
+                <div class="mx-5 mb-5 rounded-xl border border-red-300/30 bg-red-500/10 p-4 md:mx-6">
 
-                            <div>
-                                <h3 class="font-bold text-[#8B332B]">
-                                    Votre annonce a été rejetée
-                                </h3>
+                    <div class="flex items-start gap-3">
 
-                                <p class="mt-2 text-sm leading-6 text-[#75443F]">
-                                    <?php if ($motifRejet !== ''): ?>
-                                        <?= nl2br(e($motifRejet)) ?>
-                                    <?php else: ?>
-                                        Aucun motif détaillé n'a été renseigné. Vous pouvez corriger les informations de votre annonce.
-                                    <?php endif; ?>
-                                </p>
-                            </div>
-
+                        <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-red-500/15 font-bold text-red-300">
+                            !
                         </div>
+
+                        <div>
+                            <h3 class="font-bold text-red-200">
+                                Votre annonce a été rejetée
+                            </h3>
+
+                            <p class="mt-2 text-sm leading-6 text-red-100/80">
+                                <?php if ($motifRejet !== ''): ?>
+                                    <?= nl2br(e($motifRejet)) ?>
+                                <?php else: ?>
+                                    Aucun motif détaillé n'a été renseigné. Vous pouvez corriger les informations de votre annonce.
+                                <?php endif; ?>
+                            </p>
+                        </div>
+
                     </div>
+                </div>
+
+            <?php endif; ?>
+
+            <div class="flex flex-col gap-3 border-t border-white/10 bg-[#0B2748] p-5 sm:flex-row sm:items-center md:px-6">
+
+                <?php if ($isRejected): ?>
+
+                    <a href="/immo-sn/member/biens/modifier/<?= rawurlencode((string) $bienId) ?>"
+                       class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-5 py-3 text-sm font-bold text-[#071B36] transition hover:bg-[#FFD044]">
+
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="h-5 w-5"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor"
+                             stroke-width="1.8">
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  d="m16.862 4.487 2.651 2.651M4 20l4.5-1 11-11a2.121 2.121 0 0 0-3-3l-11 11L4 20Z"/>
+                        </svg>
+
+                        Corriger mon annonce
+                    </a>
 
                 <?php endif; ?>
 
-                <div class="flex flex-col gap-3 border-t border-[#E7E4DC] bg-[#FAF9F6] p-5 sm:flex-row sm:items-center md:px-6">
+                <form action="/immo-sn/member/biens/supprimer/<?= rawurlencode((string) $bienId) ?>"
+                      method="POST"
+                      class="sm:ml-auto"
+                      onsubmit="return confirm('Voulez-vous vraiment supprimer définitivement cette annonce ? Cette action peut être irréversible.');">
 
-                    <?php if ($isRejected): ?>
+                    <button type="submit"
+                            class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-red-300/30 bg-red-500/10 px-5 py-3 text-sm font-bold text-red-200 transition hover:bg-red-500/20 sm:w-auto">
 
-                        <a href="/immo-sn/member/biens/modifier/<?= rawurlencode((string) $bienId) ?>"
-                           class="gold-button inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-bold">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="h-5 w-5"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor"
+                             stroke-width="1.8">
+                            <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  d="M3 6h18m-2 0-.9 14H5.9L5 6m4 0V4h6v2m-5 4v6m4-6v6"/>
+                        </svg>
 
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="h-5 w-5"
-                                 fill="none"
-                                 viewBox="0 0 24 24"
-                                 stroke="currentColor"
-                                 stroke-width="1.8">
-                                <path stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      d="m16.862 4.487 2.651 2.651M4 20l4.5-1 11-11a2.121 2.121 0 0 0-3-3l-11 11L4 20Z"/>
-                            </svg>
+                        Supprimer mon annonce
+                    </button>
+                </form>
 
-                            Corriger mon annonce
-                        </a>
-
-                    <?php endif; ?>
-
-                    <form action="/immo-sn/member/biens/supprimer/<?= rawurlencode((string) $bienId) ?>"
-                          method="POST"
-                          class="sm:ml-auto"
-                          onsubmit="return confirm('Voulez-vous vraiment supprimer définitivement cette annonce ? Cette action peut être irréversible.');">
-
-                        <button type="submit"
-                                class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#E6C1BC] bg-white px-5 py-3 text-sm font-bold text-[#A53C32] transition hover:bg-[#FFF5F3] sm:w-auto">
-
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="h-5 w-5"
-                                 fill="none"
-                                 viewBox="0 0 24 24"
-                                 stroke="currentColor"
-                                 stroke-width="1.8">
-                                <path stroke-linecap="round"
-                                      stroke-linejoin="round"
-                                      d="M3 6h18m-2 0-.9 14H5.9L5 6m4 0V4h6v2m-5 4v6m4-6v6"/>
-                            </svg>
-
-                            Supprimer mon annonce
-                        </button>
-                    </form>
-
-                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-    <?php endif; ?>
-
+<?php endif; ?>
     <!-- =====================================================
          CONTENU PRINCIPAL
     ====================================================== -->

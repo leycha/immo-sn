@@ -31,116 +31,85 @@ if ($biensJson === false) {
 }
 ?>
 
-<div class="min-h-screen bg-[#F5F3ED] text-[#101D33]">
+<div class="min-h-screen bg-[#F3F6FA] text-[#071B36]">
 
-    <!-- =====================================================
-         EN-TÊTE
-    ====================================================== -->
+  
+<!-- =====================================================
+     EN-TÊTE — IMMO-SN
+====================================================== -->
 
-    <section class="relative isolate mx-auto max-w-[1600px] overflow-hidden rounded-b-[28px] bg-gradient-to-br from-[#071B36] via-[#102844] to-[#1B354D] text-white shadow-[0_20px_55px_rgba(7,27,54,0.18)]">
+<section class="mx-auto max-w-[1600px] overflow-hidden rounded-b-2xl bg-[#071B36] text-white">
 
-        <div class="pointer-events-none absolute -right-20 -top-28 h-80 w-80 rounded-full bg-[#F5B800]/10 blur-3xl"></div>
-        <div class="pointer-events-none absolute -bottom-32 left-1/4 h-72 w-72 rounded-full bg-[#71869A]/20 blur-3xl"></div>
+    <div class="mx-auto max-w-7xl px-5 py-6 sm:px-7 sm:py-7 lg:px-8">
 
-        <div class="relative mx-auto max-w-7xl px-5 py-9 sm:px-7 sm:py-11 lg:px-8 lg:py-14">
+        <div class="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
 
-            <div class="flex flex-col justify-between gap-8 lg:flex-row lg:items-center">
+            <div class="max-w-2xl">
 
-                <div class="max-w-2xl">
+                <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-[#F5B800]/30 bg-white/5 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-wider text-[#F5B800]">
+                    <span class="h-1.5 w-1.5 rounded-full bg-[#F5B800]"></span>
+                    Explorer IMMO-SN
+                    <span class="text-white/40">/</span>
+                    Carte interactive
+                </div>
 
-                    <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-[#F5B800]/30 bg-white/[0.06] px-4 py-2 text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#F5D56C] sm:text-xs">
+                <h1 class="text-2xl font-black leading-tight tracking-tight sm:text-3xl lg:text-4xl">
+                    Explorez l'immobilier
+                    <span class="text-[#F5B800]">autrement.</span>
+                </h1>
 
-                        <span class="h-2 w-2 rounded-full bg-[#F5B800] shadow-[0_0_12px_rgba(245,184,0,0.7)]"></span>
+                <p class="mt-3 max-w-xl text-sm leading-6 text-slate-300">
+                    Localisez les biens disponibles, découvrez leur environnement
+                    et trouvez votre prochain logement au Sénégal grâce à notre
+                    carte interactive.
+                </p>
 
-                        Explorer IMMO-SN
+                <div class="mt-4 flex flex-wrap gap-2 text-[11px] font-semibold text-slate-200">
 
-                        <span class="text-white/30">/</span>
+                    <span class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2">
+                        <span class="text-[#F5B800]">⌖</span>
+                        Localisation GPS
+                    </span>
 
-                        Carte interactive
-
-                    </div>
-
-                    <h1 class="text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-
-                        Explorez l'immobilier
-
-                        <span class="text-[#F5B800]">autrement.</span>
-
-                    </h1>
-
-                    <p class="mt-4 max-w-xl text-sm leading-7 text-[#C6D2DF] sm:text-base">
-
-                        Localisez les biens disponibles, découvrez leur environnement
-                        et trouvez votre prochain logement au Sénégal grâce à notre
-                        carte interactive.
-
-                    </p>
-
-                    <div class="mt-6 flex flex-wrap gap-3 text-xs font-semibold text-white/75">
-
-                        <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-2">
-
-                            <svg class="h-4 w-4 text-[#F5B800]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12Z"/>
-                                <circle cx="12" cy="9" r="2.2"/>
-                            </svg>
-
-                            Localisation GPS
-
-                        </span>
-
-                        <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-2">
-
-                            <svg class="h-4 w-4 text-[#F5B800]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5 12 3l9 7.5M5 9v11h14V9M9 20v-6h6v6"/>
-                            </svg>
-
-                            Biens immobiliers
-
-                        </span>
-
-                    </div>
+                    <span class="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2">
+                        <span class="text-[#F5B800]">⌂</span>
+                        Biens immobiliers
+                    </span>
 
                 </div>
 
-                <!-- COMPTEUR -->
+            </div>
 
-                <div class="flex shrink-0 items-center gap-4 rounded-[24px] border border-white/10 bg-white/[0.07] px-6 py-5 shadow-xl backdrop-blur-md">
+            <div class="flex shrink-0 items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-5 py-4">
 
-                    <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#F5B800]/15 text-[#F5B800]">
+                <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#F5B800]/15 text-[#F5B800]">
+                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5 12 3l9 7.5M5 9v11h14V9M9 20v-6h6v6"/>
+                    </svg>
+                </div>
 
-                        <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5 12 3l9 7.5M5 9v11h14V9M9 20v-6h6v6"/>
-                        </svg>
-
+                <div>
+                    <div class="text-2xl font-black leading-none text-[#F5B800]">
+                        <?= $nombreBiens ?>
                     </div>
-
-                    <div>
-
-                        <div class="text-3xl font-black leading-none text-[#F5B800]">
-                            <?= $nombreBiens ?>
-                        </div>
-
-                        <p class="mt-2 text-xs font-medium text-[#C6D2DF]">
-                            Bien<?= $nombreBiens > 1 ? 's' : '' ?> référencé<?= $nombreBiens > 1 ? 's' : '' ?>
-                        </p>
-
-                    </div>
-
+                    <p class="mt-1.5 text-[11px] font-medium text-slate-300">
+                        Bien<?= $nombreBiens > 1 ? 's' : '' ?> référencé<?= $nombreBiens > 1 ? 's' : '' ?>
+                    </p>
                 </div>
 
             </div>
 
         </div>
 
-    </section>
+    </div>
 
+</section>
 
     <!-- =====================================================
          CONTENU PRINCIPAL
     ====================================================== -->
 
-    <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+    <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-7">
 
         <div class="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
 
@@ -150,7 +119,7 @@ if ($biensJson === false) {
                     Recherche géographique
                 </p>
 
-                <h2 class="mt-1 text-xl font-black tracking-tight text-[#101D33] sm:text-2xl">
+               <h2 class="mt-1 text-xl font-black tracking-tight text-[#071B36] sm:text-2xl">
                     Trouvez un bien près de vous
                 </h2>
 

@@ -4,10 +4,10 @@ $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 
 /*
 |--------------------------------------------------------------------------
-| Nettoyage du chemin
+| Nettoyage du chemin de base
 |--------------------------------------------------------------------------
-| On travaille sans /public
 */
+
 $currentPath = preg_replace(
     '#^/immo-sn/public#',
     '',
@@ -20,29 +20,43 @@ $currentPath = preg_replace(
     $currentPath
 );
 
-if ($currentPath === '' || $currentPath === false) {
-    $currentPath = '/';
-}
+/*
+|--------------------------------------------------------------------------
+| Normalisation du chemin
+|--------------------------------------------------------------------------
+*/
+
+$currentPath = rtrim($currentPath, '/') ?: '/';
+
 
 /*
 |--------------------------------------------------------------------------
-| Vérifie si un lien membre est actif
+| Détection des liens actifs
 |--------------------------------------------------------------------------
 */
-function isMemberActive(string $path): bool
-{
-    global $currentPath;
 
-    if ($path === '/member') {
-        return $currentPath === '/member' || $currentPath === '/member/';
+if (!function_exists('isMemberActive')) {
+
+    function isMemberActive(string $path): bool
+    {
+        global $currentPath;
+
+        $path = rtrim($path, '/') ?: '/';
+
+        // Dashboard : route exacte
+        if ($path === '/member' || $path === '/member/dashboard') {
+            return $currentPath === '/member'
+                || $currentPath === '/member/dashboard';
+        }
+
+        // Autres menus : route exacte ou sous-route
+        return $currentPath === $path
+            || str_starts_with($currentPath, $path . '/');
     }
 
-    return $currentPath === $path ||
-           str_starts_with($currentPath, $path . '/');
 }
 
 ?>
-
 <aside
     id="memberSidebar"
     aria-label="Navigation membre"

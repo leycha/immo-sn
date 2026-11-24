@@ -58,90 +58,81 @@ $typeMessage = (string) ($_GET['type'] ?? 'succes');
         </div>
 
 
-        <!-- =====================================================
-             EN-TÊTE PRINCIPAL
-        ====================================================== -->
-        <section class="relative isolate mb-8 overflow-hidden rounded-[28px] bg-[#071B36] px-5 py-8 shadow-xl shadow-[#071B36]/15 sm:px-9 sm:py-10">
+     <!-- =====================================================
+     EN-TÊTE PRINCIPAL — VERSION COMPACTE
+====================================================== -->
+<section class="relative mb-7 overflow-hidden rounded-2xl border border-[#18385D] bg-[#071B36] px-5 py-5 shadow-sm sm:px-7 sm:py-6">
 
-            <!-- Décorations -->
-            <div class="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full border-[35px] border-white/5"></div>
+    <div class="relative z-10 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
 
-            <div class="pointer-events-none absolute -bottom-24 right-36 h-48 w-48 rounded-full bg-[#F5B800]/15 blur-3xl"></div>
+        <div class="max-w-2xl">
 
-            <div class="pointer-events-none absolute -left-20 bottom-0 h-52 w-52 rounded-full bg-[#D7A200]/10 blur-3xl"></div>
+            <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-[#F5B800]/25 bg-[#F5B800]/10 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#F5D36B]">
 
-            <div class="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+                <span class="h-1.5 w-1.5 rounded-full bg-[#F5B800]"></span>
 
-                <div class="max-w-2xl">
-
-                    <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-[#F5B800]/30 bg-[#F5B800]/10 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#F5D36B]">
-
-                        <span class="h-2 w-2 rounded-full bg-[#F5B800]"></span>
-
-                        Espace modérateur
-
-                    </div>
-
-                    <h1 class="break-words text-2xl font-bold leading-tight text-white sm:text-4xl">
-                        Validation des annonces.
-                    </h1>
-
-                    <p class="mt-4 max-w-xl text-sm leading-7 text-white/70 sm:text-base">
-                        Examinez les annonces immobilières, vérifiez leur conformité
-                        et prenez les décisions nécessaires avant leur publication.
-                    </p>
-
-                    <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-
-                        <a
-                            href="#liste-annonces"
-                            class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#F5B800] px-5 py-3 text-sm font-bold text-[#071B36] shadow-lg shadow-[#F5B800]/10 transition hover:-translate-y-0.5 hover:bg-[#FFD04A] sm:w-auto"
-                        >
-                            Consulter les annonces
-                            <span aria-hidden="true">&darr;</span>
-                        </a>
-
-                        <a
-                            href="/immo-sn/moderateur"
-                            class="inline-flex w-full items-center justify-center rounded-xl border border-white/15 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/20 sm:w-auto"
-                        >
-                            Retour au tableau de bord
-                        </a>
-
-                    </div>
-
-                </div>
-
-                <!-- Illustration -->
-                <div class="hidden shrink-0 lg:flex lg:items-center lg:justify-center">
-
-                    <div class="flex h-36 w-36 items-center justify-center rounded-[32px] border border-[#F5B800]/20 bg-white/10 text-[#F5C94F] shadow-2xl">
-
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-20 w-20"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="1.3"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        >
-                            <path d="m3 10 9-7 9 7"></path>
-                            <path d="M5 9v11h14V9"></path>
-                            <path d="M9 20v-6h6v6"></path>
-                            <path d="m16 5 3 2.3"></path>
-                        </svg>
-
-                    </div>
-
-                </div>
+                Espace modérateur
 
             </div>
 
-        </section>
+            <h1 class="break-words text-xl font-bold leading-tight text-white sm:text-2xl lg:text-3xl">
+                Validation des annonces.
+            </h1>
 
+            <p class="mt-2 max-w-xl text-xs leading-6 text-blue-100/75 sm:text-sm">
+                Examinez les annonces immobilières, vérifiez leur conformité
+                et prenez les décisions nécessaires avant leur publication.
+            </p>
 
+            <div class="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+
+                <a
+                    href="#liste-annonces"
+                    class="inline-flex items-center justify-center gap-2 rounded-lg bg-[#F5B800] px-4 py-2.5 text-xs font-bold text-[#071B36] transition hover:bg-[#FFD04A] sm:text-sm"
+                >
+                    Consulter les annonces
+                    <span aria-hidden="true">&darr;</span>
+                </a>
+
+                <a
+                    href="/immo-sn/moderateur"
+                    class="inline-flex items-center justify-center rounded-lg border border-white/15 bg-white/10 px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-white/15 sm:text-sm"
+                >
+                    Retour au tableau de bord
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Illustration compacte -->
+        <div class="hidden shrink-0 lg:flex lg:items-center lg:justify-center">
+
+            <div class="flex h-24 w-24 items-center justify-center rounded-2xl border border-[#F5B800]/20 bg-[#0B2748] text-[#F5C94F]">
+
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-12 w-12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="m3 10 9-7 9 7"></path>
+                    <path d="M5 9v11h14V9"></path>
+                    <path d="M9 20v-6h6v6"></path>
+                    <path d="m16 5 3 2.3"></path>
+                </svg>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
         <!-- =====================================================
              MESSAGE DE RETOUR
         ====================================================== -->

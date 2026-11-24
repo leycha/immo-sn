@@ -165,88 +165,102 @@ $tauxSucces = $totalExecutions > 0
     <main class="px-5 py-7 sm:px-8 lg:px-10">
         <div class="mx-auto max-w-[1600px]">
 
-            <!-- =================================================
-                 HERO
-            ================================================== -->
-            <section class="relative overflow-hidden rounded-[28px] bg-[#071b36] shadow-[0_20px_55px_rgba(7,27,54,0.15)]">
+           
+<!-- =================================================
+     HERO — CRON MONITOR COMPACT
+================================================== -->
+<section class="relative overflow-hidden rounded-[28px] bg-[#071b36] shadow-[0_20px_55px_rgba(7,27,54,0.15)]">
 
-                <div class="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#f5b800]/10 blur-3xl"></div>
-                <div class="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-[#0e2a4e]/60 blur-3xl"></div>
+    <div class="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#f5b800]/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-[#0e2a4e]/60 blur-3xl"></div>
 
-                <div class="relative flex flex-col gap-8 px-6 py-8 sm:px-9 lg:flex-row lg:items-center lg:justify-between lg:py-10">
+    <div class="relative flex flex-col gap-5 px-5 py-5 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
 
-                    <div class="max-w-2xl">
+        <!-- PRÉSENTATION -->
+        <div class="max-w-2xl">
 
-                        <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2">
-                            <span class="h-2 w-2 rounded-full <?= $erreurCron !== null || $totalErreurs > 0 ? 'bg-red-400' : 'bg-emerald-400' ?>"></span>
+            <!-- STATUT -->
+            <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
+                <span class="h-2 w-2 rounded-full <?= $erreurCron !== null || $totalErreurs > 0 ? 'bg-red-400' : 'bg-emerald-400' ?>"></span>
 
-                            <span class="text-xs font-semibold text-slate-200">
-                                <?= $e($etatGlobal) ?>
-                            </span>
-                        </div>
+                <span class="text-xs font-semibold text-slate-200">
+                    <?= $e($etatGlobal) ?>
+                </span>
+            </div>
 
-                        <h2 class="font-['Playfair_Display'] text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">
-                            Surveillance des tâches
-                            <span class="text-[#f5b800]">automatiques</span>
-                        </h2>
+            <!-- TITRE -->
+            <h2 class="font-['Playfair_Display'] text-2xl font-semibold leading-tight text-white sm:text-3xl lg:text-4xl">
+                Surveillance des tâches
+                <span class="text-[#f5b800]">automatiques</span>
+            </h2>
 
-                        <p class="mt-4 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
-                            Contrôlez les exécutions des scripts CRON, leurs résultats,
-                            leurs durées et les éventuelles erreurs enregistrées.
-                        </p>
+            <!-- DESCRIPTION -->
+            <p class="mt-3 max-w-xl text-sm leading-6 text-slate-300 sm:text-base">
+                Contrôlez les exécutions des scripts CRON, leurs résultats,
+                leurs durées et les éventuelles erreurs enregistrées.
+            </p>
 
-                        <div class="mt-6 flex flex-wrap gap-3">
-                            <div class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs text-slate-300">
-                                <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
-                                Suivi automatique
-                            </div>
+            <!-- INDICATEURS -->
+            <div class="mt-5 flex flex-wrap gap-2.5">
 
-                            <div class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs text-slate-300">
-                                <span class="h-2 w-2 rounded-full bg-[#f5b800]"></span>
-                                Historique des tâches
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Carte synthèse -->
-                    <div class="shrink-0 rounded-[22px] border border-white/10 bg-[#0e2a4e]/75 p-6 backdrop-blur-md lg:min-w-[280px]">
-
-                        <div class="flex items-center justify-between gap-5">
-                            <div>
-                                <p class="text-xs font-bold uppercase tracking-[0.15em] text-slate-400">
-                                    Exécutions enregistrées
-                                </p>
-
-                                <p class="mt-3 text-4xl font-bold tabular-nums text-white">
-                                    <?= number_format($totalExecutions, 0, ',', ' ') ?>
-                                </p>
-
-                                <p class="mt-1 text-xs text-slate-300">
-                                    opérations journalisées
-                                </p>
-                            </div>
-
-                            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f5b800]/15 text-[#f5b800]">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                                    <circle cx="12" cy="12" r="9"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2"/>
-                                </svg>
-                            </div>
-                        </div>
-
-                        <div class="mt-6 h-2 overflow-hidden rounded-full bg-white/10">
-                            <div class="h-full rounded-full bg-[#f5b800]" style="width: <?= $tauxSucces ?>%;"></div>
-                        </div>
-
-                        <p class="mt-3 text-right text-xs text-slate-400">
-                            <?= $tauxSucces ?> % de réussite
-                        </p>
-
-                    </div>
-
+                <div class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3.5 py-2 text-xs text-slate-300">
+                    <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                    Suivi automatique
                 </div>
-            </section>
+
+                <div class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3.5 py-2 text-xs text-slate-300">
+                    <span class="h-2 w-2 rounded-full bg-[#f5b800]"></span>
+                    Historique des tâches
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARTE SYNTHÈSE -->
+        <div class="shrink-0 rounded-[20px] border border-white/10 bg-[#0e2a4e]/75 p-4 backdrop-blur-md lg:min-w-[260px]">
+
+            <div class="flex items-center justify-between gap-4">
+
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-[0.15em] text-slate-400">
+                        Exécutions enregistrées
+                    </p>
+
+                    <p class="mt-2 text-3xl font-bold tabular-nums text-white">
+                        <?= number_format($totalExecutions, 0, ',', ' ') ?>
+                    </p>
+
+                    <p class="mt-1 text-xs text-slate-300">
+                        opérations journalisées
+                    </p>
+                </div>
+
+                <!-- ICÔNE -->
+                <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f5b800]/15 text-[#f5b800]">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                         fill="none" viewBox="0 0 24 24"
+                         stroke="currentColor" stroke-width="1.8">
+                        <circle cx="12" cy="12" r="9"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2"/>
+                    </svg>
+                </div>
+
+            </div>
+
+            <!-- TAUX DE RÉUSSITE -->
+            <div class="mt-4 h-1.5 overflow-hidden rounded-full bg-white/10">
+                <div class="h-full rounded-full bg-[#f5b800]" style="width: <?= $tauxSucces ?>%;"></div>
+            </div>
+
+            <p class="mt-2 text-right text-xs text-slate-400">
+                <?= $tauxSucces ?> % de réussite
+            </p>
+
+        </div>
+
+    </div>
+</section>
 
             <!-- =================================================
                  NAVIGATION ADMIN

@@ -124,88 +124,100 @@ $totalDemandes = count($demandes);
                 </div>
             <?php endif; ?>
 
-            <!-- =================================================
-                 BANNIÈRE PRINCIPALE
-            ================================================== -->
-            <section class="relative overflow-hidden rounded-[28px] bg-[#071b36] shadow-[0_18px_50px_rgba(7,27,54,0.16)]">
+           <!-- =================================================
+     BANNIÈRE PRINCIPALE — HERO COMPACT
+================================================== -->
+<section class="relative overflow-hidden rounded-[28px] bg-[#071b36] shadow-[0_18px_50px_rgba(7,27,54,0.16)]">
 
-                <div class="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#f5b800]/10 blur-3xl"></div>
-                <div class="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-[#0e2a4e]/60 blur-3xl"></div>
+    <!-- DÉCORATION -->
+    <div class="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-[#f5b800]/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-[#0e2a4e]/60 blur-3xl"></div>
 
-                <div class="relative flex flex-col gap-8 px-6 py-8 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10 lg:py-10">
+    <!-- CONTENU -->
+    <div class="relative flex flex-col gap-5 px-5 py-5 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
 
-                    <div class="max-w-2xl">
+        <!-- PRÉSENTATION -->
+        <div class="max-w-2xl">
 
-                        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
-                            <span class="h-2 w-2 rounded-full bg-[#f5b800]"></span>
-                            <span class="text-xs font-medium text-slate-200">
-                                Centre de gestion immobilière
-                            </span>
-                        </div>
+            <!-- BADGE -->
+            <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
+                <span class="h-2 w-2 rounded-full bg-[#f5b800]"></span>
+                <span class="text-xs font-medium text-slate-200">
+                    Centre de gestion immobilière
+                </span>
+            </div>
 
-                        <h2 class="font-['Playfair_Display'] text-3xl font-semibold leading-tight text-white sm:text-4xl">
-                            Gestion des
-                            <span class="text-[#f5b800]">renouvellements</span>
-                        </h2>
+            <!-- TITRE -->
+            <h2 class="font-['Playfair_Display'] text-2xl font-semibold leading-tight text-white sm:text-3xl">
+                Gestion des
+                <span class="text-[#f5b800]">renouvellements</span>
+            </h2>
 
-                        <p class="mt-4 max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
-                            Examinez les demandes de prolongation des annonces.
-                            Vérifiez les informations des propriétaires et les
-                            détails des biens avant de prendre votre décision.
-                        </p>
+            <!-- DESCRIPTION -->
+            <p class="mt-3 max-w-xl text-sm leading-6 text-slate-300 sm:text-base">
+                Examinez les demandes de prolongation des annonces.
+                Vérifiez les informations des propriétaires et les
+                détails des biens avant de prendre votre décision.
+            </p>
 
-                        <div class="mt-7 flex flex-wrap gap-3">
+            <!-- ACTIONS -->
+            <div class="mt-5 flex flex-wrap gap-3">
 
-                            <a
-                                href="#liste-renouvellements"
-                                class="inline-flex items-center gap-2 rounded-xl bg-[#f5b800] px-5 py-3 text-sm font-bold text-[#071b36] shadow-sm transition hover:bg-[#ffca28]"
-                            >
-                                Consulter les demandes
+                <a
+                    href="#liste-renouvellements"
+                    class="inline-flex items-center gap-2 rounded-xl bg-[#f5b800] px-4 py-2.5 text-sm font-bold text-[#071b36] shadow-sm transition hover:bg-[#ffca28]"
+                >
+                    Consulter les demandes
 
-                                <svg class="h-4 w-4" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M7 17 17 7M7 7h10v10"/>
-                                </svg>
-                            </a>
+                    <svg class="h-4 w-4" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M7 17 17 7M7 7h10v10"/>
+                    </svg>
+                </a>
 
-                            <a
-                                href="/immo-sn/admin"
-                                class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-                            >
-                                <svg class="h-4 w-4" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="1.8">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="m3 10 9-7 9 7M5 9v11h14V9M9 20v-6h6v6"/>
-                                </svg>
-                                Tableau de bord
-                            </a>
+                <a
+                    href="/immo-sn/admin"
+                    class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10"
+                >
+                    <svg class="h-4 w-4" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="m3 10 9-7 9 7M5 9v11h14V9M9 20v-6h6v6"/>
+                    </svg>
+                    Tableau de bord
+                </a>
 
-                        </div>
+            </div>
 
-                    </div>
+        </div>
 
-                    <!-- ILLUSTRATION -->
-                    <div class="hidden h-48 w-48 shrink-0 items-center justify-center rounded-[30px] border border-white/10 bg-[#0e2a4e]/70 backdrop-blur-sm lg:flex">
+        <!-- ILLUSTRATION COMPACTE -->
+        <div class="hidden h-36 w-36 shrink-0 items-center justify-center rounded-[24px] border border-white/10 bg-[#0e2a4e]/70 backdrop-blur-sm lg:flex">
 
-                        <svg class="h-28 w-28 text-[#f5b800]" viewBox="0 0 120 120" fill="none">
-                            <rect x="22" y="25" width="76" height="72" rx="9"
-                                  stroke="currentColor" stroke-width="3.5"/>
-                            <path d="M22 45h76" stroke="currentColor" stroke-width="3.5"/>
-                            <path d="M42 17v16M78 17v16" stroke="currentColor"
-                                  stroke-width="3.5" stroke-linecap="round"/>
-                            <path d="M39 62h17M39 76h10" stroke="currentColor"
-                                  stroke-width="3.5" stroke-linecap="round"/>
-                            <circle cx="78" cy="75" r="17" fill="#071b36"
-                                  stroke="currentColor" stroke-width="3.5"/>
-                            <path d="M78 66v10l6 4" stroke="currentColor"
-                                  stroke-width="3" stroke-linecap="round"/>
-                        </svg>
+            <svg class="h-24 w-24 text-[#f5b800]" viewBox="0 0 120 120" fill="none">
+                <rect x="22" y="25" width="76" height="72" rx="9"
+                      stroke="currentColor" stroke-width="3.5"/>
 
-                    </div>
+                <path d="M22 45h76" stroke="currentColor" stroke-width="3.5"/>
 
-                </div>
-            </section>
+                <path d="M42 17v16M78 17v16" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round"/>
+
+                <path d="M39 62h17M39 76h10" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round"/>
+
+                <circle cx="78" cy="75" r="17" fill="#071b36"
+                      stroke="currentColor" stroke-width="3.5"/>
+
+                <path d="M78 66v10l6 4" stroke="currentColor"
+                      stroke-width="3" stroke-linecap="round"/>
+            </svg>
+
+        </div>
+
+    </div>
+</section>
 
             <!-- =================================================
                  STATISTIQUES
