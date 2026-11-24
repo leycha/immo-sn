@@ -1202,25 +1202,27 @@ $categoriesDesign = [
      DESIGN PREMIUM IMMO-SN — BLEU NUIT & OR
      ========================================================= -->
 <style>
-/* Sections profondes pour réduire l'effet "page blanche" */
+/* IMMO-SN — Fonds bleu nuit, cartes blanches, accents or */
 .home-categories,
 .home-properties,
 .home-agencies {
     position: relative;
     isolation: isolate;
     overflow: hidden;
+    color: #FFFFFF;
 }
+
 .home-categories,
 .home-agencies {
     background:
         radial-gradient(ellipse at 8% 0%, rgba(212,175,55,.12), transparent 38%),
         radial-gradient(ellipse at 92% 100%, rgba(48,83,125,.28), transparent 42%),
-        #08172b !important;
+        #0B1426 !important;
 }
 .home-properties {
     background:
         radial-gradient(ellipse at 100% 5%, rgba(212,175,55,.08), transparent 38%),
-        #0b1b30 !important;
+        #0B1426 !important;
 }
 .home-categories::before,
 .home-properties::before,
@@ -1229,7 +1231,7 @@ $categoriesDesign = [
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: .22;
+    opacity: .16;
     background-image: radial-gradient(rgba(255,255,255,.22) .65px, transparent .65px);
     background-size: 22px 22px;
     mask-image: linear-gradient(to bottom, black, transparent 75%);
@@ -1241,72 +1243,74 @@ $categoriesDesign = [
     z-index: 1;
 }
 
-/* Titres et textes sur les sections bleu nuit */
+/* Headings and section copy */
 .home-categories h2,
 .home-properties h2,
 .home-agencies h2 {
-    color: #fff !important;
+    color: #FFFFFF !important;
 }
 .home-categories p,
 .home-properties p,
 .home-agencies p {
-    color: rgba(226,233,243,.72);
+    color: #B8C5D6;
 }
 .home-categories .text-\[\#8A6500\],
 .home-properties .text-\[\#8A6500\],
 .home-agencies .text-\[\#8A6500\] {
-    color: #e3bd56 !important;
+    color: #E5B83D !important;
 }
 .home-categories a.inline-flex,
 .home-properties a.inline-flex,
 .home-agencies a.inline-flex {
-    color: #e3bd56 !important;
+    color: #E5B83D !important;
 }
 
-/* Catégories : cartes vitrées, halo or, interaction élégante */
+/* CATEGORY cards: white */
 .home-categories .grid > a {
     min-height: 210px;
-    border: 1px solid rgba(212,175,55,.25) !important;
-    background: linear-gradient(145deg, rgba(25,43,67,.96), rgba(11,24,41,.98)) !important;
+    border: 1px solid rgba(212,175,55,.35) !important;
+    background: #FFFFFF !important;
+    color: #0B1426 !important;
     box-shadow: 0 14px 36px rgba(0,0,0,.18);
     transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
 }
 .home-categories .grid > a:hover {
-    transform: translateY(-7px);
-    border-color: rgba(226,190,82,.8) !important;
-    box-shadow: 0 20px 44px rgba(0,0,0,.32), 0 0 26px rgba(212,175,55,.09);
+    transform: translateY(-6px);
+    border-color: #D4AF37 !important;
+    box-shadow: 0 20px 44px rgba(0,0,0,.28), 0 0 22px rgba(212,175,55,.12);
 }
 .home-categories .grid > a h3 {
-    color: #f8fafc !important;
+    color: #0B1426 !important;
 }
 .home-categories .grid > a p {
-    color: #aebdd0 !important;
+    color: #64748B !important;
 }
 .home-categories .grid > a .rounded-2xl {
-    background: linear-gradient(135deg, #d4af37, #f0d77a) !important;
-    color: #0b1b30 !important;
+    background: linear-gradient(135deg, #FFF4CC, #F0D77A) !important;
+    color: #0B1426 !important;
     box-shadow: 0 8px 22px rgba(212,175,55,.15);
 }
 .home-categories .grid > a .text-xs.font-bold {
-    color: #e3bd56 !important;
+    color: #9A7615 !important;
 }
 .home-categories .grid > a .rounded-full {
-    background: rgba(212,175,55,.12) !important;
-    border: 1px solid rgba(212,175,55,.18);
-    color: #e3bd56 !important;
+    background: #F5F6F8 !important;
+    border: 1px solid #E5E7EB !important;
+    color: #0B1426 !important;
 }
 
-/* Biens : cartes premium foncées, photo en vedette, prix or */
+/* PROPERTY cards: white info panel, photos unchanged */
 .home-properties article {
-    border: 1px solid rgba(212,175,55,.2) !important;
-    background: linear-gradient(145deg, #182a42, #0e1c2e) !important;
-    box-shadow: 0 15px 35px rgba(0,0,0,.22);
+    border: 1px solid rgba(212,175,55,.32) !important;
+    background: #FFFFFF !important;
+    color: #0B1426 !important;
+    box-shadow: 0 15px 35px rgba(0,0,0,.20);
     transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
 }
 .home-properties article:hover {
-    transform: translateY(-6px);
-    border-color: rgba(212,175,55,.7) !important;
-    box-shadow: 0 24px 50px rgba(0,0,0,.34), 0 0 24px rgba(212,175,55,.06);
+    transform: translateY(-5px);
+    border-color: #D4AF37 !important;
+    box-shadow: 0 24px 45px rgba(0,0,0,.30), 0 0 22px rgba(212,175,55,.10);
 }
 .home-properties article > div:first-child {
     position: relative;
@@ -1319,67 +1323,73 @@ $categoriesDesign = [
     background: linear-gradient(to top, rgba(8,23,42,.58), transparent);
 }
 .home-properties article > div:nth-child(2) {
-    background: transparent !important;
+    background: #FFFFFF !important;
 }
 .home-properties article h3 {
-    color: #f8fafc !important;
+    color: #0B1426 !important;
 }
 .home-properties article .border-b {
-    border-color: rgba(255,255,255,.12) !important;
+    border-color: #E5E7EB !important;
 }
 .home-properties article .text-xl.font-extrabold {
-    color: #e3bd56 !important;
+    color: #9A7615 !important;
 }
 .home-properties article .text-xs,
 .home-properties article .text-sm {
-    color: #b7c5d7 !important;
+    color: #64748B !important;
 }
 .home-properties article .text-\[\#71869A\] {
-    color: #b7c5d7 !important;
+    color: #64748B !important;
 }
 .home-properties article .bg-\[\#FFF4CC\] {
-    background: rgba(212,175,55,.15) !important;
-    color: #e3bd56 !important;
+    background: #FFF4CC !important;
+    color: #8A6500 !important;
 }
 .home-properties article .group-hover\:bg-\[\#F5B800\] {
-    background: #d4af37 !important;
+    background: #D4AF37 !important;
 }
 .home-properties article a[aria-label="Voir le bien"] {
-    background: linear-gradient(135deg, #d4af37, #f0d77a) !important;
-    color: #0b1b30 !important;
+    background: linear-gradient(135deg, #D4AF37, #F0D77A) !important;
+    color: #0B1426 !important;
     box-shadow: 0 8px 20px rgba(212,175,55,.16);
 }
 
-/* Agences : panneaux bleu nuit, bordures et éléments or */
+/* AGENCY cards: white */
 .home-agencies .grid > a {
-    border: 1px solid rgba(212,175,55,.24) !important;
-    background: linear-gradient(145deg, rgba(25,43,67,.98), rgba(10,22,37,.98)) !important;
-    box-shadow: 0 14px 35px rgba(0,0,0,.2);
+    border: 1px solid rgba(212,175,55,.35) !important;
+    background: #FFFFFF !important;
+    color: #0B1426 !important;
+    box-shadow: 0 14px 35px rgba(0,0,0,.18);
     transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
 }
 .home-agencies .grid > a:hover {
-    transform: translateY(-6px);
-    border-color: rgba(212,175,55,.8) !important;
-    box-shadow: 0 22px 44px rgba(0,0,0,.3), 0 0 24px rgba(212,175,55,.08);
+    transform: translateY(-5px);
+    border-color: #D4AF37 !important;
+    box-shadow: 0 22px 44px rgba(0,0,0,.28), 0 0 22px rgba(212,175,55,.10);
 }
 .home-agencies .grid > a h3 {
-    color: #fff !important;
+    color: #0B1426 !important;
 }
 .home-agencies .grid > a .bg-\[\#071B36\] {
-    background: linear-gradient(135deg, #d4af37, #f0d77a) !important;
-    color: #0b1b30 !important;
+    background: linear-gradient(135deg, #0B1426, #16243A) !important;
+    color: #D4AF37 !important;
 }
 .home-agencies .grid > a .border-t {
-    border-color: rgba(255,255,255,.12) !important;
+    border-color: #E5E7EB !important;
 }
 .home-agencies .grid > a .text-\[\#071B36\] {
-    color: #e3bd56 !important;
+    color: #0B1426 !important;
 }
 .home-agencies .grid > a .text-\[\#B88700\] {
-    color: #e3bd56 !important;
+    color: #9A7615 !important;
 }
-
-/* Accessibilité : les effets de mouvement peuvent être désactivés */
+/* Keep section cards' white backgrounds while preserving readability */
+.home-categories .rounded-\[24px\]:not(.grid > a),
+.home-properties .rounded-\[28px\],
+.home-agencies .rounded-\[24px\] {
+    background-color: #FFFFFF;
+    color: #0B1426;
+}
 @media (prefers-reduced-motion: reduce) {
     .home-categories .grid > a,
     .home-properties article,
