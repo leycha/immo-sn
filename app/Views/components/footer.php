@@ -1,108 +1,96 @@
-
 <?php
 /**
- * Footer public d'IMMO-SN
- * Emplacement : app/Views/components/footer.php
+- Footer public d'IMMO-SN
+- Emplacement : app/Views/components/footer.php
  */
 ?>
 
-<footer class="mt-0 overflow-hidden bg-[#071B36] text-white">
+<footer class="mt-0 overflow-hidden bg-[#061830] text-white">
 
     <!-- Ligne décorative dorée -->
-    <div class="h-1 w-full bg-gradient-to-r from-[#8A6500] via-[#F5B800] to-[#8A6500]"></div>
+    <div class="h-1 w-full bg-gradient-to-r from-[#8A6500] via-[#F5C542] to-[#8A6500]"></div>
 
-    <!-- Présentation des avantages -->
+    <!-- Présentation compacte des avantages -->
     <div class="border-b border-white/10">
-        <div class="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:px-10">
+        <div class="mx-auto max-w-7xl px-5 py-6 sm:px-8 lg:px-10">
 
-            <!-- Introduction -->
-            <div class="mb-9 text-center">
-
-                <span class="inline-flex items-center gap-2 rounded-full border border-[#F5B800]/30 bg-[#F5B800]/10 px-4 py-2 text-xs font-bold tracking-wide text-[#FFD45C]">
-                    <span class="h-1.5 w-1.5 rounded-full bg-[#F5B800]"></span>
-                    POURQUOI CHOISIR IMMO-SN ?
-                </span>
-
-                <h2 class="mt-4 text-xl font-bold tracking-tight text-white sm:text-2xl">
-                    Votre immobilier, en toute simplicité.
-                </h2>
-
-                <p class="mx-auto mt-2 max-w-2xl text-sm leading-6 text-slate-300">
-                    Une plateforme pensée pour faciliter votre recherche
-                    et la gestion de vos annonces immobilières au Sénégal.
+            <!-- En-tête condensé -->
+            <div class="mb-5 flex flex-col items-center justify-between gap-2 text-center sm:flex-row sm:text-left">
+                <div class="flex items-center gap-2.5">
+                    <span class="inline-flex items-center gap-1.5 rounded-full border border-[#F5C542]/30 bg-[#F5C542]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#FFD45C]">
+                        <span class="h-1.5 w-1.5 rounded-full bg-[#F5C542]"></span>
+                        Pourquoi IMMO-SN ?
+                    </span>
+                    <h2 class="text-sm font-bold text-white sm:text-base">
+                        Votre immobilier, en toute simplicité.
+                    </h2>
+                </div>
+                <p class="text-xs text-slate-400">
+                    Recherche et gestion de vos annonces au Sénégal.
                 </p>
-
             </div>
 
-            <!-- Avantages -->
-            <div class="grid grid-cols-2 gap-x-5 gap-y-8 md:grid-cols-4">
+            <!-- 4 Avantages en ligne horizontale compacte -->
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
 
                 <!-- Annonces immobilières -->
-                <div class="group flex flex-col items-center text-center">
-
-                    <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#F5B800]/20 bg-[#102B4C] text-2xl shadow-lg shadow-black/10 transition duration-300 group-hover:-translate-y-1 group-hover:border-[#F5B800]/60 group-hover:bg-[#17395F]">
+                <div class="group flex items-center gap-3 rounded-xl border border-white/10 bg-[#0B2242]/70 px-3.5 py-2.5 transition hover:border-[#F5C542]/50">
+                    <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#F5C542]/15 text-base">
                         🏠
                     </div>
-
-                    <h3 class="mt-4 text-sm font-bold text-white">
-                        Annonces immobilières
-                    </h3>
-
-                    <p class="mt-2 max-w-[220px] text-xs leading-5 text-slate-400">
-                        Retrouvez des biens adaptés à vos recherches.
-                    </p>
-
+                    <div class="min-w-0">
+                        <h3 class="truncate text-xs font-bold text-white">
+                            Annonces immobilières
+                        </h3>
+                        <p class="truncate text-[11px] text-slate-400">
+                            Des biens adaptés à vos recherches.
+                        </p>
+                    </div>
                 </div>
 
                 <!-- Suivi des annonces -->
-                <div class="group flex flex-col items-center text-center">
-
-                    <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#F5B800]/20 bg-[#102B4C] text-2xl shadow-lg shadow-black/10 transition duration-300 group-hover:-translate-y-1 group-hover:border-[#F5B800]/60 group-hover:bg-[#17395F]">
+                <div class="group flex items-center gap-3 rounded-xl border border-white/10 bg-[#0B2242]/70 px-3.5 py-2.5 transition hover:border-[#F5C542]/50">
+                    <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#F5C542]/15 text-base">
                         🛡️
                     </div>
-
-                    <h3 class="mt-4 text-sm font-bold text-white">
-                        Suivi des annonces
-                    </h3>
-
-                    <p class="mt-2 max-w-[220px] text-xs leading-5 text-slate-400">
-                        Consultez le statut de vos annonces depuis votre compte.
-                    </p>
-
+                    <div class="min-w-0">
+                        <h3 class="truncate text-xs font-bold text-white">
+                            Suivi des annonces
+                        </h3>
+                        <p class="truncate text-[11px] text-slate-400">
+                            Statut en temps réel sur votre compte.
+                        </p>
+                    </div>
                 </div>
 
                 <!-- Espace personnel -->
-                <div class="group flex flex-col items-center text-center">
-
-                    <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#F5B800]/20 bg-[#102B4C] text-2xl shadow-lg shadow-black/10 transition duration-300 group-hover:-translate-y-1 group-hover:border-[#F5B800]/60 group-hover:bg-[#17395F]">
+                <div class="group flex items-center gap-3 rounded-xl border border-white/10 bg-[#0B2242]/70 px-3.5 py-2.5 transition hover:border-[#F5C542]/50">
+                    <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#F5C542]/15 text-base">
                         👤
                     </div>
-
-                    <h3 class="mt-4 text-sm font-bold text-white">
-                        Espace personnel
-                    </h3>
-
-                    <p class="mt-2 max-w-[220px] text-xs leading-5 text-slate-400">
-                        Retrouvez vos annonces et vos fonctionnalités au même endroit.
-                    </p>
-
+                    <div class="min-w-0">
+                        <h3 class="truncate text-xs font-bold text-white">
+                            Espace personnel
+                        </h3>
+                        <p class="truncate text-[11px] text-slate-400">
+                            Vos annonces et outils au même endroit.
+                        </p>
+                    </div>
                 </div>
 
                 <!-- Navigation -->
-                <div class="group flex flex-col items-center text-center">
-
-                    <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#F5B800]/20 bg-[#102B4C] text-2xl shadow-lg shadow-black/10 transition duration-300 group-hover:-translate-y-1 group-hover:border-[#F5B800]/60 group-hover:bg-[#17395F]">
+                <div class="group flex items-center gap-3 rounded-xl border border-white/10 bg-[#0B2242]/70 px-3.5 py-2.5 transition hover:border-[#F5C542]/50">
+                    <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#F5C542]/15 text-base">
                         ⚡
                     </div>
-
-                    <h3 class="mt-4 text-sm font-bold text-white">
-                        Navigation simple
-                    </h3>
-
-                    <p class="mt-2 max-w-[220px] text-xs leading-5 text-slate-400">
-                        Parcourez la plateforme sur ordinateur ou mobile.
-                    </p>
-
+                    <div class="min-w-0">
+                        <h3 class="truncate text-xs font-bold text-white">
+                            Navigation simple
+                        </h3>
+                        <p class="truncate text-[11px] text-slate-400">
+                            Fluide sur ordinateur et mobile.
+                        </p>
+                    </div>
                 </div>
 
             </div>
@@ -110,24 +98,20 @@
         </div>
     </div>
 
-    <!-- Barre inférieure -->
-    <div class="mx-auto max-w-7xl px-5 py-5 sm:px-8 lg:px-10">
-
-        <div class="flex flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
-
-            <p class="text-xs leading-5 text-slate-400">
+    <!-- Barre inférieure ultra-compacte -->
+    <div class="mx-auto max-w-7xl px-5 py-3.5 sm:px-8 lg:px-10">
+        <div class="flex flex-col items-center justify-between gap-2 text-center sm:flex-row sm:text-left">
+            <p class="text-[11px] text-slate-400">
                 &copy; <?= date('Y') ?>
                 <span class="font-bold text-white">IMMO-SN</span>.
                 Tous droits réservés.
             </p>
 
-            <p class="flex items-center gap-2 text-xs leading-5 text-slate-400">
-                <span class="h-1.5 w-1.5 rounded-full bg-[#F5B800]"></span>
+            <p class="flex items-center gap-2 text-[11px] text-slate-400">
+                <span class="h-1.5 w-1.5 rounded-full bg-[#F5C542]"></span>
                 Votre plateforme immobilière au Sénégal.
             </p>
-
         </div>
-
     </div>
 
 </footer>
