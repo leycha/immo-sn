@@ -21,73 +21,60 @@ $totalAgences = (int) ($resumeAccueil['agences'] ?? 0);
 
 /*
 |--------------------------------------------------------------------------
-| Icônes, couleurs pastel (style maquette) et descriptions des catégories
+| Icônes et descriptions des catégories
 |--------------------------------------------------------------------------
 */
 $categoriesDesign = [
     'maison' => [
         'icon' => 'house',
-        'bg' => 'bg-[#DCEEFF] text-[#1E6BB8]',
         'description' => 'Maisons familiales et résidentielles'
     ],
     'maisons' => [
         'icon' => 'house',
-        'bg' => 'bg-[#DCEEFF] text-[#1E6BB8]',
         'description' => 'Maisons familiales et résidentielles'
     ],
     'appartement' => [
         'icon' => 'building-2',
-        'bg' => 'bg-[#FDEBC8] text-[#C67D00]',
         'description' => 'Appartements modernes et confortables'
     ],
     'appartements' => [
         'icon' => 'building-2',
-        'bg' => 'bg-[#FDEBC8] text-[#C67D00]',
         'description' => 'Appartements modernes et confortables'
     ],
     'immeuble' => [
         'icon' => 'building',
-        'bg' => 'bg-[#E6E0FA] text-[#5B3CC4]',
         'description' => 'Immeubles et opportunités professionnelles'
     ],
     'immeubles' => [
         'icon' => 'building',
-        'bg' => 'bg-[#E6E0FA] text-[#5B3CC4]',
         'description' => 'Immeubles et opportunités professionnelles'
     ],
     'bureau' => [
         'icon' => 'briefcase-business',
-        'bg' => 'bg-[#E6E0FA] text-[#5B3CC4]',
         'description' => 'Bureaux et espaces professionnels'
     ],
     'local-commercial' => [
         'icon' => 'store',
-        'bg' => 'bg-[#D5F5E3] text-[#1E8449]',
         'description' => 'Locaux adaptés aux activités commerciales'
     ],
     'local_commercial' => [
         'icon' => 'store',
-        'bg' => 'bg-[#D5F5E3] text-[#1E8449]',
         'description' => 'Locaux adaptés aux activités commerciales'
     ],
     'studio' => [
         'icon' => 'building-2',
-        'bg' => 'bg-[#DCEEFF] text-[#1E6BB8]',
         'description' => 'Studios modernes et fonctionnels'
     ],
     'terrain' => [
         'icon' => 'map',
-        'bg' => 'bg-[#D5F5E3] text-[#1E8449]',
         'description' => 'Terrains pour vos futurs projets'
     ],
     'terrains' => [
         'icon' => 'map',
-        'bg' => 'bg-[#D5F5E3] text-[#1E8449]',
         'description' => 'Terrains pour vos futurs projets'
     ],
     'villa' => [
         'icon' => 'house',
-        'bg' => 'bg-[#FDEBC8] text-[#C67D00]',
         'description' => 'Villas et résidences haut de gamme'
     ],
 ];
@@ -98,14 +85,13 @@ $categoriesDesign = [
 ========================================================= -->
 <section class="relative overflow-hidden bg-[#061830] pb-24 pt-12 sm:pb-28 sm:pt-16 lg:pb-32 lg:pt-20">
 
-    <!-- Photo pleine luminosité (dégradé uniquement sur le côté gauche pour lire le texte) -->
+    <!-- Photo pleine luminosité -->
     <div class="absolute inset-0">
         <img
             src="<?= htmlspecialchars($imageHero, ENT_QUOTES, 'UTF-8') ?>"
             alt="Présentation de la plateforme immobilière IMMO-SN"
             class="h-full w-full object-cover object-right"
         >
-        <!-- Dégradé ciblé à gauche uniquement : la villa à droite reste nette et lumineuse -->
         <div class="absolute inset-0 bg-gradient-to-r from-[#061830] via-[#061830]/80 to-transparent"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-[#061830]/70 via-transparent to-[#061830]/40"></div>
     </div>
@@ -113,7 +99,7 @@ $categoriesDesign = [
     <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div class="grid items-center gap-8 lg:grid-cols-12">
 
-            <!-- Contenu Texte & Recherche (60% gauche) -->
+            <!-- Contenu Texte & Recherche -->
             <div class="lg:col-span-7">
 
                 <div class="mb-4 flex items-center gap-3">
@@ -133,7 +119,7 @@ $categoriesDesign = [
                     Découvrez des opportunités immobilières sélectionnées pour vous, partout au Sénégal.
                 </p>
 
-                <!-- Barre de recherche compacte -->
+                <!-- Barre de recherche -->
                 <div class="mt-7 max-w-xl rounded-2xl border border-white/25 bg-white/95 p-1.5 shadow-2xl backdrop-blur-md">
                     <form action="/biens" method="GET" class="flex flex-col gap-1.5 sm:flex-row">
                         <div class="flex flex-1 items-center rounded-xl bg-slate-100 px-3.5 py-2.5">
@@ -158,7 +144,7 @@ $categoriesDesign = [
                     </form>
                 </div>
 
-                <!-- Boutons pilules (comme sur l'image de repère) -->
+                <!-- Boutons pilules -->
                 <div class="mt-5 flex flex-wrap items-center gap-3">
                     <a
                         href="/biens"
@@ -187,7 +173,7 @@ $categoriesDesign = [
                     </a>
                 </div>
 
-                <!-- Mini stats intégrées directement dans le Hero (zéro bloc blanc en trop) -->
+                <!-- Mini stats intégrées -->
                 <div class="mt-8 flex flex-wrap items-center gap-6 border-t border-white/15 pt-5 text-white">
                     <div>
                         <p class="text-xl font-extrabold text-[#F5C542]"><?= number_format($totalBiens, 0, ',', ' ') ?></p>
@@ -212,7 +198,7 @@ $categoriesDesign = [
 
             </div>
 
-            <!-- Badge Sceau Doré à droite (comme sur la photo de repère) -->
+            <!-- Badge Sceau Doré à droite -->
             <div class="hidden lg:col-span-5 lg:flex lg:justify-end lg:self-end">
                 <div class="flex h-28 w-28 flex-col items-center justify-center rounded-full border-[3px] border-[#F5C542] bg-[#061830]/90 p-2 text-center shadow-2xl ring-4 ring-[#F5C542]/30 backdrop-blur-md">
                     <span class="text-[#F5C542]">
@@ -230,28 +216,28 @@ $categoriesDesign = [
         </div>
     </div>
 
-    <!-- Découpe Courbe vers la section gris-bleu #F2F5F9 -->
+    <!-- Découpe Courbe vers la section Catégories (#E6EEF8) -->
     <div class="pointer-events-none absolute bottom-0 left-0 right-0 overflow-hidden leading-none">
         <svg class="relative block h-10 w-full sm:h-14" viewBox="0 0 1440 80" preserveAspectRatio="none">
-            <path d="M0,35 C480,95 960,-10 1440,45 L1440,80 L0,80 Z" fill="#F2F5F9"></path>
+            <path d="M0,35 C480,95 960,-10 1440,45 L1440,80 L0,80 Z" fill="#E6EEF8"></path>
         </svg>
     </div>
 </section>
 
 
 <!-- =========================================================
-     2. CATÉGORIES (FOND GRIS-BLEU GLACIER + CARTES COMPACTES)
+     2. QUEL BIEN RECHERCHEZ-VOUS ? (FOND BLEU CLAIR + CARDS BLEU NUIT)
 ========================================================= -->
-<section class="relative overflow-hidden bg-[#F2F5F9] py-14">
+<section class="relative overflow-hidden bg-[#E6EEF8] py-16">
 
-    <!-- Filigrane architectural subtil en arrière-plan (comme sur l'image de repère) -->
-    <svg class="pointer-events-none absolute -right-10 top-4 h-72 w-72 text-[#061830]/[0.04]" viewBox="0 0 200 200" fill="currentColor">
+    <!-- Filigrane architectural subtil en arrière-plan -->
+    <svg class="pointer-events-none absolute -right-10 top-4 h-72 w-72 text-[#061830]/[0.05]" viewBox="0 0 200 200" fill="currentColor">
         <path d="M100 15L15 85h25v95h120V85h25L100 15zm0 30l45 37v78h-30v-45H85v45H55V82l45-37z"/>
     </svg>
 
     <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
-        <div class="mx-auto mb-9 max-w-xl text-center">
+        <div class="mx-auto mb-10 max-w-xl text-center">
             <div class="inline-flex items-center gap-2.5">
                 <span class="h-[1.5px] w-6 bg-[#D4A017]"></span>
                 <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#B88700]">
@@ -260,7 +246,7 @@ $categoriesDesign = [
                 <span class="h-[1.5px] w-6 bg-[#D4A017]"></span>
             </div>
 
-            <h2 class="mt-1.5 font-['Playfair_Display'] text-2xl font-bold text-[#0B3B68] sm:text-4xl">
+            <h2 class="mt-1.5 font-['Playfair_Display'] text-2xl font-bold text-[#061830] sm:text-4xl">
                 Quel bien recherchez-vous ?
             </h2>
             <p class="mt-1.5 text-xs text-slate-600 sm:text-sm">
@@ -269,11 +255,11 @@ $categoriesDesign = [
         </div>
 
         <?php if (empty($categoriesAccueil)): ?>
-            <div class="rounded-2xl border border-slate-200 bg-white/80 p-8 text-center">
-                <p class="text-sm text-slate-500">Aucune catégorie disponible pour le moment.</p>
+            <div class="rounded-2xl border border-[#061830]/10 bg-white/80 p-8 text-center">
+                <p class="text-sm text-slate-600">Aucune catégorie disponible pour le moment.</p>
             </div>
         <?php else: ?>
-            <!-- Cartes compactes sans espace blanc inutile -->
+            <!-- Cards en Bleu Nuit (#061830) -->
             <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
                 <?php foreach ($categoriesAccueil as $categorie): ?>
                     <?php
@@ -282,32 +268,31 @@ $categoriesDesign = [
                     $totalCategorie = (int) ($categorie['total'] ?? 0);
                     $designCategorie = $categoriesDesign[$slugCategorie] ?? [
                         'icon' => 'building-2',
-                        'bg' => 'bg-[#DCEEFF] text-[#1E6BB8]',
                         'description' => 'Biens immobiliers disponibles'
                     ];
                     ?>
 
                     <a
                         href="/biens?category_id=<?= urlencode((string) ($categorie['id'] ?? '')) ?>"
-                        class="group relative flex flex-col items-center rounded-2xl border border-slate-200/80 bg-white px-5 py-6 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#F5C542] hover:shadow-lg"
+                        class="group relative flex flex-col items-center rounded-2xl border border-[#12335E] bg-[#061830] px-5 py-6 text-center shadow-lg transition duration-300 hover:-translate-y-1 hover:border-[#F5C542] hover:bg-[#0A2547] hover:shadow-xl"
                     >
-                        <div class="flex h-12 w-12 items-center justify-center rounded-xl <?= $designCategorie['bg'] ?> transition group-hover:scale-110">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F5C542]/15 text-[#F5C542] ring-1 ring-[#F5C542]/30 transition group-hover:scale-110 group-hover:bg-[#F5C542] group-hover:text-[#061830]">
                             <?= icon($designCategorie['icon'], 'w-6 h-6') ?>
                         </div>
 
-                        <h3 class="mt-3.5 text-sm font-extrabold text-[#061830] sm:text-base">
+                        <h3 class="mt-3.5 text-sm font-extrabold text-white sm:text-base">
                             <?= htmlspecialchars($nomCategorie, ENT_QUOTES, 'UTF-8') ?>
                         </h3>
 
-                        <p class="mt-1 line-clamp-1 text-xs text-slate-500">
+                        <p class="mt-1 line-clamp-1 text-xs text-slate-300">
                             <?= htmlspecialchars($designCategorie['description'], ENT_QUOTES, 'UTF-8') ?>
                         </p>
 
-                        <div class="mt-3 flex items-center gap-2">
-                            <span class="rounded-full bg-[#F2F5F9] px-2.5 py-0.5 text-[11px] font-bold text-[#0B3B68]">
+                        <div class="mt-4 flex items-center gap-2">
+                            <span class="rounded-full bg-white/10 px-3 py-0.5 text-[11px] font-bold text-[#F5C542]">
                                 <?= number_format($totalCategorie, 0, ',', ' ') ?> bien<?= $totalCategorie > 1 ? 's' : '' ?>
                             </span>
-                            <span class="flex h-6 w-6 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition group-hover:border-[#061830] group-hover:bg-[#061830] group-hover:text-white">
+                            <span class="flex h-6 w-6 items-center justify-center rounded-full border border-white/20 text-white transition group-hover:border-[#F5C542] group-hover:bg-[#F5C542] group-hover:text-[#061830]">
                                 <?= icon('arrow-right', 'w-3 h-3') ?>
                             </span>
                         </div>
@@ -321,41 +306,42 @@ $categoriesDesign = [
 
 
 <!-- =========================================================
-     3. BIENS À LA UNE (GRILLE 4 COLONNES COMPACTE STYLE MAQUETTE)
+     3. LES BIENS À DÉCOUVRIR (FOND BLANC + 3 CARDS/LIGNE + BOUTON OR EN BAS)
 ========================================================= -->
-<section class="bg-[#E9EFF6] py-16">
+<section class="bg-white py-20">
     <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
-        <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-            <div>
-                <div class="flex items-center gap-2">
-                    <span class="h-[1.5px] w-6 bg-[#D4A017]"></span>
-                    <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#B88700]">
-                        Sélection IMMO-SN
-                    </span>
-                </div>
-                <h2 class="mt-1 font-['Playfair_Display'] text-2xl font-bold text-[#0B3B68] sm:text-4xl">
-                    Les biens à découvrir
-                </h2>
+        <div class="mb-10">
+            <div class="flex items-center gap-2">
+                <span class="h-[1.5px] w-6 bg-[#D4A017]"></span>
+                <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#B88700]">
+                    Sélection IMMO-SN
+                </span>
             </div>
-
-            <a
-                href="/biens"
-                class="inline-flex w-fit items-center gap-2 rounded-full border border-[#061830]/20 bg-white px-5 py-2 text-xs font-bold text-[#061830] shadow-sm transition hover:bg-[#061830] hover:text-white"
-            >
-                Voir tous les biens
-                <?= icon('arrow-right', 'w-3.5 h-3.5') ?>
-            </a>
+            <h2 class="mt-2 font-['Playfair_Display'] text-3xl font-bold text-[#061830] sm:text-4xl">
+                Les biens à découvrir
+            </h2>
+            <p class="mt-2 text-sm text-slate-500">
+                Découvrez les dernières opportunités disponibles.
+            </p>
         </div>
 
         <?php if (empty($biensAccueil)): ?>
-            <div class="rounded-2xl border border-slate-200 bg-white p-10 text-center">
-                <p class="text-sm font-bold text-[#061830]">Aucun bien disponible pour le moment.</p>
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-12 text-center">
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-[#B88700] shadow-sm">
+                    <?= icon('house', 'w-7 h-7') ?>
+                </div>
+                <h3 class="mt-5 text-lg font-extrabold text-[#061830]">
+                    Aucun bien disponible
+                </h3>
+                <p class="mt-2 text-sm text-slate-500">
+                    Les nouvelles annonces apparaîtront ici prochainement.
+                </p>
             </div>
         <?php else: ?>
-            <!-- Grille 4 colonnes sur grand écran comme sur la maquette SkyNest -->
-            <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                <?php foreach (array_slice($biensAccueil, 0, 8) as $bien): ?>
+            <!-- 3 cards par ligne (md:grid-cols-2 lg:grid-cols-3) -->
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <?php foreach (array_slice($biensAccueil, 0, 6) as $bien): ?>
                     <?php
                     $id = $bien['id'] ?? '';
                     $photo = $bien['photo'] ?? null;
@@ -370,10 +356,10 @@ $categoriesDesign = [
                     $typeOffre = strtolower($bien['type_offre'] ?? '');
                     ?>
 
-                    <article class="group overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+                    <article class="group overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-md transition duration-300 hover:-translate-y-1 hover:border-[#F5C542] hover:shadow-xl">
 
-                        <!-- Photo haute avec bandeau sombre prix & lieu intégré en bas -->
-                        <div class="relative h-[210px] overflow-hidden">
+                        <!-- Photo avec bandeau sombre prix & lieu intégré en bas -->
+                        <div class="relative h-[235px] overflow-hidden">
                             <img
                                 src="<?= htmlspecialchars($photoUrl, ENT_QUOTES, 'UTF-8') ?>"
                                 alt="<?= htmlspecialchars($titre, ENT_QUOTES, 'UTF-8') ?>"
@@ -382,59 +368,59 @@ $categoriesDesign = [
                             >
 
                             <!-- Badges haut -->
-                            <div class="absolute inset-x-0 top-0 flex items-center justify-between p-3">
+                            <div class="absolute inset-x-0 top-0 flex items-center justify-between p-3.5">
                                 <?php if ($typeOffre === 'location'): ?>
-                                    <span class="rounded-full bg-[#1D74F5] px-2.5 py-0.5 text-[10px] font-bold text-white shadow">
+                                    <span class="rounded-full bg-[#1D74F5] px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow">
                                         Location
                                     </span>
                                 <?php else: ?>
-                                    <span class="rounded-full bg-[#16A34A] px-2.5 py-0.5 text-[10px] font-bold text-white shadow">
+                                    <span class="rounded-full bg-[#16A34A] px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow">
                                         À Vendre
                                     </span>
                                 <?php endif; ?>
 
-                                <span class="rounded-full bg-[#061830]/80 px-2.5 py-0.5 text-[10px] font-bold text-white backdrop-blur-sm">
+                                <span class="rounded-full bg-[#061830]/85 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white backdrop-blur-sm">
                                     <?= htmlspecialchars($categorie, ENT_QUOTES, 'UTF-8') ?>
                                 </span>
                             </div>
 
                             <!-- Bandeau sombre bas : Localisation à gauche, Prix à droite -->
-                            <div class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 bg-gradient-to-t from-[#061830] via-[#061830]/90 to-transparent px-3.5 pb-2.5 pt-8 text-white">
-                                <p class="flex min-w-0 items-center gap-1 text-[11px] font-medium text-slate-200">
+                            <div class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 bg-gradient-to-t from-[#061830] via-[#061830]/90 to-transparent px-4 pb-3 pt-9 text-white">
+                                <p class="flex min-w-0 items-center gap-1.5 text-xs font-medium text-slate-200">
                                     <span class="shrink-0 text-[#F5C542]">
-                                        <?= icon('map-pin', 'w-3 h-3') ?>
+                                        <?= icon('map-pin', 'w-3.5 h-3.5') ?>
                                     </span>
                                     <span class="truncate">
-                                        <?= htmlspecialchars($ville, ENT_QUOTES, 'UTF-8') ?><?= $quartier ? ', ' . htmlspecialchars($quartier, ENT_QUOTES, 'UTF-8') : '' ?>
+                                        <?= htmlspecialchars($ville, ENT_QUOTES, 'UTF-8') ?><?= $quartier ? ' · ' . htmlspecialchars($quartier, ENT_QUOTES, 'UTF-8') : '' ?>
                                     </span>
                                 </p>
 
-                                <p class="shrink-0 text-xs font-extrabold text-white">
-                                    <?= number_format($prix, 0, ',', ' ') ?> <span class="text-[10px] text-[#F5C542]">FCFA</span><?= $typeOffre === 'location' ? '<span class="text-[9px] font-normal">/mois</span>' : '' ?>
+                                <p class="shrink-0 text-sm font-extrabold text-white">
+                                    <?= number_format($prix, 0, ',', ' ') ?> <span class="text-xs text-[#F5C542]">FCFA</span><?= $typeOffre === 'location' ? '<span class="text-[10px] font-normal text-slate-300">/mois</span>' : '' ?>
                                 </p>
                             </div>
                         </div>
 
-                        <!-- Bas de carte ultra-compact (zéro espace blanc inutile) -->
-                        <div class="p-3.5">
-                            <h3 class="line-clamp-1 text-sm font-extrabold text-[#061830] transition group-hover:text-[#0B3B68]">
+                        <!-- Bas de carte -->
+                        <div class="p-5">
+                            <h3 class="line-clamp-1 text-base font-extrabold text-[#061830] transition group-hover:text-[#0B3B68]">
                                 <a href="/biens/<?= rawurlencode((string) $id) ?>">
                                     <?= htmlspecialchars($titre, ENT_QUOTES, 'UTF-8') ?>
                                 </a>
                             </h3>
 
-                            <div class="mt-2.5 flex items-center justify-between border-t border-slate-100 pt-2.5 text-[11px] text-slate-600">
-                                <div class="flex items-center gap-3">
+                            <div class="mt-3.5 flex items-center justify-between border-t border-slate-100 pt-3.5 text-xs text-slate-600">
+                                <div class="flex items-center gap-4">
                                     <?php if (!empty($bien['chambres'])): ?>
-                                        <span class="flex items-center gap-1 font-medium">
-                                            <?= icon('bed-double', 'w-3.5 h-3.5 text-[#0B3B68]') ?>
-                                            <?= (int) $bien['chambres'] ?> Ch.
+                                        <span class="flex items-center gap-1.5 font-medium">
+                                            <?= icon('bed-double', 'w-4 h-4 text-[#B88700]') ?>
+                                            <?= (int) $bien['chambres'] ?> chambres
                                         </span>
                                     <?php endif; ?>
 
                                     <?php if (!empty($bien['surface'])): ?>
-                                        <span class="flex items-center gap-1 font-medium">
-                                            <?= icon('maximize', 'w-3.5 h-3.5 text-[#0B3B68]') ?>
+                                        <span class="flex items-center gap-1.5 font-medium">
+                                            <?= icon('maximize', 'w-4 h-4 text-[#B88700]') ?>
                                             <?= (int) $bien['surface'] ?> m²
                                         </span>
                                     <?php endif; ?>
@@ -442,16 +428,27 @@ $categoriesDesign = [
 
                                 <a
                                     href="/biens/<?= rawurlencode((string) $id) ?>"
-                                    class="inline-flex items-center gap-0.5 font-bold text-[#0B3B68] hover:text-[#B88700]"
+                                    class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#FFF4CC] text-[#8A6500] transition group-hover:bg-[#F5C542] group-hover:text-[#061830]"
+                                    aria-label="Voir le bien"
                                 >
-                                    Voir
-                                    <?= icon('arrow-up-right', 'w-3.5 h-3.5') ?>
+                                    <?= icon('arrow-up-right', 'w-4 h-4') ?>
                                 </a>
                             </div>
                         </div>
 
                     </article>
                 <?php endforeach; ?>
+            </div>
+
+            <!-- Bouton Jaune Or en bas -->
+            <div class="mt-10 flex justify-center sm:justify-end">
+                <a
+                    href="/biens"
+                    class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#F5C542] px-7 py-3.5 text-sm font-extrabold text-[#061830] shadow-md transition hover:bg-[#e5b32e]"
+                >
+                    Explorer tous les biens
+                    <?= icon('arrow-right', 'w-4 h-4') ?>
+                </a>
             </div>
         <?php endif; ?>
 
@@ -460,13 +457,13 @@ $categoriesDesign = [
 
 
 <!-- =========================================================
-     4. BANNIÈRE HORIZONTALE CARTE ("READY TO MOVE?" STYLE MAQUETTE)
+     4. EXPLORER LES BIENS SUR LA CARTE (CONSERVÉ EN BLEU NUIT)
 ========================================================= -->
-<section class="bg-[#F2F5F9] py-10">
+<section class="bg-[#F2F5F9] py-12">
     <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div class="relative overflow-hidden rounded-2xl bg-[#061830] shadow-xl">
 
-            <!-- Lignes dorées décoratives en courbe (comme sur la bannière SkyNest) -->
+            <!-- Lignes dorées décoratives en courbe -->
             <svg class="pointer-events-none absolute right-0 top-0 h-full w-1/2 opacity-30" viewBox="0 0 400 180" fill="none">
                 <path d="M90,-20 C170,70 40,120 150,200" stroke="#F5C542" stroke-width="2" />
                 <path d="M150,-20 C230,70 100,120 210,200" stroke="#F5C542" stroke-width="1.5" />
@@ -474,7 +471,7 @@ $categoriesDesign = [
 
             <div class="grid items-center lg:grid-cols-12">
 
-                <div class="relative h-44 sm:h-48 lg:col-span-4 lg:h-full">
+                <div class="relative h-48 sm:h-52 lg:col-span-4 lg:h-full">
                     <img
                         src="https://images.unsplash.com/photo-1524666041070-9d87656c25f5?auto=format&fit=crop&w=900&q=80"
                         alt="Carte interactive IMMO-SN"
@@ -484,7 +481,7 @@ $categoriesDesign = [
                     <div class="absolute inset-0 bg-gradient-to-t from-[#061830] to-transparent lg:hidden"></div>
                 </div>
 
-                <div class="px-6 py-6 sm:px-8 lg:col-span-5">
+                <div class="px-6 py-7 sm:px-8 lg:col-span-5">
                     <p class="text-[10px] font-bold uppercase tracking-[0.22em] text-[#F5C542]">
                         Localisez votre futur bien
                     </p>
@@ -496,7 +493,7 @@ $categoriesDesign = [
                     </p>
                 </div>
 
-                <div class="px-6 pb-6 lg:col-span-3 lg:flex lg:justify-end lg:px-8 lg:py-0">
+                <div class="px-6 pb-7 lg:col-span-3 lg:flex lg:justify-end lg:px-8 lg:py-0">
                     <a
                         href="/biens/carte"
                         class="inline-flex items-center gap-2 rounded-full bg-[#F5C542] px-6 py-3 text-xs font-extrabold text-[#061830] shadow-lg transition hover:bg-[#e5b32e] sm:text-sm"
@@ -514,58 +511,62 @@ $categoriesDesign = [
 
 
 <!-- =========================================================
-     5. POURQUOI IMMO-SN (CARTES BLEU NUIT CONTRASTÉES, ZÉRO BLANC)
+     5. UNE EXPÉRIENCE IMMOBILIÈRE PLUS SIMPLE (FOND BLANC + CARDS BLEU NUIT)
 ========================================================= -->
-<section class="bg-[#081E3B] py-16 text-white">
+<section class="bg-white py-20">
     <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
         <div class="mx-auto max-w-xl text-center">
             <div class="inline-flex items-center gap-2.5">
-                <span class="h-[1.5px] w-6 bg-[#F5C542]"></span>
-                <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#F5C542]">
+                <span class="h-[1.5px] w-6 bg-[#D4A017]"></span>
+                <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#B88700]">
                     Pourquoi IMMO-SN ?
                 </span>
-                <span class="h-[1.5px] w-6 bg-[#F5C542]"></span>
+                <span class="h-[1.5px] w-6 bg-[#D4A017]"></span>
             </div>
 
-            <h2 class="mt-1.5 font-['Playfair_Display'] text-2xl font-bold text-white sm:text-4xl">
+            <h2 class="mt-1.5 font-['Playfair_Display'] text-2xl font-bold text-[#061830] sm:text-4xl">
                 Une expérience immobilière plus simple
             </h2>
+            <p class="mt-2 text-xs text-slate-500 sm:text-sm">
+                Nous réunissons recherche, localisation et découverte des biens sur une seule plateforme.
+            </p>
         </div>
 
-        <div class="mt-10 grid gap-5 md:grid-cols-3">
-            <div class="rounded-2xl border border-white/10 bg-[#0D284D] p-6 transition hover:border-[#F5C542]/50">
+        <!-- Petites cards en Bleu Nuit (#061830) -->
+        <div class="mt-11 grid gap-6 md:grid-cols-3">
+            <div class="rounded-2xl border border-[#12335E] bg-[#061830] p-7 text-white shadow-lg transition duration-300 hover:-translate-y-1 hover:border-[#F5C542]">
                 <div class="flex items-center gap-3.5">
-                    <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F5C542] text-[#061830]">
-                        <?= icon('search-check', 'w-5 h-5') ?>
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F5C542] text-[#061830]">
+                        <?= icon('search-check', 'w-6 h-6') ?>
                     </div>
                     <h3 class="text-base font-extrabold text-white">Recherche simplifiée</h3>
                 </div>
-                <p class="mt-3 text-xs leading-6 text-slate-300 sm:text-sm">
+                <p class="mt-3.5 text-xs leading-6 text-slate-300 sm:text-sm">
                     Trouvez rapidement un bien grâce aux filtres, aux catégories et à la recherche par localisation.
                 </p>
             </div>
 
-            <div class="rounded-2xl border border-white/10 bg-[#0D284D] p-6 transition hover:border-[#F5C542]/50">
+            <div class="rounded-2xl border border-[#12335E] bg-[#061830] p-7 text-white shadow-lg transition duration-300 hover:-translate-y-1 hover:border-[#F5C542]">
                 <div class="flex items-center gap-3.5">
-                    <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F5C542] text-[#061830]">
-                        <?= icon('map-pin', 'w-5 h-5') ?>
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F5C542] text-[#061830]">
+                        <?= icon('map-pin', 'w-6 h-6') ?>
                     </div>
                     <h3 class="text-base font-extrabold text-white">Localisation précise</h3>
                 </div>
-                <p class="mt-3 text-xs leading-6 text-slate-300 sm:text-sm">
+                <p class="mt-3.5 text-xs leading-6 text-slate-300 sm:text-sm">
                     Consultez la position des biens sur une carte interactive pour mieux préparer votre visite.
                 </p>
             </div>
 
-            <div class="rounded-2xl border border-white/10 bg-[#0D284D] p-6 transition hover:border-[#F5C542]/50">
+            <div class="rounded-2xl border border-[#12335E] bg-[#061830] p-7 text-white shadow-lg transition duration-300 hover:-translate-y-1 hover:border-[#F5C542]">
                 <div class="flex items-center gap-3.5">
-                    <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F5C542] text-[#061830]">
-                        <?= icon('qr-code', 'w-5 h-5') ?>
+                    <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F5C542] text-[#061830]">
+                        <?= icon('qr-code', 'w-6 h-6') ?>
                     </div>
                     <h3 class="text-base font-extrabold text-white">Technologie QR</h3>
                 </div>
-                <p class="mt-3 text-xs leading-6 text-slate-300 sm:text-sm">
+                <p class="mt-3.5 text-xs leading-6 text-slate-300 sm:text-sm">
                     Accédez rapidement aux informations d'un bien grâce au système de QR code intégré.
                 </p>
             </div>
@@ -576,30 +577,33 @@ $categoriesDesign = [
 
 
 <!-- =========================================================
-     6. AGENCES PARTENAIRES (CARTES COMPACTES STYLE TÉMOIGNAGES MAQUETTE)
+     6. AGENCES PARTENAIRES (FOND BLANC + CARDS BLEU & JAUNE OR)
 ========================================================= -->
-<section class="bg-[#F2F5F9] py-16">
+<section class="border-t border-slate-100 bg-white py-16">
     <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
-        <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div class="mb-9 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
                 <div class="flex items-center gap-2">
                     <span class="h-[1.5px] w-6 bg-[#D4A017]"></span>
-                    <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#B88700]">
+                    <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#B88700]">
                         Réseau professionnel
                     </span>
                 </div>
-                <h2 class="mt-1 font-['Playfair_Display'] text-2xl font-bold text-[#0B3B68] sm:text-4xl">
+                <h2 class="mt-1.5 font-['Playfair_Display'] text-2xl font-bold text-[#061830] sm:text-4xl">
                     Nos Agences Partenaires
                 </h2>
+                <p class="mt-1.5 text-xs text-slate-500 sm:text-sm">
+                    Découvrez les professionnels et agences immobilières présents sur IMMO-SN.
+                </p>
             </div>
 
             <?php if (!empty($agencesAccueil)): ?>
                 <a
                     href="/agences"
-                    class="inline-flex w-fit items-center gap-2 rounded-full border border-[#061830]/20 bg-white px-5 py-2 text-xs font-bold text-[#061830] shadow-sm transition hover:bg-[#061830] hover:text-white"
+                    class="inline-flex w-fit items-center gap-2 rounded-xl bg-[#F5C542] px-5 py-2.5 text-xs font-extrabold text-[#061830] shadow-sm transition hover:bg-[#e5b32e]"
                 >
-                    Toutes les agences
+                    Découvrir toutes les agences
                     <?= icon('arrow-right', 'w-3.5 h-3.5') ?>
                 </a>
             <?php endif; ?>
@@ -613,12 +617,12 @@ $categoriesDesign = [
                     $initiale = strtoupper(substr(trim($nomAgence), 0, 1));
                     ?>
 
-                    <!-- Carte agence compacte et colorée (bordure gauche dorée + fond teinté) -->
+                    <!-- Card combinant Bleu Nuit & Jaune Or -->
                     <a
                         href="/agences/<?= rawurlencode((string) ($agence['id'] ?? '')) ?>"
-                        class="group flex items-center gap-4 rounded-2xl border border-slate-200/90 border-l-4 border-l-[#F5C542] bg-white p-4 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+                        class="group flex items-center gap-4 rounded-2xl border-2 border-[#F5C542]/70 bg-[#061830] p-5 text-white shadow-md transition duration-300 hover:-translate-y-1 hover:border-[#F5C542] hover:shadow-xl"
                     >
-                        <div class="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-[#F5C542] bg-[#061830] text-lg font-extrabold text-[#F5C542]">
+                        <div class="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-[#F5C542] bg-[#F5C542] text-lg font-extrabold text-[#061830]">
                             <?php if (!empty($agence['logo'])): ?>
                                 <img
                                     src="<?= htmlspecialchars($agence['logo'], ENT_QUOTES, 'UTF-8') ?>"
@@ -632,21 +636,21 @@ $categoriesDesign = [
 
                         <div class="min-w-0 flex-1">
                             <div class="flex items-center justify-between gap-2">
-                                <h3 class="truncate text-sm font-extrabold text-[#061830] sm:text-base">
+                                <h3 class="truncate text-sm font-extrabold text-white sm:text-base">
                                     <?= htmlspecialchars($nomAgence, ENT_QUOTES, 'UTF-8') ?>
                                 </h3>
-                                <span class="shrink-0 rounded-full bg-[#061830] px-2.5 py-0.5 text-[10px] font-bold text-[#F5C542]">
+                                <span class="shrink-0 rounded-full bg-[#F5C542] px-2.5 py-0.5 text-[10px] font-extrabold text-[#061830]">
                                     <?= (int) ($agence['nombre_biens'] ?? 0) ?> biens
                                 </span>
                             </div>
 
-                            <p class="mt-1 flex items-center gap-1 truncate text-xs text-slate-500">
-                                <span class="shrink-0 text-[#B88700]"><?= icon('map-pin', 'w-3 h-3') ?></span>
+                            <p class="mt-1 flex items-center gap-1 truncate text-xs text-slate-300">
+                                <span class="shrink-0 text-[#F5C542]"><?= icon('map-pin', 'w-3 h-3') ?></span>
                                 <span class="truncate"><?= htmlspecialchars($agence['adresse'] ?? 'Dakar, Sénégal', ENT_QUOTES, 'UTF-8') ?></span>
                             </p>
 
                             <?php if (!empty($agence['badge_verifie'])): ?>
-                                <span class="mt-1.5 inline-flex items-center gap-1 text-[11px] font-bold text-[#1E8449]">
+                                <span class="mt-1.5 inline-flex items-center gap-1 text-[11px] font-bold text-[#F5C542]">
                                     ✓ Agence vérifiée
                                 </span>
                             <?php endif; ?>
@@ -655,7 +659,7 @@ $categoriesDesign = [
                 <?php endforeach; ?>
             </div>
         <?php else: ?>
-            <div class="rounded-2xl border border-slate-200 bg-white p-8 text-center">
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-8 text-center">
                 <p class="text-sm text-slate-500">Aucune agence partenaire disponible pour le moment.</p>
             </div>
         <?php endif; ?>
@@ -665,29 +669,31 @@ $categoriesDesign = [
 
 
 <!-- =========================================================
-     7. CTA FINAL BLEU NUIT PLEINE LARGEUR
+     7. CTA FINAL AVANT LE FOOTER (SANS BLEU NUIT, FOND CLAIR SABLE/OR)
 ========================================================= -->
-<section class="relative overflow-hidden bg-[#061830] py-16 text-center">
-    <div class="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[#F5C542]/15 blur-3xl"></div>
-    <div class="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-sky-500/15 blur-3xl"></div>
+<section class="border-t border-[#E8DFC8] bg-[#F8F5EC] py-16 text-center">
+    <div class="mx-auto max-w-4xl px-5 sm:px-8">
 
-    <div class="relative z-10 mx-auto max-w-4xl px-5 sm:px-8">
-        <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#F5C542]">
+        <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#F5C542]/25 text-[#8A6500]">
+            <?= icon('house', 'w-6 h-6') ?>
+        </div>
+
+        <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#B88700]">
             Votre prochain projet commence ici
         </p>
 
-        <h2 class="mt-2 font-['Playfair_Display'] text-3xl font-bold leading-tight text-white sm:text-5xl">
+        <h2 class="mt-2 font-['Playfair_Display'] text-3xl font-bold leading-tight text-[#061830] sm:text-5xl">
             Prêt à trouver votre prochain bien immobilier ?
         </h2>
 
-        <p class="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-300">
+        <p class="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-600">
             Explorez les annonces, comparez les biens et trouvez l'opportunité qui correspond à votre projet.
         </p>
 
         <div class="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
             <a
                 href="/biens"
-                class="inline-flex items-center justify-center gap-2 rounded-full bg-[#F5C542] px-8 py-3.5 text-sm font-extrabold text-[#061830] shadow-lg transition hover:bg-[#e5b32e]"
+                class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#F5C542] px-8 py-3.5 text-sm font-extrabold text-[#061830] shadow-md transition hover:bg-[#e5b32e]"
             >
                 <?= icon('search', 'w-4 h-4') ?>
                 Commencer ma recherche
@@ -695,7 +701,7 @@ $categoriesDesign = [
 
             <a
                 href="/biens/carte"
-                class="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-8 py-3.5 text-sm font-bold text-white backdrop-blur-sm transition hover:border-[#F5C542] hover:bg-white/20"
+                class="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[#061830] bg-white px-8 py-3.5 text-sm font-bold text-[#061830] transition hover:bg-[#061830] hover:text-white"
             >
                 <?= icon('map', 'w-4 h-4') ?>
                 Explorer la carte
