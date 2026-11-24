@@ -587,82 +587,341 @@ $classesStatut = static function ($statut): array {
                     </div>
 
 
-                    <!-- Graphique dynamique -->
+                  <!-- Graphique dynamique -->
 
-                    <div class="flex h-40 items-end gap-1.5 sm:gap-2">
+<?php
+$graphique = array_values($activite30Jours);
 
-                        <?php if (!empty($activite30Jours)): ?>
+$largeurGraphique = 900;
+$hauteurGraphique = 250;
 
-                            <?php foreach ($activite30Jours as $jour): ?>
+$margeGauche = 45;
+$margeDroite = 20;
+$margeHaut = 20;
+$margeBas = 35;
 
-                                <?php
-                                $total = (int) ($jour['total'] ?? 0);
+$zoneLargeur = $largeurGraphique - $margeGauche - $margeDroite;
+$zoneHauteur = $hauteurGraphique - $margeHaut - $margeBas;
 
-                                if ($total > 0) {
-                                    $hauteur = (int) round(
-                                        ($total / $maxVues) * 100
-                                    );
+$nombrePoints = count($graphique);
 
-                                    $hauteur = max(8, $hauteur);
-                                } else {
-                                    $hauteur = 3;
-                                }
+$pointsCourbe = [];
+$pointsSvg = [];
+$cheminZone = '';
 
-                                $date = $jour['jour'] ?? '';
-                                $dateFormatee = '';
+$totalVues30Jours = 0;
+$maxVuesJour = 0;
 
-                                if ($date !== '') {
-                                    $timestamp = strtotime($date);
+foreach ($graphique as $jour) {
+    $total = (int) ($jour['total'] ?? 0);
 
-                                    if ($timestamp !== false) {
-                                        $dateFormatee = date('d/m/Y', $timestamp);
-                                    }
-                                }
+    $totalVues30Jours += $total;
+    $maxVuesJour = max($maxVuesJour, $total);
+}
 
-                                $texteVue = $total . ' vue' . ($total > 1 ? 's' : '');
+$echelleMax = max(1, $maxVuesJour);
 
-                                $tooltip = $dateFormatee !== ''
-                                    ? $dateFormatee . ' : ' . $texteVue
-                                    : $texteVue;
-                                ?>
+if ($nombrePoints > 0) {
 
-                                <div class="group relative flex h-full flex-1 items-end">
+    foreach ($graphique as $index => $jour) {
 
-                                    <div
-                                        class="w-full rounded-t-lg bg-[#D7A200] transition-all duration-200 hover:bg-[#A98237]"
-                                        style="height: <?= $hauteur ?>%;"
-                                        title="<?= $e($tooltip) ?>"
-                                    ></div>
+        $total = (int) ($jour['total'] ?? 0);
 
-                                </div>
+        $x = $nombrePoints === 1
+            ? $margeGauche + ($zoneLargeur / 2)
+            : $margeGauche + (
+                ($index / ($nombrePoints - 1)) * $zoneLargeur
+            );
 
-                            <?php endforeach; ?>
+        $y = $margeHaut + (
+            $zoneHauteur - (($total / $echelleMax) * $zoneHauteur)
+        );
 
-                        <?php else: ?>
+        $pointsCourbe[] = [
+            'x' => $x,
+            'y' => $y,
+            'total' => $total,
+            'jour' => $jour['jour'] ?? '',
+        ];
 
-                            <!-- Aucun historique -->
+        $pointsSvg[] = round($x, 2) . ',' . round($y, 2);
+    }
 
-                            <div class="flex h-full w-full items-end gap-2">
+    $ligneSvg = implode(' ', $pointsSvg);
 
-                                <?php for ($i = 0; $i < 30; $i++): ?>
+    $premierPoint = $pointsCourbe[0];
+    $dernierPoint = $pointsCourbe[count($pointsCourbe) - 1];
 
-                                    <div
-                                        class="h-[3%] flex-1 rounded-t-lg bg-[#F0E8D6]"
-                                        title="Aucune vue"
-                                    ></div>
+    $cheminZone =
+        'M ' . round($premierPoint['x'], 2) . ' ' . ($margeHaut + $zoneHauteur) .
+        ' L ' . $ligneSvg .
+        ' L ' . round($dernierPoint['x'], 2) . ' ' . ($margeHaut + $zoneHauteur) .
+        ' Z';
+}
+?>
 
-                                <?php endfor; ?>
+<div class="mt-2">
 
-                            </div>
+    <!-- Résumé des vues -->
 
-                        <?php endif; ?>
+    <div class="mb-5 flex flex-wrap items-end justify-between gap-4">
 
-                    </div>
+        <div>
+            <p class="text-[10px] font-bold uppercase tracking-wider text-[#8190A0]">
+                Total des consultations
+            </p>
 
-                    <div class="mt-3 flex justify-between text-[10px] font-semibold text-[#8190A0]">
-                        <span>30 jours</span>
-                        <span>Aujourd'hui</span>
-                    </div>
+            <p class="mt-1 text-3xl font-extrabold tracking-tight text-[#071B36]">
+                <?= number_format($totalVues30Jours, 0, ',', ' ') ?>
+
+                <span class="text-sm font-semibold text-[#A98237]">
+                    vues
+                </span>
+            </p>
+        </div>
+
+        <div class="rounded-xl border border-[#EADCB9] bg-[#FBF5E6] px-3 py-2">
+
+            <p class="text-[10px] font-bold text-[#94701F]">
+                Record journalier
+            </p>
+
+            <p class="mt-0.5 text-lg font-extrabold text-[#071B36]">
+                <?= number_format($maxVuesJour, 0, ',', ' ') ?>
+                <span class="text-xs font-semibold">vues</span>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- SVG Évolution -->
+
+    <?php if (!empty($graphique)): ?>
+
+        <div class="relative w-full overflow-hidden rounded-2xl border border-[#E9E3D9] bg-[#FCFBF8] p-2 sm:p-4">
+
+            <svg
+                viewBox="0 0 <?= $largeurGraphique ?> <?= $hauteurGraphique ?>"
+                class="block w-full"
+                role="img"
+                aria-label="Évolution des vues de vos annonces sur les 30 derniers jours"
+            >
+
+                <defs>
+
+                    <!-- Dégradé de la zone -->
+
+                    <linearGradient
+                        id="immoVuesGradient"
+                        x1="0"
+                        y1="0"
+                        x2="0"
+                        y2="1"
+                    >
+                        <stop
+                            offset="0%"
+                            stop-color="#D7A200"
+                            stop-opacity="0.30"
+                        />
+
+                        <stop
+                            offset="100%"
+                            stop-color="#D7A200"
+                            stop-opacity="0.02"
+                        />
+                    </linearGradient>
+
+                </defs>
+
+
+                <!-- Grille horizontale -->
+
+                <?php for ($niveau = 0; $niveau <= 4; $niveau++): ?>
+
+                    <?php
+                    $ratio = $niveau / 4;
+
+                    $yGrille = $margeHaut + ($zoneHauteur * $ratio);
+
+                    $valeurGrille = (int) round(
+                        $echelleMax * (1 - $ratio)
+                    );
+                    ?>
+
+                    <line
+                        x1="<?= $margeGauche ?>"
+                        y1="<?= round($yGrille, 2) ?>"
+                        x2="<?= $largeurGraphique - $margeDroite ?>"
+                        y2="<?= round($yGrille, 2) ?>"
+                        stroke="#E8E5DD"
+                        stroke-width="1"
+                        stroke-dasharray="4 5"
+                    />
+
+                    <text
+                        x="<?= $margeGauche - 8 ?>"
+                        y="<?= round($yGrille + 4, 2) ?>"
+                        text-anchor="end"
+                        font-size="11"
+                        fill="#8190A0"
+                    >
+                        <?= $valeurGrille ?>
+                    </text>
+
+                <?php endfor; ?>
+
+
+                <!-- Zone sous la courbe -->
+
+                <path
+                    d="<?= $e($cheminZone) ?>"
+                    fill="url(#immoVuesGradient)"
+                />
+
+
+                <!-- Courbe principale -->
+
+                <polyline
+                    points="<?= $e($ligneSvg) ?>"
+                    fill="none"
+                    stroke="#C39216"
+                    stroke-width="3.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+
+
+                <!-- Points interactifs -->
+
+                <?php foreach ($pointsCourbe as $point): ?>
+
+                    <?php
+                    $datePoint = '';
+
+                    if (!empty($point['jour'])) {
+                        $timestampPoint = strtotime($point['jour']);
+
+                        if ($timestampPoint !== false) {
+                            $datePoint = date('d/m/Y', $timestampPoint);
+                        }
+                    }
+
+                    $tooltipPoint = ($datePoint !== '' ? $datePoint : 'Date inconnue')
+                        . ' — '
+                        . $point['total']
+                        . ' vue'
+                        . ($point['total'] > 1 ? 's' : '');
+                    ?>
+
+                    <circle
+                        cx="<?= round($point['x'], 2) ?>"
+                        cy="<?= round($point['y'], 2) ?>"
+                        r="5"
+                        fill="#FFFFFF"
+                        stroke="#C39216"
+                        stroke-width="3"
+                    >
+                        <title><?= $e($tooltipPoint) ?></title>
+                    </circle>
+
+                <?php endforeach; ?>
+
+
+                <!-- Axe inférieur -->
+
+                <line
+                    x1="<?= $margeGauche ?>"
+                    y1="<?= $margeHaut + $zoneHauteur ?>"
+                    x2="<?= $largeurGraphique - $margeDroite ?>"
+                    y2="<?= $margeHaut + $zoneHauteur ?>"
+                    stroke="#DCD8CE"
+                    stroke-width="1.2"
+                />
+
+            </svg>
+
+        </div>
+
+
+        <!-- Dates -->
+
+        <div class="mt-3 flex items-center justify-between px-1">
+
+            <?php
+            $dateDebutGraphique = '';
+            $dateFinGraphique = '';
+
+            if (!empty($graphique)) {
+
+                $premiereDate = $graphique[0]['jour'] ?? '';
+                $derniereDate = $graphique[count($graphique) - 1]['jour'] ?? '';
+
+                if ($premiereDate !== '') {
+                    $dateDebutGraphique = $formatDate($premiereDate);
+                }
+
+                if ($derniereDate !== '') {
+                    $dateFinGraphique = $formatDate($derniereDate);
+                }
+            }
+            ?>
+
+            <span class="text-[10px] font-semibold text-[#8190A0]">
+                <?= $e($dateDebutGraphique ?: '30 derniers jours') ?>
+            </span>
+
+            <span class="rounded-full bg-[#FBF3DE] px-3 py-1 text-[10px] font-extrabold text-[#94701F]">
+                Évolution quotidienne
+            </span>
+
+            <span class="text-[10px] font-semibold text-[#8190A0]">
+                <?= $e($dateFinGraphique ?: "Aujourd'hui") ?>
+            </span>
+
+        </div>
+
+
+    <?php else: ?>
+
+        <!-- Aucune donnée -->
+
+        <div class="flex min-h-[220px] flex-col items-center justify-center rounded-2xl border border-dashed border-[#E5DED1] bg-[#FCFBF8] px-6 text-center">
+
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#FBF3DE]">
+
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-7 w-7 text-[#A98237]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M3 17l6-6 4 4 8-9"
+                    />
+                </svg>
+
+            </div>
+
+            <p class="mt-4 text-sm font-extrabold text-[#071B36]">
+                Vos statistiques apparaîtront ici
+            </p>
+
+            <p class="mt-1 max-w-sm text-xs leading-5 text-[#8190A0]">
+                Dès que vos annonces recevront des visites, vous pourrez suivre leur évolution au quotidien.
+            </p>
+
+        </div>
+
+    <?php endif; ?>
+
+</div>
+
 
                 </div>
 
