@@ -347,7 +347,7 @@ $categoriesDesign = [
      CATÉGORIES
 ========================================================= -->
 
-<section class="bg-[#F5F3ED] py-20">
+<section class="home-categories bg-[#F5F3ED] py-20">
 
     <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
@@ -492,7 +492,7 @@ $categoriesDesign = [
      BIENS À LA UNE
 ========================================================= -->
 
-<section class="bg-white py-20">
+<section class="home-properties bg-white py-20">
 
     <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
@@ -948,7 +948,7 @@ $categoriesDesign = [
      AGENCES PARTENAIRES
 ========================================================= -->
 
-<section class="bg-[#F5F3ED] py-20">
+<section class="home-agencies bg-[#F5F3ED] py-20">
 
     <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
@@ -1195,3 +1195,196 @@ $categoriesDesign = [
     </div>
 
 </section>
+
+
+
+<!-- =========================================================
+     DESIGN PREMIUM IMMO-SN — BLEU NUIT & OR
+     ========================================================= -->
+<style>
+/* Sections profondes pour réduire l'effet "page blanche" */
+.home-categories,
+.home-properties,
+.home-agencies {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+.home-categories,
+.home-agencies {
+    background:
+        radial-gradient(ellipse at 8% 0%, rgba(212,175,55,.12), transparent 38%),
+        radial-gradient(ellipse at 92% 100%, rgba(48,83,125,.28), transparent 42%),
+        #08172b !important;
+}
+.home-properties {
+    background:
+        radial-gradient(ellipse at 100% 5%, rgba(212,175,55,.08), transparent 38%),
+        #0b1b30 !important;
+}
+.home-categories::before,
+.home-properties::before,
+.home-agencies::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .22;
+    background-image: radial-gradient(rgba(255,255,255,.22) .65px, transparent .65px);
+    background-size: 22px 22px;
+    mask-image: linear-gradient(to bottom, black, transparent 75%);
+}
+.home-categories > div,
+.home-properties > div,
+.home-agencies > div {
+    position: relative;
+    z-index: 1;
+}
+
+/* Titres et textes sur les sections bleu nuit */
+.home-categories h2,
+.home-properties h2,
+.home-agencies h2 {
+    color: #fff !important;
+}
+.home-categories p,
+.home-properties p,
+.home-agencies p {
+    color: rgba(226,233,243,.72);
+}
+.home-categories .text-\[\#8A6500\],
+.home-properties .text-\[\#8A6500\],
+.home-agencies .text-\[\#8A6500\] {
+    color: #e3bd56 !important;
+}
+.home-categories a.inline-flex,
+.home-properties a.inline-flex,
+.home-agencies a.inline-flex {
+    color: #e3bd56 !important;
+}
+
+/* Catégories : cartes vitrées, halo or, interaction élégante */
+.home-categories .grid > a {
+    min-height: 210px;
+    border: 1px solid rgba(212,175,55,.25) !important;
+    background: linear-gradient(145deg, rgba(25,43,67,.96), rgba(11,24,41,.98)) !important;
+    box-shadow: 0 14px 36px rgba(0,0,0,.18);
+    transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
+.home-categories .grid > a:hover {
+    transform: translateY(-7px);
+    border-color: rgba(226,190,82,.8) !important;
+    box-shadow: 0 20px 44px rgba(0,0,0,.32), 0 0 26px rgba(212,175,55,.09);
+}
+.home-categories .grid > a h3 {
+    color: #f8fafc !important;
+}
+.home-categories .grid > a p {
+    color: #aebdd0 !important;
+}
+.home-categories .grid > a .rounded-2xl {
+    background: linear-gradient(135deg, #d4af37, #f0d77a) !important;
+    color: #0b1b30 !important;
+    box-shadow: 0 8px 22px rgba(212,175,55,.15);
+}
+.home-categories .grid > a .text-xs.font-bold {
+    color: #e3bd56 !important;
+}
+.home-categories .grid > a .rounded-full {
+    background: rgba(212,175,55,.12) !important;
+    border: 1px solid rgba(212,175,55,.18);
+    color: #e3bd56 !important;
+}
+
+/* Biens : cartes premium foncées, photo en vedette, prix or */
+.home-properties article {
+    border: 1px solid rgba(212,175,55,.2) !important;
+    background: linear-gradient(145deg, #182a42, #0e1c2e) !important;
+    box-shadow: 0 15px 35px rgba(0,0,0,.22);
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.home-properties article:hover {
+    transform: translateY(-6px);
+    border-color: rgba(212,175,55,.7) !important;
+    box-shadow: 0 24px 50px rgba(0,0,0,.34), 0 0 24px rgba(212,175,55,.06);
+}
+.home-properties article > div:first-child {
+    position: relative;
+}
+.home-properties article > div:first-child::after {
+    content: "";
+    position: absolute;
+    inset: 40% 0 0;
+    pointer-events: none;
+    background: linear-gradient(to top, rgba(8,23,42,.58), transparent);
+}
+.home-properties article > div:nth-child(2) {
+    background: transparent !important;
+}
+.home-properties article h3 {
+    color: #f8fafc !important;
+}
+.home-properties article .border-b {
+    border-color: rgba(255,255,255,.12) !important;
+}
+.home-properties article .text-xl.font-extrabold {
+    color: #e3bd56 !important;
+}
+.home-properties article .text-xs,
+.home-properties article .text-sm {
+    color: #b7c5d7 !important;
+}
+.home-properties article .text-\[\#71869A\] {
+    color: #b7c5d7 !important;
+}
+.home-properties article .bg-\[\#FFF4CC\] {
+    background: rgba(212,175,55,.15) !important;
+    color: #e3bd56 !important;
+}
+.home-properties article .group-hover\:bg-\[\#F5B800\] {
+    background: #d4af37 !important;
+}
+.home-properties article a[aria-label="Voir le bien"] {
+    background: linear-gradient(135deg, #d4af37, #f0d77a) !important;
+    color: #0b1b30 !important;
+    box-shadow: 0 8px 20px rgba(212,175,55,.16);
+}
+
+/* Agences : panneaux bleu nuit, bordures et éléments or */
+.home-agencies .grid > a {
+    border: 1px solid rgba(212,175,55,.24) !important;
+    background: linear-gradient(145deg, rgba(25,43,67,.98), rgba(10,22,37,.98)) !important;
+    box-shadow: 0 14px 35px rgba(0,0,0,.2);
+    transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+}
+.home-agencies .grid > a:hover {
+    transform: translateY(-6px);
+    border-color: rgba(212,175,55,.8) !important;
+    box-shadow: 0 22px 44px rgba(0,0,0,.3), 0 0 24px rgba(212,175,55,.08);
+}
+.home-agencies .grid > a h3 {
+    color: #fff !important;
+}
+.home-agencies .grid > a .bg-\[\#071B36\] {
+    background: linear-gradient(135deg, #d4af37, #f0d77a) !important;
+    color: #0b1b30 !important;
+}
+.home-agencies .grid > a .border-t {
+    border-color: rgba(255,255,255,.12) !important;
+}
+.home-agencies .grid > a .text-\[\#071B36\] {
+    color: #e3bd56 !important;
+}
+.home-agencies .grid > a .text-\[\#B88700\] {
+    color: #e3bd56 !important;
+}
+
+/* Accessibilité : les effets de mouvement peuvent être désactivés */
+@media (prefers-reduced-motion: reduce) {
+    .home-categories .grid > a,
+    .home-properties article,
+    .home-agencies .grid > a {
+        transition: none !important;
+    }
+}
+</style>
