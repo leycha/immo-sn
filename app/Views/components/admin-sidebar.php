@@ -201,10 +201,10 @@ function isAdminActive(string $path): bool
                 text-sm
                 font-medium
 
-                <?= isAdminActive('/admin')
-                    ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-lg shadow-[#f5b800]/10'
-                    : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
-                ?>
+              <?= isAdminActive('/admin')
+    ? 'bg-[#12345a] text-[#f5b800] font-bold border-l-4 border-[#f5b800] shadow-md shadow-black/10'
+    : 'border-l-4 border-transparent text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
+?>
             "
         >
 
