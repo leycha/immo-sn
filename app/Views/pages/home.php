@@ -19,11 +19,13 @@ $totalBiens = (int) ($resumeAccueil['biens'] ?? 0);
 $totalQuartiers = (int) ($resumeAccueil['quartiers'] ?? 0);
 $totalAgences = (int) ($resumeAccueil['agences'] ?? 0);
 
+
 /*
 |--------------------------------------------------------------------------
 | Icônes et descriptions des catégories
 |--------------------------------------------------------------------------
 */
+
 $categoriesDesign = [
     'maison' => [
         'icon' => 'house',
@@ -33,6 +35,7 @@ $categoriesDesign = [
         'icon' => 'house',
         'description' => 'Maisons familiales et résidentielles'
     ],
+
     'appartement' => [
         'icon' => 'building-2',
         'description' => 'Appartements modernes et confortables'
@@ -41,6 +44,7 @@ $categoriesDesign = [
         'icon' => 'building-2',
         'description' => 'Appartements modernes et confortables'
     ],
+
     'immeuble' => [
         'icon' => 'building',
         'description' => 'Immeubles et opportunités professionnelles'
@@ -49,10 +53,16 @@ $categoriesDesign = [
         'icon' => 'building',
         'description' => 'Immeubles et opportunités professionnelles'
     ],
+
     'bureau' => [
         'icon' => 'briefcase-business',
         'description' => 'Bureaux et espaces professionnels'
     ],
+    'bureaux' => [
+        'icon' => 'briefcase-business',
+        'description' => 'Bureaux et espaces professionnels'
+    ],
+
     'local-commercial' => [
         'icon' => 'store',
         'description' => 'Locaux adaptés aux activités commerciales'
@@ -61,10 +71,24 @@ $categoriesDesign = [
         'icon' => 'store',
         'description' => 'Locaux adaptés aux activités commerciales'
     ],
+    'local commercial' => [
+        'icon' => 'store',
+        'description' => 'Locaux adaptés aux activités commerciales'
+    ],
+    'locaux-commerciaux' => [
+        'icon' => 'store',
+        'description' => 'Locaux adaptés aux activités commerciales'
+    ],
+
     'studio' => [
-        'icon' => 'building-2',
+        'icon' => 'door-open',
         'description' => 'Studios modernes et fonctionnels'
     ],
+    'studios' => [
+        'icon' => 'door-open',
+        'description' => 'Studios modernes et fonctionnels'
+    ],
+
     'terrain' => [
         'icon' => 'map',
         'description' => 'Terrains pour vos futurs projets'
@@ -73,39 +97,92 @@ $categoriesDesign = [
         'icon' => 'map',
         'description' => 'Terrains pour vos futurs projets'
     ],
+
     'villa' => [
         'icon' => 'house',
         'description' => 'Villas et résidences haut de gamme'
     ],
+    'villas' => [
+        'icon' => 'house',
+        'description' => 'Villas et résidences haut de gamme'
+    ],
 ];
+
+/*
+|--------------------------------------------------------------------------
+| Normalisation du slug pour retrouver la bonne icône
+|--------------------------------------------------------------------------
+*/
+
+/*
+|--------------------------------------------------------------------------
+| Normalisation du slug pour retrouver la bonne icône
+|--------------------------------------------------------------------------
+*/
+
+$normaliserSlugCategorie = static function ($slug) {
+    $slug = trim((string) $slug);
+
+    if (function_exists('mb_strtolower')) {
+        $slug = mb_strtolower($slug, 'UTF-8');
+    } else {
+        $slug = strtolower($slug);
+    }
+
+    $slug = strtr($slug, [
+        'é' => 'e',
+        'è' => 'e',
+        'ê' => 'e',
+        'ë' => 'e',
+        'à' => 'a',
+        'â' => 'a',
+        'ä' => 'a',
+        'î' => 'i',
+        'ï' => 'i',
+        'ô' => 'o',
+        'ö' => 'o',
+        'ù' => 'u',
+        'û' => 'u',
+        'ü' => 'u',
+        'ç' => 'c',
+    ]);
+
+    $slug = preg_replace('/[\s_]+/', '-', $slug);
+
+    return trim($slug, '-');
+};
 ?>
 
 <!-- =========================================================
-     1. HERO : PHOTO LUMINEUSE À DROITE + TEXTE À GAUCHE + COURBE
+     1. HERO : PHOTO LUMINEUSE + TEXTE + RECHERCHE
 ========================================================= -->
+
 <section class="relative overflow-hidden bg-[#061830] pb-24 pt-12 sm:pb-28 sm:pt-16 lg:pb-32 lg:pt-20">
 
-    <!-- Photo pleine luminosité -->
+    <!-- Image de fond -->
     <div class="absolute inset-0">
         <img
             src="<?= htmlspecialchars($imageHero, ENT_QUOTES, 'UTF-8') ?>"
             alt="Présentation de la plateforme immobilière IMMO-SN"
             class="h-full w-full object-cover object-right"
         >
+
         <div class="absolute inset-0 bg-gradient-to-r from-[#061830] via-[#061830]/80 to-transparent"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-[#061830]/70 via-transparent to-[#061830]/40"></div>
     </div>
 
     <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+
         <div class="grid items-center gap-8 lg:grid-cols-12">
 
-            <!-- Contenu Texte & Recherche -->
+            <!-- TEXTE ET RECHERCHE -->
             <div class="lg:col-span-7">
 
                 <div class="mb-4 flex items-center gap-3">
                     <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#F5D061]">
                         La référence immobilière au Sénégal
                     </span>
+
                     <span class="h-[2px] w-10 bg-[#F5C542]"></span>
                 </div>
 
@@ -119,17 +196,21 @@ $categoriesDesign = [
                     Découvrez des opportunités immobilières sélectionnées pour vous, partout au Sénégal.
                 </p>
 
-                <!-- Barre de recherche -->
+                <!-- BARRE DE RECHERCHE -->
                 <div class="mt-7 max-w-xl rounded-2xl border border-white/25 bg-white/95 p-1.5 shadow-2xl backdrop-blur-md">
+
                     <form action="/biens" method="GET" class="flex flex-col gap-1.5 sm:flex-row">
+
                         <div class="flex flex-1 items-center rounded-xl bg-slate-100 px-3.5 py-2.5">
+
                             <span class="mr-2.5 text-[#B88700]">
                                 <?= icon('search', 'w-4 h-4') ?>
                             </span>
+
                             <input
                                 type="text"
                                 name="q"
-                                placeholder="Ville, quartier (ex: Almadies, Saly), type de bien..."
+                                placeholder="Ville, quartier, type de bien..."
                                 class="w-full bg-transparent text-sm font-medium text-[#061830] outline-none placeholder:text-slate-500"
                             >
                         </div>
@@ -141,11 +222,13 @@ $categoriesDesign = [
                             Rechercher
                             <?= icon('arrow-right', 'w-4 h-4') ?>
                         </button>
+
                     </form>
                 </div>
 
-                <!-- Boutons pilules -->
+                <!-- BOUTONS D'EXPLORATION -->
                 <div class="mt-5 flex flex-wrap items-center gap-3">
+
                     <a
                         href="/biens"
                         class="inline-flex items-center gap-2 rounded-full bg-[#F5C542] px-5 py-2.5 text-xs font-extrabold text-[#061830] shadow-lg transition hover:bg-[#e5b32e]"
@@ -171,139 +254,218 @@ $categoriesDesign = [
                         <?= icon('qr-code', 'w-3.5 h-3.5') ?>
                         Scanner un QR
                     </a>
+
                 </div>
 
-                <!-- Mini stats intégrées -->
+                <!-- STATISTIQUES -->
                 <div class="mt-8 flex flex-wrap items-center gap-6 border-t border-white/15 pt-5 text-white">
+
                     <div>
-                        <p class="text-xl font-extrabold text-[#F5C542]"><?= number_format($totalBiens, 0, ',', ' ') ?></p>
+                        <p class="text-xl font-extrabold text-[#F5C542]">
+                            <?= number_format($totalBiens, 0, ',', ' ') ?>
+                        </p>
                         <p class="text-[11px] text-white/80">Biens référencés</p>
                     </div>
+
                     <div class="h-7 w-px bg-white/20"></div>
+
                     <div>
-                        <p class="text-xl font-extrabold text-[#F5C542]"><?= number_format($totalQuartiers, 0, ',', ' ') ?></p>
+                        <p class="text-xl font-extrabold text-[#F5C542]">
+                            <?= number_format($totalQuartiers, 0, ',', ' ') ?>
+                        </p>
                         <p class="text-[11px] text-white/80">Quartiers couverts</p>
                     </div>
+
                     <div class="h-7 w-px bg-white/20"></div>
+
                     <div>
-                        <p class="text-xl font-extrabold text-[#F5C542]"><?= number_format($totalAgences, 0, ',', ' ') ?></p>
+                        <p class="text-xl font-extrabold text-[#F5C542]">
+                            <?= number_format($totalAgences, 0, ',', ' ') ?>
+                        </p>
                         <p class="text-[11px] text-white/80">Agences partenaires</p>
                     </div>
+
                     <div class="h-7 w-px bg-white/20"></div>
+
                     <div>
                         <p class="text-xl font-extrabold text-[#F5C542]">24/7</p>
                         <p class="text-[11px] text-white/80">Accès plateforme</p>
                     </div>
+
                 </div>
 
             </div>
 
-            <!-- Badge Sceau Doré à droite -->
+            <!-- BADGE PREMIUM -->
             <div class="hidden lg:col-span-5 lg:flex lg:justify-end lg:self-end">
+
                 <div class="flex h-28 w-28 flex-col items-center justify-center rounded-full border-[3px] border-[#F5C542] bg-[#061830]/90 p-2 text-center shadow-2xl ring-4 ring-[#F5C542]/30 backdrop-blur-md">
+
                     <span class="text-[#F5C542]">
                         <?= icon('shield-check', 'w-5 h-5') ?>
                     </span>
+
                     <span class="mt-1 font-['Playfair_Display'] text-xs font-bold leading-tight text-[#F5C542]">
                         Qualité<br>Premium
                     </span>
+
                     <span class="mt-0.5 text-[9px] font-semibold uppercase tracking-wider text-white/80">
                         IMMO-SN
                     </span>
+
                 </div>
+
             </div>
 
         </div>
     </div>
 
-    <!-- Découpe Courbe vers la section Catégories (#E6EEF8) -->
+    <!-- COURBE BAS DE SECTION -->
     <div class="pointer-events-none absolute bottom-0 left-0 right-0 overflow-hidden leading-none">
-        <svg class="relative block h-10 w-full sm:h-14" viewBox="0 0 1440 80" preserveAspectRatio="none">
-            <path d="M0,35 C480,95 960,-10 1440,45 L1440,80 L0,80 Z" fill="#E6EEF8"></path>
+
+        <svg
+            class="relative block h-10 w-full sm:h-14"
+            viewBox="0 0 1440 80"
+            preserveAspectRatio="none"
+        >
+            <path
+                d="M0,35 C480,95 960,-10 1440,45 L1440,80 L0,80 Z"
+                fill="#E6EEF8"
+            ></path>
         </svg>
+
     </div>
+
 </section>
 
 
 <!-- =========================================================
-     2. QUEL BIEN RECHERCHEZ-VOUS ? (FOND BLEU CLAIR + CARDS BLEU NUIT)
+     2. CATÉGORIES IMMOBILIÈRES
+     FOND BLEU CLAIR + CARTES BLANCHE + ICÔNES INDIVIDUELLES
 ========================================================= -->
+
 <section class="relative overflow-hidden bg-[#E6EEF8] py-16">
 
-    <!-- Filigrane architectural subtil en arrière-plan -->
-    <svg class="pointer-events-none absolute -right-10 top-4 h-72 w-72 text-[#061830]/[0.05]" viewBox="0 0 200 200" fill="currentColor">
+    <!-- Motif architectural décoratif -->
+    <svg
+        class="pointer-events-none absolute -right-10 top-4 h-72 w-72 text-[#061830]/[0.05]"
+        viewBox="0 0 200 200"
+        fill="currentColor"
+    >
         <path d="M100 15L15 85h25v95h120V85h25L100 15zm0 30l45 37v78h-30v-45H85v45H55V82l45-37z"/>
     </svg>
 
     <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
 
+        <!-- EN-TÊTE -->
         <div class="mx-auto mb-10 max-w-xl text-center">
+
             <div class="inline-flex items-center gap-2.5">
                 <span class="h-[1.5px] w-6 bg-[#D4A017]"></span>
+
                 <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#B88700]">
                     Explorer nos offres
                 </span>
+
                 <span class="h-[1.5px] w-6 bg-[#D4A017]"></span>
             </div>
 
-            <h2 class="mt-1.5 font-['Playfair_Display'] text-2xl font-bold text-[#061830] sm:text-4xl">
+            <h2 class="mt-2 font-['Playfair_Display'] text-2xl font-bold text-[#061830] sm:text-4xl">
                 Quel bien recherchez-vous ?
             </h2>
-            <p class="mt-1.5 text-xs text-slate-600 sm:text-sm">
+
+            <p class="mt-2 text-xs leading-6 text-slate-600 sm:text-sm">
                 Parcourez les principales catégories immobilières disponibles sur notre plateforme.
             </p>
+
         </div>
 
+        <!-- CATÉGORIES -->
         <?php if (empty($categoriesAccueil)): ?>
-            <div class="rounded-2xl border border-[#061830]/10 bg-white/80 p-8 text-center">
-                <p class="text-sm text-slate-600">Aucune catégorie disponible pour le moment.</p>
+
+            <div class="rounded-2xl border border-[#061830]/10 bg-white p-8 text-center shadow-sm">
+                <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-[#E6EEF8] text-[#061830]">
+                    <?= icon('house', 'w-6 h-6') ?>
+                </div>
+
+                <p class="mt-3 text-sm font-semibold text-slate-600">
+                    Aucune catégorie disponible pour le moment.
+                </p>
             </div>
+
         <?php else: ?>
-            <!-- Cards en Bleu Nuit (#061830) -->
-            <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+
+            <div class="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
                 <?php foreach ($categoriesAccueil as $categorie): ?>
+
                     <?php
                     $nomCategorie = $categorie['libelle'] ?? 'Immobilier';
-                    $slugCategorie = strtolower(trim($categorie['slug'] ?? $nomCategorie));
+
+                    $slugBrut = $categorie['slug'] ?? $nomCategorie;
+
+                    $slugCategorie = $normaliserSlugCategorie($slugBrut);
+
                     $totalCategorie = (int) ($categorie['total'] ?? 0);
-                    $designCategorie = $categoriesDesign[$slugCategorie] ?? [
-                        'icon' => 'building-2',
-                        'description' => 'Biens immobiliers disponibles'
-                    ];
+
+                   $designCategorie = $categoriesDesign[$slugCategorie] ?? [
+    'icon' => 'house',
+    'description' => 'Découvrez nos biens immobiliers'
+];
                     ?>
 
                     <a
                         href="/biens?category_id=<?= urlencode((string) ($categorie['id'] ?? '')) ?>"
-                        class="group relative flex flex-col items-center rounded-2xl border border-[#12335E] bg-[#061830] px-5 py-6 text-center shadow-lg transition duration-300 hover:-translate-y-1 hover:border-[#F5C542] hover:bg-[#0A2547] hover:shadow-xl"
+                        class="group relative flex h-full flex-col items-center overflow-hidden rounded-2xl border border-white bg-white px-4 py-6 text-center shadow-[0_4px_20px_rgba(6,24,48,0.06)] transition duration-300 hover:-translate-y-1 hover:border-[#F5C542]/70 hover:shadow-[0_12px_30px_rgba(6,24,48,0.12)] sm:px-5 sm:py-7"
                     >
-                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F5C542]/15 text-[#F5C542] ring-1 ring-[#F5C542]/30 transition group-hover:scale-110 group-hover:bg-[#F5C542] group-hover:text-[#061830]">
+
+                        <!-- Halo décoratif -->
+                        <div class="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-[#F5C542]/[0.06] transition group-hover:bg-[#F5C542]/[0.14]"></div>
+
+                        <!-- ICÔNE DE LA CATÉGORIE -->
+                        <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl border border-[#F5C542]/25 bg-[#061830] text-[#F5C542] shadow-sm transition duration-300 group-hover:scale-110 group-hover:bg-[#F5C542] group-hover:text-[#061830] group-hover:shadow-md">
+
                             <?= icon($designCategorie['icon'], 'w-6 h-6') ?>
+
                         </div>
 
-                        <h3 class="mt-3.5 text-sm font-extrabold text-white sm:text-base">
+                        <!-- NOM -->
+                        <h3 class="relative mt-4 text-sm font-extrabold text-[#061830] sm:text-base">
                             <?= htmlspecialchars($nomCategorie, ENT_QUOTES, 'UTF-8') ?>
                         </h3>
 
-                        <p class="mt-1 line-clamp-1 text-xs text-slate-300">
+                        <!-- DESCRIPTION -->
+                        <p class="relative mt-1.5 min-h-[32px] text-xs leading-5 text-slate-500">
                             <?= htmlspecialchars($designCategorie['description'], ENT_QUOTES, 'UTF-8') ?>
                         </p>
 
-                        <div class="mt-4 flex items-center gap-2">
-                            <span class="rounded-full bg-white/10 px-3 py-0.5 text-[11px] font-bold text-[#F5C542]">
-                                <?= number_format($totalCategorie, 0, ',', ' ') ?> bien<?= $totalCategorie > 1 ? 's' : '' ?>
+                        <!-- NOMBRE DE BIENS + FLÈCHE -->
+                        <div class="relative mt-4 flex items-center justify-between gap-2">
+
+                            <span class="rounded-full bg-[#E6EEF8] px-3 py-1 text-[11px] font-bold text-[#061830] transition group-hover:bg-[#F5C542]/20">
+                                <?= number_format($totalCategorie, 0, ',', ' ') ?>
+                                bien<?= $totalCategorie > 1 ? 's' : '' ?>
                             </span>
-                            <span class="flex h-6 w-6 items-center justify-center rounded-full border border-white/20 text-white transition group-hover:border-[#F5C542] group-hover:bg-[#F5C542] group-hover:text-[#061830]">
-                                <?= icon('arrow-right', 'w-3 h-3') ?>
+
+                            <span class="flex h-8 w-8 items-center justify-center rounded-full border border-[#061830]/10 bg-white text-[#061830] transition duration-300 group-hover:border-[#F5C542] group-hover:bg-[#F5C542]">
+
+                                <?= icon('arrow-right', 'w-3.5 h-3.5') ?>
+
                             </span>
+
                         </div>
+
                     </a>
+
                 <?php endforeach; ?>
+
             </div>
+
         <?php endif; ?>
 
     </div>
-</section>
 
+</section>
 
 <!-- =========================================================
      3. LES BIENS À DÉCOUVRIR (FOND BLANC + 3 CARDS/LIGNE + BOUTON OR EN BAS)
