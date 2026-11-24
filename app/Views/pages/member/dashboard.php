@@ -74,8 +74,8 @@ $derniersBiens = is_array($derniersBiens ?? null)
    ACTIVITÉ DES 30 DERNIERS JOURS
 ========================================================= */
 
-$activite30Jours = is_array($activite30Jours ?? null)
-    ? $activite30Jours
+$activite30Jours = is_array($stats['activite30Jours'] ?? null)
+    ? $stats['activite30Jours']
     : [];
 
 $maxVues = 0;
