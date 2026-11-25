@@ -1,6 +1,5 @@
 <?php
 
-
 $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 
 /*
@@ -17,36 +16,6 @@ $currentPath = preg_replace(
 
 // Normaliser les slashs finaux
 $currentPath = rtrim($currentPath, '/') ?: '/';
-
-?>
-
-<pre class="fixed bottom-2 right-2 z-[9999] bg-black text-white p-3 text-xs">
-    <?= htmlspecialchars($currentPath) ?>
-</pre>
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Vérifier si une route de l'administration est active
-|--------------------------------------------------------------------------
-*/
-
-function isAdminActive(string $path): bool
-{
-    global $currentPath;
-
-    $path = rtrim($path, '/') ?: '/';
-
-    // Dashboard : correspond uniquement à /admin
-    if ($path === '/admin') {
-        return $currentPath === '/admin';
-    }
-
-    // Autres rubriques : route exacte ou sous-page
-    return $currentPath === $path
-        || str_starts_with($currentPath, $path . '/');
-}
 
 
 /*
