@@ -10,7 +10,7 @@ $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 */
 
 $currentPath = preg_replace(
-    '#^/immo-sn/public#',
+    '#^/immo-sn(?:/public)?#',
     '',
     $currentPath
 );
