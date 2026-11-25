@@ -432,12 +432,9 @@ $descriptionAgence = $_POST['description_agence'] ?? '';
 
                 </div>
 
-            <?php endif; ?>
+                       <?php elseif (!empty($success)): ?>
 
             <!-- MESSAGE SUCCES -->
-
-            <?php if (!empty($success)): ?>
-
                 <div
                     class="mb-5 min-w-0 rounded-2xl border border-green-200
                            bg-green-50 px-4 py-4 text-sm text-green-700"

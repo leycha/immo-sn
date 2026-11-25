@@ -389,10 +389,9 @@ $success = $success ?? null;
 
                 </div>
 
-            <?php endif; ?>
+                     <?php elseif (!empty($success)): ?>
 
             <!-- Succès -->
-            <?php if (!empty($success)): ?>
 
                 <div class="mb-6 min-w-0 rounded-2xl border border-green-200 bg-green-50 px-4 py-4 text-sm text-green-700">
 

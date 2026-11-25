@@ -1,5 +1,6 @@
 <?php
 
+
 $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 
 /*
@@ -16,6 +17,36 @@ $currentPath = preg_replace(
 
 // Normaliser les slashs finaux
 $currentPath = rtrim($currentPath, '/') ?: '/';
+
+?>
+
+<pre class="fixed bottom-2 right-2 z-[9999] bg-black text-white p-3 text-xs">
+    <?= htmlspecialchars($currentPath) ?>
+</pre>
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Vérifier si une route de l'administration est active
+|--------------------------------------------------------------------------
+*/
+
+function isAdminActive(string $path): bool
+{
+    global $currentPath;
+
+    $path = rtrim($path, '/') ?: '/';
+
+    // Dashboard : correspond uniquement à /admin
+    if ($path === '/admin') {
+        return $currentPath === '/admin';
+    }
+
+    // Autres rubriques : route exacte ou sous-page
+    return $currentPath === $path
+        || str_starts_with($currentPath, $path . '/');
+}
 
 
 /*
@@ -201,10 +232,10 @@ function isAdminActive(string $path): bool
                 text-sm
                 font-medium
 
-              <?= isAdminActive('/admin')
-    ? 'bg-[#12345a] text-[#f5b800] font-bold border-l-4 border-[#f5b800] shadow-md shadow-black/10'
-    : 'border-l-4 border-transparent text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
-?>
+                <?= isAdminActive('/admin')
+                    ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-lg shadow-[#f5b800]/10'
+                    : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
+                ?>
             "
         >
 

@@ -36,25 +36,26 @@ $currentPath = rtrim($currentPath, '/') ?: '/';
 */
 
 if (!function_exists('isMemberActive')) {
-
     function isMemberActive(string $path): bool
     {
         global $currentPath;
 
         $path = rtrim($path, '/') ?: '/';
 
-        // Dashboard : route exacte
-        if ($path === '/member' || $path === '/member/dashboard') {
+        // Le Dashboard correspond aussi à /member
+        if ($path === '/member/dashboard') {
             return $currentPath === '/member'
-                || $currentPath === '/member/dashboard';
+                || $currentPath === '/member/dashboard'
+                || str_starts_with($currentPath, '/member/dashboard/');
         }
 
-        // Autres menus : route exacte ou sous-route
         return $currentPath === $path
             || str_starts_with($currentPath, $path . '/');
     }
-
 }
+
+
+
 
 ?>
 <aside
