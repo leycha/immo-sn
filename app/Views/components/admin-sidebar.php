@@ -4,23 +4,33 @@ $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 
 /*
 |--------------------------------------------------------------------------
-| Nettoyage du chemin du projet
+| Nettoyage du chemin : Render et environnement local
+|--------------------------------------------------------------------------
+| Exemples :
+| /public/admin/biens           => /admin/biens
+| /immo-sn/public/admin/biens  => /admin/biens
+| /immo-sn/admin/biens        => /admin/biens
 |--------------------------------------------------------------------------
 */
 
 $currentPath = preg_replace(
-    '#^/immo-sn(?:/public)?#',
+    '#^/(?:immo-sn/)?public(?=/|$)#',
     '',
     $currentPath
 );
 
-// Normaliser les slashs finaux
+$currentPath = preg_replace(
+    '#^/immo-sn(?=/|$)#',
+    '',
+    $currentPath
+);
+
 $currentPath = rtrim($currentPath, '/') ?: '/';
 
 
 /*
 |--------------------------------------------------------------------------
-| Vérifier si une route de l'administration est active
+| Détection du menu actif
 |--------------------------------------------------------------------------
 */
 
@@ -30,18 +40,17 @@ function isAdminActive(string $path): bool
 
     $path = rtrim($path, '/') ?: '/';
 
-    // Dashboard : correspond uniquement à /admin
+    // Dashboard uniquement sur la page d'accueil admin
     if ($path === '/admin') {
         return $currentPath === '/admin';
     }
 
-    // Autres rubriques : route exacte ou sous-page
+    // Les autres menus : route exacte ou sous-route
     return $currentPath === $path
         || str_starts_with($currentPath, $path . '/');
 }
 
 ?>
-
 <aside
     id="adminSidebar"
     aria-label="Navigation administration"
@@ -266,7 +275,7 @@ function isAdminActive(string $path): bool
                 text-sm
                 font-medium
 
-                <?= isAdminActive('/public/admin/biens')
+                <?= isAdminActive('/admin/biens')
                     ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-lg shadow-[#f5b800]/10'
                     : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
                 ?>
