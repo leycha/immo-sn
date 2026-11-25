@@ -266,7 +266,7 @@ function isAdminActive(string $path): bool
                 text-sm
                 font-medium
 
-                <?= isAdminActive('/admin/biens')
+                <?= isAdminActive('/public/admin/biens')
                     ? 'bg-[#f5b800] text-[#0b1528] font-semibold shadow-lg shadow-[#f5b800]/10'
                     : 'text-slate-300 hover:bg-[#0e2a4e] hover:text-white'
                 ?>
